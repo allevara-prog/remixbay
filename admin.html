@@ -14,7 +14,7 @@
 
 <meta name="viewport"
 
-      content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 
 
@@ -28,45 +28,45 @@
 
 /* ==============================
 
-   UPLOAD WINDOW
+   UPLOAD WINDOW
 
-   ============================== */
+   ============================== */
 
 
 
 .upload-overlay {
 
-    display: none;
+    display: none;
 
 
 
-    position: fixed;
+    position: fixed;
 
 
 
-    left: 0;
+    left: 0;
 
-    top: 0;
-
-
-
-    width: 100%;
-
-    height: 100%;
+    top: 0;
 
 
 
-    background: rgba(0, 0, 0, 0.55);
+    width: 100%;
+
+    height: 100%;
 
 
 
-    align-items: center;
-
-    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
 
 
 
-    z-index: 1000;
+    align-items: center;
+
+    justify-content: center;
+
+
+
+    z-index: 1000;
 
 }
 
@@ -74,21 +74,21 @@
 
 .upload-window {
 
-    width: 500px;
+    width: 500px;
 
 
 
-    background: #363636;
+    background: #363636;
 
 
 
-    border: 1px solid #111111;
+    border: 1px solid #111111;
 
 
 
-    box-shadow:
+    box-shadow:
 
-        2px 2px 0 #111111;
+        2px 2px 0 #111111;
 
 }
 
@@ -96,29 +96,29 @@
 
 .upload-titlebar {
 
-    height: 28px;
+    height: 28px;
 
 
 
-    display: flex;
+    display: flex;
 
-    align-items: center;
-
-
-
-    padding-left: 8px;
+    align-items: center;
 
 
 
-    background: #494949;
+    padding-left: 8px;
 
 
 
-    border-bottom: 1px solid #171717;
+    background: #494949;
 
 
 
-    font-weight: bold;
+    border-bottom: 1px solid #171717;
+
+
+
+    font-weight: bold;
 
 }
 
@@ -126,31 +126,31 @@
 
 .close-button {
 
-    margin-left: auto;
+    margin-left: auto;
 
 
 
-    min-width: 30px;
+    min-width: 30px;
 
 
 
-    height: 27px;
+    height: 27px;
 
 
 
-    padding: 0;
+    padding: 0;
 
 
 
-    border: 0;
+    border: 0;
 
 
 
-    border-left: 1px solid #222222;
+    border-left: 1px solid #222222;
 
 
 
-    background: #444444;
+    background: #444444;
 
 }
 
@@ -158,7 +158,7 @@
 
 .close-button:hover {
 
-    background: #555555;
+    background: #555555;
 
 }
 
@@ -166,7 +166,7 @@
 
 .upload-content {
 
-    padding: 12px;
+    padding: 12px;
 
 }
 
@@ -174,41 +174,41 @@
 
 .upload-destination {
 
-    margin-top: 10px;
+    margin-top: 10px;
 
 
 
-    padding: 7px;
+    padding: 7px;
 
 
 
-    background: #292929;
+    background: #292929;
 
 
 
-    border: 1px solid #1a1a1a;
+    border: 1px solid #1a1a1a;
 
 
 
-    color: #999999;
+    color: #999999;
 
 
 
-    font-family:
+    font-family:
 
-        Consolas,
+        Consolas,
 
-        "Courier New",
+        "Courier New",
 
-        monospace;
-
-
-
-    font-size: 11px;
+        monospace;
 
 
 
-    word-break: break-all;
+    font-size: 11px;
+
+
+
+    word-break: break-all;
 
 }
 
@@ -216,27 +216,27 @@
 
 .upload-buttons {
 
-    display: flex;
+    display: flex;
 
 
 
-    justify-content: flex-end;
+    justify-content: flex-end;
 
 
 
-    gap: 5px;
+    gap: 5px;
 
 
 
-    margin-top: 12px;
+    margin-top: 12px;
 
 
 
-    padding-top: 8px;
+    padding-top: 8px;
 
 
 
-    border-top: 1px solid #202020;
+    border-top: 1px solid #202020;
 
 }
 
@@ -246,11 +246,11 @@
 
 
 
-    .upload-window {
+    .upload-window {
 
-        width: calc(100% - 20px);
+        width: calc(100% - 20px);
 
-    }
+    }
 
 
 
@@ -260,7 +260,7 @@
 
 * {
 
-    box-sizing: border-box;
+    box-sizing: border-box;
 
 }
 
@@ -270,7 +270,7 @@ html,
 
 body {
 
-    height: 100%;
+    height: 100%;
 
 }
 
@@ -278,19 +278,19 @@ body {
 
 body {
 
-    margin: 0;
+    margin: 0;
 
 
 
-    background: #242424;
+    background: #242424;
 
-    color: #dddddd;
+    color: #dddddd;
 
 
 
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
 
-    font-size: 12px;
+    font-size: 12px;
 
 }
 
@@ -300,25 +300,25 @@ body {
 
 /* ==============================
 
-   MAIN WINDOW
+   MAIN WINDOW
 
-   ============================== */
+   ============================== */
 
 
 
 .window {
 
-    width: 1000px;
+    width: 1000px;
 
-    margin: 18px auto;
-
-
-
-    background: #333333;
+    margin: 18px auto;
 
 
 
-    border: 1px solid #111111;
+    background: #333333;
+
+
+
+    border: 1px solid #111111;
 
 }
 
@@ -328,33 +328,33 @@ body {
 
 /* ==============================
 
-   TITLE BAR
+   TITLE BAR
 
-   ============================== */
+   ============================== */
 
 
 
 .titlebar {
 
-    height: 30px;
+    height: 30px;
 
 
 
-    display: flex;
+    display: flex;
 
-    align-items: center;
-
-
-
-    padding: 0 8px;
+    align-items: center;
 
 
 
-    background: #454545;
+    padding: 0 8px;
 
 
 
-    border-bottom: 1px solid #151515;
+    background: #454545;
+
+
+
+    border-bottom: 1px solid #151515;
 
 }
 
@@ -362,9 +362,9 @@ body {
 
 .titlebar-title {
 
-    font-weight: bold;
+    font-weight: bold;
 
-    color: #eeeeee;
+    color: #eeeeee;
 
 }
 
@@ -372,13 +372,13 @@ body {
 
 .titlebar-right {
 
-    margin-left: auto;
+    margin-left: auto;
 
 
 
-    color: #999999;
+    color: #999999;
 
-    font-size: 11px;
+    font-size: 11px;
 
 }
 
@@ -388,33 +388,33 @@ body {
 
 /* ==============================
 
-   MENU
+   MENU
 
-   ============================== */
+   ============================== */
 
 
 
 .menu {
 
-    height: 27px;
+    height: 27px;
 
 
 
-    display: flex;
+    display: flex;
 
-    align-items: center;
-
-
-
-    padding-left: 4px;
+    align-items: center;
 
 
 
-    background: #333333;
+    padding-left: 4px;
 
 
 
-    border-bottom: 1px solid #171717;
+    background: #333333;
+
+
+
+    border-bottom: 1px solid #171717;
 
 }
 
@@ -422,15 +422,15 @@ body {
 
 .menu a {
 
-    padding: 6px 10px;
+    padding: 6px 10px;
 
 
 
-    color: #d0d0d0;
+    color: #d0d0d0;
 
 
 
-    text-decoration: none;
+    text-decoration: none;
 
 }
 
@@ -438,9 +438,9 @@ body {
 
 .menu a:hover {
 
-    background: #4b4b4b;
+    background: #4b4b4b;
 
-    color: white;
+    color: white;
 
 }
 
@@ -450,19 +450,19 @@ body {
 
 /* ==============================
 
-   WORKSPACE
+   WORKSPACE
 
-   ============================== */
+   ============================== */
 
 
 
 .workspace {
 
-    display: flex;
+    display: flex;
 
 
 
-    min-height: 570px;
+    min-height: 570px;
 
 }
 
@@ -472,29 +472,29 @@ body {
 
 /* ==============================
 
-   SIDEBAR
+   SIDEBAR
 
-   ============================== */
+   ============================== */
 
 
 
 .sidebar {
 
-    width: 300px;
+    width: 300px;
 
 
 
-    background: #2e2e2e;
+    background: #2e2e2e;
 
 
 
-    border-right: 1px solid #111111;
+    border-right: 1px solid #111111;
 
 
 
-    display: flex;
+    display: flex;
 
-    flex-direction: column;
+    flex-direction: column;
 
 }
 
@@ -502,29 +502,29 @@ body {
 
 .panel-title {
 
-    height: 26px;
+    height: 26px;
 
 
 
-    display: flex;
+    display: flex;
 
-    align-items: center;
-
-
-
-    padding: 0 7px;
+    align-items: center;
 
 
 
-    background: #454545;
+    padding: 0 7px;
 
 
 
-    border-bottom: 1px solid #181818;
+    background: #454545;
 
 
 
-    font-weight: bold;
+    border-bottom: 1px solid #181818;
+
+
+
+    font-weight: bold;
 
 }
 
@@ -534,19 +534,19 @@ body {
 
 /* ==============================
 
-   SEARCH
+   SEARCH
 
-   ============================== */
+   ============================== */
 
 
 
 .search-area {
 
-    padding: 7px;
+    padding: 7px;
 
 
 
-    border-bottom: 1px solid #181818;
+    border-bottom: 1px solid #181818;
 
 }
 
@@ -554,7 +554,7 @@ body {
 
 .search-area input {
 
-    width: 100%;
+    width: 100%;
 
 }
 
@@ -564,27 +564,27 @@ body {
 
 /* ==============================
 
-   FILE FILTER BUTTONS
+   FILE FILTER BUTTONS
 
-   ============================== */
+   ============================== */
 
 
 
 .filters {
 
-    display: flex;
+    display: flex;
 
 
 
-    padding: 5px;
+    padding: 5px;
 
 
 
-    gap: 3px;
+    gap: 3px;
 
 
 
-    border-bottom: 1px solid #181818;
+    border-bottom: 1px solid #181818;
 
 }
 
@@ -592,15 +592,15 @@ body {
 
 .filters button {
 
-    min-width: 0;
+    min-width: 0;
 
 
 
-    flex: 1;
+    flex: 1;
 
 
 
-    padding: 4px;
+    padding: 4px;
 
 }
 
@@ -608,7 +608,7 @@ body {
 
 .filters button.active {
 
-    background: #626262;
+    background: #626262;
 
 }
 
@@ -618,23 +618,23 @@ body {
 
 /* ==============================
 
-   FILE LIST
+   FILE LIST
 
-   ============================== */
+   ============================== */
 
 
 
 .file-list {
 
-    height: 470px;
+    height: 470px;
 
 
 
-    overflow-y: auto;
+    overflow-y: auto;
 
 
 
-    background: #292929;
+    background: #292929;
 
 }
 
@@ -642,23 +642,23 @@ body {
 
 .file-item {
 
-    padding: 6px 7px;
+    padding: 6px 7px;
 
 
 
-    border-bottom: 1px solid #363636;
+    border-bottom: 1px solid #363636;
 
 
 
-    cursor: pointer;
+    cursor: pointer;
 
 
 
-    white-space: nowrap;
+    white-space: nowrap;
 
-    overflow: hidden;
+    overflow: hidden;
 
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;
 
 }
 
@@ -666,7 +666,7 @@ body {
 
 .file-item:hover {
 
-    background: #3d3d3d;
+    background: #3d3d3d;
 
 }
 
@@ -674,7 +674,7 @@ body {
 
 .file-item.selected {
 
-    background: #555555;
+    background: #555555;
 
 }
 
@@ -682,7 +682,7 @@ body {
 
 .file-name {
 
-    color: #eeeeee;
+    color: #eeeeee;
 
 }
 
@@ -690,27 +690,27 @@ body {
 
 .file-path {
 
-    margin-top: 2px;
+    margin-top: 2px;
 
 
 
-    color: #777777;
+    color: #777777;
 
 
 
-    font-family: Consolas, "Courier New", monospace;
+    font-family: Consolas, "Courier New", monospace;
 
 
 
-    font-size: 10px;
+    font-size: 10px;
 
 
 
-    white-space: nowrap;
+    white-space: nowrap;
 
-    overflow: hidden;
+    overflow: hidden;
 
-    text-overflow: ellipsis;
+    text-overflow: ellipsis;
 
 }
 
@@ -718,25 +718,25 @@ body {
 
 .metadata-dot {
 
-    display: inline-block;
+    display: inline-block;
 
 
 
-    width: 7px;
+    width: 7px;
 
-    height: 7px;
-
-
-
-    margin-right: 5px;
+    height: 7px;
 
 
 
-    border: 1px solid #111111;
+    margin-right: 5px;
 
 
 
-    background: #777777;
+    border: 1px solid #111111;
+
+
+
+    background: #777777;
 
 }
 
@@ -744,7 +744,7 @@ body {
 
 .metadata-dot.complete {
 
-    background: #8eb27e;
+    background: #8eb27e;
 
 }
 
@@ -752,7 +752,7 @@ body {
 
 .metadata-dot.empty {
 
-    background: #b58b62;
+    background: #b58b62;
 
 }
 
@@ -762,25 +762,25 @@ body {
 
 /* ==============================
 
-   EDITOR
+   EDITOR
 
-   ============================== */
+   ============================== */
 
 
 
 .editor {
 
-    flex: 1;
+    flex: 1;
 
 
 
-    background: #363636;
+    background: #363636;
 
 
 
-    display: flex;
+    display: flex;
 
-    flex-direction: column;
+    flex-direction: column;
 
 }
 
@@ -788,11 +788,11 @@ body {
 
 .editor-content {
 
-    padding: 10px;
+    padding: 10px;
 
 
 
-    flex: 1;
+    flex: 1;
 
 }
 
@@ -802,23 +802,23 @@ body {
 
 /* ==============================
 
-   EMPTY EDITOR
+   EMPTY EDITOR
 
-   ============================== */
+   ============================== */
 
 
 
 .no-file {
 
-    padding: 30px;
+    padding: 30px;
 
 
 
-    text-align: center;
+    text-align: center;
 
 
 
-    color: #888888;
+    color: #888888;
 
 }
 
@@ -828,23 +828,23 @@ body {
 
 /* ==============================
 
-   R2 INFO
+   R2 INFO
 
-   ============================== */
+   ============================== */
 
 
 
 .info-panel {
 
-    margin-bottom: 10px;
+    margin-bottom: 10px;
 
 
 
-    border: 1px solid #1a1a1a;
+    border: 1px solid #1a1a1a;
 
 
 
-    background: #2b2b2b;
+    background: #2b2b2b;
 
 }
 
@@ -852,19 +852,19 @@ body {
 
 .info-title {
 
-    padding: 5px 7px;
+    padding: 5px 7px;
 
 
 
-    background: #414141;
+    background: #414141;
 
 
 
-    border-bottom: 1px solid #181818;
+    border-bottom: 1px solid #181818;
 
 
 
-    font-weight: bold;
+    font-weight: bold;
 
 }
 
@@ -872,27 +872,27 @@ body {
 
 .info-content {
 
-    padding: 7px;
+    padding: 7px;
 
 
 
-    font-family: Consolas, "Courier New", monospace;
+    font-family: Consolas, "Courier New", monospace;
 
 
 
-    color: #aaaaaa;
+    color: #aaaaaa;
 
 
 
-    font-size: 11px;
+    font-size: 11px;
 
 
 
-    line-height: 18px;
+    line-height: 18px;
 
 
 
-    word-break: break-all;
+    word-break: break-all;
 
 }
 
@@ -900,7 +900,7 @@ body {
 
 .info-label {
 
-    color: #777777;
+    color: #777777;
 
 }
 
@@ -910,15 +910,15 @@ body {
 
 /* ==============================
 
-   FORM
+   FORM
 
-   ============================== */
+   ============================== */
 
 
 
 .field {
 
-    margin-bottom: 9px;
+    margin-bottom: 9px;
 
 }
 
@@ -926,15 +926,15 @@ body {
 
 label {
 
-    display: block;
+    display: block;
 
 
 
-    margin-bottom: 3px;
+    margin-bottom: 3px;
 
 
 
-    color: #cccccc;
+    color: #cccccc;
 
 }
 
@@ -946,39 +946,39 @@ select,
 
 textarea {
 
-    width: 100%;
+    width: 100%;
 
 
 
-    padding: 5px;
+    padding: 5px;
 
 
 
-    background: #242424;
+    background: #242424;
 
 
 
-    color: #eeeeee;
+    color: #eeeeee;
 
 
 
-    border: 1px solid #666666;
+    border: 1px solid #666666;
 
 
 
-    border-radius: 0;
+    border-radius: 0;
 
 
 
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
 
 
 
-    font-size: 12px;
+    font-size: 12px;
 
 
 
-    outline: none;
+    outline: none;
 
 }
 
@@ -990,11 +990,11 @@ select:focus,
 
 textarea:focus {
 
-    border-color: #aaaaaa;
+    border-color: #aaaaaa;
 
 
 
-    background: #292929;
+    background: #292929;
 
 }
 
@@ -1002,11 +1002,11 @@ textarea:focus {
 
 textarea {
 
-    height: 75px;
+    height: 75px;
 
 
 
-    resize: vertical;
+    resize: vertical;
 
 }
 
@@ -1014,11 +1014,11 @@ textarea {
 
 .row {
 
-    display: flex;
+    display: flex;
 
 
 
-    gap: 10px;
+    gap: 10px;
 
 }
 
@@ -1026,7 +1026,7 @@ textarea {
 
 .column {
 
-    flex: 1;
+    flex: 1;
 
 }
 
@@ -1034,15 +1034,15 @@ textarea {
 
 .help {
 
-    margin-top: 3px;
+    margin-top: 3px;
 
 
 
-    color: #777777;
+    color: #777777;
 
 
 
-    font-size: 10px;
+    font-size: 10px;
 
 }
 
@@ -1052,31 +1052,31 @@ textarea {
 
 /* ==============================
 
-   EDITOR BUTTONS
+   EDITOR BUTTONS
 
-   ============================== */
+   ============================== */
 
 
 
 .editor-buttons {
 
-    display: flex;
+    display: flex;
 
 
 
-    align-items: center;
+    align-items: center;
 
 
 
-    margin-top: 12px;
+    margin-top: 12px;
 
 
 
-    padding-top: 8px;
+    padding-top: 8px;
 
 
 
-    border-top: 1px solid #202020;
+    border-top: 1px solid #202020;
 
 }
 
@@ -1084,11 +1084,11 @@ textarea {
 
 .navigation-buttons {
 
-    display: flex;
+    display: flex;
 
 
 
-    gap: 4px;
+    gap: 4px;
 
 }
 
@@ -1096,15 +1096,15 @@ textarea {
 
 .save-buttons {
 
-    display: flex;
+    display: flex;
 
 
 
-    gap: 4px;
+    gap: 4px;
 
 
 
-    margin-left: auto;
+    margin-left: auto;
 
 }
 
@@ -1114,55 +1114,55 @@ textarea {
 
 /* ==============================
 
-   BUTTONS
+   BUTTONS
 
-   ============================== */
+   ============================== */
 
 
 
 button {
 
-    min-width: 80px;
+    min-width: 80px;
 
 
 
-    padding: 5px 10px;
+    padding: 5px 10px;
 
 
 
-    background: #4a4a4a;
+    background: #4a4a4a;
 
 
 
-    color: #eeeeee;
+    color: #eeeeee;
 
 
 
-    border-top: 1px solid #777777;
+    border-top: 1px solid #777777;
 
-    border-left: 1px solid #777777;
-
-
-
-    border-right: 1px solid #181818;
-
-    border-bottom: 1px solid #181818;
+    border-left: 1px solid #777777;
 
 
 
-    border-radius: 0;
+    border-right: 1px solid #181818;
+
+    border-bottom: 1px solid #181818;
 
 
 
-    font-family: Tahoma, Arial, sans-serif;
+    border-radius: 0;
 
 
 
-    font-size: 11px;
+    font-family: Tahoma, Arial, sans-serif;
 
 
 
-    cursor: pointer;
+    font-size: 11px;
+
+
+
+    cursor: pointer;
 
 }
 
@@ -1170,7 +1170,7 @@ button {
 
 button:hover {
 
-    background: #555555;
+    background: #555555;
 
 }
 
@@ -1178,15 +1178,15 @@ button:hover {
 
 button:active {
 
-    border-top: 1px solid #181818;
+    border-top: 1px solid #181818;
 
-    border-left: 1px solid #181818;
+    border-left: 1px solid #181818;
 
 
 
-    border-right: 1px solid #777777;
+    border-right: 1px solid #777777;
 
-    border-bottom: 1px solid #777777;
+    border-bottom: 1px solid #777777;
 
 }
 
@@ -1194,15 +1194,15 @@ button:active {
 
 button:disabled {
 
-    background: #383838;
+    background: #383838;
 
 
 
-    color: #777777;
+    color: #777777;
 
 
 
-    cursor: default;
+    cursor: default;
 
 }
 
@@ -1212,37 +1212,37 @@ button:disabled {
 
 /* ==============================
 
-   STATUS BAR
+   STATUS BAR
 
-   ============================== */
+   ============================== */
 
 
 
 .statusbar {
 
-    height: 27px;
+    height: 27px;
 
 
 
-    display: flex;
+    display: flex;
 
-    align-items: center;
-
-
-
-    padding: 0 7px;
+    align-items: center;
 
 
 
-    background: #303030;
+    padding: 0 7px;
 
 
 
-    border-top: 1px solid #151515;
+    background: #303030;
 
 
 
-    font-size: 11px;
+    border-top: 1px solid #151515;
+
+
+
+    font-size: 11px;
 
 }
 
@@ -1250,11 +1250,11 @@ button:disabled {
 
 .status-label {
 
-    margin-right: 5px;
+    margin-right: 5px;
 
 
 
-    color: #dddddd;
+    color: #dddddd;
 
 }
 
@@ -1262,7 +1262,7 @@ button:disabled {
 
 #status {
 
-    color: #aaaaaa;
+    color: #aaaaaa;
 
 }
 
@@ -1270,7 +1270,7 @@ button:disabled {
 
 .status-success {
 
-    color: #9dcc8e !important;
+    color: #9dcc8e !important;
 
 }
 
@@ -1278,7 +1278,7 @@ button:disabled {
 
 .status-error {
 
-    color: #e28b8b !important;
+    color: #e28b8b !important;
 
 }
 
@@ -1286,7 +1286,7 @@ button:disabled {
 
 .status-modified {
 
-    color: #e1c17a !important;
+    color: #e1c17a !important;
 
 }
 
@@ -1294,15 +1294,15 @@ button:disabled {
 
 .status-right {
 
-    margin-left: auto;
+    margin-left: auto;
 
 
 
-    color: #777777;
+    color: #777777;
 
 
 
-    font-family: Consolas, "Courier New", monospace;
+    font-family: Consolas, "Courier New", monospace;
 
 }
 
@@ -1312,9 +1312,9 @@ button:disabled {
 
 /* ==============================
 
-   RESPONSIVE
+   RESPONSIVE
 
-   ============================== */
+   ============================== */
 
 
 
@@ -1322,15 +1322,15 @@ button:disabled {
 
 
 
-    .window {
+    .window {
 
-        width: auto;
+        width: auto;
 
 
 
-        margin: 8px;
+        margin: 8px;
 
-    }
+    }
 
 
 
@@ -1342,41 +1342,41 @@ button:disabled {
 
 
 
-    .workspace {
+    .workspace {
 
-        display: block;
+        display: block;
 
-    }
-
-
-
-    .sidebar {
-
-        width: 100%;
+    }
 
 
 
-        border-right: none;
+    .sidebar {
 
-        border-bottom: 1px solid #111111;
-
-    }
+        width: 100%;
 
 
 
-    .file-list {
+        border-right: none;
 
-        height: 220px;
+        border-bottom: 1px solid #111111;
 
-    }
+    }
 
 
 
-    .row {
+    .file-list {
 
-        display: block;
+        height: 220px;
 
-    }
+    }
+
+
+
+    .row {
+
+        display: block;
+
+    }
 
 
 
@@ -1406,37 +1406,37 @@ button:disabled {
 
 
 
-    <!-- TITLE BAR -->
+    <!-- TITLE BAR -->
 
 
 
-    <div class="titlebar">
+    <div class="titlebar">
 
 
 
-        <div class="titlebar-title">
+        <div class="titlebar-title">
 
-            REMIXBAY // ADMIN
+            REMIXBAY // ADMIN
 
-        </div>
-
-
-
-        <div class="titlebar-right">
-
-            FILE DATABASE
-
-        </div>
+        </div>
 
 
 
-    </div>
+        <div class="titlebar-right">
+
+            FILE DATABASE
+
+        </div>
+
+
+
+    </div>
 
 
 
 
 
-    <!-- MENU -->
+    <!-- MENU -->
 
 
 
@@ -1444,41 +1444,41 @@ button:disabled {
 
 
 
-    <a href="index.html">
+    <a href="index.html">
 
-        Home
+        Home
 
-    </a>
-
-
-
-    <a href="files.html">
-
-        Files
-
-    </a>
+    </a>
 
 
 
-    <a href="about.html">
+    <a href="files.html">
 
-        About
+        Files
 
-    </a>
-
-
-
-    <a href="#"
-
-       onclick="openUpload(); return false;">
+    </a>
 
 
 
-        Upload
+    <a href="about.html">
+
+        About
+
+    </a>
 
 
 
-    </a>
+    <a href="#"
+
+       onclick="openUpload(); return false;">
+
+
+
+        Upload
+
+
+
+    </a>
 
 
 
@@ -1488,143 +1488,143 @@ button:disabled {
 
 
 
-    <!-- WORKSPACE -->
+    <!-- WORKSPACE -->
 
 
 
-    <div class="workspace">
+    <div class="workspace">
 
 
 
 
 
-        <!-- ==========================
+        <!-- ==========================
 
-             LEFT SIDEBAR
+             LEFT SIDEBAR
 
-             ========================== -->
+             ========================== -->
 
 
 
-        <div class="sidebar">
+        <div class="sidebar">
 
 
 
 
 
-            <div class="panel-title">
+            <div class="panel-title">
 
-                FILES
+                FILES
 
-            </div>
+            </div>
 
 
 
 
 
-            <div class="search-area">
+            <div class="search-area">
 
 
 
-                <input
+                <input
 
-                    type="text"
+                    type="text"
 
-                    id="search"
+                    id="search"
 
-                    placeholder="Search files...">
+                    placeholder="Search files...">
 
 
 
-            </div>
+            </div>
 
 
 
 
 
-            <div class="filters">
+            <div class="filters">
 
 
 
-                <button
+                <button
 
-                    id="filterAll"
+                    id="filterAll"
 
-                    class="active"
+                    class="active"
 
-                    onclick="setFilter('all')">
+                    onclick="setFilter('all')">
 
 
 
-                    All
+                    All
 
 
 
-                </button>
+                </button>
 
 
 
-                <button
+                <button
 
-                    id="filterTagged"
+                    id="filterTagged"
 
-                    onclick="setFilter('tagged')">
+                    onclick="setFilter('tagged')">
 
 
 
-                    Catalogued
+                    Catalogued
 
 
 
-                </button>
+                </button>
 
 
 
-                <button
+                <button
 
-                    id="filterUntagged"
+                    id="filterUntagged"
 
-                    onclick="setFilter('untagged')">
+                    onclick="setFilter('untagged')">
 
 
 
-                    Uncatalogued
+                    Uncatalogued
 
 
 
-                </button>
+                </button>
 
 
 
-            </div>
+            </div>
 
 
 
 
 
-            <div
+            <div
 
-                id="fileList"
+                id="fileList"
 
-                class="file-list">
+                class="file-list">
 
 
 
-                <div class="no-file">
+                <div class="no-file">
 
-                    Loading files...
+                    Loading files...
 
-                </div>
+                </div>
 
 
 
-            </div>
+            </div>
 
 
 
 
 
-        </div>
+        </div>
 
 
 
@@ -1632,43 +1632,43 @@ button:disabled {
 
 
 
-        <!-- ==========================
+        <!-- ==========================
 
-             RIGHT EDITOR
+             RIGHT EDITOR
 
-             ========================== -->
+             ========================== -->
 
 
 
-        <div class="editor">
+        <div class="editor">
 
 
 
 
 
-            <div class="panel-title">
+            <div class="panel-title">
 
-                FILE METADATA
+                FILE METADATA
 
-            </div>
+            </div>
 
 
 
 
 
-            <div
+            <div
 
-                id="emptyEditor"
+                id="emptyEditor"
 
-                class="no-file">
+                class="no-file">
 
 
 
-                Select a file from the list.
+                Select a file from the list.
 
 
 
-            </div>
+            </div>
 
 
 
@@ -1676,113 +1676,113 @@ button:disabled {
 
 
 
-            <div
+            <div
 
-                id="editorContent"
+                id="editorContent"
 
-                class="editor-content"
+                class="editor-content"
 
-                style="display: none;">
+                style="display: none;">
 
 
 
 
 
-                <!-- R2 INFORMATION -->
+                <!-- R2 INFORMATION -->
 
 
 
-                <div class="info-panel">
+                <div class="info-panel">
 
 
 
-                    <div class="info-title">
+                    <div class="info-title">
 
-                        R2 OBJECT INFORMATION
+                        R2 OBJECT INFORMATION
 
-                    </div>
+                    </div>
 
 
 
-                    <div class="info-content">
+                    <div class="info-content">
 
 
 
-                        <div>
+                        <div>
 
-                            <span class="info-label">
+                            <span class="info-label">
 
-                                PATH:
+                                PATH:
 
-                            </span>
+                            </span>
 
 
 
-                            <span id="r2Path"></span>
+                            <span id="r2Path"></span>
 
-                        </div>
+                        </div>
 
 
 
 
 
-                        <div>
+                        <div>
 
-                            <span class="info-label">
+                            <span class="info-label">
 
-                                FILE:
+                                FILE:
 
-                            </span>
+                            </span>
 
 
 
-                            <span id="r2Filename"></span>
+                            <span id="r2Filename"></span>
 
-                        </div>
+                        </div>
 
 
 
 
 
-                        <div>
+                        <div>
 
-                            <span class="info-label">
+                            <span class="info-label">
 
-                                SIZE:
+                                SIZE:
 
-                            </span>
+                            </span>
 
 
 
-                            <span id="r2Size"></span>
+                            <span id="r2Size"></span>
 
-                        </div>
+                        </div>
 
 
 
 
 
-                        <div>
+                        <div>
 
-                            <span class="info-label">
+                            <span class="info-label">
 
-                                TYPE:
+                                TYPE:
 
-                            </span>
+                            </span>
 
 
 
-                            <span id="r2Type"></span>
+                            <span id="r2Type"></span>
 
-                        </div>
+                        </div>
 
 
 
-                    </div>
+                    </div>
 
 
 
-                </div>
+                </div>
 
 
 
@@ -1790,31 +1790,31 @@ button:disabled {
 
 
 
-                <!-- TITLE -->
+                <!-- TITLE -->
 
 
 
-                <div class="field">
+                <div class="field">
 
 
 
-                    <label for="title">
+                    <label for="title">
 
-                        Title:
+                        Title:
 
-                    </label>
+                    </label>
 
 
 
-                    <input
+                    <input
 
-                        type="text"
+                        type="text"
 
-                        id="title">
+                        id="title">
 
 
 
-                </div>
+                </div>
 
 
 
@@ -1822,31 +1822,31 @@ button:disabled {
 
 
 
-                <!-- CREATOR -->
+                <!-- CREATOR -->
 
 
 
-                <div class="field">
+                <div class="field">
 
 
 
-                    <label for="creator">
+                    <label for="creator">
 
-                        Creator:
+                        Creator:
 
-                    </label>
+                    </label>
 
 
 
-                    <input
+                    <input
 
-                        type="text"
+                        type="text"
 
-                        id="creator">
+                        id="creator">
 
 
 
-                </div>
+                </div>
 
 
 
@@ -1854,41 +1854,41 @@ button:disabled {
 
 
 
-                <!-- TAGS -->
+                <!-- TAGS -->
 
 
 
-                <div class="field">
+                <div class="field">
 
 
 
-                    <label for="tags">
+                    <label for="tags">
 
-                        Tags:
+                        Tags:
 
-                    </label>
+                    </label>
 
 
 
-                    <input
+                    <input
 
-                        type="text"
+                        type="text"
 
-                        id="tags"
+                        id="tags"
 
-                        placeholder="sparta, remix, base, fl studio">
+                        placeholder="sparta, remix, base, fl studio">
 
 
 
-                    <div class="help">
+                    <div class="help">
 
-                        Separate tags with commas.
+                        Separate tags with commas.
 
-                    </div>
+                    </div>
 
 
 
-                </div>
+                </div>
 
 
 
@@ -1896,29 +1896,29 @@ button:disabled {
 
 
 
-                <!-- DESCRIPTION -->
+                <!-- DESCRIPTION -->
 
 
 
-                <div class="field">
+                <div class="field">
 
 
 
-                    <label for="description">
+                    <label for="description">
 
-                        Description:
+                        Description:
 
-                    </label>
+                    </label>
 
 
 
-                    <textarea
+                    <textarea
 
-                        id="description"></textarea>
+                        id="description"></textarea>
 
 
 
-                </div>
+                </div>
 
 
 
@@ -1926,161 +1926,161 @@ button:disabled {
 
 
 
-                <!-- YEAR + CATEGORY -->
+                <!-- YEAR + CATEGORY -->
 
 
 
-                <div class="row">
+                <div class="row">
 
 
 
 
 
-                    <div class="column">
+                    <div class="column">
 
 
 
-                        <div class="field">
+                        <div class="field">
 
 
 
-                            <label for="year">
+                            <label for="year">
 
-                                Year:
+                                Year:
 
-                            </label>
+                            </label>
 
 
 
-                            <input
+                            <input
 
-                                type="number"
+                                type="number"
 
-                                id="year"
+                                id="year"
 
-                                min="1900"
+                                min="1900"
 
-                                max="2100">
+                                max="2100">
 
 
 
-                        </div>
+                        </div>
 
 
 
-                    </div>
+                    </div>
 
 
 
 
 
-                    <div class="column">
+                    <div class="column">
 
 
 
-                        <div class="field">
+                        <div class="field">
 
 
 
-                            <label for="category">
+                            <label for="category">
 
-                                Category:
+                                Category:
 
-                            </label>
+                            </label>
 
 
 
-                            <select id="category">
+                            <select id="category">
 
 
 
-                                <option value="">
+                                <option value="">
 
-                                    -- None --
+                                    -- None --
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Remix">
+                                <option value="Remix">
 
-                                    Remix
+                                    Remix
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="FLP">
+                                <option value="FLP">
 
-                                    FLP
+                                    FLP
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Base">
+                                <option value="Base">
 
-                                    Base
+                                    Base
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Scrap">
+                                <option value="Scrap">
 
-                                    Scrap
+                                    Scrap
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Collab Part">
+                                <option value="Collab Part">
 
-                                    Collab Part
+                                    Collab Part
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Audio">
+                                <option value="Audio">
 
-                                    Audio
+                                    Audio
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Video">
+                                <option value="Video">
 
-                                    Video
+                                    Video
 
-                                </option>
+                                </option>
 
 
 
-                                <option value="Other">
+                                <option value="Other">
 
-                                    Other
+                                    Other
 
-                                </option>
+                                </option>
 
 
 
-                            </select>
+                            </select>
 
 
 
-                        </div>
+                        </div>
 
 
 
-                    </div>
+                    </div>
 
 
 
 
 
-                </div>
+                </div>
 
 
 
@@ -2088,119 +2088,119 @@ button:disabled {
 
 
 
-                <!-- BUTTON BAR -->
+                <!-- BUTTON BAR -->
 
 
 
-                <div class="editor-buttons">
+                <div class="editor-buttons">
 
 
 
 
 
-                    <div class="navigation-buttons">
+                    <div class="navigation-buttons">
 
 
 
-                        <button
+                        <button
 
-                            id="previousButton"
+                            id="previousButton"
 
-                            onclick="previousFile()">
+                            onclick="previousFile()">
 
 
 
-                            &lt; Previous
+                            &lt; Previous
 
 
 
-                        </button>
+                        </button>
 
 
 
-                        <button
+                        <button
 
-                            id="nextButton"
+                            id="nextButton"
 
-                            onclick="nextFile()">
+                            onclick="nextFile()">
 
 
 
-                            Next &gt;
+                            Next &gt;
 
 
 
-                        </button>
+                        </button>
 
 
 
-                    </div>
+                    </div>
 
 
 
 
 
-                    <div class="save-buttons">
+                    <div class="save-buttons">
 
 
 
-                        <button
+                        <button
 
-                            id="revertButton"
+                            id="revertButton"
 
-                            onclick="revertChanges()">
+                            onclick="revertChanges()">
 
 
 
-                            Revert
+                            Revert
 
 
 
-                        </button>
+                        </button>
 
 
 
-                        <button
+                        <button
 
-                            id="saveButton"
+                            id="saveButton"
 
-                            onclick="saveMetadata()">
+                            onclick="saveMetadata()">
 
 
 
-                            Save Metadata
+                            Save Metadata
 
 
 
-                        </button>
+                        </button>
 
 
 
-                    </div>
+                    </div>
 
 
 
 
 
-                </div>
+                </div>
 
 
 
 
 
-            </div>
+            </div>
 
 
 
 
 
-        </div>
+        </div>
 
 
 
 
 
-    </div>
+    </div>
 
 
 
@@ -2208,49 +2208,49 @@ button:disabled {
 
 
 
-    <!-- STATUS BAR -->
+    <!-- STATUS BAR -->
 
 
 
-    <div class="statusbar">
+    <div class="statusbar">
 
 
 
-        <span class="status-label">
+        <span class="status-label">
 
-            STATUS:
+            STATUS:
 
-        </span>
+        </span>
 
 
 
-        <span id="status">
+        <span id="status">
 
-            LOADING
+            LOADING
 
-        </span>
+        </span>
 
 
 
 
 
-        <span
+        <span
 
-            id="stats"
+            id="stats"
 
-            class="status-right">
+            class="status-right">
 
 
 
-            0 FILES
+            0 FILES
 
 
 
-        </span>
+        </span>
 
 
 
-    </div>
+    </div>
 
 
 
@@ -2258,7 +2258,7 @@ button:disabled {
 
 </div>
 
-    </div>
+    </div>
 
 
 
@@ -2270,21 +2270,21 @@ button:disabled {
 
 <!-- ==========================
 
-     UPLOAD DIALOG
+     UPLOAD DIALOG
 
-     ========================== -->
+     ========================== -->
 
 
 
 <div
 
-    id="uploadOverlay"
+    id="uploadOverlay"
 
-    class="upload-overlay">
+    class="upload-overlay">
 
 
 
-    <!-- all the upload dialog HTML here -->
+    <!-- all the upload dialog HTML here -->
 
 
 
@@ -2298,7 +2298,7 @@ button:disabled {
 
 
 
-    // ALL of your JavaScript here
+    // ALL of your JavaScript here
 
 
 
@@ -2324,11 +2324,11 @@ button:disabled {
 
 /*
 
-    ========================================
+    ========================================
 
-    UPLOAD
+    UPLOAD
 
-    ========================================
+    ========================================
 
 */
 
@@ -2338,11 +2338,11 @@ button:disabled {
 
 const uploadOverlay =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadOverlay"
+        "uploadOverlay"
 
-    );
+    );
 
 
 
@@ -2350,11 +2350,11 @@ const uploadOverlay =
 
 const uploadFileInput =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadFile"
+        "uploadFile"
 
-    );
+    );
 
 
 
@@ -2362,11 +2362,11 @@ const uploadFileInput =
 
 const uploadFolderInput =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadFolder"
+        "uploadFolder"
 
-    );
+    );
 
 
 
@@ -2374,11 +2374,11 @@ const uploadFolderInput =
 
 const uploadButton =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadButton"
+        "uploadButton"
 
-    );
+    );
 
 
 
@@ -2386,11 +2386,11 @@ const uploadButton =
 
 const uploadDestination =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadDestination"
+        "uploadDestination"
 
-    );
+    );
 
 
 
@@ -2400,7 +2400,7 @@ const uploadDestination =
 
 /*
 
-    OPEN WINDOW
+    OPEN WINDOW
 
 */
 
@@ -2414,37 +2414,37 @@ function openUpload() {
 
 
 
-    uploadOverlay.style.display =
+    uploadOverlay.style.display =
 
-        "flex";
-
-
-
-
-
-    uploadFileInput.value =
-
-        "";
+        "flex";
 
 
 
 
 
-    uploadFolderInput.value =
+    uploadFileInput.value =
 
-        "";
-
-
-
-
-
-    updateUploadDestination();
+        "";
 
 
 
 
 
-    uploadFileInput.focus();
+    uploadFolderInput.value =
+
+        "";
+
+
+
+
+
+    updateUploadDestination();
+
+
+
+
+
+    uploadFileInput.focus();
 
 
 
@@ -2460,7 +2460,7 @@ function openUpload() {
 
 /*
 
-    CLOSE WINDOW
+    CLOSE WINDOW
 
 */
 
@@ -2474,9 +2474,9 @@ function closeUpload() {
 
 
 
-    uploadOverlay.style.display =
+    uploadOverlay.style.display =
 
-        "none";
+        "none";
 
 
 
@@ -2492,7 +2492,7 @@ function closeUpload() {
 
 /*
 
-    SHOW DESTINATION
+    SHOW DESTINATION
 
 */
 
@@ -2506,75 +2506,75 @@ function updateUploadDestination() {
 
 
 
-    const file =
+    const file =
 
-        uploadFileInput.files[0];
-
-
-
-
-
-    let folder =
-
-        uploadFolderInput.value
-
-            .trim()
-
-            .replace(/^\/+/, "")
-
-            .replace(/\/+$/, "");
+        uploadFileInput.files[0];
 
 
 
 
 
-    let destination =
+    let folder =
 
-        "/";
+        uploadFolderInput.value
 
+            .trim()
 
+            .replace(/^\/+/, "")
 
-
-
-    if (folder !== "") {
-
-
-
-        destination +=
-
-            folder +
-
-            "/";
-
-
-
-    }
+            .replace(/\/+$/, "");
 
 
 
 
 
-    if (file) {
+    let destination =
 
-
-
-        destination +=
-
-            file.name;
-
-
-
-    }
+        "/";
 
 
 
 
 
-    uploadDestination.innerText =
+    if (folder !== "") {
 
-        "DESTINATION: " +
 
-        destination;
+
+        destination +=
+
+            folder +
+
+            "/";
+
+
+
+    }
+
+
+
+
+
+    if (file) {
+
+
+
+        destination +=
+
+            file.name;
+
+
+
+    }
+
+
+
+
+
+    uploadDestination.innerText =
+
+        "DESTINATION: " +
+
+        destination;
 
 
 
@@ -2590,9 +2590,9 @@ function updateUploadDestination() {
 
 uploadFileInput.addEventListener(
 
-    "change",
+    "change",
 
-    updateUploadDestination
+    updateUploadDestination
 
 );
 
@@ -2602,9 +2602,9 @@ uploadFileInput.addEventListener(
 
 uploadFolderInput.addEventListener(
 
-    "input",
+    "input",
 
-    updateUploadDestination
+    updateUploadDestination
 
 );
 
@@ -2616,7 +2616,7 @@ uploadFolderInput.addEventListener(
 
 /*
 
-    UPLOAD FILE
+    UPLOAD FILE
 
 */
 
@@ -2630,37 +2630,37 @@ async function uploadFile() {
 
 
 
-    const file =
+    const file =
 
-        uploadFileInput.files[0];
+        uploadFileInput.files[0];
 
 
 
 
 
-    if (!file) {
+    if (!file) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "SELECT A FILE TO UPLOAD",
+            "SELECT A FILE TO UPLOAD",
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -2668,33 +2668,33 @@ async function uploadFile() {
 
 
 
-    const formData =
+    const formData =
 
-        new FormData();
+        new FormData();
 
 
 
 
 
-    formData.append(
+    formData.append(
 
-        "file",
+        "file",
 
-        file
+        file
 
-    );
+    );
 
 
 
 
 
-    formData.append(
+    formData.append(
 
-        "folder",
+        "folder",
 
-        uploadFolderInput.value.trim()
+        uploadFolderInput.value.trim()
 
-    );
+    );
 
 
 
@@ -2702,63 +2702,63 @@ async function uploadFile() {
 
 
 
-    uploadButton.disabled =
+    uploadButton.disabled =
 
-        true;
+        true;
 
 
 
 
 
-    uploadButton.innerText =
+    uploadButton.innerText =
 
-        "Uploading...";
+        "Uploading...";
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "UPLOADING..."
+        "UPLOADING..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/admin/upload",
+                "/api/admin/upload",
 
-                {
+                {
 
 
 
-                    method:
+                    method:
 
-                        "POST",
+                        "POST",
 
 
 
-                    body:
+                    body:
 
-                        formData
+                        formData
 
 
 
-                }
+                }
 
-            );
+            );
 
 
 
@@ -2766,77 +2766,77 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Read response safely
+            Read response safely
 
-        */
+        */
 
 
 
 
 
-        const text =
+        const text =
 
-            await response.text();
+            await response.text();
 
 
 
 
 
-        let result = {};
+        let result = {};
 
 
 
 
 
-        if (text) {
+        if (text) {
 
 
 
 
 
-            try {
+            try {
 
 
 
 
 
-                result =
+                result =
 
-                    JSON.parse(text);
+                    JSON.parse(text);
 
 
 
 
 
-            }
+            }
 
 
 
-            catch {
+            catch {
 
 
 
 
 
-                throw new Error(
+                throw new Error(
 
-                    "Server returned an invalid response."
+                    "Server returned an invalid response."
 
-                );
+                );
 
 
 
 
 
-            }
+            }
 
 
 
 
 
-        }
+        }
 
 
 
@@ -2844,31 +2844,31 @@ async function uploadFile() {
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
 
 
-            throw new Error(
+            throw new Error(
 
 
 
-                result.message ||
+                result.message ||
 
 
 
-                "Upload failed."
+                "Upload failed."
 
 
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -2876,17 +2876,17 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Close upload window
+            Close upload window
 
-        */
+        */
 
 
 
 
 
-        closeUpload();
+        closeUpload();
 
 
 
@@ -2894,17 +2894,17 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Reload R2 + D1 list
+            Reload R2 + D1 list
 
-        */
+        */
 
 
 
 
 
-        await loadFiles();
+        await loadFiles();
 
 
 
@@ -2912,97 +2912,97 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Find newly uploaded file
+            Find newly uploaded file
 
-        */
+        */
 
 
 
 
 
-        const newFile =
+        const newFile =
 
-            allFiles.find(
+            allFiles.find(
 
-                item =>
+                item =>
 
-                    item.name ===
+                    item.name ===
 
-                    result.name
+                    result.name
 
-            );
+            );
 
 
 
 
 
-        if (newFile) {
+        if (newFile) {
 
 
 
 
 
-            /*
+            /*
 
-                Remove filters so
+                Remove filters so
 
-                new file is visible
+                new file is visible
 
-            */
+            */
 
 
 
 
 
-            searchInput.value =
+            searchInput.value =
 
-                "";
+                "";
 
 
 
 
 
-            setFilter(
+            setFilter(
 
-                "all"
+                "all"
 
-            );
+            );
 
 
 
 
 
-            const index =
+            const index =
 
-                visibleFiles.findIndex(
+                visibleFiles.findIndex(
 
-                    item =>
+                    item =>
 
-                        item.name ===
+                        item.name ===
 
-                        newFile.name
+                        newFile.name
 
-                );
+                );
 
 
 
 
 
-            selectFile(
+            selectFile(
 
-                newFile,
+                newFile,
 
-                index
+                index
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -3010,41 +3010,41 @@ async function uploadFile() {
 
 
 
-        setStatus(
+        setStatus(
 
-            "UPLOAD COMPLETE",
+            "UPLOAD COMPLETE",
 
-            "success"
+            "success"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -3052,17 +3052,17 @@ async function uploadFile() {
 
 
 
-    uploadButton.disabled =
+    uploadButton.disabled =
 
-        false;
+        false;
 
 
 
 
 
-    uploadButton.innerText =
+    uploadButton.innerText =
 
-        "Upload";
+        "Upload";
 
 
 
@@ -3078,7 +3078,7 @@ async function uploadFile() {
 
 /*
 
-    CLOSE DIALOG WITH ESCAPE
+    CLOSE DIALOG WITH ESCAPE
 
 */
 
@@ -3088,41 +3088,41 @@ async function uploadFile() {
 
 document.addEventListener(
 
-    "keydown",
+    "keydown",
 
-    function(event) {
-
-
-
-
-
-        if (
-
-            event.key === "Escape" &&
-
-            uploadOverlay.style.display ===
-
-            "flex"
-
-        ) {
+    function(event) {
 
 
 
 
 
-            closeUpload();
+        if (
+
+            event.key === "Escape" &&
+
+            uploadOverlay.style.display ===
+
+            "flex"
+
+        ) {
 
 
 
 
 
-        }
+            closeUpload();
 
 
 
 
 
-    }
+        }
+
+
+
+
+
+    }
 
 );
 
@@ -3130,11 +3130,11 @@ document.addEventListener(
 
 /*
 
-    ========================================
+    ========================================
 
-    DATA
+    DATA
 
-    ========================================
+    ========================================
 
 */
 
@@ -3176,11 +3176,11 @@ let modified = false;
 
 /*
 
-    ========================================
+    ========================================
 
-    ELEMENTS
+    ELEMENTS
 
-    ========================================
+    ========================================
 
 */
 
@@ -3190,7 +3190,7 @@ let modified = false;
 
 const fileList =
 
-    document.getElementById("fileList");
+    document.getElementById("fileList");
 
 
 
@@ -3198,7 +3198,7 @@ const fileList =
 
 const searchInput =
 
-    document.getElementById("search");
+    document.getElementById("search");
 
 
 
@@ -3206,7 +3206,7 @@ const searchInput =
 
 const emptyEditor =
 
-    document.getElementById("emptyEditor");
+    document.getElementById("emptyEditor");
 
 
 
@@ -3214,7 +3214,7 @@ const emptyEditor =
 
 const editorContent =
 
-    document.getElementById("editorContent");
+    document.getElementById("editorContent");
 
 
 
@@ -3222,7 +3222,7 @@ const editorContent =
 
 const titleInput =
 
-    document.getElementById("title");
+    document.getElementById("title");
 
 
 
@@ -3230,7 +3230,7 @@ const titleInput =
 
 const creatorInput =
 
-    document.getElementById("creator");
+    document.getElementById("creator");
 
 
 
@@ -3238,7 +3238,7 @@ const creatorInput =
 
 const tagsInput =
 
-    document.getElementById("tags");
+    document.getElementById("tags");
 
 
 
@@ -3246,7 +3246,7 @@ const tagsInput =
 
 const descriptionInput =
 
-    document.getElementById("description");
+    document.getElementById("description");
 
 
 
@@ -3254,7 +3254,7 @@ const descriptionInput =
 
 const yearInput =
 
-    document.getElementById("year");
+    document.getElementById("year");
 
 
 
@@ -3262,7 +3262,7 @@ const yearInput =
 
 const categoryInput =
 
-    document.getElementById("category");
+    document.getElementById("category");
 
 
 
@@ -3270,7 +3270,7 @@ const categoryInput =
 
 const saveButton =
 
-    document.getElementById("saveButton");
+    document.getElementById("saveButton");
 
 
 
@@ -3278,7 +3278,7 @@ const saveButton =
 
 const revertButton =
 
-    document.getElementById("revertButton");
+    document.getElementById("revertButton");
 
 
 
@@ -3286,7 +3286,7 @@ const revertButton =
 
 const previousButton =
 
-    document.getElementById("previousButton");
+    document.getElementById("previousButton");
 
 
 
@@ -3294,7 +3294,7 @@ const previousButton =
 
 const nextButton =
 
-    document.getElementById("nextButton");
+    document.getElementById("nextButton");
 
 
 
@@ -3302,7 +3302,7 @@ const nextButton =
 
 const statusText =
 
-    document.getElementById("status");
+    document.getElementById("status");
 
 
 
@@ -3310,7 +3310,7 @@ const statusText =
 
 const stats =
 
-    document.getElementById("stats");
+    document.getElementById("stats");
 
 
 
@@ -3318,7 +3318,7 @@ const stats =
 
 const r2Path =
 
-    document.getElementById("r2Path");
+    document.getElementById("r2Path");
 
 
 
@@ -3326,7 +3326,7 @@ const r2Path =
 
 const r2Filename =
 
-    document.getElementById("r2Filename");
+    document.getElementById("r2Filename");
 
 
 
@@ -3334,7 +3334,7 @@ const r2Filename =
 
 const r2Size =
 
-    document.getElementById("r2Size");
+    document.getElementById("r2Size");
 
 
 
@@ -3342,7 +3342,7 @@ const r2Size =
 
 const r2Type =
 
-    document.getElementById("r2Type");
+    document.getElementById("r2Type");
 
 
 
@@ -3352,11 +3352,11 @@ const r2Type =
 
 /*
 
-    ========================================
+    ========================================
 
-    LOAD FILES
+    LOAD FILES
 
-    ========================================
+    ========================================
 
 */
 
@@ -3376,55 +3376,55 @@ async function loadFiles() {
 
 
 
-    setStatus(
+    setStatus(
 
-        "LOADING FILES..."
+        "LOADING FILES..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/files"
+                "/api/files"
 
-            );
+            );
 
 
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
-            throw new Error(
+            throw new Error(
 
-                "Could not load files."
+                "Could not load files."
 
-            );
+            );
 
 
 
-        }
+        }
 
 
 
 
 
-        allFiles =
+        allFiles =
 
-            await response.json();
+            await response.json();
 
 
 
@@ -3432,89 +3432,89 @@ async function loadFiles() {
 
 
 
-        /*
+        /*
 
-            Sort alphabetically
+            Sort alphabetically
 
-        */
+        */
 
 
 
 
 
-        allFiles.sort(
+        allFiles.sort(
 
-            (a, b) =>
+            (a, b) =>
 
-                a.name.localeCompare(
+                a.name.localeCompare(
 
-                    b.name
+                    b.name
 
-                )
+                )
 
-        );
+        );
 
 
 
 
 
-        updateStats();
+        updateStats();
 
 
 
 
 
-        applyFilters();
+        applyFilters();
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "READY"
+            "READY"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        fileList.innerHTML =
+        fileList.innerHTML =
 
-            '<div class="no-file">' +
+            '<div class="no-file">' +
 
-            'Error loading files.' +
+            'Error loading files.' +
 
-            '</div>';
+            '</div>';
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -3530,11 +3530,11 @@ async function loadFiles() {
 
 /*
 
-    ========================================
+    ========================================
 
-    FILE HAS METADATA?
+    FILE HAS METADATA?
 
-    ========================================
+    ========================================
 
 */
 
@@ -3548,35 +3548,35 @@ function hasMetadata(file) {
 
 
 
-    return Boolean(
+    return Boolean(
 
 
 
-        file.title ||
+        file.title ||
 
 
 
-        file.creator ||
+        file.creator ||
 
 
 
-        file.description ||
+        file.description ||
 
 
 
-        file.tags ||
+        file.tags ||
 
 
 
-        file.year ||
+        file.year ||
 
 
 
-        file.category
+        file.category
 
 
 
-    );
+    );
 
 
 
@@ -3592,11 +3592,11 @@ function hasMetadata(file) {
 
 /*
 
-    ========================================
+    ========================================
 
-    UPDATE COUNTS
+    UPDATE COUNTS
 
-    ========================================
+    ========================================
 
 */
 
@@ -3610,47 +3610,47 @@ function updateStats() {
 
 
 
-    const catalogued =
+    const catalogued =
 
-        allFiles.filter(
+        allFiles.filter(
 
-            hasMetadata
+            hasMetadata
 
-        ).length;
-
-
-
-
-
-    const uncatalogued =
-
-        allFiles.length -
-
-        catalogued;
+        ).length;
 
 
 
 
 
-    stats.innerText =
+    const uncatalogued =
+
+        allFiles.length -
+
+        catalogued;
 
 
 
-        allFiles.length +
-
-        " FILES | " +
 
 
-
-        catalogued +
-
-        " CATALOGUED | " +
+    stats.innerText =
 
 
 
-        uncatalogued +
+        allFiles.length +
 
-        " UNCATALOGUED";
+        " FILES | " +
+
+
+
+        catalogued +
+
+        " CATALOGUED | " +
+
+
+
+        uncatalogued +
+
+        " UNCATALOGUED";
 
 
 
@@ -3666,11 +3666,11 @@ function updateStats() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SEARCH / FILTER
+    SEARCH / FILTER
 
-    ========================================
+    ========================================
 
 */
 
@@ -3680,17 +3680,17 @@ function updateStats() {
 
 searchInput.addEventListener(
 
-    "input",
+    "input",
 
-    function() {
-
-
-
-        applyFilters();
+    function() {
 
 
 
-    }
+        applyFilters();
+
+
+
+    }
 
 );
 
@@ -3706,99 +3706,99 @@ function setFilter(filter) {
 
 
 
-    currentFilter =
+    currentFilter =
 
-        filter;
+        filter;
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterAll")
+        .getElementById("filterAll")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterTagged")
+        .getElementById("filterTagged")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterUntagged")
+        .getElementById("filterUntagged")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    if (filter === "all") {
+    if (filter === "all") {
 
 
 
-        document
+        document
 
-            .getElementById("filterAll")
+            .getElementById("filterAll")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    if (filter === "tagged") {
+    if (filter === "tagged") {
 
 
 
-        document
+        document
 
-            .getElementById("filterTagged")
+            .getElementById("filterTagged")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    if (filter === "untagged") {
+    if (filter === "untagged") {
 
 
 
-        document
+        document
 
-            .getElementById("filterUntagged")
+            .getElementById("filterUntagged")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    applyFilters();
+    applyFilters();
 
 
 
@@ -3818,77 +3818,77 @@ function applyFilters() {
 
 
 
-    const search =
+    const search =
 
-        searchInput.value
+        searchInput.value
 
-            .trim()
+            .trim()
 
-            .toLowerCase();
+            .toLowerCase();
 
 
 
 
 
-    visibleFiles =
+    visibleFiles =
 
-        allFiles.filter(
+        allFiles.filter(
 
-            file => {
+            file => {
 
 
 
 
 
-                /*
+                /*
 
-                    Filter by metadata
+                    Filter by metadata
 
-                */
+                */
 
 
 
 
 
-                if (
+                if (
 
-                    currentFilter ===
+                    currentFilter ===
 
-                    "tagged" &&
+                    "tagged" &&
 
-                    !hasMetadata(file)
+                    !hasMetadata(file)
 
-                ) {
+                ) {
 
 
 
-                    return false;
+                    return false;
 
 
 
-                }
+                }
 
 
 
 
 
-                if (
+                if (
 
-                    currentFilter ===
+                    currentFilter ===
 
-                    "untagged" &&
+                    "untagged" &&
 
-                    hasMetadata(file)
+                    hasMetadata(file)
 
-                ) {
+                ) {
 
 
 
-                    return false;
+                    return false;
 
 
 
-                }
+                }
 
 
 
@@ -3896,107 +3896,107 @@ function applyFilters() {
 
 
 
-                /*
+                /*
 
-                    Search
+                    Search
 
-                */
+                */
 
 
 
 
 
-                if (search !== "") {
+                if (search !== "") {
 
 
 
 
 
-                    const text = [
+                    const text = [
 
 
 
-                        file.name,
+                        file.name,
 
 
 
-                        file.title,
+                        file.title,
 
 
 
-                        file.creator,
+                        file.creator,
 
 
 
-                        file.tags,
+                        file.tags,
 
 
 
-                        file.description,
+                        file.description,
 
 
 
-                        file.year,
+                        file.year,
 
 
 
-                        file.category
+                        file.category
 
 
 
-                    ]
+                    ]
 
-                    .filter(Boolean)
+                    .filter(Boolean)
 
-                    .join(" ")
+                    .join(" ")
 
-                    .toLowerCase();
+                    .toLowerCase();
 
 
 
 
 
-                    if (
+                    if (
 
-                        !text.includes(
+                        !text.includes(
 
-                            search
+                            search
 
-                        )
+                        )
 
-                    ) {
+                    ) {
 
 
 
-                        return false;
+                        return false;
 
 
 
-                    }
+                    }
 
 
 
-                }
+                }
 
 
 
 
 
-                return true;
+                return true;
 
 
 
 
 
-            }
+            }
 
-        );
+        );
 
 
 
 
 
-    renderFileList();
+    renderFileList();
 
 
 
@@ -4012,11 +4012,11 @@ function applyFilters() {
 
 /*
 
-    ========================================
+    ========================================
 
-    RENDER FILE LIST
+    RENDER FILE LIST
 
-    ========================================
+    ========================================
 
 */
 
@@ -4030,41 +4030,41 @@ function renderFileList() {
 
 
 
-    fileList.innerHTML =
+    fileList.innerHTML =
 
-        "";
+        "";
 
 
 
 
 
-    if (
+    if (
 
-        visibleFiles.length === 0
+        visibleFiles.length === 0
 
-    ) {
+    ) {
 
 
 
 
 
-        fileList.innerHTML =
+        fileList.innerHTML =
 
-            '<div class="no-file">' +
+            '<div class="no-file">' +
 
-            'No files found.' +
+            'No files found.' +
 
-            '</div>';
+            '</div>';
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -4072,55 +4072,55 @@ function renderFileList() {
 
 
 
-    visibleFiles.forEach(
+    visibleFiles.forEach(
 
-        (file, index) => {
+        (file, index) => {
 
 
 
 
 
-            const item =
+            const item =
 
-                document.createElement(
+                document.createElement(
 
-                    "div"
+                    "div"
 
-                );
+                );
 
 
 
 
 
-            item.className =
+            item.className =
 
-                "file-item";
+                "file-item";
 
 
 
 
 
-            if (
+            if (
 
-                selectedFile &&
+                selectedFile &&
 
-                selectedFile.name ===
+                selectedFile.name ===
 
-                file.name
+                file.name
 
-            ) {
+            ) {
 
 
 
-                item.classList.add(
+                item.classList.add(
 
-                    "selected"
+                    "selected"
 
-                );
+                );
 
 
 
-            }
+            }
 
 
 
@@ -4128,41 +4128,41 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                Metadata dot
+                Metadata dot
 
-            */
+            */
 
 
 
 
 
-            const dot =
+            const dot =
 
-                document.createElement(
+                document.createElement(
 
-                    "span"
+                    "span"
 
-                );
+                );
 
 
 
 
 
-            dot.className =
+            dot.className =
 
-                "metadata-dot " +
+                "metadata-dot " +
 
-                (
+                (
 
-                    hasMetadata(file)
+                    hasMetadata(file)
 
-                        ? "complete"
+                        ? "complete"
 
-                        : "empty"
+                        : "empty"
 
-                );
+                );
 
 
 
@@ -4170,51 +4170,51 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                File name
+                File name
 
-            */
+            */
 
 
 
 
 
-            const filename =
+            const filename =
 
-                getFilename(
+                getFilename(
 
-                    file.name
+                    file.name
 
-                );
+                );
 
 
 
 
 
-            const name =
+            const name =
 
-                document.createElement(
+                document.createElement(
 
-                    "span"
+                    "span"
 
-                );
+                );
 
 
 
 
 
-            name.className =
+            name.className =
 
-                "file-name";
+                "file-name";
 
 
 
 
 
-            name.innerText =
+            name.innerText =
 
-                filename;
+                filename;
 
 
 
@@ -4222,39 +4222,39 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                Path
+                Path
 
-            */
+            */
 
 
 
 
 
-            const path =
+            const path =
 
-                document.createElement(
+                document.createElement(
 
-                    "div"
+                    "div"
 
-                );
+                );
 
 
 
 
 
-            path.className =
+            path.className =
 
-                "file-path";
+                "file-path";
 
 
 
 
 
-            path.innerText =
+            path.innerText =
 
-                file.name;
+                file.name;
 
 
 
@@ -4262,75 +4262,75 @@ function renderFileList() {
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                dot
+                dot
 
-            );
+            );
 
 
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                name
+                name
 
-            );
+            );
 
 
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                path
+                path
 
-            );
+            );
 
 
 
 
 
-            item.onclick =
+            item.onclick =
 
-                function() {
+                function() {
 
 
 
 
 
-                    selectFile(
+                    selectFile(
 
-                        file,
+                        file,
 
-                        index
+                        index
 
-                    );
+                    );
 
 
 
 
 
-                };
+                };
 
 
 
 
 
-            fileList.appendChild(
+            fileList.appendChild(
 
-                item
+                item
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
-    );
+    );
 
 
 
@@ -4346,11 +4346,11 @@ function renderFileList() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SELECT FILE
+    SELECT FILE
 
-    ========================================
+    ========================================
 
 */
 
@@ -4360,9 +4360,9 @@ function renderFileList() {
 
 function selectFile(
 
-    file,
+    file,
 
-    index
+    index
 
 ) {
 
@@ -4370,61 +4370,61 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Warn if there are
+        Warn if there are
 
-        unsaved changes
+        unsaved changes
 
-    */
+    */
 
 
 
 
 
-    if (
+    if (
 
-        modified &&
+        modified &&
 
-        selectedFile &&
+        selectedFile &&
 
-        selectedFile.name !==
+        selectedFile.name !==
 
-        file.name
+        file.name
 
-    ) {
+    ) {
 
 
 
 
 
-        const leave =
+        const leave =
 
-            confirm(
+            confirm(
 
-                "You have unsaved changes.\n\n" +
+                "You have unsaved changes.\n\n" +
 
-                "Discard them and open another file?"
+                "Discard them and open another file?"
 
-            );
+            );
 
 
 
 
 
-        if (!leave) {
+        if (!leave) {
 
 
 
-            return;
+            return;
 
 
 
-        }
+        }
 
 
 
-    }
+    }
 
 
 
@@ -4432,17 +4432,17 @@ function selectFile(
 
 
 
-    selectedFile =
+    selectedFile =
 
-        file;
+        file;
 
 
 
 
 
-    selectedIndex =
+    selectedIndex =
 
-        index;
+        index;
 
 
 
@@ -4450,57 +4450,57 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Store original metadata
+        Store original metadata
 
-    */
+    */
 
 
 
 
 
-    originalMetadata = {
+    originalMetadata = {
 
 
 
-        title:
+        title:
 
-            file.title || "",
+            file.title || "",
 
 
 
-        creator:
+        creator:
 
-            file.creator || "",
+            file.creator || "",
 
 
 
-        tags:
+        tags:
 
-            file.tags || "",
+            file.tags || "",
 
 
 
-        description:
+        description:
 
-            file.description || "",
+            file.description || "",
 
 
 
-        year:
+        year:
 
-            file.year || "",
+            file.year || "",
 
 
 
-        category:
+        category:
 
-            file.category || ""
+            file.category || ""
 
 
 
-    };
+    };
 
 
 
@@ -4508,61 +4508,61 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Fill editor
+        Fill editor
 
-    */
+    */
 
 
 
 
 
-    titleInput.value =
+    titleInput.value =
 
-        originalMetadata.title;
+        originalMetadata.title;
 
 
 
 
 
-    creatorInput.value =
+    creatorInput.value =
 
-        originalMetadata.creator;
+        originalMetadata.creator;
 
 
 
 
 
-    tagsInput.value =
+    tagsInput.value =
 
-        originalMetadata.tags;
+        originalMetadata.tags;
 
 
 
 
 
-    descriptionInput.value =
+    descriptionInput.value =
 
-        originalMetadata.description;
+        originalMetadata.description;
 
 
 
 
 
-    yearInput.value =
+    yearInput.value =
 
-        originalMetadata.year;
+        originalMetadata.year;
 
 
 
 
 
-    setCategoryValue(
+    setCategoryValue(
 
-        originalMetadata.category
+        originalMetadata.category
 
-    );
+    );
 
 
 
@@ -4570,53 +4570,53 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        R2 info
+        R2 info
 
-    */
+    */
 
 
 
 
 
-    r2Path.innerText =
+    r2Path.innerText =
 
-        file.name;
+        file.name;
 
 
 
 
 
-    r2Filename.innerText =
+    r2Filename.innerText =
 
-        getFilename(
+        getFilename(
 
-            file.name
+            file.name
 
-        );
+        );
 
 
 
 
 
-    r2Size.innerText =
+    r2Size.innerText =
 
-        file.size;
+        file.size;
 
 
 
 
 
-    r2Type.innerText =
+    r2Type.innerText =
 
-        getExtension(
+        getExtension(
 
-            file.name
+            file.name
 
-        ).toUpperCase() ||
+        ).toUpperCase() ||
 
-        "FILE";
+        "FILE";
 
 
 
@@ -4624,47 +4624,47 @@ function selectFile(
 
 
 
-    emptyEditor.style.display =
+    emptyEditor.style.display =
 
-        "none";
+        "none";
 
 
 
 
 
-    editorContent.style.display =
+    editorContent.style.display =
 
-        "block";
+        "block";
 
 
 
 
 
-    modified =
+    modified =
 
-        false;
+        false;
 
 
 
 
 
-    updateNavigationButtons();
+    updateNavigationButtons();
 
 
 
 
 
-    renderFileList();
+    renderFileList();
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "FILE LOADED"
+        "FILE LOADED"
 
-    );
+    );
 
 
 
@@ -4680,11 +4680,11 @@ function selectFile(
 
 /*
 
-    ========================================
+    ========================================
 
-    CATEGORY
+    CATEGORY
 
-    ========================================
+    ========================================
 
 */
 
@@ -4694,7 +4694,7 @@ function selectFile(
 
 function setCategoryValue(
 
-    value
+    value
 
 ) {
 
@@ -4702,89 +4702,89 @@ function setCategoryValue(
 
 
 
-    /*
+    /*
 
-        If the database contains a category
+        If the database contains a category
 
-        not currently in the dropdown,
+        not currently in the dropdown,
 
-        temporarily add it.
+        temporarily add it.
 
-    */
-
-
-
-
-
-    if (
-
-        value !== "" &&
-
-        !Array.from(
-
-            categoryInput.options
-
-        ).some(
-
-            option =>
-
-                option.value === value
-
-        )
-
-    ) {
+    */
 
 
 
 
 
-        const option =
+    if (
 
-            document.createElement(
+        value !== "" &&
 
-                "option"
+        !Array.from(
 
-            );
+            categoryInput.options
 
+        ).some(
 
+            option =>
 
+                option.value === value
 
+        )
 
-        option.value =
-
-            value;
-
-
-
-
-
-        option.innerText =
-
-            value;
+    ) {
 
 
 
 
 
-        categoryInput.appendChild(
+        const option =
 
-            option
+            document.createElement(
 
-        );
+                "option"
 
-
-
-
-
-    }
+            );
 
 
 
 
 
-    categoryInput.value =
+        option.value =
 
-        value;
+            value;
+
+
+
+
+
+        option.innerText =
+
+            value;
+
+
+
+
+
+        categoryInput.appendChild(
+
+            option
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    categoryInput.value =
+
+        value;
 
 
 
@@ -4800,11 +4800,11 @@ function setCategoryValue(
 
 /*
 
-    ========================================
+    ========================================
 
-    MODIFIED DETECTION
+    MODIFIED DETECTION
 
-    ========================================
+    ========================================
 
 */
 
@@ -4816,17 +4816,17 @@ const editableFields = [
 
 
 
-    titleInput,
+    titleInput,
 
-    creatorInput,
+    creatorInput,
 
-    tagsInput,
+    tagsInput,
 
-    descriptionInput,
+    descriptionInput,
 
-    yearInput,
+    yearInput,
 
-    categoryInput
+    categoryInput
 
 
 
@@ -4838,37 +4838,37 @@ const editableFields = [
 
 editableFields.forEach(
 
-    field => {
+    field => {
 
 
 
 
 
-        field.addEventListener(
+        field.addEventListener(
 
-            "input",
+            "input",
 
-            checkModified
+            checkModified
 
-        );
-
-
-
-
-
-        field.addEventListener(
-
-            "change",
-
-            checkModified
-
-        );
+        );
 
 
 
 
 
-    }
+        field.addEventListener(
+
+            "change",
+
+            checkModified
+
+        );
+
+
+
+
+
+    }
 
 );
 
@@ -4884,151 +4884,151 @@ function checkModified() {
 
 
 
-    if (
+    if (
 
-        !selectedFile ||
+        !selectedFile ||
 
-        !originalMetadata
+        !originalMetadata
 
-    ) {
+    ) {
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
 
 
-    modified =
+    modified =
 
 
 
-        titleInput.value !==
+        titleInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.title
+            originalMetadata.title
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        creatorInput.value !==
+        creatorInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.creator
+            originalMetadata.creator
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        tagsInput.value !==
+        tagsInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.tags
+            originalMetadata.tags
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        descriptionInput.value !==
+        descriptionInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.description
+            originalMetadata.description
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        yearInput.value !==
+        yearInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.year
+            originalMetadata.year
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        categoryInput.value !==
+        categoryInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.category
+            originalMetadata.category
 
-        );
+        );
 
 
 
 
 
-    if (modified) {
+    if (modified) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "MODIFIED",
+            "MODIFIED",
 
-            "modified"
+            "modified"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    else {
+    else {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "READY"
+            "READY"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -5044,11 +5044,11 @@ function checkModified() {
 
 /*
 
-    ========================================
+    ========================================
 
-    REVERT
+    REVERT
 
-    ========================================
+    ========================================
 
 */
 
@@ -5062,89 +5062,89 @@ function revertChanges() {
 
 
 
-    if (
+    if (
 
-        !selectedFile ||
+        !selectedFile ||
 
-        !originalMetadata
+        !originalMetadata
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
 
 
 
-
-
-    titleInput.value =
-
-        originalMetadata.title;
+    }
 
 
 
 
 
-    creatorInput.value =
+    titleInput.value =
 
-        originalMetadata.creator;
-
-
-
-
-
-    tagsInput.value =
-
-        originalMetadata.tags;
+        originalMetadata.title;
 
 
 
 
 
-    descriptionInput.value =
+    creatorInput.value =
 
-        originalMetadata.description;
-
-
-
-
-
-    yearInput.value =
-
-        originalMetadata.year;
+        originalMetadata.creator;
 
 
 
 
 
-    setCategoryValue(
+    tagsInput.value =
 
-        originalMetadata.category
-
-    );
+        originalMetadata.tags;
 
 
 
 
 
-    modified =
+    descriptionInput.value =
 
-        false;
-
-
+        originalMetadata.description;
 
 
 
-    setStatus(
 
-        "CHANGES REVERTED"
 
-    );
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    setStatus(
+
+        "CHANGES REVERTED"
+
+    );
 
 
 
@@ -5160,11 +5160,11 @@ function revertChanges() {
 
 /*
 
-    ========================================
+    ========================================
 
-    PREVIOUS / NEXT
+    PREVIOUS / NEXT
 
-    ========================================
+    ========================================
 
 */
 
@@ -5178,35 +5178,35 @@ function previousFile() {
 
 
 
-    if (
+    if (
 
-        selectedIndex <= 0
+        selectedIndex <= 0
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
+
+
+
+    }
 
 
 
 
 
-    selectFile(
+    selectFile(
 
-        visibleFiles[
+        visibleFiles[
 
-            selectedIndex - 1
+            selectedIndex - 1
 
-        ],
+        ],
 
-        selectedIndex - 1
+        selectedIndex - 1
 
-    );
+    );
 
 
 
@@ -5226,39 +5226,39 @@ function nextFile() {
 
 
 
-    if (
+    if (
 
-        selectedIndex < 0 ||
+        selectedIndex < 0 ||
 
-        selectedIndex >=
+        selectedIndex >=
 
-        visibleFiles.length - 1
+        visibleFiles.length - 1
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
+
+
+
+    }
 
 
 
 
 
-    selectFile(
+    selectFile(
 
-        visibleFiles[
+        visibleFiles[
 
-            selectedIndex + 1
+            selectedIndex + 1
 
-        ],
+        ],
 
-        selectedIndex + 1
+        selectedIndex + 1
 
-    );
+    );
 
 
 
@@ -5278,25 +5278,25 @@ function updateNavigationButtons() {
 
 
 
-    previousButton.disabled =
+    previousButton.disabled =
 
-        selectedIndex <= 0;
-
-
+        selectedIndex <= 0;
 
 
 
-    nextButton.disabled =
+
+
+    nextButton.disabled =
 
 
 
-        selectedIndex < 0 ||
+        selectedIndex < 0 ||
 
 
 
-        selectedIndex >=
+        selectedIndex >=
 
-        visibleFiles.length - 1;
+        visibleFiles.length - 1;
 
 
 
@@ -5312,11 +5312,11 @@ function updateNavigationButtons() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SAVE METADATA
+    SAVE METADATA
 
-    ========================================
+    ========================================
 
 */
 
@@ -5330,29 +5330,29 @@ async function saveMetadata() {
 
 
 
-    if (!selectedFile) {
+    if (!selectedFile) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "SELECT A FILE",
+            "SELECT A FILE",
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -5360,123 +5360,123 @@ async function saveMetadata() {
 
 
 
-    saveButton.disabled =
+    saveButton.disabled =
 
-        true;
+        true;
 
 
 
 
 
-    saveButton.innerText =
+    saveButton.innerText =
 
-        "Saving...";
+        "Saving...";
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "SAVING..."
+        "SAVING..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/admin/save",
+                "/api/admin/save",
 
-                {
+                {
 
 
 
-                    method:
+                    method:
 
-                        "POST",
+                        "POST",
 
 
 
-                    headers: {
+                    headers: {
 
 
 
-                        "Content-Type":
+                        "Content-Type":
 
-                            "application/json"
+                            "application/json"
 
 
 
-                    },
+                    },
 
 
 
-                    body:
+                    body:
 
-                        JSON.stringify({
+                        JSON.stringify({
 
 
 
-                            r2_key:
+                            r2_key:
 
-                                selectedFile.name,
+                                selectedFile.name,
 
 
 
-                            title:
+                            title:
 
-                                titleInput.value.trim(),
+                                titleInput.value.trim(),
 
 
 
-                            creator:
+                            creator:
 
-                                creatorInput.value.trim(),
+                                creatorInput.value.trim(),
 
 
 
-                            tags:
+                            tags:
 
-                                tagsInput.value.trim(),
+                                tagsInput.value.trim(),
 
 
 
-                            description:
+                            description:
 
-                                descriptionInput.value.trim(),
+                                descriptionInput.value.trim(),
 
 
 
-                            year:
+                            year:
 
-                                yearInput.value,
+                                yearInput.value,
 
 
 
-                            category:
+                            category:
 
-                                categoryInput.value
+                                categoryInput.value
 
 
 
-                        })
+                        })
 
 
 
-                }
+                }
 
-            );
+            );
 
 
 
@@ -5484,69 +5484,69 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Read response safely
+            Read response safely
 
-        */
+        */
 
 
 
 
 
-        const text =
+        const text =
 
-            await response.text();
+            await response.text();
 
 
 
 
 
-        let result = {};
+        let result = {};
 
 
 
 
 
-        if (text) {
+        if (text) {
 
 
 
 
 
-            try {
+            try {
 
 
 
-                result =
+                result =
 
-                    JSON.parse(text);
+                    JSON.parse(text);
 
 
 
-            }
+            }
 
 
 
-            catch {
+            catch {
 
 
 
-                throw new Error(
+                throw new Error(
 
-                    "Server returned an invalid response."
+                    "Server returned an invalid response."
 
-                );
+                );
 
 
 
-            }
+            }
 
 
 
 
 
-        }
+        }
 
 
 
@@ -5554,31 +5554,31 @@ async function saveMetadata() {
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
 
 
-            throw new Error(
+            throw new Error(
 
 
 
-                result.message ||
+                result.message ||
 
 
 
-                "Could not save metadata."
+                "Could not save metadata."
 
 
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -5586,59 +5586,59 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Update local file object
+            Update local file object
 
-        */
+        */
 
 
 
 
 
-        selectedFile.title =
+        selectedFile.title =
 
-            titleInput.value.trim();
+            titleInput.value.trim();
 
 
 
 
 
-        selectedFile.creator =
+        selectedFile.creator =
 
-            creatorInput.value.trim();
+            creatorInput.value.trim();
 
 
 
 
 
-        selectedFile.tags =
+        selectedFile.tags =
 
-            tagsInput.value.trim();
+            tagsInput.value.trim();
 
 
 
 
 
-        selectedFile.description =
+        selectedFile.description =
 
-            descriptionInput.value.trim();
+            descriptionInput.value.trim();
 
 
 
 
 
-        selectedFile.year =
+        selectedFile.year =
 
-            yearInput.value;
+            yearInput.value;
 
 
 
 
 
-        selectedFile.category =
+        selectedFile.category =
 
-            categoryInput.value;
+            categoryInput.value;
 
 
 
@@ -5646,133 +5646,133 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Save new original values
+            Save new original values
 
-        */
+        */
 
 
 
 
 
-        originalMetadata = {
+        originalMetadata = {
 
 
 
-            title:
+            title:
 
-                selectedFile.title,
+                selectedFile.title,
 
 
 
-            creator:
+            creator:
 
-                selectedFile.creator,
+                selectedFile.creator,
 
 
 
-            tags:
+            tags:
 
-                selectedFile.tags,
+                selectedFile.tags,
 
 
 
-            description:
+            description:
 
-                selectedFile.description,
+                selectedFile.description,
 
 
 
-            year:
+            year:
 
-                selectedFile.year,
+                selectedFile.year,
 
 
 
-            category:
+            category:
 
-                selectedFile.category
+                selectedFile.category
 
 
 
-        };
+        };
 
 
 
 
 
-        modified =
+        modified =
 
-            false;
+            false;
 
 
 
 
 
-        updateStats();
+        updateStats();
 
 
 
 
 
-        applyFilters();
+        applyFilters();
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "METADATA SAVED",
+            "METADATA SAVED",
 
-            "success"
+            "success"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
 
 
-    saveButton.disabled =
+    saveButton.disabled =
 
-        false;
+        false;
 
 
 
 
 
-    saveButton.innerText =
+    saveButton.innerText =
 
-        "Save Metadata";
+        "Save Metadata";
 
 
 
@@ -5788,11 +5788,11 @@ async function saveMetadata() {
 
 /*
 
-    ========================================
+    ========================================
 
-    HELPERS
+    HELPERS
 
-    ========================================
+    ========================================
 
 */
 
@@ -5806,19 +5806,19 @@ function getFilename(path) {
 
 
 
-    const parts =
+    const parts =
 
-        path.split("/");
-
-
+        path.split("/");
 
 
 
-    return parts[
 
-        parts.length - 1
 
-    ];
+    return parts[
+
+        parts.length - 1
+
+    ];
 
 
 
@@ -5838,37 +5838,37 @@ function getExtension(path) {
 
 
 
-    const filename =
+    const filename =
 
-        getFilename(path);
-
-
-
-
-
-    if (
-
-        !filename.includes(".")
-
-    ) {
-
-
-
-        return "";
-
-
-
-    }
+        getFilename(path);
 
 
 
 
 
-    return filename
+    if (
 
-        .split(".")
+        !filename.includes(".")
 
-        .pop();
+    ) {
+
+
+
+        return "";
+
+
+
+    }
+
+
+
+
+
+    return filename
+
+        .split(".")
+
+        .pop();
 
 
 
@@ -5884,11 +5884,11 @@ function getExtension(path) {
 
 /*
 
-    ========================================
+    ========================================
 
-    STATUS
+    STATUS
 
-    ========================================
+    ========================================
 
 */
 
@@ -5898,9 +5898,9 @@ function getExtension(path) {
 
 function setStatus(
 
-    message,
+    message,
 
-    type = ""
+    type = ""
 
 ) {
 
@@ -5908,77 +5908,77 @@ function setStatus(
 
 
 
-    statusText.innerText =
+    statusText.innerText =
 
-        message;
-
-
-
-
-
-    statusText.className =
-
-        "";
+        message;
 
 
 
 
 
-    if (
+    statusText.className =
 
-        type === "success"
-
-    ) {
-
-
-
-        statusText.className =
-
-            "status-success";
-
-
-
-    }
+        "";
 
 
 
 
 
-    if (
+    if (
 
-        type === "error"
+        type === "success"
 
-    ) {
-
-
-
-        statusText.className =
-
-            "status-error";
+    ) {
 
 
 
-    }
+        statusText.className =
+
+            "status-success";
+
+
+
+    }
 
 
 
 
 
-    if (
+    if (
 
-        type === "modified"
+        type === "error"
 
-    ) {
-
-
-
-        statusText.className =
-
-            "status-modified";
+    ) {
 
 
 
-    }
+        statusText.className =
+
+            "status-error";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "modified"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-modified";
+
+
+
+    }
 
 
 
@@ -5994,11 +5994,11 @@ function setStatus(
 
 /*
 
-    ========================================
+    ========================================
 
-    WARN BEFORE LEAVING PAGE
+    WARN BEFORE LEAVING PAGE
 
-    ========================================
+    ========================================
 
 */
 
@@ -6008,43 +6008,43 @@ function setStatus(
 
 window.addEventListener(
 
-    "beforeunload",
+    "beforeunload",
 
-    function(event) {
-
-
-
-
-
-        if (!modified) {
-
-
-
-            return;
-
-
-
-        }
+    function(event) {
 
 
 
 
 
-        event.preventDefault();
+        if (!modified) {
+
+
+
+            return;
+
+
+
+        }
 
 
 
 
 
-        event.returnValue =
-
-            "";
+        event.preventDefault();
 
 
 
 
 
-    }
+        event.returnValue =
+
+            "";
+
+
+
+
+
+    }
 
 );
 
@@ -6143,11 +6143,11 @@ window.addEventListener(
 
 /*
 
-    ========================================
+    ========================================
 
-    UPLOAD
+    UPLOAD
 
-    ========================================
+    ========================================
 
 */
 
@@ -6157,11 +6157,11 @@ window.addEventListener(
 
 const uploadOverlay =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadOverlay"
+        "uploadOverlay"
 
-    );
+    );
 
 
 
@@ -6169,11 +6169,11 @@ const uploadOverlay =
 
 const uploadFileInput =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadFile"
+        "uploadFile"
 
-    );
+    );
 
 
 
@@ -6181,11 +6181,11 @@ const uploadFileInput =
 
 const uploadFolderInput =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadFolder"
+        "uploadFolder"
 
-    );
+    );
 
 
 
@@ -6193,11 +6193,11 @@ const uploadFolderInput =
 
 const uploadButton =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadButton"
+        "uploadButton"
 
-    );
+    );
 
 
 
@@ -6205,11 +6205,11 @@ const uploadButton =
 
 const uploadDestination =
 
-    document.getElementById(
+    document.getElementById(
 
-        "uploadDestination"
+        "uploadDestination"
 
-    );
+    );
 
 
 
@@ -6219,7 +6219,7 @@ const uploadDestination =
 
 /*
 
-    OPEN WINDOW
+    OPEN WINDOW
 
 */
 
@@ -6233,37 +6233,37 @@ function openUpload() {
 
 
 
-    uploadOverlay.style.display =
+    uploadOverlay.style.display =
 
-        "flex";
-
-
-
-
-
-    uploadFileInput.value =
-
-        "";
+        "flex";
 
 
 
 
 
-    uploadFolderInput.value =
+    uploadFileInput.value =
 
-        "";
-
-
-
-
-
-    updateUploadDestination();
+        "";
 
 
 
 
 
-    uploadFileInput.focus();
+    uploadFolderInput.value =
+
+        "";
+
+
+
+
+
+    updateUploadDestination();
+
+
+
+
+
+    uploadFileInput.focus();
 
 
 
@@ -6279,7 +6279,7 @@ function openUpload() {
 
 /*
 
-    CLOSE WINDOW
+    CLOSE WINDOW
 
 */
 
@@ -6293,9 +6293,9 @@ function closeUpload() {
 
 
 
-    uploadOverlay.style.display =
+    uploadOverlay.style.display =
 
-        "none";
+        "none";
 
 
 
@@ -6311,7 +6311,7 @@ function closeUpload() {
 
 /*
 
-    SHOW DESTINATION
+    SHOW DESTINATION
 
 */
 
@@ -6325,75 +6325,75 @@ function updateUploadDestination() {
 
 
 
-    const file =
+    const file =
 
-        uploadFileInput.files[0];
-
-
-
-
-
-    let folder =
-
-        uploadFolderInput.value
-
-            .trim()
-
-            .replace(/^\/+/, "")
-
-            .replace(/\/+$/, "");
+        uploadFileInput.files[0];
 
 
 
 
 
-    let destination =
+    let folder =
 
-        "/";
+        uploadFolderInput.value
 
+            .trim()
 
+            .replace(/^\/+/, "")
 
-
-
-    if (folder !== "") {
-
-
-
-        destination +=
-
-            folder +
-
-            "/";
-
-
-
-    }
+            .replace(/\/+$/, "");
 
 
 
 
 
-    if (file) {
+    let destination =
 
-
-
-        destination +=
-
-            file.name;
-
-
-
-    }
+        "/";
 
 
 
 
 
-    uploadDestination.innerText =
+    if (folder !== "") {
 
-        "DESTINATION: " +
 
-        destination;
+
+        destination +=
+
+            folder +
+
+            "/";
+
+
+
+    }
+
+
+
+
+
+    if (file) {
+
+
+
+        destination +=
+
+            file.name;
+
+
+
+    }
+
+
+
+
+
+    uploadDestination.innerText =
+
+        "DESTINATION: " +
+
+        destination;
 
 
 
@@ -6409,9 +6409,9 @@ function updateUploadDestination() {
 
 uploadFileInput.addEventListener(
 
-    "change",
+    "change",
 
-    updateUploadDestination
+    updateUploadDestination
 
 );
 
@@ -6421,9 +6421,9 @@ uploadFileInput.addEventListener(
 
 uploadFolderInput.addEventListener(
 
-    "input",
+    "input",
 
-    updateUploadDestination
+    updateUploadDestination
 
 );
 
@@ -6435,7 +6435,7 @@ uploadFolderInput.addEventListener(
 
 /*
 
-    UPLOAD FILE
+    UPLOAD FILE
 
 */
 
@@ -6449,37 +6449,37 @@ async function uploadFile() {
 
 
 
-    const file =
+    const file =
 
-        uploadFileInput.files[0];
+        uploadFileInput.files[0];
 
 
 
 
 
-    if (!file) {
+    if (!file) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "SELECT A FILE TO UPLOAD",
+            "SELECT A FILE TO UPLOAD",
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -6487,33 +6487,33 @@ async function uploadFile() {
 
 
 
-    const formData =
+    const formData =
 
-        new FormData();
+        new FormData();
 
 
 
 
 
-    formData.append(
+    formData.append(
 
-        "file",
+        "file",
 
-        file
+        file
 
-    );
+    );
 
 
 
 
 
-    formData.append(
+    formData.append(
 
-        "folder",
+        "folder",
 
-        uploadFolderInput.value.trim()
+        uploadFolderInput.value.trim()
 
-    );
+    );
 
 
 
@@ -6521,63 +6521,63 @@ async function uploadFile() {
 
 
 
-    uploadButton.disabled =
+    uploadButton.disabled =
 
-        true;
+        true;
 
 
 
 
 
-    uploadButton.innerText =
+    uploadButton.innerText =
 
-        "Uploading...";
+        "Uploading...";
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "UPLOADING..."
+        "UPLOADING..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/admin/upload",
+                "/api/admin/upload",
 
-                {
+                {
 
 
 
-                    method:
+                    method:
 
-                        "POST",
+                        "POST",
 
 
 
-                    body:
+                    body:
 
-                        formData
+                        formData
 
 
 
-                }
+                }
 
-            );
+            );
 
 
 
@@ -6585,77 +6585,77 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Read response safely
+            Read response safely
 
-        */
+        */
 
 
 
 
 
-        const text =
+        const text =
 
-            await response.text();
+            await response.text();
 
 
 
 
 
-        let result = {};
+        let result = {};
 
 
 
 
 
-        if (text) {
+        if (text) {
 
 
 
 
 
-            try {
+            try {
 
 
 
 
 
-                result =
+                result =
 
-                    JSON.parse(text);
+                    JSON.parse(text);
 
 
 
 
 
-            }
+            }
 
 
 
-            catch {
+            catch {
 
 
 
 
 
-                throw new Error(
+                throw new Error(
 
-                    "Server returned an invalid response."
+                    "Server returned an invalid response."
 
-                );
+                );
 
 
 
 
 
-            }
+            }
 
 
 
 
 
-        }
+        }
 
 
 
@@ -6663,31 +6663,31 @@ async function uploadFile() {
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
 
 
-            throw new Error(
+            throw new Error(
 
 
 
-                result.message ||
+                result.message ||
 
 
 
-                "Upload failed."
+                "Upload failed."
 
 
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -6695,17 +6695,17 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Close upload window
+            Close upload window
 
-        */
+        */
 
 
 
 
 
-        closeUpload();
+        closeUpload();
 
 
 
@@ -6713,17 +6713,17 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Reload R2 + D1 list
+            Reload R2 + D1 list
 
-        */
+        */
 
 
 
 
 
-        await loadFiles();
+        await loadFiles();
 
 
 
@@ -6731,97 +6731,97 @@ async function uploadFile() {
 
 
 
-        /*
+        /*
 
-            Find newly uploaded file
+            Find newly uploaded file
 
-        */
+        */
 
 
 
 
 
-        const newFile =
+        const newFile =
 
-            allFiles.find(
+            allFiles.find(
 
-                item =>
+                item =>
 
-                    item.name ===
+                    item.name ===
 
-                    result.name
+                    result.name
 
-            );
+            );
 
 
 
 
 
-        if (newFile) {
+        if (newFile) {
 
 
 
 
 
-            /*
+            /*
 
-                Remove filters so
+                Remove filters so
 
-                new file is visible
+                new file is visible
 
-            */
+            */
 
 
 
 
 
-            searchInput.value =
+            searchInput.value =
 
-                "";
+                "";
 
 
 
 
 
-            setFilter(
+            setFilter(
 
-                "all"
+                "all"
 
-            );
+            );
 
 
 
 
 
-            const index =
+            const index =
 
-                visibleFiles.findIndex(
+                visibleFiles.findIndex(
 
-                    item =>
+                    item =>
 
-                        item.name ===
+                        item.name ===
 
-                        newFile.name
+                        newFile.name
 
-                );
+                );
 
 
 
 
 
-            selectFile(
+            selectFile(
 
-                newFile,
+                newFile,
 
-                index
+                index
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -6829,41 +6829,41 @@ async function uploadFile() {
 
 
 
-        setStatus(
+        setStatus(
 
-            "UPLOAD COMPLETE",
+            "UPLOAD COMPLETE",
 
-            "success"
+            "success"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -6871,17 +6871,17 @@ async function uploadFile() {
 
 
 
-    uploadButton.disabled =
+    uploadButton.disabled =
 
-        false;
+        false;
 
 
 
 
 
-    uploadButton.innerText =
+    uploadButton.innerText =
 
-        "Upload";
+        "Upload";
 
 
 
@@ -6897,7 +6897,7 @@ async function uploadFile() {
 
 /*
 
-    CLOSE DIALOG WITH ESCAPE
+    CLOSE DIALOG WITH ESCAPE
 
 */
 
@@ -6907,41 +6907,41 @@ async function uploadFile() {
 
 document.addEventListener(
 
-    "keydown",
+    "keydown",
 
-    function(event) {
-
-
-
-
-
-        if (
-
-            event.key === "Escape" &&
-
-            uploadOverlay.style.display ===
-
-            "flex"
-
-        ) {
+    function(event) {
 
 
 
 
 
-            closeUpload();
+        if (
+
+            event.key === "Escape" &&
+
+            uploadOverlay.style.display ===
+
+            "flex"
+
+        ) {
 
 
 
 
 
-        }
+            closeUpload();
 
 
 
 
 
-    }
+        }
+
+
+
+
+
+    }
 
 );
 
@@ -6949,11 +6949,11 @@ document.addEventListener(
 
 /*
 
-    ========================================
+    ========================================
 
-    DATA
+    DATA
 
-    ========================================
+    ========================================
 
 */
 
@@ -6995,11 +6995,11 @@ let modified = false;
 
 /*
 
-    ========================================
+    ========================================
 
-    ELEMENTS
+    ELEMENTS
 
-    ========================================
+    ========================================
 
 */
 
@@ -7009,7 +7009,7 @@ let modified = false;
 
 const fileList =
 
-    document.getElementById("fileList");
+    document.getElementById("fileList");
 
 
 
@@ -7017,7 +7017,7 @@ const fileList =
 
 const searchInput =
 
-    document.getElementById("search");
+    document.getElementById("search");
 
 
 
@@ -7025,7 +7025,7 @@ const searchInput =
 
 const emptyEditor =
 
-    document.getElementById("emptyEditor");
+    document.getElementById("emptyEditor");
 
 
 
@@ -7033,7 +7033,7 @@ const emptyEditor =
 
 const editorContent =
 
-    document.getElementById("editorContent");
+    document.getElementById("editorContent");
 
 
 
@@ -7041,7 +7041,7 @@ const editorContent =
 
 const titleInput =
 
-    document.getElementById("title");
+    document.getElementById("title");
 
 
 
@@ -7049,7 +7049,7 @@ const titleInput =
 
 const creatorInput =
 
-    document.getElementById("creator");
+    document.getElementById("creator");
 
 
 
@@ -7057,7 +7057,7 @@ const creatorInput =
 
 const tagsInput =
 
-    document.getElementById("tags");
+    document.getElementById("tags");
 
 
 
@@ -7065,7 +7065,7 @@ const tagsInput =
 
 const descriptionInput =
 
-    document.getElementById("description");
+    document.getElementById("description");
 
 
 
@@ -7073,7 +7073,7 @@ const descriptionInput =
 
 const yearInput =
 
-    document.getElementById("year");
+    document.getElementById("year");
 
 
 
@@ -7081,7 +7081,7 @@ const yearInput =
 
 const categoryInput =
 
-    document.getElementById("category");
+    document.getElementById("category");
 
 
 
@@ -7089,7 +7089,7 @@ const categoryInput =
 
 const saveButton =
 
-    document.getElementById("saveButton");
+    document.getElementById("saveButton");
 
 
 
@@ -7097,7 +7097,7 @@ const saveButton =
 
 const revertButton =
 
-    document.getElementById("revertButton");
+    document.getElementById("revertButton");
 
 
 
@@ -7105,7 +7105,7 @@ const revertButton =
 
 const previousButton =
 
-    document.getElementById("previousButton");
+    document.getElementById("previousButton");
 
 
 
@@ -7113,7 +7113,7 @@ const previousButton =
 
 const nextButton =
 
-    document.getElementById("nextButton");
+    document.getElementById("nextButton");
 
 
 
@@ -7121,7 +7121,7 @@ const nextButton =
 
 const statusText =
 
-    document.getElementById("status");
+    document.getElementById("status");
 
 
 
@@ -7129,7 +7129,7 @@ const statusText =
 
 const stats =
 
-    document.getElementById("stats");
+    document.getElementById("stats");
 
 
 
@@ -7137,7 +7137,7 @@ const stats =
 
 const r2Path =
 
-    document.getElementById("r2Path");
+    document.getElementById("r2Path");
 
 
 
@@ -7145,7 +7145,7 @@ const r2Path =
 
 const r2Filename =
 
-    document.getElementById("r2Filename");
+    document.getElementById("r2Filename");
 
 
 
@@ -7153,7 +7153,7 @@ const r2Filename =
 
 const r2Size =
 
-    document.getElementById("r2Size");
+    document.getElementById("r2Size");
 
 
 
@@ -7161,7 +7161,7 @@ const r2Size =
 
 const r2Type =
 
-    document.getElementById("r2Type");
+    document.getElementById("r2Type");
 
 
 
@@ -7171,11 +7171,11 @@ const r2Type =
 
 /*
 
-    ========================================
+    ========================================
 
-    LOAD FILES
+    LOAD FILES
 
-    ========================================
+    ========================================
 
 */
 
@@ -7195,55 +7195,55 @@ async function loadFiles() {
 
 
 
-    setStatus(
+    setStatus(
 
-        "LOADING FILES..."
+        "LOADING FILES..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/files"
+                "/api/files"
 
-            );
+            );
 
 
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
-            throw new Error(
+            throw new Error(
 
-                "Could not load files."
+                "Could not load files."
 
-            );
+            );
 
 
 
-        }
+        }
 
 
 
 
 
-        allFiles =
+        allFiles =
 
-            await response.json();
+            await response.json();
 
 
 
@@ -7251,89 +7251,89 @@ async function loadFiles() {
 
 
 
-        /*
+        /*
 
-            Sort alphabetically
+            Sort alphabetically
 
-        */
+        */
 
 
 
 
 
-        allFiles.sort(
+        allFiles.sort(
 
-            (a, b) =>
+            (a, b) =>
 
-                a.name.localeCompare(
+                a.name.localeCompare(
 
-                    b.name
+                    b.name
 
-                )
+                )
 
-        );
+        );
 
 
 
 
 
-        updateStats();
+        updateStats();
 
 
 
 
 
-        applyFilters();
+        applyFilters();
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "READY"
+            "READY"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        fileList.innerHTML =
+        fileList.innerHTML =
 
-            '<div class="no-file">' +
+            '<div class="no-file">' +
 
-            'Error loading files.' +
+            'Error loading files.' +
 
-            '</div>';
+            '</div>';
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -7349,11 +7349,11 @@ async function loadFiles() {
 
 /*
 
-    ========================================
+    ========================================
 
-    FILE HAS METADATA?
+    FILE HAS METADATA?
 
-    ========================================
+    ========================================
 
 */
 
@@ -7367,35 +7367,35 @@ function hasMetadata(file) {
 
 
 
-    return Boolean(
+    return Boolean(
 
 
 
-        file.title ||
+        file.title ||
 
 
 
-        file.creator ||
+        file.creator ||
 
 
 
-        file.description ||
+        file.description ||
 
 
 
-        file.tags ||
+        file.tags ||
 
 
 
-        file.year ||
+        file.year ||
 
 
 
-        file.category
+        file.category
 
 
 
-    );
+    );
 
 
 
@@ -7411,11 +7411,11 @@ function hasMetadata(file) {
 
 /*
 
-    ========================================
+    ========================================
 
-    UPDATE COUNTS
+    UPDATE COUNTS
 
-    ========================================
+    ========================================
 
 */
 
@@ -7429,47 +7429,47 @@ function updateStats() {
 
 
 
-    const catalogued =
+    const catalogued =
 
-        allFiles.filter(
+        allFiles.filter(
 
-            hasMetadata
+            hasMetadata
 
-        ).length;
-
-
-
-
-
-    const uncatalogued =
-
-        allFiles.length -
-
-        catalogued;
+        ).length;
 
 
 
 
 
-    stats.innerText =
+    const uncatalogued =
+
+        allFiles.length -
+
+        catalogued;
 
 
 
-        allFiles.length +
-
-        " FILES | " +
 
 
-
-        catalogued +
-
-        " CATALOGUED | " +
+    stats.innerText =
 
 
 
-        uncatalogued +
+        allFiles.length +
 
-        " UNCATALOGUED";
+        " FILES | " +
+
+
+
+        catalogued +
+
+        " CATALOGUED | " +
+
+
+
+        uncatalogued +
+
+        " UNCATALOGUED";
 
 
 
@@ -7485,11 +7485,11 @@ function updateStats() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SEARCH / FILTER
+    SEARCH / FILTER
 
-    ========================================
+    ========================================
 
 */
 
@@ -7499,17 +7499,17 @@ function updateStats() {
 
 searchInput.addEventListener(
 
-    "input",
+    "input",
 
-    function() {
-
-
-
-        applyFilters();
+    function() {
 
 
 
-    }
+        applyFilters();
+
+
+
+    }
 
 );
 
@@ -7525,99 +7525,99 @@ function setFilter(filter) {
 
 
 
-    currentFilter =
+    currentFilter =
 
-        filter;
+        filter;
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterAll")
+        .getElementById("filterAll")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterTagged")
+        .getElementById("filterTagged")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    document
+    document
 
-        .getElementById("filterUntagged")
+        .getElementById("filterUntagged")
 
-        .classList.remove("active");
+        .classList.remove("active");
 
 
 
 
 
-    if (filter === "all") {
+    if (filter === "all") {
 
 
 
-        document
+        document
 
-            .getElementById("filterAll")
+            .getElementById("filterAll")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    if (filter === "tagged") {
+    if (filter === "tagged") {
 
 
 
-        document
+        document
 
-            .getElementById("filterTagged")
+            .getElementById("filterTagged")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    if (filter === "untagged") {
+    if (filter === "untagged") {
 
 
 
-        document
+        document
 
-            .getElementById("filterUntagged")
+            .getElementById("filterUntagged")
 
-            .classList.add("active");
+            .classList.add("active");
 
 
 
-    }
+    }
 
 
 
 
 
-    applyFilters();
+    applyFilters();
 
 
 
@@ -7637,77 +7637,77 @@ function applyFilters() {
 
 
 
-    const search =
+    const search =
 
-        searchInput.value
+        searchInput.value
 
-            .trim()
+            .trim()
 
-            .toLowerCase();
+            .toLowerCase();
 
 
 
 
 
-    visibleFiles =
+    visibleFiles =
 
-        allFiles.filter(
+        allFiles.filter(
 
-            file => {
+            file => {
 
 
 
 
 
-                /*
+                /*
 
-                    Filter by metadata
+                    Filter by metadata
 
-                */
+                */
 
 
 
 
 
-                if (
+                if (
 
-                    currentFilter ===
+                    currentFilter ===
 
-                    "tagged" &&
+                    "tagged" &&
 
-                    !hasMetadata(file)
+                    !hasMetadata(file)
 
-                ) {
+                ) {
 
 
 
-                    return false;
+                    return false;
 
 
 
-                }
+                }
 
 
 
 
 
-                if (
+                if (
 
-                    currentFilter ===
+                    currentFilter ===
 
-                    "untagged" &&
+                    "untagged" &&
 
-                    hasMetadata(file)
+                    hasMetadata(file)
 
-                ) {
+                ) {
 
 
 
-                    return false;
+                    return false;
 
 
 
-                }
+                }
 
 
 
@@ -7715,107 +7715,107 @@ function applyFilters() {
 
 
 
-                /*
+                /*
 
-                    Search
+                    Search
 
-                */
+                */
 
 
 
 
 
-                if (search !== "") {
+                if (search !== "") {
 
 
 
 
 
-                    const text = [
+                    const text = [
 
 
 
-                        file.name,
+                        file.name,
 
 
 
-                        file.title,
+                        file.title,
 
 
 
-                        file.creator,
+                        file.creator,
 
 
 
-                        file.tags,
+                        file.tags,
 
 
 
-                        file.description,
+                        file.description,
 
 
 
-                        file.year,
+                        file.year,
 
 
 
-                        file.category
+                        file.category
 
 
 
-                    ]
+                    ]
 
-                    .filter(Boolean)
+                    .filter(Boolean)
 
-                    .join(" ")
+                    .join(" ")
 
-                    .toLowerCase();
+                    .toLowerCase();
 
 
 
 
 
-                    if (
+                    if (
 
-                        !text.includes(
+                        !text.includes(
 
-                            search
+                            search
 
-                        )
+                        )
 
-                    ) {
+                    ) {
 
 
 
-                        return false;
+                        return false;
 
 
 
-                    }
+                    }
 
 
 
-                }
+                }
 
 
 
 
 
-                return true;
+                return true;
 
 
 
 
 
-            }
+            }
 
-        );
+        );
 
 
 
 
 
-    renderFileList();
+    renderFileList();
 
 
 
@@ -7831,11 +7831,11 @@ function applyFilters() {
 
 /*
 
-    ========================================
+    ========================================
 
-    RENDER FILE LIST
+    RENDER FILE LIST
 
-    ========================================
+    ========================================
 
 */
 
@@ -7849,41 +7849,41 @@ function renderFileList() {
 
 
 
-    fileList.innerHTML =
+    fileList.innerHTML =
 
-        "";
+        "";
 
 
 
 
 
-    if (
+    if (
 
-        visibleFiles.length === 0
+        visibleFiles.length === 0
 
-    ) {
+    ) {
 
 
 
 
 
-        fileList.innerHTML =
+        fileList.innerHTML =
 
-            '<div class="no-file">' +
+            '<div class="no-file">' +
 
-            'No files found.' +
+            'No files found.' +
 
-            '</div>';
+            '</div>';
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -7891,55 +7891,55 @@ function renderFileList() {
 
 
 
-    visibleFiles.forEach(
+    visibleFiles.forEach(
 
-        (file, index) => {
+        (file, index) => {
 
 
 
 
 
-            const item =
+            const item =
 
-                document.createElement(
+                document.createElement(
 
-                    "div"
+                    "div"
 
-                );
+                );
 
 
 
 
 
-            item.className =
+            item.className =
 
-                "file-item";
+                "file-item";
 
 
 
 
 
-            if (
+            if (
 
-                selectedFile &&
+                selectedFile &&
 
-                selectedFile.name ===
+                selectedFile.name ===
 
-                file.name
+                file.name
 
-            ) {
+            ) {
 
 
 
-                item.classList.add(
+                item.classList.add(
 
-                    "selected"
+                    "selected"
 
-                );
+                );
 
 
 
-            }
+            }
 
 
 
@@ -7947,41 +7947,41 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                Metadata dot
+                Metadata dot
 
-            */
+            */
 
 
 
 
 
-            const dot =
+            const dot =
 
-                document.createElement(
+                document.createElement(
 
-                    "span"
+                    "span"
 
-                );
+                );
 
 
 
 
 
-            dot.className =
+            dot.className =
 
-                "metadata-dot " +
+                "metadata-dot " +
 
-                (
+                (
 
-                    hasMetadata(file)
+                    hasMetadata(file)
 
-                        ? "complete"
+                        ? "complete"
 
-                        : "empty"
+                        : "empty"
 
-                );
+                );
 
 
 
@@ -7989,51 +7989,51 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                File name
+                File name
 
-            */
+            */
 
 
 
 
 
-            const filename =
+            const filename =
 
-                getFilename(
+                getFilename(
 
-                    file.name
+                    file.name
 
-                );
+                );
 
 
 
 
 
-            const name =
+            const name =
 
-                document.createElement(
+                document.createElement(
 
-                    "span"
+                    "span"
 
-                );
+                );
 
 
 
 
 
-            name.className =
+            name.className =
 
-                "file-name";
+                "file-name";
 
 
 
 
 
-            name.innerText =
+            name.innerText =
 
-                filename;
+                filename;
 
 
 
@@ -8041,39 +8041,39 @@ function renderFileList() {
 
 
 
-            /*
+            /*
 
-                Path
+                Path
 
-            */
+            */
 
 
 
 
 
-            const path =
+            const path =
 
-                document.createElement(
+                document.createElement(
 
-                    "div"
+                    "div"
 
-                );
+                );
 
 
 
 
 
-            path.className =
+            path.className =
 
-                "file-path";
+                "file-path";
 
 
 
 
 
-            path.innerText =
+            path.innerText =
 
-                file.name;
+                file.name;
 
 
 
@@ -8081,75 +8081,75 @@ function renderFileList() {
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                dot
+                dot
 
-            );
+            );
 
 
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                name
+                name
 
-            );
+            );
 
 
 
 
 
-            item.appendChild(
+            item.appendChild(
 
-                path
+                path
 
-            );
+            );
 
 
 
 
 
-            item.onclick =
+            item.onclick =
 
-                function() {
+                function() {
 
 
 
 
 
-                    selectFile(
+                    selectFile(
 
-                        file,
+                        file,
 
-                        index
+                        index
 
-                    );
+                    );
 
 
 
 
 
-                };
+                };
 
 
 
 
 
-            fileList.appendChild(
+            fileList.appendChild(
 
-                item
+                item
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
-    );
+    );
 
 
 
@@ -8165,11 +8165,11 @@ function renderFileList() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SELECT FILE
+    SELECT FILE
 
-    ========================================
+    ========================================
 
 */
 
@@ -8179,9 +8179,9 @@ function renderFileList() {
 
 function selectFile(
 
-    file,
+    file,
 
-    index
+    index
 
 ) {
 
@@ -8189,61 +8189,61 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Warn if there are
+        Warn if there are
 
-        unsaved changes
+        unsaved changes
 
-    */
+    */
 
 
 
 
 
-    if (
+    if (
 
-        modified &&
+        modified &&
 
-        selectedFile &&
+        selectedFile &&
 
-        selectedFile.name !==
+        selectedFile.name !==
 
-        file.name
+        file.name
 
-    ) {
+    ) {
 
 
 
 
 
-        const leave =
+        const leave =
 
-            confirm(
+            confirm(
 
-                "You have unsaved changes.\n\n" +
+                "You have unsaved changes.\n\n" +
 
-                "Discard them and open another file?"
+                "Discard them and open another file?"
 
-            );
+            );
 
 
 
 
 
-        if (!leave) {
+        if (!leave) {
 
 
 
-            return;
+            return;
 
 
 
-        }
+        }
 
 
 
-    }
+    }
 
 
 
@@ -8251,17 +8251,17 @@ function selectFile(
 
 
 
-    selectedFile =
+    selectedFile =
 
-        file;
+        file;
 
 
 
 
 
-    selectedIndex =
+    selectedIndex =
 
-        index;
+        index;
 
 
 
@@ -8269,57 +8269,57 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Store original metadata
+        Store original metadata
 
-    */
+    */
 
 
 
 
 
-    originalMetadata = {
+    originalMetadata = {
 
 
 
-        title:
+        title:
 
-            file.title || "",
+            file.title || "",
 
 
 
-        creator:
+        creator:
 
-            file.creator || "",
+            file.creator || "",
 
 
 
-        tags:
+        tags:
 
-            file.tags || "",
+            file.tags || "",
 
 
 
-        description:
+        description:
 
-            file.description || "",
+            file.description || "",
 
 
 
-        year:
+        year:
 
-            file.year || "",
+            file.year || "",
 
 
 
-        category:
+        category:
 
-            file.category || ""
+            file.category || ""
 
 
 
-    };
+    };
 
 
 
@@ -8327,61 +8327,61 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        Fill editor
+        Fill editor
 
-    */
+    */
 
 
 
 
 
-    titleInput.value =
+    titleInput.value =
 
-        originalMetadata.title;
+        originalMetadata.title;
 
 
 
 
 
-    creatorInput.value =
+    creatorInput.value =
 
-        originalMetadata.creator;
+        originalMetadata.creator;
 
 
 
 
 
-    tagsInput.value =
+    tagsInput.value =
 
-        originalMetadata.tags;
+        originalMetadata.tags;
 
 
 
 
 
-    descriptionInput.value =
+    descriptionInput.value =
 
-        originalMetadata.description;
+        originalMetadata.description;
 
 
 
 
 
-    yearInput.value =
+    yearInput.value =
 
-        originalMetadata.year;
+        originalMetadata.year;
 
 
 
 
 
-    setCategoryValue(
+    setCategoryValue(
 
-        originalMetadata.category
+        originalMetadata.category
 
-    );
+    );
 
 
 
@@ -8389,53 +8389,53 @@ function selectFile(
 
 
 
-    /*
+    /*
 
-        R2 info
+        R2 info
 
-    */
+    */
 
 
 
 
 
-    r2Path.innerText =
+    r2Path.innerText =
 
-        file.name;
+        file.name;
 
 
 
 
 
-    r2Filename.innerText =
+    r2Filename.innerText =
 
-        getFilename(
+        getFilename(
 
-            file.name
+            file.name
 
-        );
+        );
 
 
 
 
 
-    r2Size.innerText =
+    r2Size.innerText =
 
-        file.size;
+        file.size;
 
 
 
 
 
-    r2Type.innerText =
+    r2Type.innerText =
 
-        getExtension(
+        getExtension(
 
-            file.name
+            file.name
 
-        ).toUpperCase() ||
+        ).toUpperCase() ||
 
-        "FILE";
+        "FILE";
 
 
 
@@ -8443,47 +8443,47 @@ function selectFile(
 
 
 
-    emptyEditor.style.display =
+    emptyEditor.style.display =
 
-        "none";
+        "none";
 
 
 
 
 
-    editorContent.style.display =
+    editorContent.style.display =
 
-        "block";
+        "block";
 
 
 
 
 
-    modified =
+    modified =
 
-        false;
+        false;
 
 
 
 
 
-    updateNavigationButtons();
+    updateNavigationButtons();
 
 
 
 
 
-    renderFileList();
+    renderFileList();
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "FILE LOADED"
+        "FILE LOADED"
 
-    );
+    );
 
 
 
@@ -8499,11 +8499,11 @@ function selectFile(
 
 /*
 
-    ========================================
+    ========================================
 
-    CATEGORY
+    CATEGORY
 
-    ========================================
+    ========================================
 
 */
 
@@ -8513,7 +8513,7 @@ function selectFile(
 
 function setCategoryValue(
 
-    value
+    value
 
 ) {
 
@@ -8521,89 +8521,89 @@ function setCategoryValue(
 
 
 
-    /*
+    /*
 
-        If the database contains a category
+        If the database contains a category
 
-        not currently in the dropdown,
+        not currently in the dropdown,
 
-        temporarily add it.
+        temporarily add it.
 
-    */
-
-
-
-
-
-    if (
-
-        value !== "" &&
-
-        !Array.from(
-
-            categoryInput.options
-
-        ).some(
-
-            option =>
-
-                option.value === value
-
-        )
-
-    ) {
+    */
 
 
 
 
 
-        const option =
+    if (
 
-            document.createElement(
+        value !== "" &&
 
-                "option"
+        !Array.from(
 
-            );
+            categoryInput.options
 
+        ).some(
 
+            option =>
 
+                option.value === value
 
+        )
 
-        option.value =
-
-            value;
-
-
-
-
-
-        option.innerText =
-
-            value;
+    ) {
 
 
 
 
 
-        categoryInput.appendChild(
+        const option =
 
-            option
+            document.createElement(
 
-        );
+                "option"
 
-
-
-
-
-    }
+            );
 
 
 
 
 
-    categoryInput.value =
+        option.value =
 
-        value;
+            value;
+
+
+
+
+
+        option.innerText =
+
+            value;
+
+
+
+
+
+        categoryInput.appendChild(
+
+            option
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    categoryInput.value =
+
+        value;
 
 
 
@@ -8619,11 +8619,11 @@ function setCategoryValue(
 
 /*
 
-    ========================================
+    ========================================
 
-    MODIFIED DETECTION
+    MODIFIED DETECTION
 
-    ========================================
+    ========================================
 
 */
 
@@ -8635,17 +8635,17 @@ const editableFields = [
 
 
 
-    titleInput,
+    titleInput,
 
-    creatorInput,
+    creatorInput,
 
-    tagsInput,
+    tagsInput,
 
-    descriptionInput,
+    descriptionInput,
 
-    yearInput,
+    yearInput,
 
-    categoryInput
+    categoryInput
 
 
 
@@ -8657,37 +8657,37 @@ const editableFields = [
 
 editableFields.forEach(
 
-    field => {
+    field => {
 
 
 
 
 
-        field.addEventListener(
+        field.addEventListener(
 
-            "input",
+            "input",
 
-            checkModified
+            checkModified
 
-        );
-
-
-
-
-
-        field.addEventListener(
-
-            "change",
-
-            checkModified
-
-        );
+        );
 
 
 
 
 
-    }
+        field.addEventListener(
+
+            "change",
+
+            checkModified
+
+        );
+
+
+
+
+
+    }
 
 );
 
@@ -8703,151 +8703,151 @@ function checkModified() {
 
 
 
-    if (
+    if (
 
-        !selectedFile ||
+        !selectedFile ||
 
-        !originalMetadata
+        !originalMetadata
 
-    ) {
+    ) {
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
 
 
-    modified =
+    modified =
 
 
 
-        titleInput.value !==
+        titleInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.title
+            originalMetadata.title
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        creatorInput.value !==
+        creatorInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.creator
+            originalMetadata.creator
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        tagsInput.value !==
+        tagsInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.tags
+            originalMetadata.tags
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        descriptionInput.value !==
+        descriptionInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.description
+            originalMetadata.description
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        yearInput.value !==
+        yearInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.year
+            originalMetadata.year
 
-        )
+        )
 
 
 
-        ||
+        ||
 
 
 
-        categoryInput.value !==
+        categoryInput.value !==
 
-        String(
+        String(
 
-            originalMetadata.category
+            originalMetadata.category
 
-        );
+        );
 
 
 
 
 
-    if (modified) {
+    if (modified) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "MODIFIED",
+            "MODIFIED",
 
-            "modified"
+            "modified"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    else {
+    else {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "READY"
+            "READY"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
@@ -8863,11 +8863,11 @@ function checkModified() {
 
 /*
 
-    ========================================
+    ========================================
 
-    REVERT
+    REVERT
 
-    ========================================
+    ========================================
 
 */
 
@@ -8881,89 +8881,89 @@ function revertChanges() {
 
 
 
-    if (
+    if (
 
-        !selectedFile ||
+        !selectedFile ||
 
-        !originalMetadata
+        !originalMetadata
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
 
 
 
-
-
-    titleInput.value =
-
-        originalMetadata.title;
+    }
 
 
 
 
 
-    creatorInput.value =
+    titleInput.value =
 
-        originalMetadata.creator;
-
-
-
-
-
-    tagsInput.value =
-
-        originalMetadata.tags;
+        originalMetadata.title;
 
 
 
 
 
-    descriptionInput.value =
+    creatorInput.value =
 
-        originalMetadata.description;
-
-
-
-
-
-    yearInput.value =
-
-        originalMetadata.year;
+        originalMetadata.creator;
 
 
 
 
 
-    setCategoryValue(
+    tagsInput.value =
 
-        originalMetadata.category
-
-    );
+        originalMetadata.tags;
 
 
 
 
 
-    modified =
+    descriptionInput.value =
 
-        false;
-
-
+        originalMetadata.description;
 
 
 
-    setStatus(
 
-        "CHANGES REVERTED"
 
-    );
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    setStatus(
+
+        "CHANGES REVERTED"
+
+    );
 
 
 
@@ -8979,11 +8979,11 @@ function revertChanges() {
 
 /*
 
-    ========================================
+    ========================================
 
-    PREVIOUS / NEXT
+    PREVIOUS / NEXT
 
-    ========================================
+    ========================================
 
 */
 
@@ -8997,35 +8997,35 @@ function previousFile() {
 
 
 
-    if (
+    if (
 
-        selectedIndex <= 0
+        selectedIndex <= 0
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
+
+
+
+    }
 
 
 
 
 
-    selectFile(
+    selectFile(
 
-        visibleFiles[
+        visibleFiles[
 
-            selectedIndex - 1
+            selectedIndex - 1
 
-        ],
+        ],
 
-        selectedIndex - 1
+        selectedIndex - 1
 
-    );
+    );
 
 
 
@@ -9045,39 +9045,39 @@ function nextFile() {
 
 
 
-    if (
+    if (
 
-        selectedIndex < 0 ||
+        selectedIndex < 0 ||
 
-        selectedIndex >=
+        selectedIndex >=
 
-        visibleFiles.length - 1
+        visibleFiles.length - 1
 
-    ) {
-
-
-
-        return;
+    ) {
 
 
 
-    }
+        return;
+
+
+
+    }
 
 
 
 
 
-    selectFile(
+    selectFile(
 
-        visibleFiles[
+        visibleFiles[
 
-            selectedIndex + 1
+            selectedIndex + 1
 
-        ],
+        ],
 
-        selectedIndex + 1
+        selectedIndex + 1
 
-    );
+    );
 
 
 
@@ -9097,25 +9097,25 @@ function updateNavigationButtons() {
 
 
 
-    previousButton.disabled =
+    previousButton.disabled =
 
-        selectedIndex <= 0;
-
-
+        selectedIndex <= 0;
 
 
 
-    nextButton.disabled =
+
+
+    nextButton.disabled =
 
 
 
-        selectedIndex < 0 ||
+        selectedIndex < 0 ||
 
 
 
-        selectedIndex >=
+        selectedIndex >=
 
-        visibleFiles.length - 1;
+        visibleFiles.length - 1;
 
 
 
@@ -9131,11 +9131,11 @@ function updateNavigationButtons() {
 
 /*
 
-    ========================================
+    ========================================
 
-    SAVE METADATA
+    SAVE METADATA
 
-    ========================================
+    ========================================
 
 */
 
@@ -9149,29 +9149,29 @@ async function saveMetadata() {
 
 
 
-    if (!selectedFile) {
+    if (!selectedFile) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "SELECT A FILE",
+            "SELECT A FILE",
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-        return;
+        return;
 
 
 
-    }
+    }
 
 
 
@@ -9179,123 +9179,123 @@ async function saveMetadata() {
 
 
 
-    saveButton.disabled =
+    saveButton.disabled =
 
-        true;
+        true;
 
 
 
 
 
-    saveButton.innerText =
+    saveButton.innerText =
 
-        "Saving...";
+        "Saving...";
 
 
 
 
 
-    setStatus(
+    setStatus(
 
-        "SAVING..."
+        "SAVING..."
 
-    );
+    );
 
 
 
 
 
-    try {
+    try {
 
 
 
 
 
-        const response =
+        const response =
 
-            await fetch(
+            await fetch(
 
-                "/api/admin/save",
+                "/api/admin/save",
 
-                {
+                {
 
 
 
-                    method:
+                    method:
 
-                        "POST",
+                        "POST",
 
 
 
-                    headers: {
+                    headers: {
 
 
 
-                        "Content-Type":
+                        "Content-Type":
 
-                            "application/json"
+                            "application/json"
 
 
 
-                    },
+                    },
 
 
 
-                    body:
+                    body:
 
-                        JSON.stringify({
+                        JSON.stringify({
 
 
 
-                            r2_key:
+                            r2_key:
 
-                                selectedFile.name,
+                                selectedFile.name,
 
 
 
-                            title:
+                            title:
 
-                                titleInput.value.trim(),
+                                titleInput.value.trim(),
 
 
 
-                            creator:
+                            creator:
 
-                                creatorInput.value.trim(),
+                                creatorInput.value.trim(),
 
 
 
-                            tags:
+                            tags:
 
-                                tagsInput.value.trim(),
+                                tagsInput.value.trim(),
 
 
 
-                            description:
+                            description:
 
-                                descriptionInput.value.trim(),
+                                descriptionInput.value.trim(),
 
 
 
-                            year:
+                            year:
 
-                                yearInput.value,
+                                yearInput.value,
 
 
 
-                            category:
+                            category:
 
-                                categoryInput.value
+                                categoryInput.value
 
 
 
-                        })
+                        })
 
 
 
-                }
+                }
 
-            );
+            );
 
 
 
@@ -9303,69 +9303,69 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Read response safely
+            Read response safely
 
-        */
+        */
 
 
 
 
 
-        const text =
+        const text =
 
-            await response.text();
+            await response.text();
 
 
 
 
 
-        let result = {};
+        let result = {};
 
 
 
 
 
-        if (text) {
+        if (text) {
 
 
 
 
 
-            try {
+            try {
 
 
 
-                result =
+                result =
 
-                    JSON.parse(text);
+                    JSON.parse(text);
 
 
 
-            }
+            }
 
 
 
-            catch {
+            catch {
 
 
 
-                throw new Error(
+                throw new Error(
 
-                    "Server returned an invalid response."
+                    "Server returned an invalid response."
 
-                );
+                );
 
 
 
-            }
+            }
 
 
 
 
 
-        }
+        }
 
 
 
@@ -9373,31 +9373,31 @@ async function saveMetadata() {
 
 
 
-        if (!response.ok) {
+        if (!response.ok) {
 
 
 
 
 
-            throw new Error(
+            throw new Error(
 
 
 
-                result.message ||
+                result.message ||
 
 
 
-                "Could not save metadata."
+                "Could not save metadata."
 
 
 
-            );
+            );
 
 
 
 
 
-        }
+        }
 
 
 
@@ -9405,59 +9405,59 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Update local file object
+            Update local file object
 
-        */
+        */
 
 
 
 
 
-        selectedFile.title =
+        selectedFile.title =
 
-            titleInput.value.trim();
+            titleInput.value.trim();
 
 
 
 
 
-        selectedFile.creator =
+        selectedFile.creator =
 
-            creatorInput.value.trim();
+            creatorInput.value.trim();
 
 
 
 
 
-        selectedFile.tags =
+        selectedFile.tags =
 
-            tagsInput.value.trim();
+            tagsInput.value.trim();
 
 
 
 
 
-        selectedFile.description =
+        selectedFile.description =
 
-            descriptionInput.value.trim();
+            descriptionInput.value.trim();
 
 
 
 
 
-        selectedFile.year =
+        selectedFile.year =
 
-            yearInput.value;
+            yearInput.value;
 
 
 
 
 
-        selectedFile.category =
+        selectedFile.category =
 
-            categoryInput.value;
+            categoryInput.value;
 
 
 
@@ -9465,133 +9465,133 @@ async function saveMetadata() {
 
 
 
-        /*
+        /*
 
-            Save new original values
+            Save new original values
 
-        */
+        */
 
 
 
 
 
-        originalMetadata = {
+        originalMetadata = {
 
 
 
-            title:
+            title:
 
-                selectedFile.title,
+                selectedFile.title,
 
 
 
-            creator:
+            creator:
 
-                selectedFile.creator,
+                selectedFile.creator,
 
 
 
-            tags:
+            tags:
 
-                selectedFile.tags,
+                selectedFile.tags,
 
 
 
-            description:
+            description:
 
-                selectedFile.description,
+                selectedFile.description,
 
 
 
-            year:
+            year:
 
-                selectedFile.year,
+                selectedFile.year,
 
 
 
-            category:
+            category:
 
-                selectedFile.category
+                selectedFile.category
 
 
 
-        };
+        };
 
 
 
 
 
-        modified =
+        modified =
 
-            false;
+            false;
 
 
 
 
 
-        updateStats();
+        updateStats();
 
 
 
 
 
-        applyFilters();
+        applyFilters();
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            "METADATA SAVED",
+            "METADATA SAVED",
 
-            "success"
+            "success"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
-    catch (error) {
+    catch (error) {
 
 
 
 
 
-        setStatus(
+        setStatus(
 
-            error.message.toUpperCase(),
+            error.message.toUpperCase(),
 
-            "error"
+            "error"
 
-        );
+        );
 
 
 
 
 
-    }
+    }
 
 
 
 
 
-    saveButton.disabled =
+    saveButton.disabled =
 
-        false;
+        false;
 
 
 
 
 
-    saveButton.innerText =
+    saveButton.innerText =
 
-        "Save Metadata";
+        "Save Metadata";
 
 
 
@@ -9607,11 +9607,11 @@ async function saveMetadata() {
 
 /*
 
-    ========================================
+    ========================================
 
-    HELPERS
+    HELPERS
 
-    ========================================
+    ========================================
 
 */
 
@@ -9625,19 +9625,19 @@ function getFilename(path) {
 
 
 
-    const parts =
+    const parts =
 
-        path.split("/");
-
-
+        path.split("/");
 
 
 
-    return parts[
 
-        parts.length - 1
 
-    ];
+    return parts[
+
+        parts.length - 1
+
+    ];
 
 
 
@@ -9657,37 +9657,37 @@ function getExtension(path) {
 
 
 
-    const filename =
+    const filename =
 
-        getFilename(path);
-
-
-
-
-
-    if (
-
-        !filename.includes(".")
-
-    ) {
-
-
-
-        return "";
-
-
-
-    }
+        getFilename(path);
 
 
 
 
 
-    return filename
+    if (
 
-        .split(".")
+        !filename.includes(".")
 
-        .pop();
+    ) {
+
+
+
+        return "";
+
+
+
+    }
+
+
+
+
+
+    return filename
+
+        .split(".")
+
+        .pop();
 
 
 
@@ -9703,11 +9703,11 @@ function getExtension(path) {
 
 /*
 
-    ========================================
+    ========================================
 
-    STATUS
+    STATUS
 
-    ========================================
+    ========================================
 
 */
 
@@ -9717,9 +9717,9 @@ function getExtension(path) {
 
 function setStatus(
 
-    message,
+    message,
 
-    type = ""
+    type = ""
 
 ) {
 
@@ -9727,77 +9727,77 @@ function setStatus(
 
 
 
-    statusText.innerText =
+    statusText.innerText =
 
-        message;
-
-
-
-
-
-    statusText.className =
-
-        "";
+        message;
 
 
 
 
 
-    if (
+    statusText.className =
 
-        type === "success"
-
-    ) {
-
-
-
-        statusText.className =
-
-            "status-success";
-
-
-
-    }
+        "";
 
 
 
 
 
-    if (
+    if (
 
-        type === "error"
+        type === "success"
 
-    ) {
-
-
-
-        statusText.className =
-
-            "status-error";
+    ) {
 
 
 
-    }
+        statusText.className =
+
+            "status-success";
+
+
+
+    }
 
 
 
 
 
-    if (
+    if (
 
-        type === "modified"
+        type === "error"
 
-    ) {
-
-
-
-        statusText.className =
-
-            "status-modified";
+    ) {
 
 
 
-    }
+        statusText.className =
+
+            "status-error";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "modified"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-modified";
+
+
+
+    }
 
 
 
@@ -9813,11 +9813,11 @@ function setStatus(
 
 /*
 
-    ========================================
+    ========================================
 
-    WARN BEFORE LEAVING PAGE
+    WARN BEFORE LEAVING PAGE
 
-    ========================================
+    ========================================
 
 */
 
@@ -9827,43 +9827,43 @@ function setStatus(
 
 window.addEventListener(
 
-    "beforeunload",
+    "beforeunload",
 
-    function(event) {
-
-
-
-
-
-        if (!modified) {
-
-
-
-            return;
-
-
-
-        }
+    function(event) {
 
 
 
 
 
-        event.preventDefault();
+        if (!modified) {
+
+
+
+            return;
+
+
+
+        }
 
 
 
 
 
-        event.returnValue =
-
-            "";
+        event.preventDefault();
 
 
 
 
 
-    }
+        event.returnValue =
+
+            "";
+
+
+
+
+
+    }
 
 );
 
