@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RemixBay // Admin</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            background: #252525;
+            color: #d8d8d8;
+
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 12px;
+        }
+
+
+        /*
+            MAIN WINDOW
+        */
+
+        .window {
+            width: 820px;
+            margin: 25px auto;
+
+            background: #3a3a3a;
+
+            border: 1px solid #111111;
+        }
+
+
+        /*
+            TITLE BAR
+        */
+
+        .titlebar {
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 8px;
+
+            background: #444444;
+
+            border-bottom: 1px solid #181818;
+
+            color: #eeeeee;
+        }
+
+        .titlebar-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .titlebar-right {
+            margin-left: auto;
+
+            color: #aaaaaa;
+            font-size: 11px;
+        }
+
+
+        /*
+            MENU BAR
+        */
+
+        .menu {
+            height: 27px;
+
+            display: flex;
+            align-items: center;
+
+            padding-left: 8px;
+
+            background: #333333;
+
+            border-bottom: 1px solid #171717;
+        }
+
+        .menu a {
+            color: #d0d0d0;
+            text-decoration: none;
+
+            padding: 6px 10px;
+        }
+
+        .menu a:hover {
+            background: #4a4a4a;
+            color: white;
+        }
+
+
+        /*
+            WORK AREA
+        */
+
+        .workspace {
+            padding: 8px;
+        }
+
+
+        /*
+            PANEL
+        */
+
+        .panel {
+            border: 1px solid #181818;
+
+            background: #323232;
+
+            margin-bottom: 8px;
+        }
+
+        .panel-title {
+            padding: 5px 7px;
+
+            background: #454545;
+
+            border-bottom: 1px solid #181818;
+
+            font-weight: bold;
+
+            color: #dddddd;
+        }
+
+        .panel-content {
+            padding: 10px;
+        }
+
+
+        /*
+            FORM
+        */
+
+        .field {
+            margin-bottom: 9px;
+        }
+
+        label {
+            display: block;
+
+            margin-bottom: 3px;
+
+            color: #cccccc;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 5px;
+
+            background: #242424;
+
+            color: #eeeeee;
+
+            border: 1px solid #666666;
+
+            border-radius: 0;
+
+            font-family: Tahoma, Arial, sans-serif;
+
+            font-size: 12px;
+
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #aaaaaa;
+
+            background: #292929;
+        }
+
+        select {
+            height: 28px;
+        }
+
+        textarea {
+            height: 75px;
+
+            resize: vertical;
+        }
+
+
+        /*
+            TWO COLUMN AREA
+        */
+
+        .row {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+
+        /*
+            FILE INFORMATION
+        */
+
+        .file-info {
+            margin-top: 4px;
+
+            color: #888888;
+
+            font-size: 11px;
+
+            font-family: Consolas, "Courier New", monospace;
+
+            word-break: break-all;
+        }
+
+
+        /*
+            BUTTON BAR
+        */
+
+        .button-bar {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 5px;
+
+            margin-top: 12px;
+
+            padding-top: 8px;
+
+            border-top: 1px solid #202020;
+        }
+
+        button {
+
+            min-width: 100px;
+
+            padding: 5px 12px;
+
+            background: #4a4a4a;
+
+            color: #eeeeee;
+
+            border-top: 1px solid #777777;
+            border-left: 1px solid #777777;
+
+            border-right: 1px solid #1b1b1b;
+            border-bottom: 1px solid #1b1b1b;
+
+            border-radius: 0;
+
+            font-family: Tahoma, Arial, sans-serif;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555555;
+        }
+
+        button:active {
+
+            border-top: 1px solid #1b1b1b;
+            border-left: 1px solid #1b1b1b;
+
+            border-right: 1px solid #777777;
+            border-bottom: 1px solid #777777;
+        }
+
+        button:disabled {
+
+            color: #888888;
+
+            background: #3a3a3a;
+
+            cursor: default;
+        }
+
+
+        /*
+            STATUS BAR
+        */
+
+        .statusbar {
+
+            display: flex;
+
+            align-items: center;
+
+            height: 26px;
+
+            padding: 0 7px;
+
+            background: #303030;
+
+            border-top: 1px solid #151515;
+
+            color: #aaaaaa;
+
+            font-size: 11px;
+        }
+
+        .status-label {
+
+            color: #dddddd;
+
+            margin-right: 6px;
+        }
+
+        .status-success {
+            color: #9dcc8e;
+        }
+
+        .status-error {
+            color: #e28b8b;
+        }
+
+        .status-right {
+
+            margin-left: auto;
+
+            color: #777777;
+
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+
+        /*
+            SMALL SCREENS
+        */
+
+        @media (max-width: 850px) {
+
+            .window {
+
+                width: auto;
+
+                margin: 10px;
+            }
+
+            .row {
+
+                display: block;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="window">
+
+
+    <!-- TITLE BAR -->
+
+    <div class="titlebar">
+
+        <div class="titlebar-title">
+            REMIXBAY // ADMIN
+        </div>
+
+        <div class="titlebar-right">
+            METADATA EDITOR
+        </div>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <div class="menu">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="files.html">
+            Files
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+    </div>
+
+
+    <!-- WORKSPACE -->
+
+    <div class="workspace">
+
+
+        <div class="panel">
+
+
+            <div class="panel-title">
+
+                FILE METADATA
+
+            </div>
+
+
+            <div class="panel-content">
+
+
+                <!-- FILE -->
+
+                <div class="field">
+
+                    <label for="fileSelect">
+                        File:
+                    </label>
+
+                    <select id="fileSelect">
+
+                        <option value="">
+                            Loading files...
+                        </option>
+
+                    </select>
+
+                    <div
+                        id="fileInfo"
+                        class="file-info">
+
+                        Waiting for file list...
+
+                    </div>
+
+                </div>
+
+
+                <!-- TITLE -->
+
+                <div class="field">
+
+                    <label for="title">
+                        Title:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title">
+
+                </div>
+
+
+                <!-- CREATOR -->
+
+                <div class="field">
+
+                    <label for="creator">
+                        Creator:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="creator">
+
+                </div>
+
+
+                <!-- TAGS -->
+
+                <div class="field">
+
+                    <label for="tags">
+                        Tags:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tags"
+                        placeholder="sparta, remix, base, fl studio">
+
+                    <div class="file-info">
+
+                        Separate tags with commas.
+
+                    </div>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="field">
+
+                    <label for="description">
+                        Description:
+                    </label>
+
+                    <textarea
+                        id="description"></textarea>
+
+                </div>
+
+
+                <!-- YEAR / CATEGORY -->
+
+                <div class="row">
+
+
+                    <div class="column">
+
+                        <div class="field">
+
+                            <label for="year">
+                                Year:
+                            </label>
+
+                            <input
+                                type="number"
+                                id="year"
+                                min="1900"
+                                max="2100">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="column">
+
+                        <div class="field">
+
+                            <label for="category">
+                                Category:
+                            </label>
+
+                            <input
+                                type="text"
+                                id="category"
+                                placeholder="FLP, Remix, Scrap...">
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-bar">
+
+                    <button
+                        type="button"
+                        onclick="clearFields()">
+
+                        Clear
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="saveButton"
+                        onclick="saveMetadata()">
+
+                        Save Metadata
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- STATUS BAR -->
+
+    <div class="statusbar">
+
+        <span class="status-label">
+            STATUS:
+        </span>
+
+        <span id="status">
+            READY
+        </span>
+
+
+        <span
+            id="fileCount"
+            class="status-right">
+
+            0 FILES
+
+        </span>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+let allFiles = [];
+
+
+/*
+    ELEMENTS
+*/
+
+
+const fileSelect =
+    document.getElementById(
+        "fileSelect"
+    );
+
+
+const fileInfo =
+    document.getElementById(
+        "fileInfo"
+    );
+
+
+const titleInput =
+    document.getElementById(
+        "title"
+    );
+
+
+const creatorInput =
+    document.getElementById(
+        "creator"
+    );
+
+
+const tagsInput =
+    document.getElementById(
+        "tags"
+    );
+
+
+const descriptionInput =
+    document.getElementById(
+        "description"
+    );
+
+
+const yearInput =
+    document.getElementById(
+        "year"
+    );
+
+
+const categoryInput =
+    document.getElementById(
+        "category"
+    );
+
+
+const saveButton =
+    document.getElementById(
+        "saveButton"
+    );
+
+
+const statusText =
+    document.getElementById(
+        "status"
+    );
+
+
+const fileCount =
+    document.getElementById(
+        "fileCount"
+    );
+
+
+
+/*
+    LOAD FILE LIST
+*/
+
+
+setStatus(
+    "LOADING FILES..."
+);
+
+
+fetch("/api/files")
+
+    .then(response => {
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Could not load files."
+            );
+
+        }
+
+
+        return response.json();
+
+    })
+
+
+    .then(files => {
+
+
+        allFiles =
+            files.sort(
+                (a, b) =>
+                    a.name.localeCompare(
+                        b.name
+                    )
+            );
+
+
+        fileSelect.innerHTML =
+            "";
+
+
+        const firstOption =
+            document.createElement(
+                "option"
+            );
+
+
+        firstOption.value =
+            "";
+
+
+        firstOption.innerText =
+            "-- SELECT FILE --";
+
+
+        fileSelect.appendChild(
+            firstOption
+        );
+
+
+
+        allFiles.forEach(
+            (file, index) => {
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    index;
+
+
+                option.innerText =
+                    file.name;
+
+
+                fileSelect.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        fileCount.innerText =
+            allFiles.length +
+            " FILES";
+
+
+        fileInfo.innerText =
+            "Select an R2 object to edit.";
+
+
+        setStatus(
+            "READY"
+        );
+
+
+    })
+
+
+    .catch(error => {
+
+
+        fileSelect.innerHTML =
+            "";
+
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+
+        option.innerText =
+            "ERROR LOADING FILES";
+
+
+        fileSelect.appendChild(
+            option
+        );
+
+
+        fileInfo.innerText =
+            error.message;
+
+
+        setStatus(
+            "ERROR",
+            "error"
+        );
+
+
+    });
+
+
+
+/*
+    FILE SELECTED
+*/
+
+
+fileSelect.addEventListener(
+    "change",
+    function() {
+
+
+        const index =
+            fileSelect.value;
+
+
+        if (index === "") {
+
+
+            clearFields();
+
+
+            fileInfo.innerText =
+                "Select an R2 object to edit.";
+
+
+            setStatus(
+                "READY"
+            );
+
+
+            return;
+
+        }
+
+
+        const file =
+            allFiles[index];
+
+
+        /*
+            Load existing D1 metadata
+        */
+
+
+        titleInput.value =
+            file.title || "";
+
+
+        creatorInput.value =
+            file.creator || "";
+
+
+        tagsInput.value =
+            file.tags || "";
+
+
+        descriptionInput.value =
+            file.description || "";
+
+
+        yearInput.value =
+            file.year || "";
+
+
+        categoryInput.value =
+            file.category || "";
+
+
+        fileInfo.innerText =
+            file.name +
+            "  |  " +
+            file.size;
+
+
+        setStatus(
+            "FILE LOADED"
+        );
+
+
+    }
+);
+
+
+
+/*
+    SAVE METADATA
+*/
+
+
+async function saveMetadata() {
+
+
+    const index =
+        fileSelect.value;
+
+
+    if (index === "") {
+
+
+        setStatus(
+            "SELECT A FILE FIRST",
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+    const file =
+        allFiles[index];
+
+
+    saveButton.disabled =
+        true;
+
+
+    saveButton.innerText =
+        "Saving...";
+
+
+    setStatus(
+        "SAVING..."
+    );
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                "/api/admin/save",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            r2_key:
+                                file.name,
+
+                            title:
+                                titleInput.value.trim(),
+
+                            creator:
+                                creatorInput.value.trim(),
+
+                            tags:
+                                tagsInput.value.trim(),
+
+                            description:
+                                descriptionInput.value.trim(),
+
+                            year:
+                                yearInput.value,
+
+                            category:
+                                categoryInput.value.trim()
+
+                        })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+
+            throw new Error(
+                result.message ||
+                "Could not save metadata."
+            );
+
+        }
+
+
+
+        /*
+            Update local copy
+        */
+
+
+        file.title =
+            titleInput.value.trim();
+
+
+        file.creator =
+            creatorInput.value.trim();
+
+
+        file.tags =
+            tagsInput.value.trim();
+
+
+        file.description =
+            descriptionInput.value.trim();
+
+
+        file.year =
+            yearInput.value;
+
+
+        file.category =
+            categoryInput.value.trim();
+
+
+
+        setStatus(
+            "METADATA SAVED",
+            "success"
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        setStatus(
+            error.message.toUpperCase(),
+            "error"
+        );
+
+
+    }
+
+
+    saveButton.disabled =
+        false;
+
+
+    saveButton.innerText =
+        "Save Metadata";
+
+}
+
+
+
+/*
+    CLEAR FIELDS
+*/
+
+
+function clearFields() {
+
+
+    titleInput.value =
+        "";
+
+
+    creatorInput.value =
+        "";
+
+
+    tagsInput.value =
+        "";
+
+
+    descriptionInput.value =
+        "";
+
+
+    yearInput.value =
+        "";
+
+
+    categoryInput.value =
+        "";
+
+
+}
+
+
+
+/*
+    STATUS BAR
+*/
+
+
+function setStatus(
+    message,
+    type = ""
+) {
+
+
+    statusText.innerText =
+        message;
+
+
+    statusText.className =
+        "";
+
+
+    if (type === "success") {
+
+
+        statusText.className =
+            "status-success";
+
+
+    }
+
+
+    if (type === "error") {
+
+
+        statusText.className =
+            "status-error";
+
+
+    }
+
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
