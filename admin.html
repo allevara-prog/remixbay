@@ -242,6 +242,58 @@
 
 
 
+
+/* ==============================
+   UPLOAD PROGRESS
+   ============================== */
+
+.upload-progress-area {
+    display: none;
+    margin-top: 12px;
+    padding: 8px;
+    background: #292929;
+    border: 1px solid #1a1a1a;
+}
+
+.upload-progress-bar {
+    height: 18px;
+    background: #1d1d1d;
+    border-top: 1px solid #111111;
+    border-left: 1px solid #111111;
+    border-right: 1px solid #666666;
+    border-bottom: 1px solid #666666;
+    overflow: hidden;
+}
+
+.upload-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #777777;
+}
+
+.upload-progress-percent {
+    margin-top: 6px;
+    color: #eeeeee;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 12px;
+}
+
+.upload-progress-info {
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    color: #999999;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10px;
+}
+
+.upload-progress-status {
+    margin-top: 5px;
+    color: #aaaaaa;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 10px;
+}
+
 @media (max-width: 550px) {
 
 
@@ -2300,17 +2352,31 @@ button:disabled {
                 </div>
             </div>
 
-            <div
+            
+<div
                 id="uploadDestination"
                 class="upload-destination">
                 DESTINATION: /
+            </div>
+
+            <div id="uploadProgressArea" class="upload-progress-area">
+                <div class="upload-progress-bar">
+                    <div id="uploadProgressFill" class="upload-progress-fill"></div>
+                </div>
+                <div id="uploadProgressPercent" class="upload-progress-percent">0%</div>
+                <div class="upload-progress-info">
+                    <span id="uploadProgressSize">0 Bytes / 0 Bytes</span>
+                    <span id="uploadProgressSpeed">0 Bytes/s</span>
+                </div>
+                <div id="uploadProgressStatus" class="upload-progress-status">WAITING</div>
             </div>
 
             <div class="upload-buttons">
 
                 <button
                     type="button"
-                    onclick="closeUpload()">
+                    id="uploadCancelButton"
+                    onclick="cancelUpload()">
                     Cancel
                 </button>
 
@@ -2332,809 +2398,345 @@ button:disabled {
 <script>
 
 /*
-
     ========================================
-
     UPLOAD
-
     ========================================
-
 */
 
+const uploadOverlay = document.getElementById("uploadOverlay");
+const uploadFileInput = document.getElementById("uploadFile");
+const uploadFolderInput = document.getElementById("uploadFolder");
+const uploadButton = document.getElementById("uploadButton");
+const uploadCancelButton = document.getElementById("uploadCancelButton");
+const uploadDestination = document.getElementById("uploadDestination");
+const uploadProgressArea = document.getElementById("uploadProgressArea");
+const uploadProgressFill = document.getElementById("uploadProgressFill");
+const uploadProgressPercent = document.getElementById("uploadProgressPercent");
+const uploadProgressSize = document.getElementById("uploadProgressSize");
+const uploadProgressSpeed = document.getElementById("uploadProgressSpeed");
+const uploadProgressStatus = document.getElementById("uploadProgressStatus");
 
-
-
-
-const uploadOverlay =
-
-    document.getElementById(
-
-        "uploadOverlay"
-
-    );
-
-
-
-
-
-const uploadFileInput =
-
-    document.getElementById(
-
-        "uploadFile"
-
-    );
-
-
-
-
-
-const uploadFolderInput =
-
-    document.getElementById(
-
-        "uploadFolder"
-
-    );
-
-
-
-
-
-const uploadButton =
-
-    document.getElementById(
-
-        "uploadButton"
-
-    );
-
-
-
-
-
-const uploadDestination =
-
-    document.getElementById(
-
-        "uploadDestination"
-
-    );
-
-
-
-
-
-
-
-/*
-
-    OPEN WINDOW
-
-*/
-
-
-
-
+let currentUploadRequest = null;
+let uploadInProgress = false;
 
 function openUpload() {
+    if (uploadInProgress) return;
 
-
-
-
-
-    uploadOverlay.style.display =
-
-        "flex";
-
-
-
-
-
-    uploadFileInput.value =
-
-        "";
-
-
-
-
-
-    uploadFolderInput.value =
-
-        "";
-
-
-
-
-
+    uploadOverlay.style.display = "flex";
+    uploadFileInput.value = "";
+    uploadFolderInput.value = "";
+    resetUploadProgress();
     updateUploadDestination();
-
-
-
-
-
     uploadFileInput.focus();
-
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    CLOSE WINDOW
-
-*/
-
-
-
-
 
 function closeUpload() {
-
-
-
-
-
-    uploadOverlay.style.display =
-
-        "none";
-
-
-
-
-
+    if (uploadInProgress) return;
+    uploadOverlay.style.display = "none";
 }
 
+function cancelUpload() {
+    if (uploadInProgress) {
+        if (!confirm("Cancel the current upload?")) return;
+        if (currentUploadRequest) currentUploadRequest.abort();
+        return;
+    }
 
-
-
-
-
-
-/*
-
-    SHOW DESTINATION
-
-*/
-
-
-
-
+    closeUpload();
+}
 
 function updateUploadDestination() {
+    const file = uploadFileInput.files[0];
 
+    let folder = uploadFolderInput.value
+        .trim()
+        .replace(/^\/+/, "")
+        .replace(/\/+$/, "");
 
-
-
-
-    const file =
-
-        uploadFileInput.files[0];
-
-
-
-
-
-    let folder =
-
-        uploadFolderInput.value
-
-            .trim()
-
-            .replace(/^\/+/, "")
-
-            .replace(/\/+$/, "");
-
-
-
-
-
-    let destination =
-
-        "/";
-
-
-
-
+    let destination = "/";
 
     if (folder !== "") {
-
-
-
-        destination +=
-
-            folder +
-
-            "/";
-
-
-
+        destination += folder + "/";
     }
-
-
-
-
 
     if (file) {
-
-
-
-        destination +=
-
-            file.name;
-
-
-
+        destination += file.name;
     }
 
-
-
-
-
-    uploadDestination.innerText =
-
-        "DESTINATION: " +
-
-        destination;
-
-
-
-
-
+    uploadDestination.innerText = "DESTINATION: " + destination;
 }
 
+uploadFileInput.addEventListener("change", updateUploadDestination);
+uploadFolderInput.addEventListener("input", updateUploadDestination);
 
+function resetUploadProgress() {
+    uploadProgressArea.style.display = "none";
+    uploadProgressFill.style.width = "0%";
+    uploadProgressPercent.innerText = "0%";
+    uploadProgressSize.innerText = "0 Bytes / 0 Bytes";
+    uploadProgressSpeed.innerText = "0 Bytes/s";
+    uploadProgressStatus.innerText = "WAITING";
+}
 
+function formatUploadBytes(bytes) {
+    if (!bytes) return "0 Bytes";
 
+    const units = ["Bytes", "KB", "MB", "GB", "TB"];
+    const index = Math.min(
+        units.length - 1,
+        Math.floor(Math.log(bytes) / Math.log(1024))
+    );
 
+    const value = bytes / Math.pow(1024, index);
 
+    return (Math.round(value * 100) / 100) + " " + units[index];
+}
 
-uploadFileInput.addEventListener(
+function formatUploadTime(seconds) {
+    if (!isFinite(seconds) || seconds < 0) return "--";
 
-    "change",
+    seconds = Math.round(seconds);
 
-    updateUploadDestination
-
-);
-
-
-
-
-
-uploadFolderInput.addEventListener(
-
-    "input",
-
-    updateUploadDestination
-
-);
-
-
-
-
-
-
-
-/*
-
-    UPLOAD FILE
-
-*/
-
-
-
-
-
-async function uploadFile() {
-
-
-
-
-
-    const file =
-
-        uploadFileInput.files[0];
-
-
-
-
-
-    if (!file) {
-
-
-
-
-
-        setStatus(
-
-            "SELECT A FILE TO UPLOAD",
-
-            "error"
-
-        );
-
-
-
-
-
-        return;
-
-
-
+    if (seconds < 60) {
+        return seconds + " sec";
     }
 
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
 
+    if (minutes < 60) {
+        return minutes + " min " + remainingSeconds + " sec";
+    }
 
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
 
+    return hours + " hr " + remainingMinutes + " min";
+}
 
-
-
-    const formData =
-
-        new FormData();
-
-
-
-
-
-    formData.append(
-
-        "file",
-
-        file
-
+async function getUploadUrl(file) {
+    const response = await fetch(
+        "/api/admin/upload-url",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                filename: file.name,
+                folder: uploadFolderInput.value.trim(),
+                contentType: file.type || "application/octet-stream"
+            })
+        }
     );
 
+    const text = await response.text();
+    let result = {};
 
+    if (text) {
+        try {
+            result = JSON.parse(text);
+        }
+        catch {
+            throw new Error("Server returned an invalid response.");
+        }
+    }
 
+    if (!response.ok) {
+        throw new Error(result.message || "Could not prepare upload.");
+    }
 
+    if (!result.uploadUrl || !result.key) {
+        throw new Error("Server did not return an upload URL.");
+    }
 
-    formData.append(
+    return result;
+}
 
-        "folder",
+function uploadDirectlyToR2(file, uploadInfo) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        currentUploadRequest = xhr;
 
-        uploadFolderInput.value.trim()
+        const startTime = Date.now();
 
-    );
+        xhr.open("PUT", uploadInfo.uploadUrl, true);
+        xhr.setRequestHeader("Content-Type", uploadInfo.contentType);
 
+        xhr.upload.onprogress = function(event) {
+            if (!event.lengthComputable) return;
 
+            const percent = Math.min(
+                100,
+                Math.round((event.loaded / event.total) * 100)
+            );
 
+            uploadProgressFill.style.width = percent + "%";
+            uploadProgressPercent.innerText = percent + "%";
 
+            uploadProgressSize.innerText =
+                formatUploadBytes(event.loaded) +
+                " / " +
+                formatUploadBytes(event.total);
 
+            const elapsedSeconds = (Date.now() - startTime) / 1000;
+            const bytesPerSecond =
+                elapsedSeconds > 0
+                    ? event.loaded / elapsedSeconds
+                    : 0;
 
+            uploadProgressSpeed.innerText =
+                formatUploadBytes(bytesPerSecond) + "/s";
 
-    uploadButton.disabled =
+            const eta =
+                bytesPerSecond > 0
+                    ? (event.total - event.loaded) / bytesPerSecond
+                    : Infinity;
 
-        true;
+            uploadProgressStatus.innerText =
+                "UPLOADING | ETA: " + formatUploadTime(eta);
+        };
 
+        xhr.onload = function() {
+            currentUploadRequest = null;
 
+            if (xhr.status >= 200 && xhr.status < 300) {
+                uploadProgressFill.style.width = "100%";
+                uploadProgressPercent.innerText = "100%";
 
+                uploadProgressSize.innerText =
+                    formatUploadBytes(file.size) +
+                    " / " +
+                    formatUploadBytes(file.size);
 
+                uploadProgressStatus.innerText = "UPLOAD COMPLETE";
+                resolve();
+            }
+            else {
+                reject(
+                    new Error(
+                        "R2 upload failed. HTTP " + xhr.status
+                    )
+                );
+            }
+        };
 
-    uploadButton.innerText =
+        xhr.onerror = function() {
+            currentUploadRequest = null;
+            reject(new Error("Network error while uploading to R2."));
+        };
 
-        "Uploading...";
+        xhr.onabort = function() {
+            currentUploadRequest = null;
+            reject(new Error("Upload cancelled."));
+        };
 
+        xhr.send(file);
+    });
+}
 
+async function uploadFile() {
+    const file = uploadFileInput.files[0];
 
+    if (!file) {
+        setStatus("SELECT A FILE TO UPLOAD", "error");
+        return;
+    }
 
+    if (uploadInProgress) return;
 
-    setStatus(
+    uploadInProgress = true;
 
-        "UPLOADING..."
+    uploadButton.disabled = true;
+    uploadButton.innerText = "Uploading...";
+    uploadFileInput.disabled = true;
+    uploadFolderInput.disabled = true;
+    uploadCancelButton.innerText = "Cancel Upload";
 
-    );
+    uploadProgressArea.style.display = "block";
+    uploadProgressFill.style.width = "0%";
+    uploadProgressPercent.innerText = "0%";
+    uploadProgressSize.innerText =
+        "0 Bytes / " + formatUploadBytes(file.size);
+    uploadProgressSpeed.innerText = "0 Bytes/s";
+    uploadProgressStatus.innerText = "PREPARING UPLOAD...";
 
-
-
-
+    setStatus("PREPARING UPLOAD...");
 
     try {
+        const uploadInfo = await getUploadUrl(file);
 
+        uploadProgressStatus.innerText =
+            "STARTING DIRECT R2 UPLOAD...";
 
+        setStatus("UPLOADING DIRECTLY TO R2...");
 
-
-
-        const response =
-
-            await fetch(
-
-                "/api/admin/upload",
-
-                {
-
-
-
-                    method:
-
-                        "POST",
-
-
-
-                    body:
-
-                        formData
-
-
-
-                }
-
-            );
-
-
-
-
-
-
-
-        /*
-
-            Read response safely
-
-        */
-
-
-
-
-
-        const text =
-
-            await response.text();
-
-
-
-
-
-        let result = {};
-
-
-
-
-
-        if (text) {
-
-
-
-
-
-            try {
-
-
-
-
-
-                result =
-
-                    JSON.parse(text);
-
-
-
-
-
-            }
-
-
-
-            catch {
-
-
-
-
-
-                throw new Error(
-
-                    "Server returned an invalid response."
-
-                );
-
-
-
-
-
-            }
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        if (!response.ok) {
-
-
-
-
-
-            throw new Error(
-
-
-
-                result.message ||
-
-
-
-                "Upload failed."
-
-
-
-            );
-
-
-
-
-
-        }
-
-
-
-
-
-
-
-        /*
-
-            Close upload window
-
-        */
-
-
-
-
-
-        closeUpload();
-
-
-
-
-
-
-
-        /*
-
-            Reload R2 + D1 list
-
-        */
-
-
-
-
+        await uploadDirectlyToR2(file, uploadInfo);
 
         await loadFiles();
 
+        searchInput.value = "";
+        setFilter("all");
 
-
-
-
-
-
-        /*
-
-            Find newly uploaded file
-
-        */
-
-
-
-
-
-        const newFile =
-
-            allFiles.find(
-
-                item =>
-
-                    item.name ===
-
-                    result.name
-
-            );
-
-
-
-
+        const newFile = allFiles.find(
+            item => item.name === uploadInfo.key
+        );
 
         if (newFile) {
-
-
-
-
-
-            /*
-
-                Remove filters so
-
-                new file is visible
-
-            */
-
-
-
-
-
-            searchInput.value =
-
-                "";
-
-
-
-
-
-            setFilter(
-
-                "all"
-
+            const index = visibleFiles.findIndex(
+                item => item.name === newFile.name
             );
 
-
-
-
-
-            const index =
-
-                visibleFiles.findIndex(
-
-                    item =>
-
-                        item.name ===
-
-                        newFile.name
-
-                );
-
-
-
-
-
-            selectFile(
-
-                newFile,
-
-                index
-
-            );
-
-
-
-
-
+            selectFile(newFile, index);
         }
 
+        setStatus("UPLOAD COMPLETE", "success");
+        uploadProgressStatus.innerText = "UPLOAD COMPLETE";
 
-
-
-
-
-
-        setStatus(
-
-            "UPLOAD COMPLETE",
-
-            "success"
-
+        await new Promise(
+            resolve => setTimeout(resolve, 700)
         );
 
-
-
-
-
+        uploadInProgress = false;
+        closeUpload();
     }
-
-
-
     catch (error) {
-
-
-
-
+        uploadProgressStatus.innerText =
+            error.message.toUpperCase();
 
         setStatus(
-
             error.message.toUpperCase(),
-
             "error"
-
         );
-
-
-
-
-
     }
+    finally {
+        uploadInProgress = false;
+        currentUploadRequest = null;
 
-
-
-
-
-
-
-    uploadButton.disabled =
-
-        false;
-
-
-
-
-
-    uploadButton.innerText =
-
-        "Upload";
-
-
-
-
-
+        uploadButton.disabled = false;
+        uploadButton.innerText = "Upload";
+        uploadFileInput.disabled = false;
+        uploadFolderInput.disabled = false;
+        uploadCancelButton.innerText = "Cancel";
+    }
 }
 
-
-
-
-
-
-
-/*
-
-    CLOSE DIALOG WITH ESCAPE
-
-*/
-
-
-
-
-
 document.addEventListener(
-
     "keydown",
-
     function(event) {
-
-
-
-
-
         if (
-
             event.key === "Escape" &&
-
-            uploadOverlay.style.display ===
-
-            "flex"
-
+            uploadOverlay.style.display === "flex"
         ) {
-
-
-
-
-
-            closeUpload();
-
-
-
-
-
+            if (uploadInProgress) {
+                cancelUpload();
+            }
+            else {
+                closeUpload();
+            }
         }
-
-
-
-
-
     }
-
 );
-
 
 
 /*
