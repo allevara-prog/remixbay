@@ -131,6 +131,7 @@
         td {
             border-bottom: 1px solid #dddddd;
             padding: 6px;
+            vertical-align: top;
         }
 
         tr:hover {
@@ -142,12 +143,12 @@
         }
 
         .size {
-            width: 100px;
+            width: 90px;
             color: #555555;
         }
 
         .type {
-            width: 80px;
+            width: 70px;
             color: #555555;
         }
 
@@ -161,6 +162,17 @@
 
         .folder a {
             font-weight: bold;
+        }
+
+        .file-info {
+            margin-top: 3px;
+            margin-left: 23px;
+            color: #666666;
+            font-size: 11px;
+        }
+
+        .file-info a {
+            font-size: 11px;
         }
 
         .loading {
@@ -181,6 +193,25 @@
             padding: 10px;
             color: #666666;
             font-size: 12px;
+        }
+
+
+        /*
+            Make the site usable
+            on smaller screens
+        */
+
+        @media (max-width: 930px) {
+
+            .page {
+                width: auto;
+                margin: 10px;
+            }
+
+            .search input {
+                width: 50%;
+            }
+
         }
 
     </style>
@@ -226,7 +257,7 @@
             <input
                 type="text"
                 id="searchInput"
-                placeholder="Search filenames...">
+                placeholder="Search files, tags, creators...">
 
             <button onclick="searchFiles()">
                 Search
@@ -236,6 +267,7 @@
                 Clear
             </button>
 
+
             <div
                 class="search-info"
                 id="searchInfo">
@@ -244,14 +276,14 @@
         </div>
 
 
-        <!-- CURRENT PATH -->
+        <!-- CURRENT DIRECTORY -->
 
         <div class="path" id="path">
             /
         </div>
 
 
-        <!-- BACK BUTTON -->
+        <!-- PARENT DIRECTORY -->
 
         <div class="back" id="back">
 
@@ -265,17 +297,18 @@
         </div>
 
 
-        <!-- LOADING MESSAGE -->
+        <!-- LOADING -->
 
-        <div id="loading"
-             class="loading">
+        <div
+            id="loading"
+            class="loading">
 
             Loading files...
 
         </div>
 
 
-        <!-- FILE LIST -->
+        <!-- FILES -->
 
         <div id="fileArea"></div>
 
@@ -303,10 +336,6 @@ let allFiles = [];
 let currentPath = "";
 
 
-/*
-    Load files from the Worker
-*/
-
 
 const loading =
     document.getElementById("loading");
@@ -327,15 +356,35 @@ const searchInfo =
     document.getElementById("searchInfo");
 
 
+
+/*
+    LOAD FILES
+*/
+
+
 fetch(API_URL)
 
-    .then(response => response.json())
+    .then(response => {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "API returned " +
+                response.status
+            );
+
+        }
+
+        return response.json();
+
+    })
 
     .then(files => {
 
         allFiles = files;
 
-        loading.style.display = "none";
+        loading.style.display =
+            "none";
 
         showFolder("");
 
@@ -353,7 +402,7 @@ fetch(API_URL)
 
 
 /*
-    Display a normal folder
+    DISPLAY DIRECTORY
 */
 
 
@@ -431,7 +480,7 @@ function showFolder(path) {
 
 
         /*
-            This is another folder
+            Folder
         */
 
         if (slash !== -1) {
@@ -447,8 +496,9 @@ function showFolder(path) {
 
         }
 
+
         /*
-            This is a file
+            File
         */
 
         else {
@@ -470,7 +520,7 @@ function showFolder(path) {
 
 
 /*
-    Display folders and files
+    DISPLAY NORMAL DIRECTORY
 */
 
 
@@ -480,33 +530,23 @@ function displayResults(
 ) {
 
 
+    if (
+        Object.keys(folders).length === 0 &&
+        files.length === 0
+    ) {
+
+        fileArea.innerHTML =
+            '<div class="empty">' +
+            'This directory is empty.' +
+            '</div>';
+
+        return;
+
+    }
+
+
     const table =
-        document.createElement("table");
-
-
-    table.innerHTML = `
-
-        <tr>
-
-            <th class="name">
-                Name
-            </th>
-
-            <th class="size">
-                Size
-            </th>
-
-            <th class="type">
-                Type
-            </th>
-
-            <th class="actions">
-                Actions
-            </th>
-
-        </tr>
-
-    `;
+        createTable();
 
 
     /*
@@ -515,7 +555,9 @@ function displayResults(
 
 
     Object.keys(folders)
+
         .sort()
+
         .forEach(folderName => {
 
 
@@ -528,7 +570,7 @@ function displayResults(
 
 
             /*
-                Name cell
+                Name
             */
 
             const nameCell =
@@ -546,17 +588,12 @@ function displayResults(
                 document.createElement("a");
 
 
-            link.href =
-                "#";
+            link.href = "#";
 
 
             link.innerText =
                 folderName + "/";
 
-
-            /*
-                Folder click event
-            */
 
             link.onclick =
                 function(event) {
@@ -587,10 +624,8 @@ function displayResults(
             const sizeCell =
                 document.createElement("td");
 
-
             sizeCell.innerText =
                 "-";
-
 
             row.appendChild(
                 sizeCell
@@ -604,10 +639,8 @@ function displayResults(
             const typeCell =
                 document.createElement("td");
 
-
             typeCell.innerText =
                 "Folder";
-
 
             row.appendChild(
                 typeCell
@@ -618,16 +651,14 @@ function displayResults(
                 Actions
             */
 
-            const actionsCell =
+            const actionCell =
                 document.createElement("td");
 
-
-            actionsCell.innerText =
+            actionCell.innerText =
                 "-";
 
-
             row.appendChild(
-                actionsCell
+                actionCell
             );
 
 
@@ -638,42 +669,27 @@ function displayResults(
         });
 
 
+
     /*
         FILES
     */
 
 
-    files.sort((a, b) =>
-        a.name.localeCompare(b.name)
-    );
+    files
 
+        .sort((a, b) =>
+            a.name.localeCompare(
+                b.name
+            )
+        )
 
-    files.forEach(file => {
+        .forEach(file => {
 
-        table.appendChild(
-            createFileRow(file)
-        );
+            table.appendChild(
+                createFileRow(file)
+            );
 
-    });
-
-
-    /*
-        Empty directory
-    */
-
-    if (
-        Object.keys(folders).length === 0 &&
-        files.length === 0
-    ) {
-
-        fileArea.innerHTML =
-            '<div class="empty">' +
-            'This directory is empty.' +
-            '</div>';
-
-        return;
-
-    }
+        });
 
 
     fileArea.appendChild(
@@ -685,140 +701,64 @@ function displayResults(
 
 
 /*
-    Search all files
+    CREATE TABLE
 */
 
 
-function searchFiles() {
-
-
-    const search =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    if (search === "") {
-
-        showFolder(
-            currentPath
-        );
-
-        return;
-
-    }
-
-
-    pathDisplay.innerText =
-        "/ Search Results";
-
-
-    back.style.display =
-        "none";
-
-
-    fileArea.innerHTML =
-        "";
-
-
-    const matchingFiles =
-        allFiles.filter(file =>
-
-            file.name
-                .toLowerCase()
-                .includes(search)
-
-        );
-
-
-    searchInfo.innerText =
-        matchingFiles.length +
-        " matching file(s) found.";
-
-
-    displaySearchResults(
-        matchingFiles
-    );
-
-}
-
-
-
-/*
-    Display search results
-*/
-
-
-function displaySearchResults(
-    files
-) {
-
-
-    if (files.length === 0) {
-
-        fileArea.innerHTML =
-            '<div class="empty">' +
-            'No files found.' +
-            '</div>';
-
-        return;
-
-    }
+function createTable() {
 
 
     const table =
         document.createElement("table");
 
 
-    table.innerHTML = `
-
-        <tr>
-
-            <th class="name">
-                Name
-            </th>
-
-            <th class="size">
-                Size
-            </th>
-
-            <th class="type">
-                Type
-            </th>
-
-            <th class="actions">
-                Actions
-            </th>
-
-        </tr>
-
-    `;
+    const header =
+        document.createElement("tr");
 
 
-    files.sort((a, b) =>
-        a.name.localeCompare(b.name)
-    );
+    const headings = [
+        ["Name", "name"],
+        ["Size", "size"],
+        ["Type", "type"],
+        ["Actions", "actions"]
+    ];
 
 
-    files.forEach(file => {
+    headings.forEach(item => {
 
-        table.appendChild(
-            createFileRow(file)
+
+        const th =
+            document.createElement("th");
+
+
+        th.innerText =
+            item[0];
+
+
+        th.className =
+            item[1];
+
+
+        header.appendChild(
+            th
         );
 
     });
 
 
-    fileArea.appendChild(
-        table
+    table.appendChild(
+        header
     );
+
+
+    return table;
 
 }
 
 
 
 /*
-    Create a file row
+    CREATE FILE ROW
 */
 
 
@@ -829,81 +769,72 @@ function createFileRow(file) {
         document.createElement("tr");
 
 
-    /*
-        Get filename
-    */
-
     const parts =
         file.name.split("/");
 
 
-    const name =
-        parts[parts.length - 1];
+    const filename =
+        parts[
+            parts.length - 1
+        ];
 
-
-    /*
-        Get extension
-    */
 
     const extension =
-        name
+        filename
             .split(".")
             .pop()
             .toLowerCase();
 
 
-    let icon =
-        "📄";
+
+    /*
+        File icon / type
+    */
 
 
-    let type =
-        "File";
+    let icon = "📄";
+
+    let type = "File";
 
 
     if (extension === "mp3") {
 
-        icon =
-            "🎵";
+        icon = "🎵";
 
-        type =
-            "MP3";
+        type = "MP3";
 
     }
 
     else if (extension === "mp4") {
 
-        icon =
-            "🎬";
+        icon = "🎬";
 
-        type =
-            "MP4";
+        type = "MP4";
 
     }
 
     else if (extension === "flp") {
 
-        icon =
-            "🎹";
+        icon = "🎹";
 
-        type =
-            "FLP";
+        type = "FLP";
 
     }
 
     else if (extension === "zip") {
 
-        icon =
-            "📦";
+        icon = "📦";
 
-        type =
-            "ZIP";
+        type = "ZIP";
 
     }
 
 
+
     /*
-        Name cell
+        NAME CELL
     */
+
 
     const nameCell =
         document.createElement("td");
@@ -928,8 +859,15 @@ function createFileRow(file) {
         "_blank";
 
 
+    /*
+        Use D1 title if available.
+        Otherwise use filename.
+    */
+
+
     fileLink.innerText =
-        name;
+        file.title ||
+        filename;
 
 
     nameCell.appendChild(
@@ -937,14 +875,111 @@ function createFileRow(file) {
     );
 
 
+
+    /*
+        Extra D1 information
+    */
+
+
+    const information =
+        [];
+
+
+    if (file.creator) {
+
+        information.push(
+            "Creator: " +
+            file.creator
+        );
+
+    }
+
+
+    if (file.year) {
+
+        information.push(
+            "Year: " +
+            file.year
+        );
+
+    }
+
+
+    if (file.tags) {
+
+        information.push(
+            "Tags: " +
+            file.tags
+        );
+
+    }
+
+
+    if (information.length > 0) {
+
+
+        const info =
+            document.createElement(
+                "div"
+            );
+
+
+        info.className =
+            "file-info";
+
+
+        info.innerText =
+            information.join(
+                " | "
+            );
+
+
+        nameCell.appendChild(
+            info
+        );
+
+    }
+
+
+    /*
+        Description
+    */
+
+
+    if (file.description) {
+
+
+        const description =
+            document.createElement(
+                "div"
+            );
+
+
+        description.className =
+            "file-info";
+
+
+        description.innerText =
+            file.description;
+
+
+        nameCell.appendChild(
+            description
+        );
+
+    }
+
+
     row.appendChild(
         nameCell
     );
 
 
+
     /*
-        Size cell
+        SIZE
     */
+
 
     const sizeCell =
         document.createElement("td");
@@ -959,15 +994,18 @@ function createFileRow(file) {
     );
 
 
+
     /*
-        Type cell
+        TYPE / CATEGORY
     */
+
 
     const typeCell =
         document.createElement("td");
 
 
     typeCell.innerText =
+        file.category ||
         type;
 
 
@@ -976,17 +1014,15 @@ function createFileRow(file) {
     );
 
 
+
     /*
-        Actions cell
+        ACTIONS
     */
+
 
     const actionCell =
         document.createElement("td");
 
-
-    /*
-        Play button for MP3/MP4
-    */
 
     if (
         extension === "mp3" ||
@@ -1023,10 +1059,6 @@ function createFileRow(file) {
     }
 
 
-    /*
-        Download link
-    */
-
     const download =
         document.createElement("a");
 
@@ -1060,7 +1092,150 @@ function createFileRow(file) {
 
 
 /*
-    Open folder
+    SEARCH
+*/
+
+
+function searchFiles() {
+
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    if (search === "") {
+
+        showFolder(
+            currentPath
+        );
+
+        return;
+
+    }
+
+
+
+    /*
+        Search through ALL metadata
+    */
+
+
+    const matchingFiles =
+        allFiles.filter(file => {
+
+
+            const searchableText = [
+
+                file.name,
+
+                file.title,
+
+                file.creator,
+
+                file.description,
+
+                file.tags,
+
+                file.year,
+
+                file.category
+
+            ]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase();
+
+
+            return searchableText.includes(
+                search
+            );
+
+        });
+
+
+
+    pathDisplay.innerText =
+        '/ Search Results for "' +
+        searchInput.value.trim() +
+        '"';
+
+
+    back.style.display =
+        "none";
+
+
+    fileArea.innerHTML =
+        "";
+
+
+    searchInfo.innerText =
+        matchingFiles.length +
+        " matching file(s) found.";
+
+
+    displaySearchResults(
+        matchingFiles
+    );
+
+}
+
+
+
+/*
+    DISPLAY SEARCH RESULTS
+*/
+
+
+function displaySearchResults(
+    files
+) {
+
+
+    if (files.length === 0) {
+
+        fileArea.innerHTML =
+            '<div class="empty">' +
+            'No files found.' +
+            '</div>';
+
+        return;
+
+    }
+
+
+    const table =
+        createTable();
+
+
+    files
+
+        .sort((a, b) =>
+            a.name.localeCompare(
+                b.name
+            )
+        )
+
+        .forEach(file => {
+
+            table.appendChild(
+                createFileRow(file)
+            );
+
+        });
+
+
+    fileArea.appendChild(
+        table
+    );
+
+}
+
+
+
+/*
+    OPEN FOLDER
 */
 
 
@@ -1078,7 +1253,7 @@ function openFolder(folder) {
 
 
 /*
-    Go back to parent directory
+    PARENT DIRECTORY
 */
 
 
@@ -1121,7 +1296,7 @@ function goBack() {
 
 
 /*
-    Clear search
+    CLEAR SEARCH
 */
 
 
@@ -1145,7 +1320,7 @@ function clearSearch() {
 
 
 /*
-    Press ENTER to search
+    ENTER KEY SEARCH
 */
 
 
