@@ -1,3033 +1,9873 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
+
 
 <head>
 
+
+
 <meta charset="UTF-8">
 
+
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+
+      content="width=device-width, initial-scale=1.0">
+
+
 
 <title>RemixBay // Admin</title>
 
+
+
 <style>
 
+
+
 /* ==============================
-   UPLOAD WINDOW
-   ============================== */
+
+   UPLOAD WINDOW
+
+   ============================== */
+
+
 
 .upload-overlay {
-    display: none;
 
-    position: fixed;
+    display: none;
 
-    left: 0;
-    top: 0;
 
-    width: 100%;
-    height: 100%;
 
-    background: rgba(0, 0, 0, 0.55);
+    position: fixed;
 
-    align-items: center;
-    justify-content: center;
 
-    z-index: 1000;
+
+    left: 0;
+
+    top: 0;
+
+
+
+    width: 100%;
+
+    height: 100%;
+
+
+
+    background: rgba(0, 0, 0, 0.55);
+
+
+
+    align-items: center;
+
+    justify-content: center;
+
+
+
+    z-index: 1000;
+
 }
+
+
 
 .upload-window {
-    width: 500px;
 
-    background: #363636;
+    width: 500px;
 
-    border: 1px solid #111111;
 
-    box-shadow:
-        2px 2px 0 #111111;
+
+    background: #363636;
+
+
+
+    border: 1px solid #111111;
+
+
+
+    box-shadow:
+
+        2px 2px 0 #111111;
+
 }
+
+
 
 .upload-titlebar {
-    height: 28px;
 
-    display: flex;
-    align-items: center;
+    height: 28px;
 
-    padding-left: 8px;
 
-    background: #494949;
 
-    border-bottom: 1px solid #171717;
+    display: flex;
 
-    font-weight: bold;
+    align-items: center;
+
+
+
+    padding-left: 8px;
+
+
+
+    background: #494949;
+
+
+
+    border-bottom: 1px solid #171717;
+
+
+
+    font-weight: bold;
+
 }
+
+
 
 .close-button {
-    margin-left: auto;
 
-    min-width: 30px;
+    margin-left: auto;
 
-    height: 27px;
 
-    padding: 0;
 
-    border: 0;
+    min-width: 30px;
 
-    border-left: 1px solid #222222;
 
-    background: #444444;
+
+    height: 27px;
+
+
+
+    padding: 0;
+
+
+
+    border: 0;
+
+
+
+    border-left: 1px solid #222222;
+
+
+
+    background: #444444;
+
 }
+
+
 
 .close-button:hover {
-    background: #555555;
+
+    background: #555555;
+
 }
+
+
 
 .upload-content {
-    padding: 12px;
+
+    padding: 12px;
+
 }
+
+
 
 .upload-destination {
-    margin-top: 10px;
 
-    padding: 7px;
+    margin-top: 10px;
 
-    background: #292929;
 
-    border: 1px solid #1a1a1a;
 
-    color: #999999;
+    padding: 7px;
 
-    font-family:
-        Consolas,
-        "Courier New",
-        monospace;
 
-    font-size: 11px;
 
-    word-break: break-all;
+    background: #292929;
+
+
+
+    border: 1px solid #1a1a1a;
+
+
+
+    color: #999999;
+
+
+
+    font-family:
+
+        Consolas,
+
+        "Courier New",
+
+        monospace;
+
+
+
+    font-size: 11px;
+
+
+
+    word-break: break-all;
+
 }
+
+
 
 .upload-buttons {
-    display: flex;
 
-    justify-content: flex-end;
+    display: flex;
 
-    gap: 5px;
 
-    margin-top: 12px;
 
-    padding-top: 8px;
+    justify-content: flex-end;
 
-    border-top: 1px solid #202020;
+
+
+    gap: 5px;
+
+
+
+    margin-top: 12px;
+
+
+
+    padding-top: 8px;
+
+
+
+    border-top: 1px solid #202020;
+
 }
+
+
 
 @media (max-width: 550px) {
 
-    .upload-window {
-        width: calc(100% - 20px);
-    }
+
+
+    .upload-window {
+
+        width: calc(100% - 20px);
+
+    }
+
+
 
 }
+
+
 
 * {
-    box-sizing: border-box;
+
+    box-sizing: border-box;
+
 }
+
+
 
 html,
-body {
-    height: 100%;
-}
 
 body {
-    margin: 0;
 
-    background: #242424;
-    color: #dddddd;
+    height: 100%;
 
-    font-family: Tahoma, Arial, sans-serif;
-    font-size: 12px;
 }
+
+
+
+body {
+
+    margin: 0;
+
+
+
+    background: #242424;
+
+    color: #dddddd;
+
+
+
+    font-family: Tahoma, Arial, sans-serif;
+
+    font-size: 12px;
+
+}
+
+
+
 
 
 /* ==============================
-   MAIN WINDOW
-   ============================== */
+
+   MAIN WINDOW
+
+   ============================== */
+
+
 
 .window {
-    width: 1000px;
-    margin: 18px auto;
 
-    background: #333333;
+    width: 1000px;
 
-    border: 1px solid #111111;
+    margin: 18px auto;
+
+
+
+    background: #333333;
+
+
+
+    border: 1px solid #111111;
+
 }
 
 
+
+
+
 /* ==============================
-   TITLE BAR
-   ============================== */
+
+   TITLE BAR
+
+   ============================== */
+
+
 
 .titlebar {
-    height: 30px;
 
-    display: flex;
-    align-items: center;
+    height: 30px;
 
-    padding: 0 8px;
 
-    background: #454545;
 
-    border-bottom: 1px solid #151515;
+    display: flex;
+
+    align-items: center;
+
+
+
+    padding: 0 8px;
+
+
+
+    background: #454545;
+
+
+
+    border-bottom: 1px solid #151515;
+
 }
+
+
 
 .titlebar-title {
-    font-weight: bold;
-    color: #eeeeee;
+
+    font-weight: bold;
+
+    color: #eeeeee;
+
 }
+
+
 
 .titlebar-right {
-    margin-left: auto;
 
-    color: #999999;
-    font-size: 11px;
+    margin-left: auto;
+
+
+
+    color: #999999;
+
+    font-size: 11px;
+
 }
 
 
+
+
+
 /* ==============================
-   MENU
-   ============================== */
+
+   MENU
+
+   ============================== */
+
+
 
 .menu {
-    height: 27px;
 
-    display: flex;
-    align-items: center;
+    height: 27px;
 
-    padding-left: 4px;
 
-    background: #333333;
 
-    border-bottom: 1px solid #171717;
+    display: flex;
+
+    align-items: center;
+
+
+
+    padding-left: 4px;
+
+
+
+    background: #333333;
+
+
+
+    border-bottom: 1px solid #171717;
+
 }
+
+
 
 .menu a {
-    padding: 6px 10px;
 
-    color: #d0d0d0;
+    padding: 6px 10px;
 
-    text-decoration: none;
+
+
+    color: #d0d0d0;
+
+
+
+    text-decoration: none;
+
 }
+
+
 
 .menu a:hover {
-    background: #4b4b4b;
-    color: white;
+
+    background: #4b4b4b;
+
+    color: white;
+
 }
 
 
+
+
+
 /* ==============================
-   WORKSPACE
-   ============================== */
+
+   WORKSPACE
+
+   ============================== */
+
+
 
 .workspace {
-    display: flex;
 
-    min-height: 570px;
+    display: flex;
+
+
+
+    min-height: 570px;
+
 }
 
 
+
+
+
 /* ==============================
-   SIDEBAR
-   ============================== */
+
+   SIDEBAR
+
+   ============================== */
+
+
 
 .sidebar {
-    width: 300px;
 
-    background: #2e2e2e;
+    width: 300px;
 
-    border-right: 1px solid #111111;
 
-    display: flex;
-    flex-direction: column;
+
+    background: #2e2e2e;
+
+
+
+    border-right: 1px solid #111111;
+
+
+
+    display: flex;
+
+    flex-direction: column;
+
 }
+
+
 
 .panel-title {
-    height: 26px;
 
-    display: flex;
-    align-items: center;
+    height: 26px;
 
-    padding: 0 7px;
 
-    background: #454545;
 
-    border-bottom: 1px solid #181818;
+    display: flex;
 
-    font-weight: bold;
+    align-items: center;
+
+
+
+    padding: 0 7px;
+
+
+
+    background: #454545;
+
+
+
+    border-bottom: 1px solid #181818;
+
+
+
+    font-weight: bold;
+
 }
 
 
+
+
+
 /* ==============================
-   SEARCH
-   ============================== */
+
+   SEARCH
+
+   ============================== */
+
+
 
 .search-area {
-    padding: 7px;
 
-    border-bottom: 1px solid #181818;
+    padding: 7px;
+
+
+
+    border-bottom: 1px solid #181818;
+
 }
+
+
 
 .search-area input {
-    width: 100%;
+
+    width: 100%;
+
 }
 
 
+
+
+
 /* ==============================
-   FILE FILTER BUTTONS
-   ============================== */
+
+   FILE FILTER BUTTONS
+
+   ============================== */
+
+
 
 .filters {
-    display: flex;
 
-    padding: 5px;
+    display: flex;
 
-    gap: 3px;
 
-    border-bottom: 1px solid #181818;
+
+    padding: 5px;
+
+
+
+    gap: 3px;
+
+
+
+    border-bottom: 1px solid #181818;
+
 }
+
+
 
 .filters button {
-    min-width: 0;
 
-    flex: 1;
+    min-width: 0;
 
-    padding: 4px;
+
+
+    flex: 1;
+
+
+
+    padding: 4px;
+
 }
+
+
 
 .filters button.active {
-    background: #626262;
+
+    background: #626262;
+
 }
 
 
+
+
+
 /* ==============================
-   FILE LIST
-   ============================== */
+
+   FILE LIST
+
+   ============================== */
+
+
 
 .file-list {
-    height: 470px;
 
-    overflow-y: auto;
+    height: 470px;
 
-    background: #292929;
+
+
+    overflow-y: auto;
+
+
+
+    background: #292929;
+
 }
+
+
 
 .file-item {
-    padding: 6px 7px;
 
-    border-bottom: 1px solid #363636;
+    padding: 6px 7px;
 
-    cursor: pointer;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    border-bottom: 1px solid #363636;
+
+
+
+    cursor: pointer;
+
+
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
 }
+
+
 
 .file-item:hover {
-    background: #3d3d3d;
+
+    background: #3d3d3d;
+
 }
+
+
 
 .file-item.selected {
-    background: #555555;
+
+    background: #555555;
+
 }
+
+
 
 .file-name {
-    color: #eeeeee;
+
+    color: #eeeeee;
+
 }
+
+
 
 .file-path {
-    margin-top: 2px;
 
-    color: #777777;
+    margin-top: 2px;
 
-    font-family: Consolas, "Courier New", monospace;
 
-    font-size: 10px;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    color: #777777;
+
+
+
+    font-family: Consolas, "Courier New", monospace;
+
+
+
+    font-size: 10px;
+
+
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
 }
+
+
 
 .metadata-dot {
-    display: inline-block;
 
-    width: 7px;
-    height: 7px;
+    display: inline-block;
 
-    margin-right: 5px;
 
-    border: 1px solid #111111;
 
-    background: #777777;
+    width: 7px;
+
+    height: 7px;
+
+
+
+    margin-right: 5px;
+
+
+
+    border: 1px solid #111111;
+
+
+
+    background: #777777;
+
 }
+
+
 
 .metadata-dot.complete {
-    background: #8eb27e;
+
+    background: #8eb27e;
+
 }
+
+
 
 .metadata-dot.empty {
-    background: #b58b62;
+
+    background: #b58b62;
+
 }
 
 
+
+
+
 /* ==============================
-   EDITOR
-   ============================== */
+
+   EDITOR
+
+   ============================== */
+
+
 
 .editor {
-    flex: 1;
 
-    background: #363636;
+    flex: 1;
 
-    display: flex;
-    flex-direction: column;
+
+
+    background: #363636;
+
+
+
+    display: flex;
+
+    flex-direction: column;
+
 }
+
+
 
 .editor-content {
-    padding: 10px;
 
-    flex: 1;
+    padding: 10px;
+
+
+
+    flex: 1;
+
 }
 
 
+
+
+
 /* ==============================
-   EMPTY EDITOR
-   ============================== */
+
+   EMPTY EDITOR
+
+   ============================== */
+
+
 
 .no-file {
-    padding: 30px;
 
-    text-align: center;
+    padding: 30px;
 
-    color: #888888;
+
+
+    text-align: center;
+
+
+
+    color: #888888;
+
 }
 
 
+
+
+
 /* ==============================
-   R2 INFO
-   ============================== */
+
+   R2 INFO
+
+   ============================== */
+
+
 
 .info-panel {
-    margin-bottom: 10px;
 
-    border: 1px solid #1a1a1a;
+    margin-bottom: 10px;
 
-    background: #2b2b2b;
+
+
+    border: 1px solid #1a1a1a;
+
+
+
+    background: #2b2b2b;
+
 }
+
+
 
 .info-title {
-    padding: 5px 7px;
 
-    background: #414141;
+    padding: 5px 7px;
 
-    border-bottom: 1px solid #181818;
 
-    font-weight: bold;
+
+    background: #414141;
+
+
+
+    border-bottom: 1px solid #181818;
+
+
+
+    font-weight: bold;
+
 }
+
+
 
 .info-content {
-    padding: 7px;
 
-    font-family: Consolas, "Courier New", monospace;
+    padding: 7px;
 
-    color: #aaaaaa;
 
-    font-size: 11px;
 
-    line-height: 18px;
+    font-family: Consolas, "Courier New", monospace;
 
-    word-break: break-all;
+
+
+    color: #aaaaaa;
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 18px;
+
+
+
+    word-break: break-all;
+
 }
+
+
 
 .info-label {
-    color: #777777;
+
+    color: #777777;
+
 }
 
 
+
+
+
 /* ==============================
-   FORM
-   ============================== */
+
+   FORM
+
+   ============================== */
+
+
 
 .field {
-    margin-bottom: 9px;
+
+    margin-bottom: 9px;
+
 }
+
+
 
 label {
-    display: block;
 
-    margin-bottom: 3px;
+    display: block;
 
-    color: #cccccc;
+
+
+    margin-bottom: 3px;
+
+
+
+    color: #cccccc;
+
 }
+
+
 
 input,
+
 select,
+
 textarea {
-    width: 100%;
 
-    padding: 5px;
+    width: 100%;
 
-    background: #242424;
 
-    color: #eeeeee;
 
-    border: 1px solid #666666;
+    padding: 5px;
 
-    border-radius: 0;
 
-    font-family: Tahoma, Arial, sans-serif;
 
-    font-size: 12px;
+    background: #242424;
 
-    outline: none;
+
+
+    color: #eeeeee;
+
+
+
+    border: 1px solid #666666;
+
+
+
+    border-radius: 0;
+
+
+
+    font-family: Tahoma, Arial, sans-serif;
+
+
+
+    font-size: 12px;
+
+
+
+    outline: none;
+
 }
+
+
 
 input:focus,
-select:focus,
-textarea:focus {
-    border-color: #aaaaaa;
 
-    background: #292929;
+select:focus,
+
+textarea:focus {
+
+    border-color: #aaaaaa;
+
+
+
+    background: #292929;
+
 }
+
+
 
 textarea {
-    height: 75px;
 
-    resize: vertical;
+    height: 75px;
+
+
+
+    resize: vertical;
+
 }
+
+
 
 .row {
-    display: flex;
 
-    gap: 10px;
+    display: flex;
+
+
+
+    gap: 10px;
+
 }
+
+
 
 .column {
-    flex: 1;
+
+    flex: 1;
+
 }
+
+
 
 .help {
-    margin-top: 3px;
 
-    color: #777777;
+    margin-top: 3px;
 
-    font-size: 10px;
+
+
+    color: #777777;
+
+
+
+    font-size: 10px;
+
 }
 
 
+
+
+
 /* ==============================
-   EDITOR BUTTONS
-   ============================== */
+
+   EDITOR BUTTONS
+
+   ============================== */
+
+
 
 .editor-buttons {
-    display: flex;
 
-    align-items: center;
+    display: flex;
 
-    margin-top: 12px;
 
-    padding-top: 8px;
 
-    border-top: 1px solid #202020;
+    align-items: center;
+
+
+
+    margin-top: 12px;
+
+
+
+    padding-top: 8px;
+
+
+
+    border-top: 1px solid #202020;
+
 }
+
+
 
 .navigation-buttons {
-    display: flex;
 
-    gap: 4px;
+    display: flex;
+
+
+
+    gap: 4px;
+
 }
+
+
 
 .save-buttons {
-    display: flex;
 
-    gap: 4px;
+    display: flex;
 
-    margin-left: auto;
+
+
+    gap: 4px;
+
+
+
+    margin-left: auto;
+
 }
 
 
+
+
+
 /* ==============================
-   BUTTONS
-   ============================== */
+
+   BUTTONS
+
+   ============================== */
+
+
 
 button {
-    min-width: 80px;
 
-    padding: 5px 10px;
+    min-width: 80px;
 
-    background: #4a4a4a;
 
-    color: #eeeeee;
 
-    border-top: 1px solid #777777;
-    border-left: 1px solid #777777;
+    padding: 5px 10px;
 
-    border-right: 1px solid #181818;
-    border-bottom: 1px solid #181818;
 
-    border-radius: 0;
 
-    font-family: Tahoma, Arial, sans-serif;
+    background: #4a4a4a;
 
-    font-size: 11px;
 
-    cursor: pointer;
+
+    color: #eeeeee;
+
+
+
+    border-top: 1px solid #777777;
+
+    border-left: 1px solid #777777;
+
+
+
+    border-right: 1px solid #181818;
+
+    border-bottom: 1px solid #181818;
+
+
+
+    border-radius: 0;
+
+
+
+    font-family: Tahoma, Arial, sans-serif;
+
+
+
+    font-size: 11px;
+
+
+
+    cursor: pointer;
+
 }
+
+
 
 button:hover {
-    background: #555555;
+
+    background: #555555;
+
 }
+
+
 
 button:active {
-    border-top: 1px solid #181818;
-    border-left: 1px solid #181818;
 
-    border-right: 1px solid #777777;
-    border-bottom: 1px solid #777777;
+    border-top: 1px solid #181818;
+
+    border-left: 1px solid #181818;
+
+
+
+    border-right: 1px solid #777777;
+
+    border-bottom: 1px solid #777777;
+
 }
+
+
 
 button:disabled {
-    background: #383838;
 
-    color: #777777;
+    background: #383838;
 
-    cursor: default;
+
+
+    color: #777777;
+
+
+
+    cursor: default;
+
 }
 
 
+
+
+
 /* ==============================
-   STATUS BAR
-   ============================== */
+
+   STATUS BAR
+
+   ============================== */
+
+
 
 .statusbar {
-    height: 27px;
 
-    display: flex;
-    align-items: center;
+    height: 27px;
 
-    padding: 0 7px;
 
-    background: #303030;
 
-    border-top: 1px solid #151515;
+    display: flex;
 
-    font-size: 11px;
+    align-items: center;
+
+
+
+    padding: 0 7px;
+
+
+
+    background: #303030;
+
+
+
+    border-top: 1px solid #151515;
+
+
+
+    font-size: 11px;
+
 }
+
+
 
 .status-label {
-    margin-right: 5px;
 
-    color: #dddddd;
+    margin-right: 5px;
+
+
+
+    color: #dddddd;
+
 }
+
+
 
 #status {
-    color: #aaaaaa;
+
+    color: #aaaaaa;
+
 }
+
+
 
 .status-success {
-    color: #9dcc8e !important;
+
+    color: #9dcc8e !important;
+
 }
+
+
 
 .status-error {
-    color: #e28b8b !important;
+
+    color: #e28b8b !important;
+
 }
+
+
 
 .status-modified {
-    color: #e1c17a !important;
+
+    color: #e1c17a !important;
+
 }
+
+
 
 .status-right {
-    margin-left: auto;
 
-    color: #777777;
+    margin-left: auto;
 
-    font-family: Consolas, "Courier New", monospace;
+
+
+    color: #777777;
+
+
+
+    font-family: Consolas, "Courier New", monospace;
+
 }
+
+
+
 
 
 /* ==============================
-   RESPONSIVE
-   ============================== */
+
+   RESPONSIVE
+
+   ============================== */
+
+
 
 @media (max-width: 1030px) {
 
-    .window {
-        width: auto;
 
-        margin: 8px;
-    }
+
+    .window {
+
+        width: auto;
+
+
+
+        margin: 8px;
+
+    }
+
+
 
 }
+
+
 
 @media (max-width: 700px) {
 
-    .workspace {
-        display: block;
-    }
 
-    .sidebar {
-        width: 100%;
 
-        border-right: none;
-        border-bottom: 1px solid #111111;
-    }
+    .workspace {
 
-    .file-list {
-        height: 220px;
-    }
+        display: block;
 
-    .row {
-        display: block;
-    }
+    }
+
+
+
+    .sidebar {
+
+        width: 100%;
+
+
+
+        border-right: none;
+
+        border-bottom: 1px solid #111111;
+
+    }
+
+
+
+    .file-list {
+
+        height: 220px;
+
+    }
+
+
+
+    .row {
+
+        display: block;
+
+    }
+
+
 
 }
 
+
+
 </style>
 
+
+
 </head>
+
+
+
 
 
 <body>
 
 
+
+
+
 <div class="window">
 
 
-    <!-- TITLE BAR -->
-
-    <div class="titlebar">
-
-        <div class="titlebar-title">
-            REMIXBAY // ADMIN
-        </div>
-
-        <div class="titlebar-right">
-            FILE DATABASE
-        </div>
-
-    </div>
 
 
-    <!-- MENU -->
+
+    <!-- TITLE BAR -->
+
+
+
+    <div class="titlebar">
+
+
+
+        <div class="titlebar-title">
+
+            REMIXBAY // ADMIN
+
+        </div>
+
+
+
+        <div class="titlebar-right">
+
+            FILE DATABASE
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- MENU -->
+
+
 
 <div class="menu">
 
-    <a href="index.html">
-        Home
-    </a>
 
-    <a href="files.html">
-        Files
-    </a>
 
-    <a href="about.html">
-        About
-    </a>
+    <a href="index.html">
 
-    <a href="#"
-       onclick="openUpload(); return false;">
+        Home
 
-        Upload
+    </a>
 
-    </a>
+
+
+    <a href="files.html">
+
+        Files
+
+    </a>
+
+
+
+    <a href="about.html">
+
+        About
+
+    </a>
+
+
+
+    <a href="#"
+
+       onclick="openUpload(); return false;">
+
+
+
+        Upload
+
+
+
+    </a>
+
+
 
 </div>
 
 
-    <!-- WORKSPACE -->
 
-    <div class="workspace">
 
 
-        <!-- ==========================
-             LEFT SIDEBAR
-             ========================== -->
+    <!-- WORKSPACE -->
 
-        <div class="sidebar">
 
 
-            <div class="panel-title">
-                FILES
-            </div>
+    <div class="workspace">
 
 
-            <div class="search-area">
 
-                <input
-                    type="text"
-                    id="search"
-                    placeholder="Search files...">
 
-            </div>
 
+        <!-- ==========================
 
-            <div class="filters">
+             LEFT SIDEBAR
 
-                <button
-                    id="filterAll"
-                    class="active"
-                    onclick="setFilter('all')">
+             ========================== -->
 
-                    All
 
-                </button>
 
-                <button
-                    id="filterTagged"
-                    onclick="setFilter('tagged')">
+        <div class="sidebar">
 
-                    Catalogued
 
-                </button>
 
-                <button
-                    id="filterUntagged"
-                    onclick="setFilter('untagged')">
 
-                    Uncatalogued
 
-                </button>
+            <div class="panel-title">
 
-            </div>
+                FILES
 
+            </div>
 
-            <div
-                id="fileList"
-                class="file-list">
 
-                <div class="no-file">
-                    Loading files...
-                </div>
 
-            </div>
 
 
-        </div>
+            <div class="search-area">
 
 
 
-        <!-- ==========================
-             RIGHT EDITOR
-             ========================== -->
+                <input
 
-        <div class="editor">
+                    type="text"
 
+                    id="search"
 
-            <div class="panel-title">
-                FILE METADATA
-            </div>
+                    placeholder="Search files...">
 
 
-            <div
-                id="emptyEditor"
-                class="no-file">
 
-                Select a file from the list.
+            </div>
 
-            </div>
 
 
 
-            <div
-                id="editorContent"
-                class="editor-content"
-                style="display: none;">
 
+            <div class="filters">
 
-                <!-- R2 INFORMATION -->
 
-                <div class="info-panel">
 
-                    <div class="info-title">
-                        R2 OBJECT INFORMATION
-                    </div>
+                <button
 
-                    <div class="info-content">
+                    id="filterAll"
 
-                        <div>
-                            <span class="info-label">
-                                PATH:
-                            </span>
+                    class="active"
 
-                            <span id="r2Path"></span>
-                        </div>
+                    onclick="setFilter('all')">
 
 
-                        <div>
-                            <span class="info-label">
-                                FILE:
-                            </span>
 
-                            <span id="r2Filename"></span>
-                        </div>
+                    All
 
 
-                        <div>
-                            <span class="info-label">
-                                SIZE:
-                            </span>
 
-                            <span id="r2Size"></span>
-                        </div>
+                </button>
 
 
-                        <div>
-                            <span class="info-label">
-                                TYPE:
-                            </span>
 
-                            <span id="r2Type"></span>
-                        </div>
+                <button
 
-                    </div>
+                    id="filterTagged"
 
-                </div>
+                    onclick="setFilter('tagged')">
 
 
 
-                <!-- TITLE -->
+                    Catalogued
 
-                <div class="field">
 
-                    <label for="title">
-                        Title:
-                    </label>
 
-                    <input
-                        type="text"
-                        id="title">
+                </button>
 
-                </div>
 
 
+                <button
 
-                <!-- CREATOR -->
+                    id="filterUntagged"
 
-                <div class="field">
+                    onclick="setFilter('untagged')">
 
-                    <label for="creator">
-                        Creator:
-                    </label>
 
-                    <input
-                        type="text"
-                        id="creator">
 
-                </div>
+                    Uncatalogued
 
 
 
-                <!-- TAGS -->
+                </button>
 
-                <div class="field">
 
-                    <label for="tags">
-                        Tags:
-                    </label>
 
-                    <input
-                        type="text"
-                        id="tags"
-                        placeholder="sparta, remix, base, fl studio">
+            </div>
 
-                    <div class="help">
-                        Separate tags with commas.
-                    </div>
 
-                </div>
 
 
 
-                <!-- DESCRIPTION -->
+            <div
 
-                <div class="field">
+                id="fileList"
 
-                    <label for="description">
-                        Description:
-                    </label>
+                class="file-list">
 
-                    <textarea
-                        id="description"></textarea>
 
-                </div>
 
+                <div class="no-file">
 
+                    Loading files...
 
-                <!-- YEAR + CATEGORY -->
+                </div>
 
-                <div class="row">
 
 
-                    <div class="column">
+            </div>
 
-                        <div class="field">
 
-                            <label for="year">
-                                Year:
-                            </label>
 
-                            <input
-                                type="number"
-                                id="year"
-                                min="1900"
-                                max="2100">
 
-                        </div>
 
-                    </div>
+        </div>
 
 
-                    <div class="column">
 
-                        <div class="field">
 
-                            <label for="category">
-                                Category:
-                            </label>
 
-                            <select id="category">
 
-                                <option value="">
-                                    -- None --
-                                </option>
 
-                                <option value="Remix">
-                                    Remix
-                                </option>
+        <!-- ==========================
 
-                                <option value="FLP">
-                                    FLP
-                                </option>
+             RIGHT EDITOR
 
-                                <option value="Base">
-                                    Base
-                                </option>
+             ========================== -->
 
-                                <option value="Scrap">
-                                    Scrap
-                                </option>
 
-                                <option value="Collab Part">
-                                    Collab Part
-                                </option>
 
-                                <option value="Audio">
-                                    Audio
-                                </option>
+        <div class="editor">
 
-                                <option value="Video">
-                                    Video
-                                </option>
 
-                                <option value="Other">
-                                    Other
-                                </option>
 
-                            </select>
 
-                        </div>
 
-                    </div>
+            <div class="panel-title">
 
+                FILE METADATA
 
-                </div>
+            </div>
 
 
 
-                <!-- BUTTON BAR -->
 
-                <div class="editor-buttons">
 
+            <div
 
-                    <div class="navigation-buttons">
+                id="emptyEditor"
 
-                        <button
-                            id="previousButton"
-                            onclick="previousFile()">
+                class="no-file">
 
-                            &lt; Previous
 
-                        </button>
 
-                        <button
-                            id="nextButton"
-                            onclick="nextFile()">
+                Select a file from the list.
 
-                            Next &gt;
 
-                        </button>
 
-                    </div>
+            </div>
 
 
-                    <div class="save-buttons">
 
-                        <button
-                            id="revertButton"
-                            onclick="revertChanges()">
 
-                            Revert
 
-                        </button>
 
-                        <button
-                            id="saveButton"
-                            onclick="saveMetadata()">
 
-                            Save Metadata
+            <div
 
-                        </button>
+                id="editorContent"
 
-                    </div>
+                class="editor-content"
 
+                style="display: none;">
 
-                </div>
 
 
-            </div>
 
 
-        </div>
+                <!-- R2 INFORMATION -->
 
 
-    </div>
 
+                <div class="info-panel">
 
 
-    <!-- STATUS BAR -->
 
-    <div class="statusbar">
+                    <div class="info-title">
 
-        <span class="status-label">
-            STATUS:
-        </span>
+                        R2 OBJECT INFORMATION
 
-        <span id="status">
-            LOADING
-        </span>
+                    </div>
 
 
-        <span
-            id="stats"
-            class="status-right">
 
-            0 FILES
+                    <div class="info-content">
 
-        </span>
 
-    </div>
+
+                        <div>
+
+                            <span class="info-label">
+
+                                PATH:
+
+                            </span>
+
+
+
+                            <span id="r2Path"></span>
+
+                        </div>
+
+
+
+
+
+                        <div>
+
+                            <span class="info-label">
+
+                                FILE:
+
+                            </span>
+
+
+
+                            <span id="r2Filename"></span>
+
+                        </div>
+
+
+
+
+
+                        <div>
+
+                            <span class="info-label">
+
+                                SIZE:
+
+                            </span>
+
+
+
+                            <span id="r2Size"></span>
+
+                        </div>
+
+
+
+
+
+                        <div>
+
+                            <span class="info-label">
+
+                                TYPE:
+
+                            </span>
+
+
+
+                            <span id="r2Type"></span>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- TITLE -->
+
+
+
+                <div class="field">
+
+
+
+                    <label for="title">
+
+                        Title:
+
+                    </label>
+
+
+
+                    <input
+
+                        type="text"
+
+                        id="title">
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- CREATOR -->
+
+
+
+                <div class="field">
+
+
+
+                    <label for="creator">
+
+                        Creator:
+
+                    </label>
+
+
+
+                    <input
+
+                        type="text"
+
+                        id="creator">
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- TAGS -->
+
+
+
+                <div class="field">
+
+
+
+                    <label for="tags">
+
+                        Tags:
+
+                    </label>
+
+
+
+                    <input
+
+                        type="text"
+
+                        id="tags"
+
+                        placeholder="sparta, remix, base, fl studio">
+
+
+
+                    <div class="help">
+
+                        Separate tags with commas.
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- DESCRIPTION -->
+
+
+
+                <div class="field">
+
+
+
+                    <label for="description">
+
+                        Description:
+
+                    </label>
+
+
+
+                    <textarea
+
+                        id="description"></textarea>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- YEAR + CATEGORY -->
+
+
+
+                <div class="row">
+
+
+
+
+
+                    <div class="column">
+
+
+
+                        <div class="field">
+
+
+
+                            <label for="year">
+
+                                Year:
+
+                            </label>
+
+
+
+                            <input
+
+                                type="number"
+
+                                id="year"
+
+                                min="1900"
+
+                                max="2100">
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="column">
+
+
+
+                        <div class="field">
+
+
+
+                            <label for="category">
+
+                                Category:
+
+                            </label>
+
+
+
+                            <select id="category">
+
+
+
+                                <option value="">
+
+                                    -- None --
+
+                                </option>
+
+
+
+                                <option value="Remix">
+
+                                    Remix
+
+                                </option>
+
+
+
+                                <option value="FLP">
+
+                                    FLP
+
+                                </option>
+
+
+
+                                <option value="Base">
+
+                                    Base
+
+                                </option>
+
+
+
+                                <option value="Scrap">
+
+                                    Scrap
+
+                                </option>
+
+
+
+                                <option value="Collab Part">
+
+                                    Collab Part
+
+                                </option>
+
+
+
+                                <option value="Audio">
+
+                                    Audio
+
+                                </option>
+
+
+
+                                <option value="Video">
+
+                                    Video
+
+                                </option>
+
+
+
+                                <option value="Other">
+
+                                    Other
+
+                                </option>
+
+
+
+                            </select>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- BUTTON BAR -->
+
+
+
+                <div class="editor-buttons">
+
+
+
+
+
+                    <div class="navigation-buttons">
+
+
+
+                        <button
+
+                            id="previousButton"
+
+                            onclick="previousFile()">
+
+
+
+                            &lt; Previous
+
+
+
+                        </button>
+
+
+
+                        <button
+
+                            id="nextButton"
+
+                            onclick="nextFile()">
+
+
+
+                            Next &gt;
+
+
+
+                        </button>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="save-buttons">
+
+
+
+                        <button
+
+                            id="revertButton"
+
+                            onclick="revertChanges()">
+
+
+
+                            Revert
+
+
+
+                        </button>
+
+
+
+                        <button
+
+                            id="saveButton"
+
+                            onclick="saveMetadata()">
+
+
+
+                            Save Metadata
+
+
+
+                        </button>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <!-- STATUS BAR -->
+
+
+
+    <div class="statusbar">
+
+
+
+        <span class="status-label">
+
+            STATUS:
+
+        </span>
+
+
+
+        <span id="status">
+
+            LOADING
+
+        </span>
+
+
+
+
+
+        <span
+
+            id="stats"
+
+            class="status-right">
+
+
+
+            0 FILES
+
+
+
+        </span>
+
+
+
+    </div>
+
+
+
 
 
 </div>
-    </div>
+
+    </div>
+
+
 
 </div>
+
+
+
 
 
 <!-- ==========================
-     UPLOAD DIALOG
-     ========================== -->
+
+     UPLOAD DIALOG
+
+     ========================== -->
+
+
 
 <div
-    id="uploadOverlay"
-    class="upload-overlay">
 
-    <!-- all the upload dialog HTML here -->
+    id="uploadOverlay"
+
+    class="upload-overlay">
+
+
+
+    <!-- all the upload dialog HTML here -->
+
+
 
 </div>
+
+
+
 
 
 <script>
 
-    // ALL of your JavaScript here
+
+
+    // ALL of your JavaScript here
+
+
 
 </script>
 
 
+
+
+
 </body>
+
+
 
 </html>
 
 
+
+
+
 <script>
 
+
+
 /*
-    ========================================
-    UPLOAD
-    ========================================
+
+    ========================================
+
+    UPLOAD
+
+    ========================================
+
 */
+
+
+
 
 
 const uploadOverlay =
-    document.getElementById(
-        "uploadOverlay"
-    );
+
+    document.getElementById(
+
+        "uploadOverlay"
+
+    );
+
+
+
 
 
 const uploadFileInput =
-    document.getElementById(
-        "uploadFile"
-    );
+
+    document.getElementById(
+
+        "uploadFile"
+
+    );
+
+
+
 
 
 const uploadFolderInput =
-    document.getElementById(
-        "uploadFolder"
-    );
+
+    document.getElementById(
+
+        "uploadFolder"
+
+    );
+
+
+
 
 
 const uploadButton =
-    document.getElementById(
-        "uploadButton"
-    );
+
+    document.getElementById(
+
+        "uploadButton"
+
+    );
+
+
+
 
 
 const uploadDestination =
-    document.getElementById(
-        "uploadDestination"
-    );
+
+    document.getElementById(
+
+        "uploadDestination"
+
+    );
+
+
+
+
 
 
 
 /*
-    OPEN WINDOW
+
+    OPEN WINDOW
+
 */
+
+
+
 
 
 function openUpload() {
 
 
-    uploadOverlay.style.display =
-        "flex";
 
 
-    uploadFileInput.value =
-        "";
+
+    uploadOverlay.style.display =
+
+        "flex";
 
 
-    uploadFolderInput.value =
-        "";
 
 
-    updateUploadDestination();
+
+    uploadFileInput.value =
+
+        "";
 
 
-    uploadFileInput.focus();
+
+
+
+    uploadFolderInput.value =
+
+        "";
+
+
+
+
+
+    updateUploadDestination();
+
+
+
+
+
+    uploadFileInput.focus();
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    CLOSE WINDOW
+
+    CLOSE WINDOW
+
 */
+
+
+
 
 
 function closeUpload() {
 
 
-    uploadOverlay.style.display =
-        "none";
+
+
+
+    uploadOverlay.style.display =
+
+        "none";
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    SHOW DESTINATION
+
+    SHOW DESTINATION
+
 */
+
+
+
 
 
 function updateUploadDestination() {
 
 
-    const file =
-        uploadFileInput.files[0];
 
 
-    let folder =
-        uploadFolderInput.value
-            .trim()
-            .replace(/^\/+/, "")
-            .replace(/\/+$/, "");
+
+    const file =
+
+        uploadFileInput.files[0];
 
 
-    let destination =
-        "/";
 
 
-    if (folder !== "") {
 
-        destination +=
-            folder +
-            "/";
+    let folder =
 
-    }
+        uploadFolderInput.value
 
+            .trim()
 
-    if (file) {
+            .replace(/^\/+/, "")
 
-        destination +=
-            file.name;
-
-    }
+            .replace(/\/+$/, "");
 
 
-    uploadDestination.innerText =
-        "DESTINATION: " +
-        destination;
+
+
+
+    let destination =
+
+        "/";
+
+
+
+
+
+    if (folder !== "") {
+
+
+
+        destination +=
+
+            folder +
+
+            "/";
+
+
+
+    }
+
+
+
+
+
+    if (file) {
+
+
+
+        destination +=
+
+            file.name;
+
+
+
+    }
+
+
+
+
+
+    uploadDestination.innerText =
+
+        "DESTINATION: " +
+
+        destination;
+
+
+
 
 
 }
 
 
 
+
+
+
+
 uploadFileInput.addEventListener(
-    "change",
-    updateUploadDestination
+
+    "change",
+
+    updateUploadDestination
+
 );
+
+
+
 
 
 uploadFolderInput.addEventListener(
-    "input",
-    updateUploadDestination
+
+    "input",
+
+    updateUploadDestination
+
 );
+
+
+
+
 
 
 
 /*
-    UPLOAD FILE
+
+    UPLOAD FILE
+
 */
+
+
+
 
 
 async function uploadFile() {
 
 
-    const file =
-        uploadFileInput.files[0];
 
 
-    if (!file) {
 
+    const file =
 
-        setStatus(
-            "SELECT A FILE TO UPLOAD",
-            "error"
-        );
+        uploadFileInput.files[0];
 
 
-        return;
 
-    }
 
 
+    if (!file) {
 
-    const formData =
-        new FormData();
 
 
-    formData.append(
-        "file",
-        file
-    );
 
 
-    formData.append(
-        "folder",
-        uploadFolderInput.value.trim()
-    );
+        setStatus(
 
+            "SELECT A FILE TO UPLOAD",
 
+            "error"
 
-    uploadButton.disabled =
-        true;
+        );
 
 
-    uploadButton.innerText =
-        "Uploading...";
 
 
-    setStatus(
-        "UPLOADING..."
-    );
 
+        return;
 
-    try {
 
 
-        const response =
-            await fetch(
-                "/api/admin/upload",
-                {
+    }
 
-                    method:
-                        "POST",
 
-                    body:
-                        formData
 
-                }
-            );
 
 
 
-        /*
-            Read response safely
-        */
 
+    const formData =
 
-        const text =
-            await response.text();
+        new FormData();
 
 
-        let result = {};
 
 
-        if (text) {
 
+    formData.append(
 
-            try {
+        "file",
 
+        file
 
-                result =
-                    JSON.parse(text);
+    );
 
 
-            }
 
-            catch {
 
 
-                throw new Error(
-                    "Server returned an invalid response."
-                );
+    formData.append(
 
+        "folder",
 
-            }
+        uploadFolderInput.value.trim()
 
+    );
 
-        }
 
 
 
-        if (!response.ok) {
 
 
-            throw new Error(
 
-                result.message ||
+    uploadButton.disabled =
 
-                "Upload failed."
+        true;
 
-            );
 
 
-        }
 
 
+    uploadButton.innerText =
 
-        /*
-            Close upload window
-        */
+        "Uploading...";
 
 
-        closeUpload();
 
 
 
-        /*
-            Reload R2 + D1 list
-        */
+    setStatus(
 
+        "UPLOADING..."
 
-        await loadFiles();
+    );
 
 
 
-        /*
-            Find newly uploaded file
-        */
 
 
-        const newFile =
-            allFiles.find(
-                item =>
-                    item.name ===
-                    result.name
-            );
+    try {
 
 
-        if (newFile) {
 
 
-            /*
-                Remove filters so
-                new file is visible
-            */
 
+        const response =
 
-            searchInput.value =
-                "";
+            await fetch(
 
+                "/api/admin/upload",
 
-            setFilter(
-                "all"
-            );
+                {
 
 
-            const index =
-                visibleFiles.findIndex(
-                    item =>
-                        item.name ===
-                        newFile.name
-                );
 
+                    method:
 
-            selectFile(
-                newFile,
-                index
-            );
+                        "POST",
 
 
-        }
 
+                    body:
 
+                        formData
 
-        setStatus(
-            "UPLOAD COMPLETE",
-            "success"
-        );
 
 
-    }
+                }
 
-    catch (error) {
+            );
 
 
-        setStatus(
-            error.message.toUpperCase(),
-            "error"
-        );
 
 
-    }
 
 
 
-    uploadButton.disabled =
-        false;
+        /*
 
+            Read response safely
 
-    uploadButton.innerText =
-        "Upload";
+        */
+
+
+
+
+
+        const text =
+
+            await response.text();
+
+
+
+
+
+        let result = {};
+
+
+
+
+
+        if (text) {
+
+
+
+
+
+            try {
+
+
+
+
+
+                result =
+
+                    JSON.parse(text);
+
+
+
+
+
+            }
+
+
+
+            catch {
+
+
+
+
+
+                throw new Error(
+
+                    "Server returned an invalid response."
+
+                );
+
+
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        if (!response.ok) {
+
+
+
+
+
+            throw new Error(
+
+
+
+                result.message ||
+
+
+
+                "Upload failed."
+
+
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        /*
+
+            Close upload window
+
+        */
+
+
+
+
+
+        closeUpload();
+
+
+
+
+
+
+
+        /*
+
+            Reload R2 + D1 list
+
+        */
+
+
+
+
+
+        await loadFiles();
+
+
+
+
+
+
+
+        /*
+
+            Find newly uploaded file
+
+        */
+
+
+
+
+
+        const newFile =
+
+            allFiles.find(
+
+                item =>
+
+                    item.name ===
+
+                    result.name
+
+            );
+
+
+
+
+
+        if (newFile) {
+
+
+
+
+
+            /*
+
+                Remove filters so
+
+                new file is visible
+
+            */
+
+
+
+
+
+            searchInput.value =
+
+                "";
+
+
+
+
+
+            setFilter(
+
+                "all"
+
+            );
+
+
+
+
+
+            const index =
+
+                visibleFiles.findIndex(
+
+                    item =>
+
+                        item.name ===
+
+                        newFile.name
+
+                );
+
+
+
+
+
+            selectFile(
+
+                newFile,
+
+                index
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        setStatus(
+
+            "UPLOAD COMPLETE",
+
+            "success"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+    uploadButton.disabled =
+
+        false;
+
+
+
+
+
+    uploadButton.innerText =
+
+        "Upload";
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    CLOSE DIALOG WITH ESCAPE
+
+    CLOSE DIALOG WITH ESCAPE
+
 */
+
+
+
 
 
 document.addEventListener(
-    "keydown",
-    function(event) {
+
+    "keydown",
+
+    function(event) {
 
 
-        if (
-            event.key === "Escape" &&
-            uploadOverlay.style.display ===
-            "flex"
-        ) {
 
 
-            closeUpload();
+
+        if (
+
+            event.key === "Escape" &&
+
+            uploadOverlay.style.display ===
+
+            "flex"
+
+        ) {
 
 
-        }
 
 
-    }
+
+            closeUpload();
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+
 );
 
+
+
 /*
-    ========================================
-    DATA
-    ========================================
+
+    ========================================
+
+    DATA
+
+    ========================================
+
 */
+
+
+
 
 
 let allFiles = [];
 
+
+
 let visibleFiles = [];
+
+
 
 let selectedFile = null;
 
+
+
 let selectedIndex = -1;
+
+
 
 let currentFilter = "all";
 
+
+
 let originalMetadata = null;
+
+
 
 let modified = false;
 
 
 
+
+
+
+
 /*
-    ========================================
-    ELEMENTS
-    ========================================
+
+    ========================================
+
+    ELEMENTS
+
+    ========================================
+
 */
+
+
+
 
 
 const fileList =
-    document.getElementById("fileList");
+
+    document.getElementById("fileList");
+
+
+
 
 
 const searchInput =
-    document.getElementById("search");
+
+    document.getElementById("search");
+
+
+
 
 
 const emptyEditor =
-    document.getElementById("emptyEditor");
+
+    document.getElementById("emptyEditor");
+
+
+
 
 
 const editorContent =
-    document.getElementById("editorContent");
+
+    document.getElementById("editorContent");
+
+
+
 
 
 const titleInput =
-    document.getElementById("title");
+
+    document.getElementById("title");
+
+
+
 
 
 const creatorInput =
-    document.getElementById("creator");
+
+    document.getElementById("creator");
+
+
+
 
 
 const tagsInput =
-    document.getElementById("tags");
+
+    document.getElementById("tags");
+
+
+
 
 
 const descriptionInput =
-    document.getElementById("description");
+
+    document.getElementById("description");
+
+
+
 
 
 const yearInput =
-    document.getElementById("year");
+
+    document.getElementById("year");
+
+
+
 
 
 const categoryInput =
-    document.getElementById("category");
+
+    document.getElementById("category");
+
+
+
 
 
 const saveButton =
-    document.getElementById("saveButton");
+
+    document.getElementById("saveButton");
+
+
+
 
 
 const revertButton =
-    document.getElementById("revertButton");
+
+    document.getElementById("revertButton");
+
+
+
 
 
 const previousButton =
-    document.getElementById("previousButton");
+
+    document.getElementById("previousButton");
+
+
+
 
 
 const nextButton =
-    document.getElementById("nextButton");
+
+    document.getElementById("nextButton");
+
+
+
 
 
 const statusText =
-    document.getElementById("status");
+
+    document.getElementById("status");
+
+
+
 
 
 const stats =
-    document.getElementById("stats");
+
+    document.getElementById("stats");
+
+
+
 
 
 const r2Path =
-    document.getElementById("r2Path");
+
+    document.getElementById("r2Path");
+
+
+
 
 
 const r2Filename =
-    document.getElementById("r2Filename");
+
+    document.getElementById("r2Filename");
+
+
+
 
 
 const r2Size =
-    document.getElementById("r2Size");
+
+    document.getElementById("r2Size");
+
+
+
 
 
 const r2Type =
-    document.getElementById("r2Type");
+
+    document.getElementById("r2Type");
+
+
+
+
 
 
 
 /*
-    ========================================
-    LOAD FILES
-    ========================================
+
+    ========================================
+
+    LOAD FILES
+
+    ========================================
+
 */
+
+
+
 
 
 loadFiles();
 
 
+
+
+
 async function loadFiles() {
 
 
-    setStatus(
-        "LOADING FILES..."
-    );
-
-
-    try {
-
-
-        const response =
-            await fetch(
-                "/api/files"
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Could not load files."
-            );
-
-        }
-
-
-        allFiles =
-            await response.json();
 
 
 
-        /*
-            Sort alphabetically
-        */
+    setStatus(
+
+        "LOADING FILES..."
+
+    );
 
 
-        allFiles.sort(
-            (a, b) =>
-                a.name.localeCompare(
-                    b.name
-                )
-        );
 
 
-        updateStats();
+
+    try {
 
 
-        applyFilters();
 
 
-        setStatus(
-            "READY"
-        );
+
+        const response =
+
+            await fetch(
+
+                "/api/files"
+
+            );
 
 
-    }
-
-    catch (error) {
 
 
-        fileList.innerHTML =
-            '<div class="no-file">' +
-            'Error loading files.' +
-            '</div>';
+
+        if (!response.ok) {
 
 
-        setStatus(
-            error.message.toUpperCase(),
-            "error"
-        );
+
+            throw new Error(
+
+                "Could not load files."
+
+            );
 
 
-    }
+
+        }
+
+
+
+
+
+        allFiles =
+
+            await response.json();
+
+
+
+
+
+
+
+        /*
+
+            Sort alphabetically
+
+        */
+
+
+
+
+
+        allFiles.sort(
+
+            (a, b) =>
+
+                a.name.localeCompare(
+
+                    b.name
+
+                )
+
+        );
+
+
+
+
+
+        updateStats();
+
+
+
+
+
+        applyFilters();
+
+
+
+
+
+        setStatus(
+
+            "READY"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        fileList.innerHTML =
+
+            '<div class="no-file">' +
+
+            'Error loading files.' +
+
+            '</div>';
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    FILE HAS METADATA?
-    ========================================
+
+    ========================================
+
+    FILE HAS METADATA?
+
+    ========================================
+
 */
+
+
+
 
 
 function hasMetadata(file) {
 
 
-    return Boolean(
 
-        file.title ||
 
-        file.creator ||
 
-        file.description ||
+    return Boolean(
 
-        file.tags ||
 
-        file.year ||
 
-        file.category
+        file.title ||
 
-    );
+
+
+        file.creator ||
+
+
+
+        file.description ||
+
+
+
+        file.tags ||
+
+
+
+        file.year ||
+
+
+
+        file.category
+
+
+
+    );
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    UPDATE COUNTS
-    ========================================
+
+    ========================================
+
+    UPDATE COUNTS
+
+    ========================================
+
 */
+
+
+
 
 
 function updateStats() {
 
 
-    const catalogued =
-        allFiles.filter(
-            hasMetadata
-        ).length;
 
 
-    const uncatalogued =
-        allFiles.length -
-        catalogued;
+
+    const catalogued =
+
+        allFiles.filter(
+
+            hasMetadata
+
+        ).length;
 
 
-    stats.innerText =
 
-        allFiles.length +
-        " FILES | " +
 
-        catalogued +
-        " CATALOGUED | " +
 
-        uncatalogued +
-        " UNCATALOGUED";
+    const uncatalogued =
+
+        allFiles.length -
+
+        catalogued;
+
+
+
+
+
+    stats.innerText =
+
+
+
+        allFiles.length +
+
+        " FILES | " +
+
+
+
+        catalogued +
+
+        " CATALOGUED | " +
+
+
+
+        uncatalogued +
+
+        " UNCATALOGUED";
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    SEARCH / FILTER
-    ========================================
+
+    ========================================
+
+    SEARCH / FILTER
+
+    ========================================
+
 */
 
 
+
+
+
 searchInput.addEventListener(
-    "input",
-    function() {
 
-        applyFilters();
+    "input",
 
-    }
+    function() {
+
+
+
+        applyFilters();
+
+
+
+    }
+
 );
+
+
+
+
 
 
 
 function setFilter(filter) {
 
 
-    currentFilter =
-        filter;
 
 
-    document
-        .getElementById("filterAll")
-        .classList.remove("active");
+
+    currentFilter =
+
+        filter;
 
 
-    document
-        .getElementById("filterTagged")
-        .classList.remove("active");
 
 
-    document
-        .getElementById("filterUntagged")
-        .classList.remove("active");
+
+    document
+
+        .getElementById("filterAll")
+
+        .classList.remove("active");
 
 
-    if (filter === "all") {
-
-        document
-            .getElementById("filterAll")
-            .classList.add("active");
-
-    }
 
 
-    if (filter === "tagged") {
 
-        document
-            .getElementById("filterTagged")
-            .classList.add("active");
+    document
 
-    }
+        .getElementById("filterTagged")
 
-
-    if (filter === "untagged") {
-
-        document
-            .getElementById("filterUntagged")
-            .classList.add("active");
-
-    }
+        .classList.remove("active");
 
 
-    applyFilters();
+
+
+
+    document
+
+        .getElementById("filterUntagged")
+
+        .classList.remove("active");
+
+
+
+
+
+    if (filter === "all") {
+
+
+
+        document
+
+            .getElementById("filterAll")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    if (filter === "tagged") {
+
+
+
+        document
+
+            .getElementById("filterTagged")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    if (filter === "untagged") {
+
+
+
+        document
+
+            .getElementById("filterUntagged")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    applyFilters();
+
+
+
 
 
 }
+
+
+
+
 
 
 
 function applyFilters() {
 
 
-    const search =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    visibleFiles =
-        allFiles.filter(
-            file => {
-
-
-                /*
-                    Filter by metadata
-                */
-
-
-                if (
-                    currentFilter ===
-                    "tagged" &&
-                    !hasMetadata(file)
-                ) {
-
-                    return false;
-
-                }
-
-
-                if (
-                    currentFilter ===
-                    "untagged" &&
-                    hasMetadata(file)
-                ) {
-
-                    return false;
-
-                }
 
 
 
-                /*
-                    Search
-                */
+    const search =
+
+        searchInput.value
+
+            .trim()
+
+            .toLowerCase();
 
 
-                if (search !== "") {
 
 
-                    const text = [
 
-                        file.name,
+    visibleFiles =
 
-                        file.title,
+        allFiles.filter(
 
-                        file.creator,
-
-                        file.tags,
-
-                        file.description,
-
-                        file.year,
-
-                        file.category
-
-                    ]
-                    .filter(Boolean)
-                    .join(" ")
-                    .toLowerCase();
+            file => {
 
 
-                    if (
-                        !text.includes(
-                            search
-                        )
-                    ) {
-
-                        return false;
-
-                    }
-
-                }
 
 
-                return true;
+
+                /*
+
+                    Filter by metadata
+
+                */
 
 
-            }
-        );
 
 
-    renderFileList();
+
+                if (
+
+                    currentFilter ===
+
+                    "tagged" &&
+
+                    !hasMetadata(file)
+
+                ) {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+
+
+                if (
+
+                    currentFilter ===
+
+                    "untagged" &&
+
+                    hasMetadata(file)
+
+                ) {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+
+
+
+
+                /*
+
+                    Search
+
+                */
+
+
+
+
+
+                if (search !== "") {
+
+
+
+
+
+                    const text = [
+
+
+
+                        file.name,
+
+
+
+                        file.title,
+
+
+
+                        file.creator,
+
+
+
+                        file.tags,
+
+
+
+                        file.description,
+
+
+
+                        file.year,
+
+
+
+                        file.category
+
+
+
+                    ]
+
+                    .filter(Boolean)
+
+                    .join(" ")
+
+                    .toLowerCase();
+
+
+
+
+
+                    if (
+
+                        !text.includes(
+
+                            search
+
+                        )
+
+                    ) {
+
+
+
+                        return false;
+
+
+
+                    }
+
+
+
+                }
+
+
+
+
+
+                return true;
+
+
+
+
+
+            }
+
+        );
+
+
+
+
+
+    renderFileList();
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    RENDER FILE LIST
-    ========================================
+
+    ========================================
+
+    RENDER FILE LIST
+
+    ========================================
+
 */
+
+
+
 
 
 function renderFileList() {
 
 
-    fileList.innerHTML =
-        "";
-
-
-    if (
-        visibleFiles.length === 0
-    ) {
-
-
-        fileList.innerHTML =
-            '<div class="no-file">' +
-            'No files found.' +
-            '</div>';
-
-
-        return;
-
-    }
 
 
 
-    visibleFiles.forEach(
-        (file, index) => {
+    fileList.innerHTML =
 
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "file-item";
-
-
-            if (
-                selectedFile &&
-                selectedFile.name ===
-                file.name
-            ) {
-
-                item.classList.add(
-                    "selected"
-                );
-
-            }
+        "";
 
 
 
-            /*
-                Metadata dot
-            */
 
 
-            const dot =
-                document.createElement(
-                    "span"
-                );
+    if (
 
+        visibleFiles.length === 0
 
-            dot.className =
-                "metadata-dot " +
-                (
-                    hasMetadata(file)
-                        ? "complete"
-                        : "empty"
-                );
+    ) {
 
 
 
-            /*
-                File name
-            */
 
 
-            const filename =
-                getFilename(
-                    file.name
-                );
+        fileList.innerHTML =
 
+            '<div class="no-file">' +
 
-            const name =
-                document.createElement(
-                    "span"
-                );
+            'No files found.' +
 
-
-            name.className =
-                "file-name";
-
-
-            name.innerText =
-                filename;
+            '</div>';
 
 
 
-            /*
-                Path
-            */
 
 
-            const path =
-                document.createElement(
-                    "div"
-                );
-
-
-            path.className =
-                "file-path";
-
-
-            path.innerText =
-                file.name;
+        return;
 
 
 
-            item.appendChild(
-                dot
-            );
+    }
 
 
-            item.appendChild(
-                name
-            );
 
 
-            item.appendChild(
-                path
-            );
 
 
-            item.onclick =
-                function() {
+
+    visibleFiles.forEach(
+
+        (file, index) => {
 
 
-                    selectFile(
-                        file,
-                        index
-                    );
 
 
-                };
+
+            const item =
+
+                document.createElement(
+
+                    "div"
+
+                );
 
 
-            fileList.appendChild(
-                item
-            );
 
 
-        }
-    );
+
+            item.className =
+
+                "file-item";
+
+
+
+
+
+            if (
+
+                selectedFile &&
+
+                selectedFile.name ===
+
+                file.name
+
+            ) {
+
+
+
+                item.classList.add(
+
+                    "selected"
+
+                );
+
+
+
+            }
+
+
+
+
+
+
+
+            /*
+
+                Metadata dot
+
+            */
+
+
+
+
+
+            const dot =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+
+
+
+            dot.className =
+
+                "metadata-dot " +
+
+                (
+
+                    hasMetadata(file)
+
+                        ? "complete"
+
+                        : "empty"
+
+                );
+
+
+
+
+
+
+
+            /*
+
+                File name
+
+            */
+
+
+
+
+
+            const filename =
+
+                getFilename(
+
+                    file.name
+
+                );
+
+
+
+
+
+            const name =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+
+
+
+            name.className =
+
+                "file-name";
+
+
+
+
+
+            name.innerText =
+
+                filename;
+
+
+
+
+
+
+
+            /*
+
+                Path
+
+            */
+
+
+
+
+
+            const path =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+
+
+
+            path.className =
+
+                "file-path";
+
+
+
+
+
+            path.innerText =
+
+                file.name;
+
+
+
+
+
+
+
+            item.appendChild(
+
+                dot
+
+            );
+
+
+
+
+
+            item.appendChild(
+
+                name
+
+            );
+
+
+
+
+
+            item.appendChild(
+
+                path
+
+            );
+
+
+
+
+
+            item.onclick =
+
+                function() {
+
+
+
+
+
+                    selectFile(
+
+                        file,
+
+                        index
+
+                    );
+
+
+
+
+
+                };
+
+
+
+
+
+            fileList.appendChild(
+
+                item
+
+            );
+
+
+
+
+
+        }
+
+    );
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    SELECT FILE
-    ========================================
+
+    ========================================
+
+    SELECT FILE
+
+    ========================================
+
 */
+
+
+
 
 
 function selectFile(
-    file,
-    index
+
+    file,
+
+    index
+
 ) {
 
 
-    /*
-        Warn if there are
-        unsaved changes
-    */
 
 
-    if (
-        modified &&
-        selectedFile &&
-        selectedFile.name !==
-        file.name
-    ) {
 
+    /*
 
-        const leave =
-            confirm(
-                "You have unsaved changes.\n\n" +
-                "Discard them and open another file?"
-            );
+        Warn if there are
 
+        unsaved changes
 
-        if (!leave) {
+    */
 
-            return;
 
-        }
 
-    }
 
 
+    if (
 
-    selectedFile =
-        file;
+        modified &&
 
+        selectedFile &&
 
-    selectedIndex =
-        index;
+        selectedFile.name !==
 
+        file.name
 
+    ) {
 
-    /*
-        Store original metadata
-    */
 
 
-    originalMetadata = {
 
-        title:
-            file.title || "",
 
-        creator:
-            file.creator || "",
+        const leave =
 
-        tags:
-            file.tags || "",
+            confirm(
 
-        description:
-            file.description || "",
+                "You have unsaved changes.\n\n" +
 
-        year:
-            file.year || "",
+                "Discard them and open another file?"
 
-        category:
-            file.category || ""
+            );
 
-    };
 
 
 
-    /*
-        Fill editor
-    */
 
+        if (!leave) {
 
-    titleInput.value =
-        originalMetadata.title;
 
 
-    creatorInput.value =
-        originalMetadata.creator;
+            return;
 
 
-    tagsInput.value =
-        originalMetadata.tags;
 
+        }
 
-    descriptionInput.value =
-        originalMetadata.description;
 
 
-    yearInput.value =
-        originalMetadata.year;
+    }
 
 
-    setCategoryValue(
-        originalMetadata.category
-    );
 
 
 
-    /*
-        R2 info
-    */
 
 
-    r2Path.innerText =
-        file.name;
+    selectedFile =
 
+        file;
 
-    r2Filename.innerText =
-        getFilename(
-            file.name
-        );
 
 
-    r2Size.innerText =
-        file.size;
 
 
-    r2Type.innerText =
-        getExtension(
-            file.name
-        ).toUpperCase() ||
-        "FILE";
+    selectedIndex =
 
+        index;
 
 
-    emptyEditor.style.display =
-        "none";
 
 
-    editorContent.style.display =
-        "block";
 
 
-    modified =
-        false;
 
+    /*
 
-    updateNavigationButtons();
+        Store original metadata
 
+    */
 
-    renderFileList();
 
 
-    setStatus(
-        "FILE LOADED"
-    );
+
+
+    originalMetadata = {
+
+
+
+        title:
+
+            file.title || "",
+
+
+
+        creator:
+
+            file.creator || "",
+
+
+
+        tags:
+
+            file.tags || "",
+
+
+
+        description:
+
+            file.description || "",
+
+
+
+        year:
+
+            file.year || "",
+
+
+
+        category:
+
+            file.category || ""
+
+
+
+    };
+
+
+
+
+
+
+
+    /*
+
+        Fill editor
+
+    */
+
+
+
+
+
+    titleInput.value =
+
+        originalMetadata.title;
+
+
+
+
+
+    creatorInput.value =
+
+        originalMetadata.creator;
+
+
+
+
+
+    tagsInput.value =
+
+        originalMetadata.tags;
+
+
+
+
+
+    descriptionInput.value =
+
+        originalMetadata.description;
+
+
+
+
+
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+
+
+    /*
+
+        R2 info
+
+    */
+
+
+
+
+
+    r2Path.innerText =
+
+        file.name;
+
+
+
+
+
+    r2Filename.innerText =
+
+        getFilename(
+
+            file.name
+
+        );
+
+
+
+
+
+    r2Size.innerText =
+
+        file.size;
+
+
+
+
+
+    r2Type.innerText =
+
+        getExtension(
+
+            file.name
+
+        ).toUpperCase() ||
+
+        "FILE";
+
+
+
+
+
+
+
+    emptyEditor.style.display =
+
+        "none";
+
+
+
+
+
+    editorContent.style.display =
+
+        "block";
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    updateNavigationButtons();
+
+
+
+
+
+    renderFileList();
+
+
+
+
+
+    setStatus(
+
+        "FILE LOADED"
+
+    );
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    CATEGORY
-    ========================================
+
+    ========================================
+
+    CATEGORY
+
+    ========================================
+
 */
+
+
+
 
 
 function setCategoryValue(
-    value
+
+    value
+
 ) {
 
 
-    /*
-        If the database contains a category
-        not currently in the dropdown,
-        temporarily add it.
-    */
 
 
-    if (
-        value !== "" &&
-        !Array.from(
-            categoryInput.options
-        ).some(
-            option =>
-                option.value === value
-        )
-    ) {
+
+    /*
+
+        If the database contains a category
+
+        not currently in the dropdown,
+
+        temporarily add it.
+
+    */
 
 
-        const option =
-            document.createElement(
-                "option"
-            );
 
 
-        option.value =
-            value;
+
+    if (
+
+        value !== "" &&
+
+        !Array.from(
+
+            categoryInput.options
+
+        ).some(
+
+            option =>
+
+                option.value === value
+
+        )
+
+    ) {
 
 
-        option.innerText =
-            value;
 
 
-        categoryInput.appendChild(
-            option
-        );
+
+        const option =
+
+            document.createElement(
+
+                "option"
+
+            );
 
 
-    }
 
 
-    categoryInput.value =
-        value;
+
+        option.value =
+
+            value;
+
+
+
+
+
+        option.innerText =
+
+            value;
+
+
+
+
+
+        categoryInput.appendChild(
+
+            option
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    categoryInput.value =
+
+        value;
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    MODIFIED DETECTION
-    ========================================
+
+    ========================================
+
+    MODIFIED DETECTION
+
+    ========================================
+
 */
+
+
+
 
 
 const editableFields = [
 
-    titleInput,
-    creatorInput,
-    tagsInput,
-    descriptionInput,
-    yearInput,
-    categoryInput
+
+
+    titleInput,
+
+    creatorInput,
+
+    tagsInput,
+
+    descriptionInput,
+
+    yearInput,
+
+    categoryInput
+
+
 
 ];
 
 
+
+
+
 editableFields.forEach(
-    field => {
+
+    field => {
 
 
-        field.addEventListener(
-            "input",
-            checkModified
-        );
 
 
-        field.addEventListener(
-            "change",
-            checkModified
-        );
+
+        field.addEventListener(
+
+            "input",
+
+            checkModified
+
+        );
 
 
-    }
+
+
+
+        field.addEventListener(
+
+            "change",
+
+            checkModified
+
+        );
+
+
+
+
+
+    }
+
 );
+
+
+
+
 
 
 
 function checkModified() {
 
 
-    if (
-        !selectedFile ||
-        !originalMetadata
-    ) {
-
-        return;
-
-    }
 
 
-    modified =
 
-        titleInput.value !==
-        String(
-            originalMetadata.title
-        )
+    if (
 
-        ||
+        !selectedFile ||
 
-        creatorInput.value !==
-        String(
-            originalMetadata.creator
-        )
+        !originalMetadata
 
-        ||
-
-        tagsInput.value !==
-        String(
-            originalMetadata.tags
-        )
-
-        ||
-
-        descriptionInput.value !==
-        String(
-            originalMetadata.description
-        )
-
-        ||
-
-        yearInput.value !==
-        String(
-            originalMetadata.year
-        )
-
-        ||
-
-        categoryInput.value !==
-        String(
-            originalMetadata.category
-        );
+    ) {
 
 
-    if (modified) {
+
+        return;
 
 
-        setStatus(
-            "MODIFIED",
-            "modified"
-        );
+
+    }
 
 
-    }
-
-    else {
 
 
-        setStatus(
-            "READY"
-        );
+
+    modified =
 
 
-    }
+
+        titleInput.value !==
+
+        String(
+
+            originalMetadata.title
+
+        )
+
+
+
+        ||
+
+
+
+        creatorInput.value !==
+
+        String(
+
+            originalMetadata.creator
+
+        )
+
+
+
+        ||
+
+
+
+        tagsInput.value !==
+
+        String(
+
+            originalMetadata.tags
+
+        )
+
+
+
+        ||
+
+
+
+        descriptionInput.value !==
+
+        String(
+
+            originalMetadata.description
+
+        )
+
+
+
+        ||
+
+
+
+        yearInput.value !==
+
+        String(
+
+            originalMetadata.year
+
+        )
+
+
+
+        ||
+
+
+
+        categoryInput.value !==
+
+        String(
+
+            originalMetadata.category
+
+        );
+
+
+
+
+
+    if (modified) {
+
+
+
+
+
+        setStatus(
+
+            "MODIFIED",
+
+            "modified"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    else {
+
+
+
+
+
+        setStatus(
+
+            "READY"
+
+        );
+
+
+
+
+
+    }
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    REVERT
-    ========================================
+
+    ========================================
+
+    REVERT
+
+    ========================================
+
 */
+
+
+
 
 
 function revertChanges() {
 
 
-    if (
-        !selectedFile ||
-        !originalMetadata
-    ) {
-
-        return;
-
-    }
 
 
-    titleInput.value =
-        originalMetadata.title;
+
+    if (
+
+        !selectedFile ||
+
+        !originalMetadata
+
+    ) {
 
 
-    creatorInput.value =
-        originalMetadata.creator;
+
+        return;
 
 
-    tagsInput.value =
-        originalMetadata.tags;
+
+    }
 
 
-    descriptionInput.value =
-        originalMetadata.description;
 
 
-    yearInput.value =
-        originalMetadata.year;
+
+    titleInput.value =
+
+        originalMetadata.title;
 
 
-    setCategoryValue(
-        originalMetadata.category
-    );
 
 
-    modified =
-        false;
+
+    creatorInput.value =
+
+        originalMetadata.creator;
 
 
-    setStatus(
-        "CHANGES REVERTED"
-    );
+
+
+
+    tagsInput.value =
+
+        originalMetadata.tags;
+
+
+
+
+
+    descriptionInput.value =
+
+        originalMetadata.description;
+
+
+
+
+
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    setStatus(
+
+        "CHANGES REVERTED"
+
+    );
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    PREVIOUS / NEXT
-    ========================================
+
+    ========================================
+
+    PREVIOUS / NEXT
+
+    ========================================
+
 */
+
+
+
 
 
 function previousFile() {
 
 
-    if (
-        selectedIndex <= 0
-    ) {
-
-        return;
-
-    }
 
 
-    selectFile(
-        visibleFiles[
-            selectedIndex - 1
-        ],
-        selectedIndex - 1
-    );
+
+    if (
+
+        selectedIndex <= 0
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    selectFile(
+
+        visibleFiles[
+
+            selectedIndex - 1
+
+        ],
+
+        selectedIndex - 1
+
+    );
+
+
+
 
 
 }
+
+
+
+
 
 
 
 function nextFile() {
 
 
-    if (
-        selectedIndex < 0 ||
-        selectedIndex >=
-        visibleFiles.length - 1
-    ) {
-
-        return;
-
-    }
 
 
-    selectFile(
-        visibleFiles[
-            selectedIndex + 1
-        ],
-        selectedIndex + 1
-    );
+
+    if (
+
+        selectedIndex < 0 ||
+
+        selectedIndex >=
+
+        visibleFiles.length - 1
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    selectFile(
+
+        visibleFiles[
+
+            selectedIndex + 1
+
+        ],
+
+        selectedIndex + 1
+
+    );
+
+
+
 
 
 }
+
+
+
+
 
 
 
 function updateNavigationButtons() {
 
 
-    previousButton.disabled =
-        selectedIndex <= 0;
 
 
-    nextButton.disabled =
 
-        selectedIndex < 0 ||
+    previousButton.disabled =
 
-        selectedIndex >=
-        visibleFiles.length - 1;
+        selectedIndex <= 0;
+
+
+
+
+
+    nextButton.disabled =
+
+
+
+        selectedIndex < 0 ||
+
+
+
+        selectedIndex >=
+
+        visibleFiles.length - 1;
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    SAVE METADATA
-    ========================================
+
+    ========================================
+
+    SAVE METADATA
+
+    ========================================
+
 */
+
+
+
 
 
 async function saveMetadata() {
 
 
-    if (!selectedFile) {
 
 
-        setStatus(
-            "SELECT A FILE",
-            "error"
-        );
 
+    if (!selectedFile) {
 
-        return;
 
-    }
 
 
 
-    saveButton.disabled =
-        true;
+        setStatus(
 
+            "SELECT A FILE",
 
-    saveButton.innerText =
-        "Saving...";
+            "error"
 
+        );
 
-    setStatus(
-        "SAVING..."
-    );
 
 
-    try {
 
 
-        const response =
-            await fetch(
-                "/api/admin/save",
-                {
+        return;
 
-                    method:
-                        "POST",
 
-                    headers: {
 
-                        "Content-Type":
-                            "application/json"
+    }
 
-                    },
 
-                    body:
-                        JSON.stringify({
 
-                            r2_key:
-                                selectedFile.name,
 
-                            title:
-                                titleInput.value.trim(),
 
-                            creator:
-                                creatorInput.value.trim(),
 
-                            tags:
-                                tagsInput.value.trim(),
 
-                            description:
-                                descriptionInput.value.trim(),
+    saveButton.disabled =
 
-                            year:
-                                yearInput.value,
+        true;
 
-                            category:
-                                categoryInput.value
 
-                        })
 
-                }
-            );
 
 
+    saveButton.innerText =
 
-        /*
-            Read response safely
-        */
+        "Saving...";
 
 
-        const text =
-            await response.text();
 
 
-        let result = {};
 
+    setStatus(
 
-        if (text) {
+        "SAVING..."
 
+    );
 
-            try {
 
-                result =
-                    JSON.parse(text);
 
-            }
 
-            catch {
 
-                throw new Error(
-                    "Server returned an invalid response."
-                );
+    try {
 
-            }
 
 
-        }
 
 
+        const response =
 
-        if (!response.ok) {
+            await fetch(
 
+                "/api/admin/save",
 
-            throw new Error(
+                {
 
-                result.message ||
 
-                "Could not save metadata."
 
-            );
+                    method:
 
+                        "POST",
 
-        }
 
 
+                    headers: {
 
-        /*
-            Update local file object
-        */
 
 
-        selectedFile.title =
-            titleInput.value.trim();
+                        "Content-Type":
 
+                            "application/json"
 
-        selectedFile.creator =
-            creatorInput.value.trim();
 
 
-        selectedFile.tags =
-            tagsInput.value.trim();
+                    },
 
 
-        selectedFile.description =
-            descriptionInput.value.trim();
 
+                    body:
 
-        selectedFile.year =
-            yearInput.value;
+                        JSON.stringify({
 
 
-        selectedFile.category =
-            categoryInput.value;
 
+                            r2_key:
 
+                                selectedFile.name,
 
-        /*
-            Save new original values
-        */
 
 
-        originalMetadata = {
+                            title:
 
-            title:
-                selectedFile.title,
+                                titleInput.value.trim(),
 
-            creator:
-                selectedFile.creator,
 
-            tags:
-                selectedFile.tags,
 
-            description:
-                selectedFile.description,
+                            creator:
 
-            year:
-                selectedFile.year,
+                                creatorInput.value.trim(),
 
-            category:
-                selectedFile.category
 
-        };
 
+                            tags:
 
-        modified =
-            false;
+                                tagsInput.value.trim(),
 
 
-        updateStats();
 
+                            description:
 
-        applyFilters();
+                                descriptionInput.value.trim(),
 
 
-        setStatus(
-            "METADATA SAVED",
-            "success"
-        );
 
+                            year:
 
-    }
+                                yearInput.value,
 
-    catch (error) {
 
 
-        setStatus(
-            error.message.toUpperCase(),
-            "error"
-        );
+                            category:
 
+                                categoryInput.value
 
-    }
 
 
-    saveButton.disabled =
-        false;
+                        })
 
 
-    saveButton.innerText =
-        "Save Metadata";
+
+                }
+
+            );
+
+
+
+
+
+
+
+        /*
+
+            Read response safely
+
+        */
+
+
+
+
+
+        const text =
+
+            await response.text();
+
+
+
+
+
+        let result = {};
+
+
+
+
+
+        if (text) {
+
+
+
+
+
+            try {
+
+
+
+                result =
+
+                    JSON.parse(text);
+
+
+
+            }
+
+
+
+            catch {
+
+
+
+                throw new Error(
+
+                    "Server returned an invalid response."
+
+                );
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        if (!response.ok) {
+
+
+
+
+
+            throw new Error(
+
+
+
+                result.message ||
+
+
+
+                "Could not save metadata."
+
+
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        /*
+
+            Update local file object
+
+        */
+
+
+
+
+
+        selectedFile.title =
+
+            titleInput.value.trim();
+
+
+
+
+
+        selectedFile.creator =
+
+            creatorInput.value.trim();
+
+
+
+
+
+        selectedFile.tags =
+
+            tagsInput.value.trim();
+
+
+
+
+
+        selectedFile.description =
+
+            descriptionInput.value.trim();
+
+
+
+
+
+        selectedFile.year =
+
+            yearInput.value;
+
+
+
+
+
+        selectedFile.category =
+
+            categoryInput.value;
+
+
+
+
+
+
+
+        /*
+
+            Save new original values
+
+        */
+
+
+
+
+
+        originalMetadata = {
+
+
+
+            title:
+
+                selectedFile.title,
+
+
+
+            creator:
+
+                selectedFile.creator,
+
+
+
+            tags:
+
+                selectedFile.tags,
+
+
+
+            description:
+
+                selectedFile.description,
+
+
+
+            year:
+
+                selectedFile.year,
+
+
+
+            category:
+
+                selectedFile.category
+
+
+
+        };
+
+
+
+
+
+        modified =
+
+            false;
+
+
+
+
+
+        updateStats();
+
+
+
+
+
+        applyFilters();
+
+
+
+
+
+        setStatus(
+
+            "METADATA SAVED",
+
+            "success"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    saveButton.disabled =
+
+        false;
+
+
+
+
+
+    saveButton.innerText =
+
+        "Save Metadata";
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    HELPERS
-    ========================================
+
+    ========================================
+
+    HELPERS
+
+    ========================================
+
 */
+
+
+
 
 
 function getFilename(path) {
 
 
-    const parts =
-        path.split("/");
 
 
-    return parts[
-        parts.length - 1
-    ];
+
+    const parts =
+
+        path.split("/");
+
+
+
+
+
+    return parts[
+
+        parts.length - 1
+
+    ];
+
+
+
 
 
 }
+
+
+
+
 
 
 
 function getExtension(path) {
 
 
-    const filename =
-        getFilename(path);
 
 
-    if (
-        !filename.includes(".")
-    ) {
 
-        return "";
+    const filename =
 
-    }
+        getFilename(path);
 
 
-    return filename
-        .split(".")
-        .pop();
+
+
+
+    if (
+
+        !filename.includes(".")
+
+    ) {
+
+
+
+        return "";
+
+
+
+    }
+
+
+
+
+
+    return filename
+
+        .split(".")
+
+        .pop();
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    STATUS
-    ========================================
+
+    ========================================
+
+    STATUS
+
+    ========================================
+
 */
+
+
+
 
 
 function setStatus(
-    message,
-    type = ""
+
+    message,
+
+    type = ""
+
 ) {
 
 
-    statusText.innerText =
-        message;
 
 
-    statusText.className =
-        "";
+
+    statusText.innerText =
+
+        message;
 
 
-    if (
-        type === "success"
-    ) {
-
-        statusText.className =
-            "status-success";
-
-    }
 
 
-    if (
-        type === "error"
-    ) {
 
-        statusText.className =
-            "status-error";
+    statusText.className =
 
-    }
+        "";
 
 
-    if (
-        type === "modified"
-    ) {
 
-        statusText.className =
-            "status-modified";
 
-    }
+
+    if (
+
+        type === "success"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-success";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "error"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-error";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "modified"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-modified";
+
+
+
+    }
+
+
+
 
 
 }
 
 
 
+
+
+
+
 /*
-    ========================================
-    WARN BEFORE LEAVING PAGE
-    ========================================
+
+    ========================================
+
+    WARN BEFORE LEAVING PAGE
+
+    ========================================
+
 */
 
 
+
+
+
 window.addEventListener(
-    "beforeunload",
-    function(event) {
+
+    "beforeunload",
+
+    function(event) {
 
 
-        if (!modified) {
-
-            return;
-
-        }
 
 
-        event.preventDefault();
+
+        if (!modified) {
 
 
-        event.returnValue =
-            "";
+
+            return;
 
 
-    }
+
+        }
+
+
+
+
+
+        event.preventDefault();
+
+
+
+
+
+        event.returnValue =
+
+            "";
+
+
+
+
+
+    }
+
 );
+
+
+
 
 
 </script>
 
 
+
+
+
+
+
+</body>
+
+
+
+</html>
+
+
+<!-- ==========================
+     UPLOAD DIALOG
+     ========================== -->
+
+<div id="uploadOverlay" class="upload-overlay">
+
+    <div class="upload-window">
+
+        <div class="upload-titlebar">
+            <span>UPLOAD FILE</span>
+
+            <button
+                type="button"
+                class="close-button"
+                onclick="closeUpload()">
+                X
+            </button>
+        </div>
+
+        <div class="upload-content">
+
+            <div class="field">
+                <label for="uploadFile">File:</label>
+
+                <input
+                    type="file"
+                    id="uploadFile">
+            </div>
+
+            <div class="field">
+                <label for="uploadFolder">R2 Folder:</label>
+
+                <input
+                    type="text"
+                    id="uploadFolder"
+                    placeholder="remixes">
+
+                <div class="help">
+                    Examples: remixes, flps, flps/aiza hayes
+                </div>
+            </div>
+
+            <div
+                id="uploadDestination"
+                class="upload-destination">
+                DESTINATION: /
+            </div>
+
+            <div class="upload-buttons">
+
+                <button
+                    type="button"
+                    onclick="closeUpload()">
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    id="uploadButton"
+                    onclick="uploadFile()">
+                    Upload
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+
+    ========================================
+
+    UPLOAD
+
+    ========================================
+
+*/
+
+
+
+
+
+const uploadOverlay =
+
+    document.getElementById(
+
+        "uploadOverlay"
+
+    );
+
+
+
+
+
+const uploadFileInput =
+
+    document.getElementById(
+
+        "uploadFile"
+
+    );
+
+
+
+
+
+const uploadFolderInput =
+
+    document.getElementById(
+
+        "uploadFolder"
+
+    );
+
+
+
+
+
+const uploadButton =
+
+    document.getElementById(
+
+        "uploadButton"
+
+    );
+
+
+
+
+
+const uploadDestination =
+
+    document.getElementById(
+
+        "uploadDestination"
+
+    );
+
+
+
+
+
+
+
+/*
+
+    OPEN WINDOW
+
+*/
+
+
+
+
+
+function openUpload() {
+
+
+
+
+
+    uploadOverlay.style.display =
+
+        "flex";
+
+
+
+
+
+    uploadFileInput.value =
+
+        "";
+
+
+
+
+
+    uploadFolderInput.value =
+
+        "";
+
+
+
+
+
+    updateUploadDestination();
+
+
+
+
+
+    uploadFileInput.focus();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    CLOSE WINDOW
+
+*/
+
+
+
+
+
+function closeUpload() {
+
+
+
+
+
+    uploadOverlay.style.display =
+
+        "none";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    SHOW DESTINATION
+
+*/
+
+
+
+
+
+function updateUploadDestination() {
+
+
+
+
+
+    const file =
+
+        uploadFileInput.files[0];
+
+
+
+
+
+    let folder =
+
+        uploadFolderInput.value
+
+            .trim()
+
+            .replace(/^\/+/, "")
+
+            .replace(/\/+$/, "");
+
+
+
+
+
+    let destination =
+
+        "/";
+
+
+
+
+
+    if (folder !== "") {
+
+
+
+        destination +=
+
+            folder +
+
+            "/";
+
+
+
+    }
+
+
+
+
+
+    if (file) {
+
+
+
+        destination +=
+
+            file.name;
+
+
+
+    }
+
+
+
+
+
+    uploadDestination.innerText =
+
+        "DESTINATION: " +
+
+        destination;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+uploadFileInput.addEventListener(
+
+    "change",
+
+    updateUploadDestination
+
+);
+
+
+
+
+
+uploadFolderInput.addEventListener(
+
+    "input",
+
+    updateUploadDestination
+
+);
+
+
+
+
+
+
+
+/*
+
+    UPLOAD FILE
+
+*/
+
+
+
+
+
+async function uploadFile() {
+
+
+
+
+
+    const file =
+
+        uploadFileInput.files[0];
+
+
+
+
+
+    if (!file) {
+
+
+
+
+
+        setStatus(
+
+            "SELECT A FILE TO UPLOAD",
+
+            "error"
+
+        );
+
+
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+
+
+    const formData =
+
+        new FormData();
+
+
+
+
+
+    formData.append(
+
+        "file",
+
+        file
+
+    );
+
+
+
+
+
+    formData.append(
+
+        "folder",
+
+        uploadFolderInput.value.trim()
+
+    );
+
+
+
+
+
+
+
+    uploadButton.disabled =
+
+        true;
+
+
+
+
+
+    uploadButton.innerText =
+
+        "Uploading...";
+
+
+
+
+
+    setStatus(
+
+        "UPLOADING..."
+
+    );
+
+
+
+
+
+    try {
+
+
+
+
+
+        const response =
+
+            await fetch(
+
+                "/api/admin/upload",
+
+                {
+
+
+
+                    method:
+
+                        "POST",
+
+
+
+                    body:
+
+                        formData
+
+
+
+                }
+
+            );
+
+
+
+
+
+
+
+        /*
+
+            Read response safely
+
+        */
+
+
+
+
+
+        const text =
+
+            await response.text();
+
+
+
+
+
+        let result = {};
+
+
+
+
+
+        if (text) {
+
+
+
+
+
+            try {
+
+
+
+
+
+                result =
+
+                    JSON.parse(text);
+
+
+
+
+
+            }
+
+
+
+            catch {
+
+
+
+
+
+                throw new Error(
+
+                    "Server returned an invalid response."
+
+                );
+
+
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        if (!response.ok) {
+
+
+
+
+
+            throw new Error(
+
+
+
+                result.message ||
+
+
+
+                "Upload failed."
+
+
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        /*
+
+            Close upload window
+
+        */
+
+
+
+
+
+        closeUpload();
+
+
+
+
+
+
+
+        /*
+
+            Reload R2 + D1 list
+
+        */
+
+
+
+
+
+        await loadFiles();
+
+
+
+
+
+
+
+        /*
+
+            Find newly uploaded file
+
+        */
+
+
+
+
+
+        const newFile =
+
+            allFiles.find(
+
+                item =>
+
+                    item.name ===
+
+                    result.name
+
+            );
+
+
+
+
+
+        if (newFile) {
+
+
+
+
+
+            /*
+
+                Remove filters so
+
+                new file is visible
+
+            */
+
+
+
+
+
+            searchInput.value =
+
+                "";
+
+
+
+
+
+            setFilter(
+
+                "all"
+
+            );
+
+
+
+
+
+            const index =
+
+                visibleFiles.findIndex(
+
+                    item =>
+
+                        item.name ===
+
+                        newFile.name
+
+                );
+
+
+
+
+
+            selectFile(
+
+                newFile,
+
+                index
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        setStatus(
+
+            "UPLOAD COMPLETE",
+
+            "success"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+    uploadButton.disabled =
+
+        false;
+
+
+
+
+
+    uploadButton.innerText =
+
+        "Upload";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    CLOSE DIALOG WITH ESCAPE
+
+*/
+
+
+
+
+
+document.addEventListener(
+
+    "keydown",
+
+    function(event) {
+
+
+
+
+
+        if (
+
+            event.key === "Escape" &&
+
+            uploadOverlay.style.display ===
+
+            "flex"
+
+        ) {
+
+
+
+
+
+            closeUpload();
+
+
+
+
+
+        }
+
+
+
+
+
+    }
+
+);
+
+
+
+/*
+
+    ========================================
+
+    DATA
+
+    ========================================
+
+*/
+
+
+
+
+
+let allFiles = [];
+
+
+
+let visibleFiles = [];
+
+
+
+let selectedFile = null;
+
+
+
+let selectedIndex = -1;
+
+
+
+let currentFilter = "all";
+
+
+
+let originalMetadata = null;
+
+
+
+let modified = false;
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    ELEMENTS
+
+    ========================================
+
+*/
+
+
+
+
+
+const fileList =
+
+    document.getElementById("fileList");
+
+
+
+
+
+const searchInput =
+
+    document.getElementById("search");
+
+
+
+
+
+const emptyEditor =
+
+    document.getElementById("emptyEditor");
+
+
+
+
+
+const editorContent =
+
+    document.getElementById("editorContent");
+
+
+
+
+
+const titleInput =
+
+    document.getElementById("title");
+
+
+
+
+
+const creatorInput =
+
+    document.getElementById("creator");
+
+
+
+
+
+const tagsInput =
+
+    document.getElementById("tags");
+
+
+
+
+
+const descriptionInput =
+
+    document.getElementById("description");
+
+
+
+
+
+const yearInput =
+
+    document.getElementById("year");
+
+
+
+
+
+const categoryInput =
+
+    document.getElementById("category");
+
+
+
+
+
+const saveButton =
+
+    document.getElementById("saveButton");
+
+
+
+
+
+const revertButton =
+
+    document.getElementById("revertButton");
+
+
+
+
+
+const previousButton =
+
+    document.getElementById("previousButton");
+
+
+
+
+
+const nextButton =
+
+    document.getElementById("nextButton");
+
+
+
+
+
+const statusText =
+
+    document.getElementById("status");
+
+
+
+
+
+const stats =
+
+    document.getElementById("stats");
+
+
+
+
+
+const r2Path =
+
+    document.getElementById("r2Path");
+
+
+
+
+
+const r2Filename =
+
+    document.getElementById("r2Filename");
+
+
+
+
+
+const r2Size =
+
+    document.getElementById("r2Size");
+
+
+
+
+
+const r2Type =
+
+    document.getElementById("r2Type");
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    LOAD FILES
+
+    ========================================
+
+*/
+
+
+
+
+
+loadFiles();
+
+
+
+
+
+async function loadFiles() {
+
+
+
+
+
+    setStatus(
+
+        "LOADING FILES..."
+
+    );
+
+
+
+
+
+    try {
+
+
+
+
+
+        const response =
+
+            await fetch(
+
+                "/api/files"
+
+            );
+
+
+
+
+
+        if (!response.ok) {
+
+
+
+            throw new Error(
+
+                "Could not load files."
+
+            );
+
+
+
+        }
+
+
+
+
+
+        allFiles =
+
+            await response.json();
+
+
+
+
+
+
+
+        /*
+
+            Sort alphabetically
+
+        */
+
+
+
+
+
+        allFiles.sort(
+
+            (a, b) =>
+
+                a.name.localeCompare(
+
+                    b.name
+
+                )
+
+        );
+
+
+
+
+
+        updateStats();
+
+
+
+
+
+        applyFilters();
+
+
+
+
+
+        setStatus(
+
+            "READY"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        fileList.innerHTML =
+
+            '<div class="no-file">' +
+
+            'Error loading files.' +
+
+            '</div>';
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    FILE HAS METADATA?
+
+    ========================================
+
+*/
+
+
+
+
+
+function hasMetadata(file) {
+
+
+
+
+
+    return Boolean(
+
+
+
+        file.title ||
+
+
+
+        file.creator ||
+
+
+
+        file.description ||
+
+
+
+        file.tags ||
+
+
+
+        file.year ||
+
+
+
+        file.category
+
+
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    UPDATE COUNTS
+
+    ========================================
+
+*/
+
+
+
+
+
+function updateStats() {
+
+
+
+
+
+    const catalogued =
+
+        allFiles.filter(
+
+            hasMetadata
+
+        ).length;
+
+
+
+
+
+    const uncatalogued =
+
+        allFiles.length -
+
+        catalogued;
+
+
+
+
+
+    stats.innerText =
+
+
+
+        allFiles.length +
+
+        " FILES | " +
+
+
+
+        catalogued +
+
+        " CATALOGUED | " +
+
+
+
+        uncatalogued +
+
+        " UNCATALOGUED";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    SEARCH / FILTER
+
+    ========================================
+
+*/
+
+
+
+
+
+searchInput.addEventListener(
+
+    "input",
+
+    function() {
+
+
+
+        applyFilters();
+
+
+
+    }
+
+);
+
+
+
+
+
+
+
+function setFilter(filter) {
+
+
+
+
+
+    currentFilter =
+
+        filter;
+
+
+
+
+
+    document
+
+        .getElementById("filterAll")
+
+        .classList.remove("active");
+
+
+
+
+
+    document
+
+        .getElementById("filterTagged")
+
+        .classList.remove("active");
+
+
+
+
+
+    document
+
+        .getElementById("filterUntagged")
+
+        .classList.remove("active");
+
+
+
+
+
+    if (filter === "all") {
+
+
+
+        document
+
+            .getElementById("filterAll")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    if (filter === "tagged") {
+
+
+
+        document
+
+            .getElementById("filterTagged")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    if (filter === "untagged") {
+
+
+
+        document
+
+            .getElementById("filterUntagged")
+
+            .classList.add("active");
+
+
+
+    }
+
+
+
+
+
+    applyFilters();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function applyFilters() {
+
+
+
+
+
+    const search =
+
+        searchInput.value
+
+            .trim()
+
+            .toLowerCase();
+
+
+
+
+
+    visibleFiles =
+
+        allFiles.filter(
+
+            file => {
+
+
+
+
+
+                /*
+
+                    Filter by metadata
+
+                */
+
+
+
+
+
+                if (
+
+                    currentFilter ===
+
+                    "tagged" &&
+
+                    !hasMetadata(file)
+
+                ) {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+
+
+                if (
+
+                    currentFilter ===
+
+                    "untagged" &&
+
+                    hasMetadata(file)
+
+                ) {
+
+
+
+                    return false;
+
+
+
+                }
+
+
+
+
+
+
+
+                /*
+
+                    Search
+
+                */
+
+
+
+
+
+                if (search !== "") {
+
+
+
+
+
+                    const text = [
+
+
+
+                        file.name,
+
+
+
+                        file.title,
+
+
+
+                        file.creator,
+
+
+
+                        file.tags,
+
+
+
+                        file.description,
+
+
+
+                        file.year,
+
+
+
+                        file.category
+
+
+
+                    ]
+
+                    .filter(Boolean)
+
+                    .join(" ")
+
+                    .toLowerCase();
+
+
+
+
+
+                    if (
+
+                        !text.includes(
+
+                            search
+
+                        )
+
+                    ) {
+
+
+
+                        return false;
+
+
+
+                    }
+
+
+
+                }
+
+
+
+
+
+                return true;
+
+
+
+
+
+            }
+
+        );
+
+
+
+
+
+    renderFileList();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    RENDER FILE LIST
+
+    ========================================
+
+*/
+
+
+
+
+
+function renderFileList() {
+
+
+
+
+
+    fileList.innerHTML =
+
+        "";
+
+
+
+
+
+    if (
+
+        visibleFiles.length === 0
+
+    ) {
+
+
+
+
+
+        fileList.innerHTML =
+
+            '<div class="no-file">' +
+
+            'No files found.' +
+
+            '</div>';
+
+
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+
+
+    visibleFiles.forEach(
+
+        (file, index) => {
+
+
+
+
+
+            const item =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+
+
+
+            item.className =
+
+                "file-item";
+
+
+
+
+
+            if (
+
+                selectedFile &&
+
+                selectedFile.name ===
+
+                file.name
+
+            ) {
+
+
+
+                item.classList.add(
+
+                    "selected"
+
+                );
+
+
+
+            }
+
+
+
+
+
+
+
+            /*
+
+                Metadata dot
+
+            */
+
+
+
+
+
+            const dot =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+
+
+
+            dot.className =
+
+                "metadata-dot " +
+
+                (
+
+                    hasMetadata(file)
+
+                        ? "complete"
+
+                        : "empty"
+
+                );
+
+
+
+
+
+
+
+            /*
+
+                File name
+
+            */
+
+
+
+
+
+            const filename =
+
+                getFilename(
+
+                    file.name
+
+                );
+
+
+
+
+
+            const name =
+
+                document.createElement(
+
+                    "span"
+
+                );
+
+
+
+
+
+            name.className =
+
+                "file-name";
+
+
+
+
+
+            name.innerText =
+
+                filename;
+
+
+
+
+
+
+
+            /*
+
+                Path
+
+            */
+
+
+
+
+
+            const path =
+
+                document.createElement(
+
+                    "div"
+
+                );
+
+
+
+
+
+            path.className =
+
+                "file-path";
+
+
+
+
+
+            path.innerText =
+
+                file.name;
+
+
+
+
+
+
+
+            item.appendChild(
+
+                dot
+
+            );
+
+
+
+
+
+            item.appendChild(
+
+                name
+
+            );
+
+
+
+
+
+            item.appendChild(
+
+                path
+
+            );
+
+
+
+
+
+            item.onclick =
+
+                function() {
+
+
+
+
+
+                    selectFile(
+
+                        file,
+
+                        index
+
+                    );
+
+
+
+
+
+                };
+
+
+
+
+
+            fileList.appendChild(
+
+                item
+
+            );
+
+
+
+
+
+        }
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    SELECT FILE
+
+    ========================================
+
+*/
+
+
+
+
+
+function selectFile(
+
+    file,
+
+    index
+
+) {
+
+
+
+
+
+    /*
+
+        Warn if there are
+
+        unsaved changes
+
+    */
+
+
+
+
+
+    if (
+
+        modified &&
+
+        selectedFile &&
+
+        selectedFile.name !==
+
+        file.name
+
+    ) {
+
+
+
+
+
+        const leave =
+
+            confirm(
+
+                "You have unsaved changes.\n\n" +
+
+                "Discard them and open another file?"
+
+            );
+
+
+
+
+
+        if (!leave) {
+
+
+
+            return;
+
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+    selectedFile =
+
+        file;
+
+
+
+
+
+    selectedIndex =
+
+        index;
+
+
+
+
+
+
+
+    /*
+
+        Store original metadata
+
+    */
+
+
+
+
+
+    originalMetadata = {
+
+
+
+        title:
+
+            file.title || "",
+
+
+
+        creator:
+
+            file.creator || "",
+
+
+
+        tags:
+
+            file.tags || "",
+
+
+
+        description:
+
+            file.description || "",
+
+
+
+        year:
+
+            file.year || "",
+
+
+
+        category:
+
+            file.category || ""
+
+
+
+    };
+
+
+
+
+
+
+
+    /*
+
+        Fill editor
+
+    */
+
+
+
+
+
+    titleInput.value =
+
+        originalMetadata.title;
+
+
+
+
+
+    creatorInput.value =
+
+        originalMetadata.creator;
+
+
+
+
+
+    tagsInput.value =
+
+        originalMetadata.tags;
+
+
+
+
+
+    descriptionInput.value =
+
+        originalMetadata.description;
+
+
+
+
+
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+
+
+    /*
+
+        R2 info
+
+    */
+
+
+
+
+
+    r2Path.innerText =
+
+        file.name;
+
+
+
+
+
+    r2Filename.innerText =
+
+        getFilename(
+
+            file.name
+
+        );
+
+
+
+
+
+    r2Size.innerText =
+
+        file.size;
+
+
+
+
+
+    r2Type.innerText =
+
+        getExtension(
+
+            file.name
+
+        ).toUpperCase() ||
+
+        "FILE";
+
+
+
+
+
+
+
+    emptyEditor.style.display =
+
+        "none";
+
+
+
+
+
+    editorContent.style.display =
+
+        "block";
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    updateNavigationButtons();
+
+
+
+
+
+    renderFileList();
+
+
+
+
+
+    setStatus(
+
+        "FILE LOADED"
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    CATEGORY
+
+    ========================================
+
+*/
+
+
+
+
+
+function setCategoryValue(
+
+    value
+
+) {
+
+
+
+
+
+    /*
+
+        If the database contains a category
+
+        not currently in the dropdown,
+
+        temporarily add it.
+
+    */
+
+
+
+
+
+    if (
+
+        value !== "" &&
+
+        !Array.from(
+
+            categoryInput.options
+
+        ).some(
+
+            option =>
+
+                option.value === value
+
+        )
+
+    ) {
+
+
+
+
+
+        const option =
+
+            document.createElement(
+
+                "option"
+
+            );
+
+
+
+
+
+        option.value =
+
+            value;
+
+
+
+
+
+        option.innerText =
+
+            value;
+
+
+
+
+
+        categoryInput.appendChild(
+
+            option
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    categoryInput.value =
+
+        value;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    MODIFIED DETECTION
+
+    ========================================
+
+*/
+
+
+
+
+
+const editableFields = [
+
+
+
+    titleInput,
+
+    creatorInput,
+
+    tagsInput,
+
+    descriptionInput,
+
+    yearInput,
+
+    categoryInput
+
+
+
+];
+
+
+
+
+
+editableFields.forEach(
+
+    field => {
+
+
+
+
+
+        field.addEventListener(
+
+            "input",
+
+            checkModified
+
+        );
+
+
+
+
+
+        field.addEventListener(
+
+            "change",
+
+            checkModified
+
+        );
+
+
+
+
+
+    }
+
+);
+
+
+
+
+
+
+
+function checkModified() {
+
+
+
+
+
+    if (
+
+        !selectedFile ||
+
+        !originalMetadata
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    modified =
+
+
+
+        titleInput.value !==
+
+        String(
+
+            originalMetadata.title
+
+        )
+
+
+
+        ||
+
+
+
+        creatorInput.value !==
+
+        String(
+
+            originalMetadata.creator
+
+        )
+
+
+
+        ||
+
+
+
+        tagsInput.value !==
+
+        String(
+
+            originalMetadata.tags
+
+        )
+
+
+
+        ||
+
+
+
+        descriptionInput.value !==
+
+        String(
+
+            originalMetadata.description
+
+        )
+
+
+
+        ||
+
+
+
+        yearInput.value !==
+
+        String(
+
+            originalMetadata.year
+
+        )
+
+
+
+        ||
+
+
+
+        categoryInput.value !==
+
+        String(
+
+            originalMetadata.category
+
+        );
+
+
+
+
+
+    if (modified) {
+
+
+
+
+
+        setStatus(
+
+            "MODIFIED",
+
+            "modified"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    else {
+
+
+
+
+
+        setStatus(
+
+            "READY"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    REVERT
+
+    ========================================
+
+*/
+
+
+
+
+
+function revertChanges() {
+
+
+
+
+
+    if (
+
+        !selectedFile ||
+
+        !originalMetadata
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    titleInput.value =
+
+        originalMetadata.title;
+
+
+
+
+
+    creatorInput.value =
+
+        originalMetadata.creator;
+
+
+
+
+
+    tagsInput.value =
+
+        originalMetadata.tags;
+
+
+
+
+
+    descriptionInput.value =
+
+        originalMetadata.description;
+
+
+
+
+
+    yearInput.value =
+
+        originalMetadata.year;
+
+
+
+
+
+    setCategoryValue(
+
+        originalMetadata.category
+
+    );
+
+
+
+
+
+    modified =
+
+        false;
+
+
+
+
+
+    setStatus(
+
+        "CHANGES REVERTED"
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    PREVIOUS / NEXT
+
+    ========================================
+
+*/
+
+
+
+
+
+function previousFile() {
+
+
+
+
+
+    if (
+
+        selectedIndex <= 0
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    selectFile(
+
+        visibleFiles[
+
+            selectedIndex - 1
+
+        ],
+
+        selectedIndex - 1
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function nextFile() {
+
+
+
+
+
+    if (
+
+        selectedIndex < 0 ||
+
+        selectedIndex >=
+
+        visibleFiles.length - 1
+
+    ) {
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+    selectFile(
+
+        visibleFiles[
+
+            selectedIndex + 1
+
+        ],
+
+        selectedIndex + 1
+
+    );
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function updateNavigationButtons() {
+
+
+
+
+
+    previousButton.disabled =
+
+        selectedIndex <= 0;
+
+
+
+
+
+    nextButton.disabled =
+
+
+
+        selectedIndex < 0 ||
+
+
+
+        selectedIndex >=
+
+        visibleFiles.length - 1;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    SAVE METADATA
+
+    ========================================
+
+*/
+
+
+
+
+
+async function saveMetadata() {
+
+
+
+
+
+    if (!selectedFile) {
+
+
+
+
+
+        setStatus(
+
+            "SELECT A FILE",
+
+            "error"
+
+        );
+
+
+
+
+
+        return;
+
+
+
+    }
+
+
+
+
+
+
+
+    saveButton.disabled =
+
+        true;
+
+
+
+
+
+    saveButton.innerText =
+
+        "Saving...";
+
+
+
+
+
+    setStatus(
+
+        "SAVING..."
+
+    );
+
+
+
+
+
+    try {
+
+
+
+
+
+        const response =
+
+            await fetch(
+
+                "/api/admin/save",
+
+                {
+
+
+
+                    method:
+
+                        "POST",
+
+
+
+                    headers: {
+
+
+
+                        "Content-Type":
+
+                            "application/json"
+
+
+
+                    },
+
+
+
+                    body:
+
+                        JSON.stringify({
+
+
+
+                            r2_key:
+
+                                selectedFile.name,
+
+
+
+                            title:
+
+                                titleInput.value.trim(),
+
+
+
+                            creator:
+
+                                creatorInput.value.trim(),
+
+
+
+                            tags:
+
+                                tagsInput.value.trim(),
+
+
+
+                            description:
+
+                                descriptionInput.value.trim(),
+
+
+
+                            year:
+
+                                yearInput.value,
+
+
+
+                            category:
+
+                                categoryInput.value
+
+
+
+                        })
+
+
+
+                }
+
+            );
+
+
+
+
+
+
+
+        /*
+
+            Read response safely
+
+        */
+
+
+
+
+
+        const text =
+
+            await response.text();
+
+
+
+
+
+        let result = {};
+
+
+
+
+
+        if (text) {
+
+
+
+
+
+            try {
+
+
+
+                result =
+
+                    JSON.parse(text);
+
+
+
+            }
+
+
+
+            catch {
+
+
+
+                throw new Error(
+
+                    "Server returned an invalid response."
+
+                );
+
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        if (!response.ok) {
+
+
+
+
+
+            throw new Error(
+
+
+
+                result.message ||
+
+
+
+                "Could not save metadata."
+
+
+
+            );
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        /*
+
+            Update local file object
+
+        */
+
+
+
+
+
+        selectedFile.title =
+
+            titleInput.value.trim();
+
+
+
+
+
+        selectedFile.creator =
+
+            creatorInput.value.trim();
+
+
+
+
+
+        selectedFile.tags =
+
+            tagsInput.value.trim();
+
+
+
+
+
+        selectedFile.description =
+
+            descriptionInput.value.trim();
+
+
+
+
+
+        selectedFile.year =
+
+            yearInput.value;
+
+
+
+
+
+        selectedFile.category =
+
+            categoryInput.value;
+
+
+
+
+
+
+
+        /*
+
+            Save new original values
+
+        */
+
+
+
+
+
+        originalMetadata = {
+
+
+
+            title:
+
+                selectedFile.title,
+
+
+
+            creator:
+
+                selectedFile.creator,
+
+
+
+            tags:
+
+                selectedFile.tags,
+
+
+
+            description:
+
+                selectedFile.description,
+
+
+
+            year:
+
+                selectedFile.year,
+
+
+
+            category:
+
+                selectedFile.category
+
+
+
+        };
+
+
+
+
+
+        modified =
+
+            false;
+
+
+
+
+
+        updateStats();
+
+
+
+
+
+        applyFilters();
+
+
+
+
+
+        setStatus(
+
+            "METADATA SAVED",
+
+            "success"
+
+        );
+
+
+
+
+
+    }
+
+
+
+    catch (error) {
+
+
+
+
+
+        setStatus(
+
+            error.message.toUpperCase(),
+
+            "error"
+
+        );
+
+
+
+
+
+    }
+
+
+
+
+
+    saveButton.disabled =
+
+        false;
+
+
+
+
+
+    saveButton.innerText =
+
+        "Save Metadata";
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    HELPERS
+
+    ========================================
+
+*/
+
+
+
+
+
+function getFilename(path) {
+
+
+
+
+
+    const parts =
+
+        path.split("/");
+
+
+
+
+
+    return parts[
+
+        parts.length - 1
+
+    ];
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function getExtension(path) {
+
+
+
+
+
+    const filename =
+
+        getFilename(path);
+
+
+
+
+
+    if (
+
+        !filename.includes(".")
+
+    ) {
+
+
+
+        return "";
+
+
+
+    }
+
+
+
+
+
+    return filename
+
+        .split(".")
+
+        .pop();
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    STATUS
+
+    ========================================
+
+*/
+
+
+
+
+
+function setStatus(
+
+    message,
+
+    type = ""
+
+) {
+
+
+
+
+
+    statusText.innerText =
+
+        message;
+
+
+
+
+
+    statusText.className =
+
+        "";
+
+
+
+
+
+    if (
+
+        type === "success"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-success";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "error"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-error";
+
+
+
+    }
+
+
+
+
+
+    if (
+
+        type === "modified"
+
+    ) {
+
+
+
+        statusText.className =
+
+            "status-modified";
+
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+/*
+
+    ========================================
+
+    WARN BEFORE LEAVING PAGE
+
+    ========================================
+
+*/
+
+
+
+
+
+window.addEventListener(
+
+    "beforeunload",
+
+    function(event) {
+
+
+
+
+
+        if (!modified) {
+
+
+
+            return;
+
+
+
+        }
+
+
+
+
+
+        event.preventDefault();
+
+
+
+
+
+        event.returnValue =
+
+            "";
+
+
+
+
+
+    }
+
+);
+
+</script>
 
 </body>
 
