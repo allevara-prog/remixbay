@@ -5,125 +5,162 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>RemixBay Files</title>
+    <title>RemixBay - Files</title>
 
     <style>
 
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f2f2f2;
-            color: #222;
+            padding: 0;
+            background: #eeeeee;
+            color: #222222;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        .page {
+            width: 900px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #aaaaaa;
         }
 
         .header {
-            background-color: white;
-            border-bottom: 1px solid #ddd;
-            padding: 20px 40px;
+            background: #3b5998;
+            color: white;
+            padding: 10px 15px;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 30px;
+            font-size: 24px;
+            font-weight: normal;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
+        .navigation {
+            background: #eeeeee;
+            border-bottom: 1px solid #bbbbbb;
+            padding: 7px 10px;
         }
 
-        .back {
-            margin-bottom: 15px;
+        .navigation a {
+            color: #003399;
+            text-decoration: none;
+            margin-right: 15px;
         }
 
-        .back button {
-            padding: 8px 14px;
-            border: 1px solid #ccc;
-            background: white;
-            cursor: pointer;
-            border-radius: 5px;
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            font-weight: normal;
         }
 
         .path {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #555;
+            background: #f5f5f5;
+            border: 1px solid #cccccc;
+            padding: 7px;
+            margin-bottom: 10px;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
         }
 
-        .file-list {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
+        .back {
+            margin-bottom: 10px;
         }
 
-        .file {
-            display: flex;
-            align-items: center;
-            padding: 14px 18px;
-            border-bottom: 1px solid #eee;
+        .back a {
+            color: #003399;
         }
 
-        .file:last-child {
-            border-bottom: none;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .file:hover {
-            background-color: #f7f7f7;
+        th {
+            background: #dddddd;
+            border: 1px solid #bbbbbb;
+            padding: 6px;
+            text-align: left;
+            font-weight: bold;
         }
 
-        .icon {
-            width: 40px;
-            font-size: 22px;
+        td {
+            border-bottom: 1px solid #dddddd;
+            padding: 6px;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
         }
 
         .name {
-            flex: 1;
-            font-size: 16px;
+            width: auto;
         }
 
         .size {
-            width: 110px;
-            color: #777;
-            font-size: 14px;
+            width: 100px;
+            color: #555555;
         }
 
-        button.open,
-        a.download {
-            border: none;
-            background: #0066cc;
-            color: white;
-            padding: 7px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-            margin-left: 8px;
+        .type {
+            width: 80px;
+            color: #555555;
         }
 
-        button.open:hover,
-        a.download:hover {
-            background: #0052a3;
+        .actions {
+            width: 130px;
+        }
+
+        a {
+            color: #003399;
+        }
+
+        .folder a {
+            font-weight: bold;
         }
 
         .loading {
-            padding: 30px;
-            text-align: center;
+            padding: 15px;
+            border: 1px solid #cccccc;
+            background: #fafafa;
         }
 
         .empty {
-            padding: 30px;
-            text-align: center;
-            color: #777;
+            padding: 15px;
+            border: 1px solid #cccccc;
+            background: #fafafa;
+        }
+
+        .footer {
+            border-top: 1px solid #bbbbbb;
+            background: #eeeeee;
+            padding: 10px;
+            color: #666666;
+            font-size: 12px;
         }
 
     </style>
 
 </head>
 
+
 <body>
+
+
+<div class="page">
+
 
     <div class="header">
 
@@ -132,326 +169,439 @@
     </div>
 
 
-    <div class="container">
+    <div class="navigation">
 
-        <div class="back">
-            <button onclick="goBack()">← Back</button>
-        </div>
+        <a href="index.html">Home</a>
+
+        <a href="files.html">Files</a>
+
+        <a href="about.html">About</a>
+
+    </div>
+
+
+    <div class="content">
+
+        <h2>File Archive</h2>
+
 
         <div class="path" id="path">
             /
         </div>
 
-        <div class="file-list">
 
-            <div class="loading" id="loading">
-                Loading files...
-            </div>
-
-            <div id="files"></div>
-
+        <div class="back" id="back">
+            <a href="#" onclick="goBack(); return false;">
+                &lt; Parent Directory
+            </a>
         </div>
+
+
+        <div id="loading" class="loading">
+            Loading files...
+        </div>
+
+
+        <div id="fileArea"></div>
 
     </div>
 
 
-    <script>
+    <div class="footer">
 
-        const API_URL = "/api/files";
+        RemixBay File Archive
 
-        const filesContainer =
-            document.getElementById("files");
+    </div>
 
-        const loading =
-            document.getElementById("loading");
 
-        const pathDisplay =
-            document.getElementById("path");
+</div>
 
 
-        let allFiles = [];
+<script>
 
-        let currentPath = "";
 
+const API_URL = "/api/files";
 
-        fetch(API_URL)
 
-            .then(response => response.json())
+let allFiles = [];
 
-            .then(files => {
+let currentPath = "";
 
-                allFiles = files;
 
-                loading.style.display = "none";
+const loading =
+    document.getElementById("loading");
 
-                showFolder("");
+const fileArea =
+    document.getElementById("fileArea");
 
-            })
+const pathDisplay =
+    document.getElementById("path");
 
-            .catch(error => {
+const back =
+    document.getElementById("back");
 
-                loading.innerText =
-                    "Could not load files.";
 
-                console.log(error);
 
-            });
+fetch(API_URL)
 
+    .then(response => response.json())
 
-        function showFolder(path) {
+    .then(files => {
 
-            currentPath = path;
+        allFiles = files;
 
-            filesContainer.innerHTML = "";
+        loading.style.display = "none";
 
-            pathDisplay.innerText =
-                "/" + path;
+        showFolder("");
 
+    })
 
-            const items = {};
+    .catch(error => {
 
+        loading.innerText =
+            "Error loading files.";
 
-            allFiles.forEach(file => {
+        console.log(error);
 
-                if (!file.name.startsWith(path)) {
-                    return;
-                }
+    });
 
 
-                let remaining =
-                    file.name.substring(path.length);
 
+function showFolder(path) {
 
-                if (remaining.startsWith("/")) {
-                    remaining =
-                        remaining.substring(1);
-                }
 
+    currentPath = path;
 
-                if (remaining === "") {
-                    return;
-                }
 
+    pathDisplay.innerText =
+        "/" + path;
 
-                const slash =
-                    remaining.indexOf("/");
 
+    fileArea.innerHTML = "";
 
-                if (slash !== -1) {
 
-                    const folder =
-                        remaining.substring(0, slash);
+    if (path === "") {
 
-                    items[folder] = {
-                        folder: true,
-                        name: folder
-                    };
+        back.style.display = "none";
 
-                }
+    } else {
 
-                else {
+        back.style.display = "block";
 
-                    items[remaining] = {
-                        folder: false,
-                        file: file
-                    };
+    }
 
-                }
 
-            });
+    const folders = {};
 
+    const files = [];
 
-            const itemNames =
-                Object.keys(items).sort();
 
+    allFiles.forEach(file => {
 
-            if (itemNames.length === 0) {
 
-                filesContainer.innerHTML =
-                    '<div class="empty">This folder is empty.</div>';
+        if (!file.name.startsWith(path)) {
+            return;
+        }
 
-                return;
-            }
 
+        let remaining =
+            file.name.substring(path.length);
 
-            itemNames.forEach(name => {
 
-                const item = items[name];
+        if (remaining.startsWith("/")) {
+            remaining =
+                remaining.substring(1);
+        }
 
 
-                const div =
-                    document.createElement("div");
+        if (remaining === "") {
+            return;
+        }
 
-                div.className = "file";
 
+        const slash =
+            remaining.indexOf("/");
 
-                if (item.folder) {
 
-                    div.innerHTML = `
+        if (slash !== -1) {
 
-                        <div class="icon">📁</div>
+            const folderName =
+                remaining.substring(0, slash);
 
-                        <div class="name">
-                            ${item.name}
-                        </div>
+            folders[folderName] = true;
 
-                        <div class="size">
-                        </div>
+        } else {
 
-                        <button class="open">
-                            Open
-                        </button>
+            files.push(file);
 
-                    `;
+        }
 
+    });
 
-                    div.querySelector("button")
-                        .onclick = function() {
 
-                            showFolder(
-                                currentPath +
-                                item.name +
-                                "/"
-                            );
+    const table =
+        document.createElement("table");
 
-                        };
 
-                }
+    table.innerHTML = `
 
-                else {
+        <tr>
 
-                    const file =
-                        item.file;
+            <th class="name">Name</th>
 
-                    const extension =
-                        file.name
-                            .split(".")
-                            .pop()
-                            .toLowerCase();
+            <th class="size">Size</th>
 
+            <th class="type">Type</th>
 
-                    let icon = "📄";
+            <th class="actions">Actions</th>
 
+        </tr>
 
-                    if (extension === "mp3") {
-                        icon = "🎵";
-                    }
+    `;
 
-                    else if (extension === "mp4") {
-                        icon = "🎬";
-                    }
 
-                    else if (extension === "flp") {
-                        icon = "🎹";
-                    }
+    /*
+        FOLDERS
+    */
 
-                    else if (extension === "zip") {
-                        icon = "📦";
-                    }
 
+    Object.keys(folders)
+        .sort()
+        .forEach(folderName => {
 
-                    div.innerHTML = `
 
-                        <div class="icon">
-                            ${icon}
-                        </div>
+            const row =
+                document.createElement("tr");
 
-                        <div class="name">
-                            ${name}
-                        </div>
 
-                        <div class="size">
-                            ${file.size}
-                        </div>
+            row.className = "folder";
 
-                    `;
 
+            row.innerHTML = `
 
-                    if (
-                        extension === "mp3" ||
-                        extension === "mp4"
-                    ) {
+                <td>
 
-                        const play =
-                            document.createElement("button");
+                    📁
 
-                        play.className = "open";
+                    <a href="#"
+                       onclick="openFolder('${escapeQuotes(folderName)}'); return false;">
 
-                        play.innerText = "Play";
+                        ${folderName}/
 
+                    </a>
 
-                        play.onclick = function() {
+                </td>
 
-                            window.location.href =
-                                "player.html?file=" +
-                                encodeURIComponent(file.url);
+                <td>-</td>
 
-                        };
+                <td>Folder</td>
 
+                <td>-</td>
 
-                        div.appendChild(play);
+            `;
 
-                    }
 
+            table.appendChild(row);
 
-                    const download =
-                        document.createElement("a");
+        });
 
-                    download.className =
-                        "download";
 
-                    download.innerText =
-                        "Download";
+    /*
+        FILES
+    */
 
-                    download.href =
-                        file.url;
 
-                    download.target =
-                        "_blank";
+    files.sort((a, b) =>
+        a.name.localeCompare(b.name)
+    );
 
 
-                    div.appendChild(download);
+    files.forEach(file => {
 
-                }
 
+        const row =
+            document.createElement("tr");
 
-                filesContainer.appendChild(div);
 
-            });
+        const name =
+            file.name.substring(
+                path.length
+            );
+
+
+        const extension =
+            name
+                .split(".")
+                .pop()
+                .toLowerCase();
+
+
+        let icon = "📄";
+
+        let type = "File";
+
+
+        if (extension === "mp3") {
+
+            icon = "🎵";
+
+            type = "MP3";
+
+        }
+
+        else if (extension === "mp4") {
+
+            icon = "🎬";
+
+            type = "MP4";
+
+        }
+
+        else if (extension === "flp") {
+
+            icon = "🎹";
+
+            type = "FLP";
+
+        }
+
+        else if (extension === "zip") {
+
+            icon = "📦";
+
+            type = "ZIP";
 
         }
 
 
-        function goBack() {
-
-            if (currentPath === "") {
-                return;
-            }
+        let action = "";
 
 
-            const parts =
-                currentPath
-                    .split("/")
-                    .filter(Boolean);
+        if (
+            extension === "mp3" ||
+            extension === "mp4"
+        ) {
 
-
-            parts.pop();
-
-
-            let newPath =
-                parts.join("/");
-
-
-            if (newPath !== "") {
-                newPath += "/";
-            }
-
-
-            showFolder(newPath);
+            action =
+                `<a href="player.html?file=${
+                    encodeURIComponent(file.url)
+                }">Play</a>`;
 
         }
 
-    </script>
+
+        action +=
+            ` <a href="${file.url}" target="_blank">Download</a>`;
+
+
+        row.innerHTML = `
+
+            <td>
+
+                ${icon}
+
+                <a href="${file.url}" target="_blank">
+
+                    ${name}
+
+                </a>
+
+            </td>
+
+            <td>
+                ${file.size}
+            </td>
+
+            <td>
+                ${type}
+            </td>
+
+            <td>
+                ${action}
+            </td>
+
+        `;
+
+
+        table.appendChild(row);
+
+    });
+
+
+    if (
+        Object.keys(folders).length === 0 &&
+        files.length === 0
+    ) {
+
+        fileArea.innerHTML =
+            '<div class="empty">This directory is empty.</div>';
+
+        return;
+
+    }
+
+
+    fileArea.appendChild(table);
+
+}
+
+
+
+function openFolder(folder) {
+
+    showFolder(
+        currentPath +
+        folder +
+        "/"
+    );
+
+}
+
+
+
+function goBack() {
+
+
+    if (currentPath === "") {
+        return;
+    }
+
+
+    let parts =
+        currentPath
+            .split("/")
+            .filter(Boolean);
+
+
+    parts.pop();
+
+
+    let newPath =
+        parts.join("/");
+
+
+    if (newPath !== "") {
+        newPath += "/";
+    }
+
+
+    showFolder(newPath);
+
+}
+
+
+
+function escapeQuotes(text) {
+
+    return text
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+
+}
+
+
+</script>
+
 
 </body>
 
