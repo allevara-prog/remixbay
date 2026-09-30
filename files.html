@@ -381,16 +381,7 @@ fetch(API_URL)
 
     .then(files => {
 
-        /*
-            Ignore R2 folder-marker objects.
-            These keys end in "/" and are not
-            real downloadable files.
-        */
-
-        allFiles = files.filter(file =>
-            file.name &&
-            !file.name.endsWith("/")
-        );
+        allFiles = files;
 
         loading.style.display =
             "none";
@@ -1133,6 +1124,20 @@ function searchFiles() {
 
     const matchingFiles =
         allFiles.filter(file => {
+
+            /*
+                Do not show R2 folder-marker objects
+                as search results. R2 folder markers
+                have names ending in "/" and are
+                commonly 0-byte objects.
+            */
+
+            if (
+                !file.name ||
+                file.name.trim().endsWith("/")
+            ) {
+                return false;
+            }
 
 
             const searchableText = [
