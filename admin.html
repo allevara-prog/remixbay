@@ -1128,7 +1128,34 @@ button:disabled {
 
 
 </div>
+    </div>
 
+</div>
+
+
+<!-- ==========================
+     UPLOAD DIALOG
+     ========================== -->
+
+<div
+    id="uploadOverlay"
+    class="upload-overlay">
+
+    <!-- all the upload dialog HTML here -->
+
+</div>
+
+
+<script>
+
+    // ALL of your JavaScript here
+
+</script>
+
+
+</body>
+
+</html>
 
 
 <script>
@@ -3000,110 +3027,7 @@ window.addEventListener(
 
 </script>
 
-<!-- ==========================
-     UPLOAD DIALOG
-     ========================== -->
 
-<div
-    id="uploadOverlay"
-    class="upload-overlay">
-
-
-    <div class="upload-window">
-
-
-        <div class="upload-titlebar">
-
-            <span>
-                UPLOAD FILE
-            </span>
-
-            <button
-                class="close-button"
-                onclick="closeUpload()">
-
-                X
-
-            </button>
-
-        </div>
-
-
-        <div class="upload-content">
-
-
-            <div class="field">
-
-                <label for="uploadFile">
-                    File:
-                </label>
-
-                <input
-                    type="file"
-                    id="uploadFile">
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="uploadFolder">
-                    R2 Folder:
-                </label>
-
-                <input
-                    type="text"
-                    id="uploadFolder"
-                    placeholder="remixes">
-
-                <div class="help">
-
-                    Examples:
-                    remixes,
-                    flps,
-                    flps/aiza hayes
-
-                </div>
-
-            </div>
-
-
-            <div
-                id="uploadDestination"
-                class="upload-destination">
-
-                DESTINATION: /
-
-            </div>
-
-
-            <div class="upload-buttons">
-
-                <button
-                    onclick="closeUpload()">
-
-                    Cancel
-
-                </button>
-
-                <button
-                    id="uploadButton"
-                    onclick="uploadFile()">
-
-                    Upload
-
-                </button>
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</div>
 
 </body>
 
