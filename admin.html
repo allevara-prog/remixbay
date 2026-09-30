@@ -3,372 +3,579 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>RemixBay // Admin</title>
+<title>RemixBay // Admin</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            padding: 0;
+html,
+body {
+    height: 100%;
+}
 
-            background: #252525;
-            color: #d8d8d8;
+body {
+    margin: 0;
 
-            font-family: Tahoma, Arial, sans-serif;
-            font-size: 12px;
-        }
+    background: #242424;
+    color: #dddddd;
 
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
 
-        /*
-            MAIN WINDOW
-        */
 
-        .window {
-            width: 820px;
-            margin: 25px auto;
+/* ==============================
+   MAIN WINDOW
+   ============================== */
 
-            background: #3a3a3a;
+.window {
+    width: 1000px;
+    margin: 18px auto;
 
-            border: 1px solid #111111;
-        }
+    background: #333333;
 
+    border: 1px solid #111111;
+}
 
-        /*
-            TITLE BAR
-        */
 
-        .titlebar {
-            height: 30px;
+/* ==============================
+   TITLE BAR
+   ============================== */
 
-            display: flex;
-            align-items: center;
+.titlebar {
+    height: 30px;
 
-            padding: 0 8px;
+    display: flex;
+    align-items: center;
 
-            background: #444444;
+    padding: 0 8px;
 
-            border-bottom: 1px solid #181818;
+    background: #454545;
 
-            color: #eeeeee;
-        }
+    border-bottom: 1px solid #151515;
+}
 
-        .titlebar-title {
-            font-weight: bold;
-            font-size: 12px;
-        }
+.titlebar-title {
+    font-weight: bold;
+    color: #eeeeee;
+}
 
-        .titlebar-right {
-            margin-left: auto;
+.titlebar-right {
+    margin-left: auto;
 
-            color: #aaaaaa;
-            font-size: 11px;
-        }
+    color: #999999;
+    font-size: 11px;
+}
 
 
-        /*
-            MENU BAR
-        */
+/* ==============================
+   MENU
+   ============================== */
 
-        .menu {
-            height: 27px;
+.menu {
+    height: 27px;
 
-            display: flex;
-            align-items: center;
+    display: flex;
+    align-items: center;
 
-            padding-left: 8px;
+    padding-left: 4px;
 
-            background: #333333;
+    background: #333333;
 
-            border-bottom: 1px solid #171717;
-        }
+    border-bottom: 1px solid #171717;
+}
 
-        .menu a {
-            color: #d0d0d0;
-            text-decoration: none;
+.menu a {
+    padding: 6px 10px;
 
-            padding: 6px 10px;
-        }
+    color: #d0d0d0;
 
-        .menu a:hover {
-            background: #4a4a4a;
-            color: white;
-        }
+    text-decoration: none;
+}
 
+.menu a:hover {
+    background: #4b4b4b;
+    color: white;
+}
 
-        /*
-            WORK AREA
-        */
 
-        .workspace {
-            padding: 8px;
-        }
+/* ==============================
+   WORKSPACE
+   ============================== */
 
+.workspace {
+    display: flex;
 
-        /*
-            PANEL
-        */
+    min-height: 570px;
+}
 
-        .panel {
-            border: 1px solid #181818;
 
-            background: #323232;
+/* ==============================
+   SIDEBAR
+   ============================== */
 
-            margin-bottom: 8px;
-        }
+.sidebar {
+    width: 300px;
 
-        .panel-title {
-            padding: 5px 7px;
+    background: #2e2e2e;
 
-            background: #454545;
+    border-right: 1px solid #111111;
 
-            border-bottom: 1px solid #181818;
+    display: flex;
+    flex-direction: column;
+}
 
-            font-weight: bold;
+.panel-title {
+    height: 26px;
 
-            color: #dddddd;
-        }
+    display: flex;
+    align-items: center;
 
-        .panel-content {
-            padding: 10px;
-        }
+    padding: 0 7px;
 
+    background: #454545;
 
-        /*
-            FORM
-        */
+    border-bottom: 1px solid #181818;
 
-        .field {
-            margin-bottom: 9px;
-        }
+    font-weight: bold;
+}
 
-        label {
-            display: block;
 
-            margin-bottom: 3px;
+/* ==============================
+   SEARCH
+   ============================== */
 
-            color: #cccccc;
-        }
+.search-area {
+    padding: 7px;
 
-        input,
-        select,
-        textarea {
+    border-bottom: 1px solid #181818;
+}
 
-            width: 100%;
+.search-area input {
+    width: 100%;
+}
 
-            padding: 5px;
 
-            background: #242424;
+/* ==============================
+   FILE FILTER BUTTONS
+   ============================== */
 
-            color: #eeeeee;
+.filters {
+    display: flex;
 
-            border: 1px solid #666666;
+    padding: 5px;
 
-            border-radius: 0;
+    gap: 3px;
 
-            font-family: Tahoma, Arial, sans-serif;
+    border-bottom: 1px solid #181818;
+}
 
-            font-size: 12px;
+.filters button {
+    min-width: 0;
 
-            outline: none;
-        }
+    flex: 1;
 
-        input:focus,
-        select:focus,
-        textarea:focus {
+    padding: 4px;
+}
 
-            border-color: #aaaaaa;
+.filters button.active {
+    background: #626262;
+}
 
-            background: #292929;
-        }
 
-        select {
-            height: 28px;
-        }
+/* ==============================
+   FILE LIST
+   ============================== */
 
-        textarea {
-            height: 75px;
+.file-list {
+    height: 470px;
 
-            resize: vertical;
-        }
+    overflow-y: auto;
 
+    background: #292929;
+}
 
-        /*
-            TWO COLUMN AREA
-        */
+.file-item {
+    padding: 6px 7px;
 
-        .row {
-            display: flex;
+    border-bottom: 1px solid #363636;
 
-            gap: 10px;
-        }
+    cursor: pointer;
 
-        .column {
-            flex: 1;
-        }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+.file-item:hover {
+    background: #3d3d3d;
+}
 
-        /*
-            FILE INFORMATION
-        */
+.file-item.selected {
+    background: #555555;
+}
 
-        .file-info {
-            margin-top: 4px;
+.file-name {
+    color: #eeeeee;
+}
 
-            color: #888888;
+.file-path {
+    margin-top: 2px;
 
-            font-size: 11px;
+    color: #777777;
 
-            font-family: Consolas, "Courier New", monospace;
+    font-family: Consolas, "Courier New", monospace;
 
-            word-break: break-all;
-        }
+    font-size: 10px;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-        /*
-            BUTTON BAR
-        */
+.metadata-dot {
+    display: inline-block;
 
-        .button-bar {
+    width: 7px;
+    height: 7px;
 
-            display: flex;
+    margin-right: 5px;
 
-            justify-content: flex-end;
+    border: 1px solid #111111;
 
-            gap: 5px;
+    background: #777777;
+}
 
-            margin-top: 12px;
+.metadata-dot.complete {
+    background: #8eb27e;
+}
 
-            padding-top: 8px;
+.metadata-dot.empty {
+    background: #b58b62;
+}
 
-            border-top: 1px solid #202020;
-        }
 
-        button {
+/* ==============================
+   EDITOR
+   ============================== */
 
-            min-width: 100px;
+.editor {
+    flex: 1;
 
-            padding: 5px 12px;
+    background: #363636;
 
-            background: #4a4a4a;
+    display: flex;
+    flex-direction: column;
+}
 
-            color: #eeeeee;
+.editor-content {
+    padding: 10px;
 
-            border-top: 1px solid #777777;
-            border-left: 1px solid #777777;
+    flex: 1;
+}
 
-            border-right: 1px solid #1b1b1b;
-            border-bottom: 1px solid #1b1b1b;
 
-            border-radius: 0;
+/* ==============================
+   EMPTY EDITOR
+   ============================== */
 
-            font-family: Tahoma, Arial, sans-serif;
+.no-file {
+    padding: 30px;
 
-            font-size: 12px;
+    text-align: center;
 
-            cursor: pointer;
-        }
+    color: #888888;
+}
 
-        button:hover {
-            background: #555555;
-        }
 
-        button:active {
+/* ==============================
+   R2 INFO
+   ============================== */
 
-            border-top: 1px solid #1b1b1b;
-            border-left: 1px solid #1b1b1b;
+.info-panel {
+    margin-bottom: 10px;
 
-            border-right: 1px solid #777777;
-            border-bottom: 1px solid #777777;
-        }
+    border: 1px solid #1a1a1a;
 
-        button:disabled {
+    background: #2b2b2b;
+}
 
-            color: #888888;
+.info-title {
+    padding: 5px 7px;
 
-            background: #3a3a3a;
+    background: #414141;
 
-            cursor: default;
-        }
+    border-bottom: 1px solid #181818;
 
+    font-weight: bold;
+}
 
-        /*
-            STATUS BAR
-        */
+.info-content {
+    padding: 7px;
 
-        .statusbar {
+    font-family: Consolas, "Courier New", monospace;
 
-            display: flex;
+    color: #aaaaaa;
 
-            align-items: center;
+    font-size: 11px;
 
-            height: 26px;
+    line-height: 18px;
 
-            padding: 0 7px;
+    word-break: break-all;
+}
 
-            background: #303030;
+.info-label {
+    color: #777777;
+}
 
-            border-top: 1px solid #151515;
 
-            color: #aaaaaa;
+/* ==============================
+   FORM
+   ============================== */
 
-            font-size: 11px;
-        }
+.field {
+    margin-bottom: 9px;
+}
 
-        .status-label {
+label {
+    display: block;
 
-            color: #dddddd;
+    margin-bottom: 3px;
 
-            margin-right: 6px;
-        }
+    color: #cccccc;
+}
 
-        .status-success {
-            color: #9dcc8e;
-        }
+input,
+select,
+textarea {
+    width: 100%;
 
-        .status-error {
-            color: #e28b8b;
-        }
+    padding: 5px;
 
-        .status-right {
+    background: #242424;
 
-            margin-left: auto;
+    color: #eeeeee;
 
-            color: #777777;
+    border: 1px solid #666666;
 
-            font-family: Consolas, "Courier New", monospace;
-        }
+    border-radius: 0;
 
+    font-family: Tahoma, Arial, sans-serif;
 
-        /*
-            SMALL SCREENS
-        */
+    font-size: 12px;
 
-        @media (max-width: 850px) {
+    outline: none;
+}
 
-            .window {
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #aaaaaa;
 
-                width: auto;
+    background: #292929;
+}
 
-                margin: 10px;
-            }
+textarea {
+    height: 75px;
 
-            .row {
+    resize: vertical;
+}
 
-                display: block;
-            }
+.row {
+    display: flex;
 
-        }
+    gap: 10px;
+}
 
-    </style>
+.column {
+    flex: 1;
+}
+
+.help {
+    margin-top: 3px;
+
+    color: #777777;
+
+    font-size: 10px;
+}
+
+
+/* ==============================
+   EDITOR BUTTONS
+   ============================== */
+
+.editor-buttons {
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 12px;
+
+    padding-top: 8px;
+
+    border-top: 1px solid #202020;
+}
+
+.navigation-buttons {
+    display: flex;
+
+    gap: 4px;
+}
+
+.save-buttons {
+    display: flex;
+
+    gap: 4px;
+
+    margin-left: auto;
+}
+
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+button {
+    min-width: 80px;
+
+    padding: 5px 10px;
+
+    background: #4a4a4a;
+
+    color: #eeeeee;
+
+    border-top: 1px solid #777777;
+    border-left: 1px solid #777777;
+
+    border-right: 1px solid #181818;
+    border-bottom: 1px solid #181818;
+
+    border-radius: 0;
+
+    font-family: Tahoma, Arial, sans-serif;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #555555;
+}
+
+button:active {
+    border-top: 1px solid #181818;
+    border-left: 1px solid #181818;
+
+    border-right: 1px solid #777777;
+    border-bottom: 1px solid #777777;
+}
+
+button:disabled {
+    background: #383838;
+
+    color: #777777;
+
+    cursor: default;
+}
+
+
+/* ==============================
+   STATUS BAR
+   ============================== */
+
+.statusbar {
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 7px;
+
+    background: #303030;
+
+    border-top: 1px solid #151515;
+
+    font-size: 11px;
+}
+
+.status-label {
+    margin-right: 5px;
+
+    color: #dddddd;
+}
+
+#status {
+    color: #aaaaaa;
+}
+
+.status-success {
+    color: #9dcc8e !important;
+}
+
+.status-error {
+    color: #e28b8b !important;
+}
+
+.status-modified {
+    color: #e1c17a !important;
+}
+
+.status-right {
+    margin-left: auto;
+
+    color: #777777;
+
+    font-family: Consolas, "Courier New", monospace;
+}
+
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 1030px) {
+
+    .window {
+        width: auto;
+
+        margin: 8px;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .workspace {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+
+        border-right: none;
+        border-bottom: 1px solid #111111;
+    }
+
+    .file-list {
+        height: 220px;
+    }
+
+    .row {
+        display: block;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -388,7 +595,7 @@
         </div>
 
         <div class="titlebar-right">
-            METADATA EDITOR
+            FILE DATABASE
         </div>
 
     </div>
@@ -418,44 +625,150 @@
     <div class="workspace">
 
 
-        <div class="panel">
+        <!-- ==========================
+             LEFT SIDEBAR
+             ========================== -->
+
+        <div class="sidebar">
 
 
             <div class="panel-title">
+                FILES
+            </div>
 
-                FILE METADATA
+
+            <div class="search-area">
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search files...">
 
             </div>
 
 
-            <div class="panel-content">
+            <div class="filters">
+
+                <button
+                    id="filterAll"
+                    class="active"
+                    onclick="setFilter('all')">
+
+                    All
+
+                </button>
+
+                <button
+                    id="filterTagged"
+                    onclick="setFilter('tagged')">
+
+                    Catalogued
+
+                </button>
+
+                <button
+                    id="filterUntagged"
+                    onclick="setFilter('untagged')">
+
+                    Uncatalogued
+
+                </button>
+
+            </div>
 
 
-                <!-- FILE -->
+            <div
+                id="fileList"
+                class="file-list">
 
-                <div class="field">
+                <div class="no-file">
+                    Loading files...
+                </div>
 
-                    <label for="fileSelect">
-                        File:
-                    </label>
+            </div>
 
-                    <select id="fileSelect">
 
-                        <option value="">
-                            Loading files...
-                        </option>
+        </div>
 
-                    </select>
 
-                    <div
-                        id="fileInfo"
-                        class="file-info">
 
-                        Waiting for file list...
+        <!-- ==========================
+             RIGHT EDITOR
+             ========================== -->
+
+        <div class="editor">
+
+
+            <div class="panel-title">
+                FILE METADATA
+            </div>
+
+
+            <div
+                id="emptyEditor"
+                class="no-file">
+
+                Select a file from the list.
+
+            </div>
+
+
+
+            <div
+                id="editorContent"
+                class="editor-content"
+                style="display: none;">
+
+
+                <!-- R2 INFORMATION -->
+
+                <div class="info-panel">
+
+                    <div class="info-title">
+                        R2 OBJECT INFORMATION
+                    </div>
+
+                    <div class="info-content">
+
+                        <div>
+                            <span class="info-label">
+                                PATH:
+                            </span>
+
+                            <span id="r2Path"></span>
+                        </div>
+
+
+                        <div>
+                            <span class="info-label">
+                                FILE:
+                            </span>
+
+                            <span id="r2Filename"></span>
+                        </div>
+
+
+                        <div>
+                            <span class="info-label">
+                                SIZE:
+                            </span>
+
+                            <span id="r2Size"></span>
+                        </div>
+
+
+                        <div>
+                            <span class="info-label">
+                                TYPE:
+                            </span>
+
+                            <span id="r2Type"></span>
+                        </div>
 
                     </div>
 
                 </div>
+
 
 
                 <!-- TITLE -->
@@ -473,6 +786,7 @@
                 </div>
 
 
+
                 <!-- CREATOR -->
 
                 <div class="field">
@@ -488,6 +802,7 @@
                 </div>
 
 
+
                 <!-- TAGS -->
 
                 <div class="field">
@@ -501,13 +816,12 @@
                         id="tags"
                         placeholder="sparta, remix, base, fl studio">
 
-                    <div class="file-info">
-
+                    <div class="help">
                         Separate tags with commas.
-
                     </div>
 
                 </div>
+
 
 
                 <!-- DESCRIPTION -->
@@ -524,7 +838,8 @@
                 </div>
 
 
-                <!-- YEAR / CATEGORY -->
+
+                <!-- YEAR + CATEGORY -->
 
                 <div class="row">
 
@@ -556,10 +871,45 @@
                                 Category:
                             </label>
 
-                            <input
-                                type="text"
-                                id="category"
-                                placeholder="FLP, Remix, Scrap...">
+                            <select id="category">
+
+                                <option value="">
+                                    -- None --
+                                </option>
+
+                                <option value="Remix">
+                                    Remix
+                                </option>
+
+                                <option value="FLP">
+                                    FLP
+                                </option>
+
+                                <option value="Base">
+                                    Base
+                                </option>
+
+                                <option value="Scrap">
+                                    Scrap
+                                </option>
+
+                                <option value="Collab Part">
+                                    Collab Part
+                                </option>
+
+                                <option value="Audio">
+                                    Audio
+                                </option>
+
+                                <option value="Video">
+                                    Video
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
 
                         </div>
 
@@ -569,37 +919,65 @@
                 </div>
 
 
-                <!-- BUTTONS -->
 
-                <div class="button-bar">
+                <!-- BUTTON BAR -->
 
-                    <button
-                        type="button"
-                        onclick="clearFields()">
-
-                        Clear
-
-                    </button>
+                <div class="editor-buttons">
 
 
-                    <button
-                        type="button"
-                        id="saveButton"
-                        onclick="saveMetadata()">
+                    <div class="navigation-buttons">
 
-                        Save Metadata
+                        <button
+                            id="previousButton"
+                            onclick="previousFile()">
 
-                    </button>
+                            &lt; Previous
+
+                        </button>
+
+                        <button
+                            id="nextButton"
+                            onclick="nextFile()">
+
+                            Next &gt;
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="save-buttons">
+
+                        <button
+                            id="revertButton"
+                            onclick="revertChanges()">
+
+                            Revert
+
+                        </button>
+
+                        <button
+                            id="saveButton"
+                            onclick="saveMetadata()">
+
+                            Save Metadata
+
+                        </button>
+
+                    </div>
+
 
                 </div>
 
 
             </div>
 
+
         </div>
 
 
     </div>
+
 
 
     <!-- STATUS BAR -->
@@ -611,12 +989,12 @@
         </span>
 
         <span id="status">
-            READY
+            LOADING
         </span>
 
 
         <span
-            id="fileCount"
+            id="stats"
             class="status-right">
 
             0 FILES
@@ -633,94 +1011,142 @@
 <script>
 
 
-let allFiles = [];
-
-
 /*
-    ELEMENTS
+    ========================================
+    DATA
+    ========================================
 */
 
 
-const fileSelect =
-    document.getElementById(
-        "fileSelect"
-    );
+let allFiles = [];
+
+let visibleFiles = [];
+
+let selectedFile = null;
+
+let selectedIndex = -1;
+
+let currentFilter = "all";
+
+let originalMetadata = null;
+
+let modified = false;
 
 
-const fileInfo =
-    document.getElementById(
-        "fileInfo"
-    );
+
+/*
+    ========================================
+    ELEMENTS
+    ========================================
+*/
+
+
+const fileList =
+    document.getElementById("fileList");
+
+
+const searchInput =
+    document.getElementById("search");
+
+
+const emptyEditor =
+    document.getElementById("emptyEditor");
+
+
+const editorContent =
+    document.getElementById("editorContent");
 
 
 const titleInput =
-    document.getElementById(
-        "title"
-    );
+    document.getElementById("title");
 
 
 const creatorInput =
-    document.getElementById(
-        "creator"
-    );
+    document.getElementById("creator");
 
 
 const tagsInput =
-    document.getElementById(
-        "tags"
-    );
+    document.getElementById("tags");
 
 
 const descriptionInput =
-    document.getElementById(
-        "description"
-    );
+    document.getElementById("description");
 
 
 const yearInput =
-    document.getElementById(
-        "year"
-    );
+    document.getElementById("year");
 
 
 const categoryInput =
-    document.getElementById(
-        "category"
-    );
+    document.getElementById("category");
 
 
 const saveButton =
-    document.getElementById(
-        "saveButton"
-    );
+    document.getElementById("saveButton");
+
+
+const revertButton =
+    document.getElementById("revertButton");
+
+
+const previousButton =
+    document.getElementById("previousButton");
+
+
+const nextButton =
+    document.getElementById("nextButton");
 
 
 const statusText =
-    document.getElementById(
-        "status"
-    );
+    document.getElementById("status");
 
 
-const fileCount =
-    document.getElementById(
-        "fileCount"
-    );
+const stats =
+    document.getElementById("stats");
+
+
+const r2Path =
+    document.getElementById("r2Path");
+
+
+const r2Filename =
+    document.getElementById("r2Filename");
+
+
+const r2Size =
+    document.getElementById("r2Size");
+
+
+const r2Type =
+    document.getElementById("r2Type");
 
 
 
 /*
-    LOAD FILE LIST
+    ========================================
+    LOAD FILES
+    ========================================
 */
 
 
-setStatus(
-    "LOADING FILES..."
-);
+loadFiles();
 
 
-fetch("/api/files")
+async function loadFiles() {
 
-    .then(response => {
+
+    setStatus(
+        "LOADING FILES..."
+    );
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                "/api/files"
+            );
 
 
         if (!response.ok) {
@@ -732,80 +1158,28 @@ fetch("/api/files")
         }
 
 
-        return response.json();
-
-    })
-
-
-    .then(files => {
-
-
         allFiles =
-            files.sort(
-                (a, b) =>
-                    a.name.localeCompare(
-                        b.name
-                    )
-            );
+            await response.json();
 
 
-        fileSelect.innerHTML =
-            "";
+
+        /*
+            Sort alphabetically
+        */
 
 
-        const firstOption =
-            document.createElement(
-                "option"
-            );
-
-
-        firstOption.value =
-            "";
-
-
-        firstOption.innerText =
-            "-- SELECT FILE --";
-
-
-        fileSelect.appendChild(
-            firstOption
+        allFiles.sort(
+            (a, b) =>
+                a.name.localeCompare(
+                    b.name
+                )
         );
 
 
-
-        allFiles.forEach(
-            (file, index) => {
+        updateStats();
 
 
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    index;
-
-
-                option.innerText =
-                    file.name;
-
-
-                fileSelect.appendChild(
-                    option
-                );
-
-            }
-        );
-
-
-        fileCount.innerText =
-            allFiles.length +
-            " FILES";
-
-
-        fileInfo.innerText =
-            "Select an R2 object to edit.";
+        applyFilters();
 
 
         setStatus(
@@ -813,14 +1187,633 @@ fetch("/api/files")
         );
 
 
-    })
+    }
+
+    catch (error) {
 
 
-    .catch(error => {
+        fileList.innerHTML =
+            '<div class="no-file">' +
+            'Error loading files.' +
+            '</div>';
 
 
-        fileSelect.innerHTML =
-            "";
+        setStatus(
+            error.message.toUpperCase(),
+            "error"
+        );
+
+
+    }
+
+
+}
+
+
+
+/*
+    ========================================
+    FILE HAS METADATA?
+    ========================================
+*/
+
+
+function hasMetadata(file) {
+
+
+    return Boolean(
+
+        file.title ||
+
+        file.creator ||
+
+        file.description ||
+
+        file.tags ||
+
+        file.year ||
+
+        file.category
+
+    );
+
+
+}
+
+
+
+/*
+    ========================================
+    UPDATE COUNTS
+    ========================================
+*/
+
+
+function updateStats() {
+
+
+    const catalogued =
+        allFiles.filter(
+            hasMetadata
+        ).length;
+
+
+    const uncatalogued =
+        allFiles.length -
+        catalogued;
+
+
+    stats.innerText =
+
+        allFiles.length +
+        " FILES | " +
+
+        catalogued +
+        " CATALOGUED | " +
+
+        uncatalogued +
+        " UNCATALOGUED";
+
+
+}
+
+
+
+/*
+    ========================================
+    SEARCH / FILTER
+    ========================================
+*/
+
+
+searchInput.addEventListener(
+    "input",
+    function() {
+
+        applyFilters();
+
+    }
+);
+
+
+
+function setFilter(filter) {
+
+
+    currentFilter =
+        filter;
+
+
+    document
+        .getElementById("filterAll")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("filterTagged")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("filterUntagged")
+        .classList.remove("active");
+
+
+    if (filter === "all") {
+
+        document
+            .getElementById("filterAll")
+            .classList.add("active");
+
+    }
+
+
+    if (filter === "tagged") {
+
+        document
+            .getElementById("filterTagged")
+            .classList.add("active");
+
+    }
+
+
+    if (filter === "untagged") {
+
+        document
+            .getElementById("filterUntagged")
+            .classList.add("active");
+
+    }
+
+
+    applyFilters();
+
+
+}
+
+
+
+function applyFilters() {
+
+
+    const search =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    visibleFiles =
+        allFiles.filter(
+            file => {
+
+
+                /*
+                    Filter by metadata
+                */
+
+
+                if (
+                    currentFilter ===
+                    "tagged" &&
+                    !hasMetadata(file)
+                ) {
+
+                    return false;
+
+                }
+
+
+                if (
+                    currentFilter ===
+                    "untagged" &&
+                    hasMetadata(file)
+                ) {
+
+                    return false;
+
+                }
+
+
+
+                /*
+                    Search
+                */
+
+
+                if (search !== "") {
+
+
+                    const text = [
+
+                        file.name,
+
+                        file.title,
+
+                        file.creator,
+
+                        file.tags,
+
+                        file.description,
+
+                        file.year,
+
+                        file.category
+
+                    ]
+                    .filter(Boolean)
+                    .join(" ")
+                    .toLowerCase();
+
+
+                    if (
+                        !text.includes(
+                            search
+                        )
+                    ) {
+
+                        return false;
+
+                    }
+
+                }
+
+
+                return true;
+
+
+            }
+        );
+
+
+    renderFileList();
+
+
+}
+
+
+
+/*
+    ========================================
+    RENDER FILE LIST
+    ========================================
+*/
+
+
+function renderFileList() {
+
+
+    fileList.innerHTML =
+        "";
+
+
+    if (
+        visibleFiles.length === 0
+    ) {
+
+
+        fileList.innerHTML =
+            '<div class="no-file">' +
+            'No files found.' +
+            '</div>';
+
+
+        return;
+
+    }
+
+
+
+    visibleFiles.forEach(
+        (file, index) => {
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "file-item";
+
+
+            if (
+                selectedFile &&
+                selectedFile.name ===
+                file.name
+            ) {
+
+                item.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+
+            /*
+                Metadata dot
+            */
+
+
+            const dot =
+                document.createElement(
+                    "span"
+                );
+
+
+            dot.className =
+                "metadata-dot " +
+                (
+                    hasMetadata(file)
+                        ? "complete"
+                        : "empty"
+                );
+
+
+
+            /*
+                File name
+            */
+
+
+            const filename =
+                getFilename(
+                    file.name
+                );
+
+
+            const name =
+                document.createElement(
+                    "span"
+                );
+
+
+            name.className =
+                "file-name";
+
+
+            name.innerText =
+                filename;
+
+
+
+            /*
+                Path
+            */
+
+
+            const path =
+                document.createElement(
+                    "div"
+                );
+
+
+            path.className =
+                "file-path";
+
+
+            path.innerText =
+                file.name;
+
+
+
+            item.appendChild(
+                dot
+            );
+
+
+            item.appendChild(
+                name
+            );
+
+
+            item.appendChild(
+                path
+            );
+
+
+            item.onclick =
+                function() {
+
+
+                    selectFile(
+                        file,
+                        index
+                    );
+
+
+                };
+
+
+            fileList.appendChild(
+                item
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+/*
+    ========================================
+    SELECT FILE
+    ========================================
+*/
+
+
+function selectFile(
+    file,
+    index
+) {
+
+
+    /*
+        Warn if there are
+        unsaved changes
+    */
+
+
+    if (
+        modified &&
+        selectedFile &&
+        selectedFile.name !==
+        file.name
+    ) {
+
+
+        const leave =
+            confirm(
+                "You have unsaved changes.\n\n" +
+                "Discard them and open another file?"
+            );
+
+
+        if (!leave) {
+
+            return;
+
+        }
+
+    }
+
+
+
+    selectedFile =
+        file;
+
+
+    selectedIndex =
+        index;
+
+
+
+    /*
+        Store original metadata
+    */
+
+
+    originalMetadata = {
+
+        title:
+            file.title || "",
+
+        creator:
+            file.creator || "",
+
+        tags:
+            file.tags || "",
+
+        description:
+            file.description || "",
+
+        year:
+            file.year || "",
+
+        category:
+            file.category || ""
+
+    };
+
+
+
+    /*
+        Fill editor
+    */
+
+
+    titleInput.value =
+        originalMetadata.title;
+
+
+    creatorInput.value =
+        originalMetadata.creator;
+
+
+    tagsInput.value =
+        originalMetadata.tags;
+
+
+    descriptionInput.value =
+        originalMetadata.description;
+
+
+    yearInput.value =
+        originalMetadata.year;
+
+
+    setCategoryValue(
+        originalMetadata.category
+    );
+
+
+
+    /*
+        R2 info
+    */
+
+
+    r2Path.innerText =
+        file.name;
+
+
+    r2Filename.innerText =
+        getFilename(
+            file.name
+        );
+
+
+    r2Size.innerText =
+        file.size;
+
+
+    r2Type.innerText =
+        getExtension(
+            file.name
+        ).toUpperCase() ||
+        "FILE";
+
+
+
+    emptyEditor.style.display =
+        "none";
+
+
+    editorContent.style.display =
+        "block";
+
+
+    modified =
+        false;
+
+
+    updateNavigationButtons();
+
+
+    renderFileList();
+
+
+    setStatus(
+        "FILE LOADED"
+    );
+
+
+}
+
+
+
+/*
+    ========================================
+    CATEGORY
+    ========================================
+*/
+
+
+function setCategoryValue(
+    value
+) {
+
+
+    /*
+        If the database contains a category
+        not currently in the dropdown,
+        temporarily add it.
+    */
+
+
+    if (
+        value !== "" &&
+        !Array.from(
+            categoryInput.options
+        ).some(
+            option =>
+                option.value === value
+        )
+    ) {
 
 
         const option =
@@ -829,104 +1822,62 @@ fetch("/api/files")
             );
 
 
+        option.value =
+            value;
+
+
         option.innerText =
-            "ERROR LOADING FILES";
+            value;
 
 
-        fileSelect.appendChild(
+        categoryInput.appendChild(
             option
         );
 
 
-        fileInfo.innerText =
-            error.message;
+    }
 
 
-        setStatus(
-            "ERROR",
-            "error"
-        );
+    categoryInput.value =
+        value;
 
 
-    });
+}
 
 
 
 /*
-    FILE SELECTED
+    ========================================
+    MODIFIED DETECTION
+    ========================================
 */
 
 
-fileSelect.addEventListener(
-    "change",
-    function() {
+const editableFields = [
+
+    titleInput,
+    creatorInput,
+    tagsInput,
+    descriptionInput,
+    yearInput,
+    categoryInput
+
+];
 
 
-        const index =
-            fileSelect.value;
+editableFields.forEach(
+    field => {
 
 
-        if (index === "") {
+        field.addEventListener(
+            "input",
+            checkModified
+        );
 
 
-            clearFields();
-
-
-            fileInfo.innerText =
-                "Select an R2 object to edit.";
-
-
-            setStatus(
-                "READY"
-            );
-
-
-            return;
-
-        }
-
-
-        const file =
-            allFiles[index];
-
-
-        /*
-            Load existing D1 metadata
-        */
-
-
-        titleInput.value =
-            file.title || "";
-
-
-        creatorInput.value =
-            file.creator || "";
-
-
-        tagsInput.value =
-            file.tags || "";
-
-
-        descriptionInput.value =
-            file.description || "";
-
-
-        yearInput.value =
-            file.year || "";
-
-
-        categoryInput.value =
-            file.category || "";
-
-
-        fileInfo.innerText =
-            file.name +
-            "  |  " +
-            file.size;
-
-
-        setStatus(
-            "FILE LOADED"
+        field.addEventListener(
+            "change",
+            checkModified
         );
 
 
@@ -935,23 +1886,237 @@ fileSelect.addEventListener(
 
 
 
+function checkModified() {
+
+
+    if (
+        !selectedFile ||
+        !originalMetadata
+    ) {
+
+        return;
+
+    }
+
+
+    modified =
+
+        titleInput.value !==
+        String(
+            originalMetadata.title
+        )
+
+        ||
+
+        creatorInput.value !==
+        String(
+            originalMetadata.creator
+        )
+
+        ||
+
+        tagsInput.value !==
+        String(
+            originalMetadata.tags
+        )
+
+        ||
+
+        descriptionInput.value !==
+        String(
+            originalMetadata.description
+        )
+
+        ||
+
+        yearInput.value !==
+        String(
+            originalMetadata.year
+        )
+
+        ||
+
+        categoryInput.value !==
+        String(
+            originalMetadata.category
+        );
+
+
+    if (modified) {
+
+
+        setStatus(
+            "MODIFIED",
+            "modified"
+        );
+
+
+    }
+
+    else {
+
+
+        setStatus(
+            "READY"
+        );
+
+
+    }
+
+
+}
+
+
+
 /*
+    ========================================
+    REVERT
+    ========================================
+*/
+
+
+function revertChanges() {
+
+
+    if (
+        !selectedFile ||
+        !originalMetadata
+    ) {
+
+        return;
+
+    }
+
+
+    titleInput.value =
+        originalMetadata.title;
+
+
+    creatorInput.value =
+        originalMetadata.creator;
+
+
+    tagsInput.value =
+        originalMetadata.tags;
+
+
+    descriptionInput.value =
+        originalMetadata.description;
+
+
+    yearInput.value =
+        originalMetadata.year;
+
+
+    setCategoryValue(
+        originalMetadata.category
+    );
+
+
+    modified =
+        false;
+
+
+    setStatus(
+        "CHANGES REVERTED"
+    );
+
+
+}
+
+
+
+/*
+    ========================================
+    PREVIOUS / NEXT
+    ========================================
+*/
+
+
+function previousFile() {
+
+
+    if (
+        selectedIndex <= 0
+    ) {
+
+        return;
+
+    }
+
+
+    selectFile(
+        visibleFiles[
+            selectedIndex - 1
+        ],
+        selectedIndex - 1
+    );
+
+
+}
+
+
+
+function nextFile() {
+
+
+    if (
+        selectedIndex < 0 ||
+        selectedIndex >=
+        visibleFiles.length - 1
+    ) {
+
+        return;
+
+    }
+
+
+    selectFile(
+        visibleFiles[
+            selectedIndex + 1
+        ],
+        selectedIndex + 1
+    );
+
+
+}
+
+
+
+function updateNavigationButtons() {
+
+
+    previousButton.disabled =
+        selectedIndex <= 0;
+
+
+    nextButton.disabled =
+
+        selectedIndex < 0 ||
+
+        selectedIndex >=
+        visibleFiles.length - 1;
+
+
+}
+
+
+
+/*
+    ========================================
     SAVE METADATA
+    ========================================
 */
 
 
 async function saveMetadata() {
 
 
-    const index =
-        fileSelect.value;
-
-
-    if (index === "") {
+    if (!selectedFile) {
 
 
         setStatus(
-            "SELECT A FILE FIRST",
+            "SELECT A FILE",
             "error"
         );
 
@@ -960,9 +2125,6 @@ async function saveMetadata() {
 
     }
 
-
-    const file =
-        allFiles[index];
 
 
     saveButton.disabled =
@@ -1000,7 +2162,7 @@ async function saveMetadata() {
                         JSON.stringify({
 
                             r2_key:
-                                file.name,
+                                selectedFile.name,
 
                             title:
                                 titleInput.value.trim(),
@@ -1018,7 +2180,7 @@ async function saveMetadata() {
                                 yearInput.value,
 
                             category:
-                                categoryInput.value.trim()
+                                categoryInput.value
 
                         })
 
@@ -1026,50 +2188,124 @@ async function saveMetadata() {
             );
 
 
-        const result =
-            await response.json();
+
+        /*
+            Read response safely
+        */
+
+
+        const text =
+            await response.text();
+
+
+        let result = {};
+
+
+        if (text) {
+
+
+            try {
+
+                result =
+                    JSON.parse(text);
+
+            }
+
+            catch {
+
+                throw new Error(
+                    "Server returned an invalid response."
+                );
+
+            }
+
+
+        }
+
 
 
         if (!response.ok) {
 
 
             throw new Error(
+
                 result.message ||
+
                 "Could not save metadata."
+
             );
+
 
         }
 
 
 
         /*
-            Update local copy
+            Update local file object
         */
 
 
-        file.title =
+        selectedFile.title =
             titleInput.value.trim();
 
 
-        file.creator =
+        selectedFile.creator =
             creatorInput.value.trim();
 
 
-        file.tags =
+        selectedFile.tags =
             tagsInput.value.trim();
 
 
-        file.description =
+        selectedFile.description =
             descriptionInput.value.trim();
 
 
-        file.year =
+        selectedFile.year =
             yearInput.value;
 
 
-        file.category =
-            categoryInput.value.trim();
+        selectedFile.category =
+            categoryInput.value;
 
+
+
+        /*
+            Save new original values
+        */
+
+
+        originalMetadata = {
+
+            title:
+                selectedFile.title,
+
+            creator:
+                selectedFile.creator,
+
+            tags:
+                selectedFile.tags,
+
+            description:
+                selectedFile.description,
+
+            year:
+                selectedFile.year,
+
+            category:
+                selectedFile.category
+
+        };
+
+
+        modified =
+            false;
+
+
+        updateStats();
+
+
+        applyFilters();
 
 
         setStatus(
@@ -1079,7 +2315,6 @@ async function saveMetadata() {
 
 
     }
-
 
     catch (error) {
 
@@ -1100,40 +2335,53 @@ async function saveMetadata() {
     saveButton.innerText =
         "Save Metadata";
 
+
 }
 
 
 
 /*
-    CLEAR FIELDS
+    ========================================
+    HELPERS
+    ========================================
 */
 
 
-function clearFields() {
+function getFilename(path) {
 
 
-    titleInput.value =
-        "";
+    const parts =
+        path.split("/");
 
 
-    creatorInput.value =
-        "";
+    return parts[
+        parts.length - 1
+    ];
 
 
-    tagsInput.value =
-        "";
+}
 
 
-    descriptionInput.value =
-        "";
+
+function getExtension(path) {
 
 
-    yearInput.value =
-        "";
+    const filename =
+        getFilename(path);
 
 
-    categoryInput.value =
-        "";
+    if (
+        !filename.includes(".")
+    ) {
+
+        return "";
+
+    }
+
+
+    return filename
+        .split(".")
+        .pop();
 
 
 }
@@ -1141,7 +2389,9 @@ function clearFields() {
 
 
 /*
-    STATUS BAR
+    ========================================
+    STATUS
+    ========================================
 */
 
 
@@ -1159,27 +2409,68 @@ function setStatus(
         "";
 
 
-    if (type === "success") {
-
+    if (
+        type === "success"
+    ) {
 
         statusText.className =
             "status-success";
 
-
     }
 
 
-    if (type === "error") {
-
+    if (
+        type === "error"
+    ) {
 
         statusText.className =
             "status-error";
 
+    }
+
+
+    if (
+        type === "modified"
+    ) {
+
+        statusText.className =
+            "status-modified";
 
     }
 
 
 }
+
+
+
+/*
+    ========================================
+    WARN BEFORE LEAVING PAGE
+    ========================================
+*/
+
+
+window.addEventListener(
+    "beforeunload",
+    function(event) {
+
+
+        if (!modified) {
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        event.returnValue =
+            "";
+
+
+    }
+);
 
 
 </script>
