@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RemixBay Files</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        .header {
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            padding: 20px 40px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .back {
+            margin-bottom: 15px;
+        }
+
+        .back button {
+            padding: 8px 14px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .path {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .file-list {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .file {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .file:last-child {
+            border-bottom: none;
+        }
+
+        .file:hover {
+            background-color: #f7f7f7;
+        }
+
+        .icon {
+            width: 40px;
+            font-size: 22px;
+        }
+
+        .name {
+            flex: 1;
+            font-size: 16px;
+        }
+
+        .size {
+            width: 110px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        button.open,
+        a.download {
+            border: none;
+            background: #0066cc;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+
+        button.open:hover,
+        a.download:hover {
+            background: #0052a3;
+        }
+
+        .loading {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .empty {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        <h1>RemixBay</h1>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="back">
+            <button onclick="goBack()">← Back</button>
+        </div>
+
+        <div class="path" id="path">
+            /
+        </div>
+
+        <div class="file-list">
+
+            <div class="loading" id="loading">
+                Loading files...
+            </div>
+
+            <div id="files"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const API_URL = "/api/files";
+
+        const filesContainer =
+            document.getElementById("files");
+
+        const loading =
+            document.getElementById("loading");
+
+        const pathDisplay =
+            document.getElementById("path");
+
+
+        let allFiles = [];
+
+        let currentPath = "";
+
+
+        fetch(API_URL)
+
+            .then(response => response.json())
+
+            .then(files => {
+
+                allFiles = files;
+
+                loading.style.display = "none";
+
+                showFolder("");
+
+            })
+
+            .catch(error => {
+
+                loading.innerText =
+                    "Could not load files.";
+
+                console.log(error);
+
+            });
+
+
+        function showFolder(path) {
+
+            currentPath = path;
+
+            filesContainer.innerHTML = "";
+
+            pathDisplay.innerText =
+                "/" + path;
+
+
+            const items = {};
+
+
+            allFiles.forEach(file => {
+
+                if (!file.name.startsWith(path)) {
+                    return;
+                }
+
+
+                let remaining =
+                    file.name.substring(path.length);
+
+
+                if (remaining.startsWith("/")) {
+                    remaining =
+                        remaining.substring(1);
+                }
+
+
+                if (remaining === "") {
+                    return;
+                }
+
+
+                const slash =
+                    remaining.indexOf("/");
+
+
+                if (slash !== -1) {
+
+                    const folder =
+                        remaining.substring(0, slash);
+
+                    items[folder] = {
+                        folder: true,
+                        name: folder
+                    };
+
+                }
+
+                else {
+
+                    items[remaining] = {
+                        folder: false,
+                        file: file
+                    };
+
+                }
+
+            });
+
+
+            const itemNames =
+                Object.keys(items).sort();
+
+
+            if (itemNames.length === 0) {
+
+                filesContainer.innerHTML =
+                    '<div class="empty">This folder is empty.</div>';
+
+                return;
+            }
+
+
+            itemNames.forEach(name => {
+
+                const item = items[name];
+
+
+                const div =
+                    document.createElement("div");
+
+                div.className = "file";
+
+
+                if (item.folder) {
+
+                    div.innerHTML = `
+
+                        <div class="icon">📁</div>
+
+                        <div class="name">
+                            ${item.name}
+                        </div>
+
+                        <div class="size">
+                        </div>
+
+                        <button class="open">
+                            Open
+                        </button>
+
+                    `;
+
+
+                    div.querySelector("button")
+                        .onclick = function() {
+
+                            showFolder(
+                                currentPath +
+                                item.name +
+                                "/"
+                            );
+
+                        };
+
+                }
+
+                else {
+
+                    const file =
+                        item.file;
+
+                    const extension =
+                        file.name
+                            .split(".")
+                            .pop()
+                            .toLowerCase();
+
+
+                    let icon = "📄";
+
+
+                    if (extension === "mp3") {
+                        icon = "🎵";
+                    }
+
+                    else if (extension === "mp4") {
+                        icon = "🎬";
+                    }
+
+                    else if (extension === "flp") {
+                        icon = "🎹";
+                    }
+
+                    else if (extension === "zip") {
+                        icon = "📦";
+                    }
+
+
+                    div.innerHTML = `
+
+                        <div class="icon">
+                            ${icon}
+                        </div>
+
+                        <div class="name">
+                            ${name}
+                        </div>
+
+                        <div class="size">
+                            ${file.size}
+                        </div>
+
+                    `;
+
+
+                    if (
+                        extension === "mp3" ||
+                        extension === "mp4"
+                    ) {
+
+                        const play =
+                            document.createElement("button");
+
+                        play.className = "open";
+
+                        play.innerText = "Play";
+
+
+                        play.onclick = function() {
+
+                            window.location.href =
+                                "player.html?file=" +
+                                encodeURIComponent(file.url);
+
+                        };
+
+
+                        div.appendChild(play);
+
+                    }
+
+
+                    const download =
+                        document.createElement("a");
+
+                    download.className =
+                        "download";
+
+                    download.innerText =
+                        "Download";
+
+                    download.href =
+                        file.url;
+
+                    download.target =
+                        "_blank";
+
+
+                    div.appendChild(download);
+
+                }
+
+
+                filesContainer.appendChild(div);
+
+            });
+
+        }
+
+
+        function goBack() {
+
+            if (currentPath === "") {
+                return;
+            }
+
+
+            const parts =
+                currentPath
+                    .split("/")
+                    .filter(Boolean);
+
+
+            parts.pop();
+
+
+            let newPath =
+                parts.join("/");
+
+
+            if (newPath !== "") {
+                newPath += "/";
+            }
+
+
+            showFolder(newPath);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
