@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+
+            background-image: url("bgabout.png");
+            background-size: cover;
+            background-position: center;
+
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .text {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>About</h1>
+
+    <div class="text">
+        <p>
+            RemixBay is a website dedicated to hosting Sparta Remixes in one easy and convenient way to access.
+            We host finished remixes in their entirety, collab parts, scraps, base FLPs, and remix FLPs.
+            No copyrighted material is allowed to be submitted or hosted on this website.
+            Everything on here falls under fair use and is transformative enough to count as its own material.
+            To submit files not already on here, please contact
+            <a href="mailto:submissions@remixbay.com">submissions@remixbay.com</a>
+        </p>
+
+        <p>
+            For any takedown requests of your own content, please contact
+            <a href="mailto:support@remixbay.com">support@remixbay.com</a>.
+            And we will take down whatever it is, or remove your contribution and reupload.
+            This applies within reason.
+        </p>
+    </div>
+
+</body>
+</html>

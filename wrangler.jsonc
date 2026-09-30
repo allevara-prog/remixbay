@@ -1,18 +1,26 @@
 {
-  "name": "remixbay",
-  "main": "src/index.js",
-  "compatibility_date": "2026-09-29",
-
-  "assets": {
-    "directory": ".",
-    "binding": "ASSETS",
-    "run_worker_first": ["/api/*"]
-  },
-
-  "r2_buckets": [
-    {
-      "binding": "MY_BUCKET",
-      "bucket_name": "remixbay"
-    }
-  ]
+	"name": "remixbay",
+	"main": "src/index.js",
+	"compatibility_date": "2026-09-29",
+	"assets": {
+		"directory": ".",
+		"binding": "ASSETS",
+		"run_worker_first": [
+			"/api/*"
+		]
+	},
+	"r2_buckets": [
+		{
+			"binding": "MY_BUCKET",
+			"bucket_name": "remixbay"
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "remixbay_db",
+			"database_name": "remixbay-db",
+			"database_id": "bc12f828-28c5-43d2-97e2-1f44cbbe083d",
+			"remote": true
+		}
+	]
 }
