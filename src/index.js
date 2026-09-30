@@ -1,3 +1,6 @@
+import { AwsClient } from "aws4fetch";
+
+
 export default {
 
     async fetch(request, env) {
@@ -326,11 +329,6 @@ export default {
 
 
 
-                /*
-                    Tell admin.html
-                    that it worked
-                */
-
                 return jsonResponse(
                     {
                         success: true,
@@ -364,14 +362,23 @@ export default {
 
         }
 
+
+
         /*
             ========================================
-            UPLOAD FILE TO R2
+            CREATE DIRECT R2 UPLOAD URL
             ========================================
+
+            The actual file will NOT pass
+            through this Worker.
+
+            The Worker only creates a temporary
+            signed URL that allows admin.html
+            to upload directly to R2.
         */
 
         if (
-            url.pathname === "/api/admin/upload" &&
+            url.pathname === "/api/admin/upload-url" &&
             request.method === "POST"
         ) {
 
@@ -379,36 +386,26 @@ export default {
 
 
                 /*
-                    Get upload information
+                    Read upload information
+                    from admin.html
                 */
 
-                const formData =
-                    await request.formData();
+                const data =
+                    await request.json();
 
-
-                const file =
-                    formData.get("file");
-
-
-                let folder =
-                    formData.get("folder") || "";
 
 
                 /*
-                    Make sure a file
-                    was selected
+                    A filename is required
                 */
 
-                if (
-                    !file ||
-                    typeof file === "string"
-                ) {
+                if (!data.filename) {
 
                     return jsonResponse(
                         {
                             success: false,
                             message:
-                                "No file selected."
+                                "No filename supplied."
                         },
                         400
                     );
@@ -423,9 +420,15 @@ export default {
                     Example:
 
                     /remixes/
-                    becomes
+
+                    becomes:
+
                     remixes
                 */
+
+                let folder =
+                    data.folder || "";
+
 
                 folder =
                     folder
@@ -459,11 +462,23 @@ export default {
 
 
                 /*
+                    Prevent the filename itself
+                    from creating another path
+                */
+
+                const filename =
+                    String(data.filename)
+                        .replace(/\//g, "_")
+                        .replace(/\\/g, "_");
+
+
+
+                /*
                     Build R2 object key
                 */
 
                 let r2Key =
-                    file.name;
+                    filename;
 
 
                 if (folder !== "") {
@@ -471,15 +486,15 @@ export default {
                     r2Key =
                         folder +
                         "/" +
-                        file.name;
+                        filename;
 
                 }
 
 
 
                 /*
-                    Don't accidentally
-                    overwrite an existing file
+                    Don't accidentally overwrite
+                    an existing file
                 */
 
                 const existing =
@@ -504,42 +519,125 @@ export default {
 
 
                 /*
-                    Upload to R2
+                    Determine Content-Type.
+
+                    admin.html must use this
+                    exact Content-Type when it
+                    uploads the file.
                 */
 
-                await env.MY_BUCKET.put(
-                    r2Key,
-                    file.stream(),
-                    {
-                        httpMetadata: {
-
-                            contentType:
-                                file.type ||
-                                "application/octet-stream"
-
-                        }
-                    }
-                );
+                const contentType =
+                    data.contentType ||
+                    "application/octet-stream";
 
 
 
                 /*
-                    Return information
-                    to admin.html
+                    Create AWS-compatible
+                    signing client for R2
+                */
+
+                const client =
+                    new AwsClient({
+
+                        service:
+                            "s3",
+
+                        region:
+                            "auto",
+
+                        accessKeyId:
+                            env.R2_ACCESS_KEY_ID,
+
+                        secretAccessKey:
+                            env.R2_SECRET_ACCESS_KEY
+
+                    });
+
+
+
+                /*
+                    Build the private R2
+                    S3 API URL.
+
+                    The bucket name is:
+                    remixbay
+                */
+
+                const r2Url =
+                    "https://" +
+                    env.R2_ACCOUNT_ID +
+                    ".r2.cloudflarestorage.com/" +
+                    "remixbay/" +
+                    r2Key
+                        .split("/")
+                        .map(encodeURIComponent)
+                        .join("/") +
+                    "?X-Amz-Expires=3600";
+
+
+
+                /*
+                    Sign the PUT request.
+
+                    signQuery puts the temporary
+                    authorization information
+                    into the URL.
+
+                    It expires after one hour.
+                */
+
+                const signedRequest =
+                    await client.sign(
+
+                        new Request(
+                            r2Url,
+                            {
+                                method:
+                                    "PUT",
+
+                                headers: {
+
+                                    "Content-Type":
+                                        contentType
+
+                                }
+                            }
+                        ),
+
+                        {
+                            aws: {
+
+                                signQuery:
+                                    true
+
+                            }
+                        }
+
+                    );
+
+
+
+                /*
+                    Give admin.html the temporary
+                    upload URL.
+
+                    No secret keys are returned.
                 */
 
                 return jsonResponse(
                     {
-                        success: true,
+                        success:
+                            true,
 
-                        message:
-                            "File uploaded.",
+                        uploadUrl:
+                            signedRequest.url.toString(),
 
-                        name:
+                        key:
                             r2Key,
 
-                        size:
-                            file.size
+                        contentType:
+                            contentType
                     }
                 );
 
@@ -549,15 +647,18 @@ export default {
             catch (error) {
 
 
-                console.log(error);
+                console.log(
+                    error
+                );
 
 
                 return jsonResponse(
                     {
-                        success: false,
+                        success:
+                            false,
 
                         message:
-                            "Upload failed: " +
+                            "Could not create upload URL: " +
                             error.message
                     },
                     500
@@ -566,6 +667,8 @@ export default {
             }
 
         }
+
+
 
         /*
             ========================================
@@ -584,9 +687,10 @@ export default {
 
 
 /*
+    ========================================
     JSON RESPONSE
+    ========================================
 */
-
 
 function jsonResponse(
     data,
@@ -612,9 +716,10 @@ function jsonResponse(
 
 
 /*
+    ========================================
     FORMAT FILE SIZE
+    ========================================
 */
-
 
 function formatBytes(bytes) {
 
@@ -630,7 +735,8 @@ function formatBytes(bytes) {
         "Bytes",
         "KB",
         "MB",
-        "GB"
+        "GB",
+        "TB"
     ];
 
 
