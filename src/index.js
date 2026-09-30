@@ -6,19 +6,24 @@ export default {
 
 
         /*
-            API - Get all files
+            ========================================
+            GET ALL FILES
+            ========================================
         */
 
-        if (url.pathname === "/api/files") {
-
-            /*
-                Get files from R2
-            */
+        if (
+            url.pathname === "/api/files" &&
+            request.method === "GET"
+        ) {
 
             let cursor;
 
             const objects = [];
 
+
+            /*
+                Get files from R2
+            */
 
             do {
 
@@ -62,8 +67,27 @@ export default {
 
 
             /*
-                Match D1 information
-                with R2 files
+                Make metadata easier
+                to look up
+            */
+
+            const metadataByKey =
+                new Map();
+
+
+            metadata.forEach(item => {
+
+                metadataByKey.set(
+                    item.r2_key,
+                    item
+                );
+
+            });
+
+
+
+            /*
+                Combine R2 + D1
             */
 
             const files =
@@ -71,18 +95,12 @@ export default {
 
 
                     const info =
-                        metadata.find(
-                            item =>
-                                item.r2_key ===
-                                object.key
+                        metadataByKey.get(
+                            object.key
                         );
 
 
                     return {
-
-                        /*
-                            R2 information
-                        */
 
                         name:
                             object.key,
@@ -98,11 +116,6 @@ export default {
                                 .split("/")
                                 .map(encodeURIComponent)
                                 .join("/"),
-
-
-                        /*
-                            D1 information
-                        */
 
                         title:
                             info?.title || "",
@@ -128,23 +141,8 @@ export default {
 
 
 
-            /*
-                Send everything to website
-            */
-
-            return new Response(
-                JSON.stringify(files),
-                {
-                    headers: {
-
-                        "Content-Type":
-                            "application/json",
-
-                        "Access-Control-Allow-Origin":
-                            "*"
-
-                    }
-                }
+            return jsonResponse(
+                files
             );
 
         }
@@ -152,8 +150,226 @@ export default {
 
 
         /*
-            Everything else is the
-            normal website
+            ========================================
+            SAVE METADATA
+            ========================================
+        */
+
+        if (
+            url.pathname === "/api/admin/save" &&
+            request.method === "POST"
+        ) {
+
+            try {
+
+
+                /*
+                    Read information sent
+                    from admin.html
+                */
+
+                const data =
+                    await request.json();
+
+
+
+                /*
+                    A file must be selected
+                */
+
+                if (!data.r2_key) {
+
+                    return jsonResponse(
+                        {
+                            success: false,
+                            message:
+                                "No file selected."
+                        },
+                        400
+                    );
+
+                }
+
+
+
+                /*
+                    Make sure this file
+                    really exists in R2
+                */
+
+                const object =
+                    await env.MY_BUCKET.head(
+                        data.r2_key
+                    );
+
+
+                if (!object) {
+
+                    return jsonResponse(
+                        {
+                            success: false,
+                            message:
+                                "File does not exist in R2."
+                        },
+                        404
+                    );
+
+                }
+
+
+
+                /*
+                    Handle year
+                */
+
+                let year = null;
+
+
+                if (
+                    data.year !== "" &&
+                    data.year !== null &&
+                    data.year !== undefined
+                ) {
+
+                    year =
+                        parseInt(
+                            data.year,
+                            10
+                        );
+
+
+                    if (isNaN(year)) {
+
+                        year = null;
+
+                    }
+
+                }
+
+
+
+                /*
+                    Save metadata to D1
+
+                    If metadata already exists
+                    for this R2 file, update it.
+                */
+
+                await env.remixbay_db
+                    .prepare(`
+
+                        INSERT INTO files
+                        (
+                            r2_key,
+                            title,
+                            creator,
+                            description,
+                            tags,
+                            year,
+                            category
+                        )
+
+                        VALUES
+                        (
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?,
+                            ?
+                        )
+
+                        ON CONFLICT(r2_key)
+
+                        DO UPDATE SET
+
+                            title =
+                                excluded.title,
+
+                            creator =
+                                excluded.creator,
+
+                            description =
+                                excluded.description,
+
+                            tags =
+                                excluded.tags,
+
+                            year =
+                                excluded.year,
+
+                            category =
+                                excluded.category
+
+                    `)
+
+                    .bind(
+
+                        data.r2_key,
+
+                        data.title || "",
+
+                        data.creator || "",
+
+                        data.description || "",
+
+                        data.tags || "",
+
+                        year,
+
+                        data.category || ""
+
+                    )
+
+                    .run();
+
+
+
+                /*
+                    Tell admin.html
+                    that it worked
+                */
+
+                return jsonResponse(
+                    {
+                        success: true,
+                        message:
+                            "Metadata saved."
+                    }
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.log(
+                    error
+                );
+
+
+                return jsonResponse(
+                    {
+                        success: false,
+                        message:
+                            "Error saving metadata: " +
+                            error.message
+                    },
+                    500
+                );
+
+            }
+
+        }
+
+
+
+        /*
+            ========================================
+            NORMAL WEBSITE
+            ========================================
         */
 
         return env.ASSETS.fetch(
@@ -167,8 +383,35 @@ export default {
 
 
 /*
-    Convert bytes into
-    KB / MB / GB
+    JSON RESPONSE
+*/
+
+
+function jsonResponse(
+    data,
+    status = 200
+) {
+
+    return new Response(
+        JSON.stringify(data),
+        {
+            status: status,
+
+            headers: {
+
+                "Content-Type":
+                    "application/json"
+
+            }
+        }
+    );
+
+}
+
+
+
+/*
+    FORMAT FILE SIZE
 */
 
 
