@@ -29,7 +29,7 @@ export default {
                 return {
                     name: object.key,
                     size: formatBytes(object.size),
-                    url: "YOUR_R2_PUBLIC_URL/" +
+                    url: "https://pub-5dd4827a6086430ba3e6db4da1b69ce8.r2.dev/" +
                         object.key
                             .split("/")
                             .map(encodeURIComponent)
