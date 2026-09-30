@@ -364,7 +364,208 @@ export default {
 
         }
 
+        /*
+            ========================================
+            UPLOAD FILE TO R2
+            ========================================
+        */
 
+        if (
+            url.pathname === "/api/admin/upload" &&
+            request.method === "POST"
+        ) {
+
+            try {
+
+
+                /*
+                    Get upload information
+                */
+
+                const formData =
+                    await request.formData();
+
+
+                const file =
+                    formData.get("file");
+
+
+                let folder =
+                    formData.get("folder") || "";
+
+
+                /*
+                    Make sure a file
+                    was selected
+                */
+
+                if (
+                    !file ||
+                    typeof file === "string"
+                ) {
+
+                    return jsonResponse(
+                        {
+                            success: false,
+                            message:
+                                "No file selected."
+                        },
+                        400
+                    );
+
+                }
+
+
+
+                /*
+                    Clean folder path
+
+                    Example:
+
+                    /remixes/
+                    becomes
+                    remixes
+                */
+
+                folder =
+                    folder
+                        .trim()
+                        .replace(/^\/+/, "")
+                        .replace(/\/+$/, "");
+
+
+
+                /*
+                    Prevent suspicious
+                    folder paths
+                */
+
+                if (
+                    folder.includes("..") ||
+                    folder.includes("\\")
+                ) {
+
+                    return jsonResponse(
+                        {
+                            success: false,
+                            message:
+                                "Invalid folder path."
+                        },
+                        400
+                    );
+
+                }
+
+
+
+                /*
+                    Build R2 object key
+                */
+
+                let r2Key =
+                    file.name;
+
+
+                if (folder !== "") {
+
+                    r2Key =
+                        folder +
+                        "/" +
+                        file.name;
+
+                }
+
+
+
+                /*
+                    Don't accidentally
+                    overwrite an existing file
+                */
+
+                const existing =
+                    await env.MY_BUCKET.head(
+                        r2Key
+                    );
+
+
+                if (existing) {
+
+                    return jsonResponse(
+                        {
+                            success: false,
+                            message:
+                                "A file already exists at this path."
+                        },
+                        409
+                    );
+
+                }
+
+
+
+                /*
+                    Upload to R2
+                */
+
+                await env.MY_BUCKET.put(
+                    r2Key,
+                    file.stream(),
+                    {
+                        httpMetadata: {
+
+                            contentType:
+                                file.type ||
+                                "application/octet-stream"
+
+                        }
+                    }
+                );
+
+
+
+                /*
+                    Return information
+                    to admin.html
+                */
+
+                return jsonResponse(
+                    {
+                        success: true,
+
+                        message:
+                            "File uploaded.",
+
+                        name:
+                            r2Key,
+
+                        size:
+                            file.size
+                    }
+                );
+
+
+            }
+
+            catch (error) {
+
+
+                console.log(error);
+
+
+                return jsonResponse(
+                    {
+                        success: false,
+
+                        message:
+                            "Upload failed: " +
+                            error.message
+                    },
+                    500
+                );
+
+            }
+
+        }
 
         /*
             ========================================

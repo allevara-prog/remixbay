@@ -12,6 +12,122 @@
 
 <style>
 
+/* ==============================
+   UPLOAD WINDOW
+   ============================== */
+
+.upload-overlay {
+    display: none;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+.upload-window {
+    width: 500px;
+
+    background: #363636;
+
+    border: 1px solid #111111;
+
+    box-shadow:
+        2px 2px 0 #111111;
+}
+
+.upload-titlebar {
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 8px;
+
+    background: #494949;
+
+    border-bottom: 1px solid #171717;
+
+    font-weight: bold;
+}
+
+.close-button {
+    margin-left: auto;
+
+    min-width: 30px;
+
+    height: 27px;
+
+    padding: 0;
+
+    border: 0;
+
+    border-left: 1px solid #222222;
+
+    background: #444444;
+}
+
+.close-button:hover {
+    background: #555555;
+}
+
+.upload-content {
+    padding: 12px;
+}
+
+.upload-destination {
+    margin-top: 10px;
+
+    padding: 7px;
+
+    background: #292929;
+
+    border: 1px solid #1a1a1a;
+
+    color: #999999;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 11px;
+
+    word-break: break-all;
+}
+
+.upload-buttons {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 5px;
+
+    margin-top: 12px;
+
+    padding-top: 8px;
+
+    border-top: 1px solid #202020;
+}
+
+@media (max-width: 550px) {
+
+    .upload-window {
+        width: calc(100% - 20px);
+    }
+
+}
+
 * {
     box-sizing: border-box;
 }
@@ -603,21 +719,28 @@ button:disabled {
 
     <!-- MENU -->
 
-    <div class="menu">
+<div class="menu">
 
-        <a href="index.html">
-            Home
-        </a>
+    <a href="index.html">
+        Home
+    </a>
 
-        <a href="files.html">
-            Files
-        </a>
+    <a href="files.html">
+        Files
+    </a>
 
-        <a href="about.html">
-            About
-        </a>
+    <a href="about.html">
+        About
+    </a>
 
-    </div>
+    <a href="#"
+       onclick="openUpload(); return false;">
+
+        Upload
+
+    </a>
+
+</div>
 
 
     <!-- WORKSPACE -->
@@ -1010,6 +1133,408 @@ button:disabled {
 
 <script>
 
+/*
+    ========================================
+    UPLOAD
+    ========================================
+*/
+
+
+const uploadOverlay =
+    document.getElementById(
+        "uploadOverlay"
+    );
+
+
+const uploadFileInput =
+    document.getElementById(
+        "uploadFile"
+    );
+
+
+const uploadFolderInput =
+    document.getElementById(
+        "uploadFolder"
+    );
+
+
+const uploadButton =
+    document.getElementById(
+        "uploadButton"
+    );
+
+
+const uploadDestination =
+    document.getElementById(
+        "uploadDestination"
+    );
+
+
+
+/*
+    OPEN WINDOW
+*/
+
+
+function openUpload() {
+
+
+    uploadOverlay.style.display =
+        "flex";
+
+
+    uploadFileInput.value =
+        "";
+
+
+    uploadFolderInput.value =
+        "";
+
+
+    updateUploadDestination();
+
+
+    uploadFileInput.focus();
+
+
+}
+
+
+
+/*
+    CLOSE WINDOW
+*/
+
+
+function closeUpload() {
+
+
+    uploadOverlay.style.display =
+        "none";
+
+
+}
+
+
+
+/*
+    SHOW DESTINATION
+*/
+
+
+function updateUploadDestination() {
+
+
+    const file =
+        uploadFileInput.files[0];
+
+
+    let folder =
+        uploadFolderInput.value
+            .trim()
+            .replace(/^\/+/, "")
+            .replace(/\/+$/, "");
+
+
+    let destination =
+        "/";
+
+
+    if (folder !== "") {
+
+        destination +=
+            folder +
+            "/";
+
+    }
+
+
+    if (file) {
+
+        destination +=
+            file.name;
+
+    }
+
+
+    uploadDestination.innerText =
+        "DESTINATION: " +
+        destination;
+
+
+}
+
+
+
+uploadFileInput.addEventListener(
+    "change",
+    updateUploadDestination
+);
+
+
+uploadFolderInput.addEventListener(
+    "input",
+    updateUploadDestination
+);
+
+
+
+/*
+    UPLOAD FILE
+*/
+
+
+async function uploadFile() {
+
+
+    const file =
+        uploadFileInput.files[0];
+
+
+    if (!file) {
+
+
+        setStatus(
+            "SELECT A FILE TO UPLOAD",
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "file",
+        file
+    );
+
+
+    formData.append(
+        "folder",
+        uploadFolderInput.value.trim()
+    );
+
+
+
+    uploadButton.disabled =
+        true;
+
+
+    uploadButton.innerText =
+        "Uploading...";
+
+
+    setStatus(
+        "UPLOADING..."
+    );
+
+
+    try {
+
+
+        const response =
+            await fetch(
+                "/api/admin/upload",
+                {
+
+                    method:
+                        "POST",
+
+                    body:
+                        formData
+
+                }
+            );
+
+
+
+        /*
+            Read response safely
+        */
+
+
+        const text =
+            await response.text();
+
+
+        let result = {};
+
+
+        if (text) {
+
+
+            try {
+
+
+                result =
+                    JSON.parse(text);
+
+
+            }
+
+            catch {
+
+
+                throw new Error(
+                    "Server returned an invalid response."
+                );
+
+
+            }
+
+
+        }
+
+
+
+        if (!response.ok) {
+
+
+            throw new Error(
+
+                result.message ||
+
+                "Upload failed."
+
+            );
+
+
+        }
+
+
+
+        /*
+            Close upload window
+        */
+
+
+        closeUpload();
+
+
+
+        /*
+            Reload R2 + D1 list
+        */
+
+
+        await loadFiles();
+
+
+
+        /*
+            Find newly uploaded file
+        */
+
+
+        const newFile =
+            allFiles.find(
+                item =>
+                    item.name ===
+                    result.name
+            );
+
+
+        if (newFile) {
+
+
+            /*
+                Remove filters so
+                new file is visible
+            */
+
+
+            searchInput.value =
+                "";
+
+
+            setFilter(
+                "all"
+            );
+
+
+            const index =
+                visibleFiles.findIndex(
+                    item =>
+                        item.name ===
+                        newFile.name
+                );
+
+
+            selectFile(
+                newFile,
+                index
+            );
+
+
+        }
+
+
+
+        setStatus(
+            "UPLOAD COMPLETE",
+            "success"
+        );
+
+
+    }
+
+    catch (error) {
+
+
+        setStatus(
+            error.message.toUpperCase(),
+            "error"
+        );
+
+
+    }
+
+
+
+    uploadButton.disabled =
+        false;
+
+
+    uploadButton.innerText =
+        "Upload";
+
+
+}
+
+
+
+/*
+    CLOSE DIALOG WITH ESCAPE
+*/
+
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === "Escape" &&
+            uploadOverlay.style.display ===
+            "flex"
+        ) {
+
+
+            closeUpload();
+
+
+        }
+
+
+    }
+);
 
 /*
     ========================================
@@ -2475,6 +3000,110 @@ window.addEventListener(
 
 </script>
 
+<!-- ==========================
+     UPLOAD DIALOG
+     ========================== -->
+
+<div
+    id="uploadOverlay"
+    class="upload-overlay">
+
+
+    <div class="upload-window">
+
+
+        <div class="upload-titlebar">
+
+            <span>
+                UPLOAD FILE
+            </span>
+
+            <button
+                class="close-button"
+                onclick="closeUpload()">
+
+                X
+
+            </button>
+
+        </div>
+
+
+        <div class="upload-content">
+
+
+            <div class="field">
+
+                <label for="uploadFile">
+                    File:
+                </label>
+
+                <input
+                    type="file"
+                    id="uploadFile">
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="uploadFolder">
+                    R2 Folder:
+                </label>
+
+                <input
+                    type="text"
+                    id="uploadFolder"
+                    placeholder="remixes">
+
+                <div class="help">
+
+                    Examples:
+                    remixes,
+                    flps,
+                    flps/aiza hayes
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="uploadDestination"
+                class="upload-destination">
+
+                DESTINATION: /
+
+            </div>
+
+
+            <div class="upload-buttons">
+
+                <button
+                    onclick="closeUpload()">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="uploadButton"
+                    onclick="uploadFile()">
+
+                    Upload
+
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
 
 </body>
 
