@@ -131,7 +131,8 @@ export default {
                     success: true,
                     message: "Metadata saved."
                 });
-            } catch (error) {
+            }
+            catch (error) {
                 console.log(error);
 
                 return jsonResponse({
@@ -234,7 +235,8 @@ export default {
                     key: r2Key,
                     contentType
                 });
-            } catch (error) {
+            }
+            catch (error) {
                 console.log(error);
 
                 return jsonResponse({
@@ -246,29 +248,234 @@ export default {
             }
         }
 
+        // Move an R2 file to another folder and keep its metadata
+        if (
+            url.pathname === "/api/admin/move" &&
+            request.method === "POST"
+        ) {
+            try {
+                const data = await request.json();
+
+                const oldKey =
+                    String(data.r2_key || "").trim();
+
+                let folder =
+                    String(data.folder || "")
+                        .trim()
+                        .replace(/^\/+/, "")
+                        .replace(/\/+$/, "");
+
+                if (!oldKey) {
+                    return jsonResponse({
+                        success: false,
+                        message: "No file selected."
+                    }, 400);
+                }
+
+                if (
+                    folder.includes("..") ||
+                    folder.includes("\\")
+                ) {
+                    return jsonResponse({
+                        success: false,
+                        message: "Invalid folder path."
+                    }, 400);
+                }
+
+                // Make sure the original file still exists
+                const sourceObject =
+                    await env.MY_BUCKET.head(oldKey);
+
+                if (!sourceObject) {
+                    return jsonResponse({
+                        success: false,
+                        message: "Source file does not exist in R2."
+                    }, 404);
+                }
+
+                // Keep the same filename and only change its folder
+                const filename =
+                    oldKey.split("/").pop();
+
+                const newKey =
+                    folder
+                        ? folder + "/" + filename
+                        : filename;
+
+                if (newKey === oldKey) {
+                    return jsonResponse({
+                        success: false,
+                        message: "The file is already in that folder."
+                    }, 400);
+                }
+
+                // Never overwrite another file
+                const existing =
+                    await env.MY_BUCKET.head(newKey);
+
+                if (existing) {
+                    return jsonResponse({
+                        success: false,
+                        message: "A file already exists at the destination."
+                    }, 409);
+                }
+
+                /*
+                    R2 doesn't have real folders.
+
+                    Moving a file means:
+                    1. Copy it to the new R2 key
+                    2. Update its D1 key
+                    3. Delete the old R2 object
+                */
+
+                const client = new AwsClient({
+                    service: "s3",
+                    region: "auto",
+                    accessKeyId: env.R2_ACCESS_KEY_ID,
+                    secretAccessKey: env.R2_SECRET_ACCESS_KEY
+                });
+
+                const destinationUrl =
+                    "https://" +
+                    env.R2_ACCOUNT_ID +
+                    ".r2.cloudflarestorage.com/remixbay/" +
+                    newKey
+                        .split("/")
+                        .map(encodeURIComponent)
+                        .join("/");
+
+                const copySource =
+                    "/remixbay/" +
+                    oldKey
+                        .split("/")
+                        .map(encodeURIComponent)
+                        .join("/");
+
+                const copyRequest =
+                    await client.sign(
+                        new Request(
+                            destinationUrl,
+                            {
+                                method: "PUT",
+
+                                headers: {
+                                    "x-amz-copy-source":
+                                        copySource
+                                }
+                            }
+                        )
+                    );
+
+                const copyResponse =
+                    await fetch(copyRequest);
+
+                if (!copyResponse.ok) {
+                    const copyError =
+                        await copyResponse.text();
+
+                    console.log(copyError);
+
+                    return jsonResponse({
+                        success: false,
+                        message:
+                            "R2 could not copy the file. HTTP " +
+                            copyResponse.status
+                    }, 500);
+                }
+
+                /*
+                    Move the metadata entry to the new R2 key.
+
+                    If the file doesn't have metadata yet,
+                    UPDATE simply changes zero rows, which is fine.
+                */
+
+                await env.remixbay_db
+                    .prepare(`
+                        UPDATE files
+                        SET r2_key = ?
+                        WHERE r2_key = ?
+                    `)
+                    .bind(
+                        newKey,
+                        oldKey
+                    )
+                    .run();
+
+                /*
+                    Only delete the original after both the R2 copy
+                    and database update have succeeded.
+                */
+
+                await env.MY_BUCKET.delete(oldKey);
+
+                return jsonResponse({
+                    success: true,
+                    message: "File moved.",
+                    oldKey,
+                    newKey
+                });
+            }
+            catch (error) {
+                console.log(error);
+
+                return jsonResponse({
+                    success: false,
+                    message:
+                        "Could not move file: " +
+                        error.message
+                }, 500);
+            }
+        }
+
         // Everything else is served from the site's static assets
         return env.ASSETS.fetch(request);
     }
 };
 
+
 function jsonResponse(data, status = 200) {
-    return new Response(JSON.stringify(data), {
-        status,
-        headers: {
-            "Content-Type": "application/json"
+    return new Response(
+        JSON.stringify(data),
+        {
+            status,
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            }
         }
-    });
+    );
 }
+
 
 function formatBytes(bytes) {
     if (bytes === 0) {
         return "0 Bytes";
     }
 
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    const sizes = [
+        "Bytes",
+        "KB",
+        "MB",
+        "GB",
+        "TB"
+    ];
+
+    const i =
+        Math.floor(
+            Math.log(bytes) /
+            Math.log(1024)
+        );
+
     const amount =
-        Math.round((bytes / Math.pow(1024, i)) * 100) / 100;
+        Math.round(
+            (
+                bytes /
+                Math.pow(1024, i)
+            ) * 100
+        ) / 100;
 
     return amount + " " + sizes[i];
 }

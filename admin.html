@@ -1268,6 +1268,12 @@ button:disabled {
                     </div>
 
                     <div class="save-buttons">
+                        <button
+                            id="moveButton"
+                            onclick="openMove()">
+                            Move File
+                        </button>
+
 
                         <button
 
@@ -1407,6 +1413,44 @@ button:disabled {
 
     </div>
 
+</div>
+
+
+<!-- ==========================
+     MOVE FILE DIALOG
+     ========================== -->
+
+<div id="moveOverlay" class="upload-overlay">
+    <div class="upload-window">
+        <div class="upload-titlebar">
+            <span>MOVE FILE</span>
+            <button type="button" class="close-button" onclick="closeMove()">X</button>
+        </div>
+
+        <div class="upload-content">
+            <div class="field">
+                <label>Current R2 Path:</label>
+                <div id="moveCurrentPath" class="upload-destination">/</div>
+            </div>
+
+            <div class="field">
+                <label for="moveFolder">Move to R2 Folder:</label>
+                <input type="text" id="moveFolder" placeholder="remixes">
+                <div class="help">
+                    Leave blank to move the file to the bucket root.
+                </div>
+            </div>
+
+            <div id="moveDestination" class="upload-destination">
+                DESTINATION: /
+            </div>
+
+            <div class="upload-buttons">
+                <button type="button" onclick="closeMove()">Cancel</button>
+                <button type="button" id="moveConfirmButton" onclick="moveSelectedFile()">Move</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -1742,6 +1786,152 @@ document.addEventListener(
             else {
                 closeUpload();
             }
+        }
+    }
+);
+
+
+/*
+    ========================================
+    MOVE FILE
+    ========================================
+*/
+
+const moveOverlay = document.getElementById("moveOverlay");
+const moveFolderInput = document.getElementById("moveFolder");
+const moveCurrentPath = document.getElementById("moveCurrentPath");
+const moveDestination = document.getElementById("moveDestination");
+const moveConfirmButton = document.getElementById("moveConfirmButton");
+const moveButton = document.getElementById("moveButton");
+
+function openMove() {
+    if (!selectedFile) {
+        setStatus("SELECT A FILE", "error");
+        return;
+    }
+
+    if (modified) {
+        setStatus("SAVE OR REVERT CHANGES BEFORE MOVING", "error");
+        return;
+    }
+
+    const currentParts = selectedFile.name.split("/");
+    currentParts.pop();
+
+    moveFolderInput.value = currentParts.join("/");
+    moveCurrentPath.innerText = selectedFile.name;
+    updateMoveDestination();
+    moveOverlay.style.display = "flex";
+    moveFolderInput.focus();
+}
+
+function closeMove() {
+    if (moveConfirmButton.disabled) return;
+    moveOverlay.style.display = "none";
+}
+
+function updateMoveDestination() {
+    if (!selectedFile) {
+        moveDestination.innerText = "DESTINATION: /";
+        return;
+    }
+
+    let folder = moveFolderInput.value
+        .trim()
+        .replace(/^\/+/, "")
+        .replace(/\/+$/, "");
+
+    const filename = getFilename(selectedFile.name);
+
+    moveDestination.innerText =
+        "DESTINATION: /" +
+        (folder ? folder + "/" + filename : filename);
+}
+
+moveFolderInput.addEventListener("input", updateMoveDestination);
+
+async function moveSelectedFile() {
+    if (!selectedFile) {
+        setStatus("SELECT A FILE", "error");
+        return;
+    }
+
+    const oldKey = selectedFile.name;
+    const folder = moveFolderInput.value.trim();
+
+    moveConfirmButton.disabled = true;
+    moveConfirmButton.innerText = "Moving...";
+    setStatus("MOVING FILE...");
+
+    try {
+        const response = await fetch(
+            "/api/admin/move",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    r2_key: oldKey,
+                    folder: folder
+                })
+            }
+        );
+
+        const text = await response.text();
+        let result = {};
+
+        if (text) {
+            try {
+                result = JSON.parse(text);
+            }
+            catch {
+                throw new Error("Server returned an invalid response.");
+            }
+        }
+
+        if (!response.ok) {
+            throw new Error(result.message || "Could not move file.");
+        }
+
+        moveOverlay.style.display = "none";
+
+        await loadFiles();
+
+        searchInput.value = "";
+        setFilter("all");
+
+        const movedFile = allFiles.find(
+            item => item.name === result.newKey
+        );
+
+        if (movedFile) {
+            const index = visibleFiles.findIndex(
+                item => item.name === movedFile.name
+            );
+
+            selectFile(movedFile, index);
+        }
+
+        setStatus("FILE MOVED", "success");
+    }
+    catch (error) {
+        setStatus(error.message.toUpperCase(), "error");
+    }
+    finally {
+        moveConfirmButton.disabled = false;
+        moveConfirmButton.innerText = "Move";
+    }
+}
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+        if (
+            event.key === "Escape" &&
+            moveOverlay.style.display === "flex"
+        ) {
+            closeMove();
         }
     }
 );
