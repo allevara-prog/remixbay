@@ -381,7 +381,16 @@ fetch(API_URL)
 
     .then(files => {
 
-        allFiles = files;
+        /*
+            Ignore R2 folder-marker objects.
+            These keys end in "/" and are not
+            real downloadable files.
+        */
+
+        allFiles = files.filter(file =>
+            file.name &&
+            !file.name.endsWith("/")
+        );
 
         loading.style.display =
             "none";
