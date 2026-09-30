@@ -271,19 +271,6 @@
             /
         </div>
 
-        <!-- PARENT DIRECTORY -->
-
-        <div class="back" id="back">
-
-            <a href="#"
-               onclick="goBack(); return false;">
-
-                ...
-
-            </a>
-
-        </div>
-
         <!-- LOADING -->
 
         <div
@@ -324,9 +311,6 @@ const fileArea =
 
 const pathDisplay =
     document.getElementById("path");
-
-const back =
-    document.getElementById("back");
 
 const searchInput =
     document.getElementById("searchInput");
@@ -391,20 +375,6 @@ function showFolder(path) {
 
     fileArea.innerHTML =
         "";
-
-    if (path === "") {
-
-        back.style.display =
-            "none";
-
-    }
-
-    else {
-
-        back.style.display =
-            "block";
-
-    }
 
     const folders = {};
 
@@ -500,6 +470,40 @@ function displayResults(
 
     const table =
         createTable();
+
+    /*
+        PARENT DIRECTORY
+    */
+
+    if (currentPath !== "") {
+
+        const parentRow =
+            document.createElement("tr");
+
+        const nameCell =
+            document.createElement("td");
+
+        const parentLink =
+            document.createElement("a");
+
+        parentLink.href = "#";
+        parentLink.innerText = "...";
+        parentLink.onclick = function(event) {
+            event.preventDefault();
+            goBack();
+        };
+
+        nameCell.appendChild(parentLink);
+        parentRow.appendChild(nameCell);
+
+        for (let i = 0; i < 3; i++) {
+            const emptyCell =
+                document.createElement("td");
+            parentRow.appendChild(emptyCell);
+        }
+
+        table.appendChild(parentRow);
+    }
 
     /*
         FOLDERS
@@ -1017,9 +1021,6 @@ function searchFiles() {
         '/ Search Results for "' +
         searchInput.value.trim() +
         '"';
-
-    back.style.display =
-        "none";
 
     fileArea.innerHTML =
         "";
