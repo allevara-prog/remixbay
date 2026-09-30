@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RemixBay - Player</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #eeeeee;
+            color: #222222;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        .page {
+            width: 900px;
+            margin: 20px auto;
+            background: white;
+            border: 1px solid #aaaaaa;
+        }
+
+        .header {
+            background: #3b5998;
+            color: white;
+            padding: 10px 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .navigation {
+            background: #eeeeee;
+            border-bottom: 1px solid #bbbbbb;
+            padding: 7px 10px;
+        }
+
+        .navigation a {
+            color: #003399;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            padding: 15px;
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .file-name {
+            background: #f5f5f5;
+            border: 1px solid #cccccc;
+            padding: 8px;
+            margin-bottom: 15px;
+            font-family: "Courier New", monospace;
+            word-break: break-all;
+        }
+
+        .player {
+            border: 1px solid #cccccc;
+            background: #fafafa;
+            padding: 15px;
+            text-align: center;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        video {
+            width: 100%;
+            max-height: 600px;
+            background: black;
+        }
+
+        .links {
+            margin-top: 15px;
+        }
+
+        .links a {
+            color: #003399;
+            margin-right: 15px;
+        }
+
+        .error {
+            padding: 15px;
+            border: 1px solid #cc9999;
+            background: #fff0f0;
+        }
+
+        .footer {
+            border-top: 1px solid #bbbbbb;
+            background: #eeeeee;
+            padding: 10px;
+            color: #666666;
+            font-size: 12px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <div class="header">
+
+        <h1>RemixBay</h1>
+
+    </div>
+
+
+    <div class="navigation">
+
+        <a href="index.html">Home</a>
+
+        <a href="files.html">Files</a>
+
+        <a href="about.html">About</a>
+
+    </div>
+
+
+    <div class="content">
+
+        <h2>Media Player</h2>
+
+
+        <div class="file-name" id="fileName">
+            Loading...
+        </div>
+
+
+        <div id="playerArea" class="player">
+
+            Loading player...
+
+        </div>
+
+
+        <div class="links">
+
+            <a href="files.html">
+                &lt; Back to Files
+            </a>
+
+            <a id="download"
+               href="#"
+               target="_blank">
+
+                Download File
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+
+        RemixBay File Archive
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const file =
+    params.get("file");
+
+
+const fileName =
+    document.getElementById("fileName");
+
+
+const playerArea =
+    document.getElementById("playerArea");
+
+
+const download =
+    document.getElementById("download");
+
+
+
+if (!file) {
+
+    fileName.innerText =
+        "No file selected.";
+
+    playerArea.innerHTML =
+        '<div class="error">No file was selected.</div>';
+
+    download.style.display =
+        "none";
+
+}
+
+else {
+
+
+    const decodedFile =
+        decodeURIComponent(file);
+
+
+    /*
+        Get the filename from the URL
+    */
+
+    const parts =
+        decodedFile.split("/");
+
+
+    const name =
+        parts[parts.length - 1];
+
+
+    fileName.innerText =
+        name;
+
+
+    download.href =
+        decodedFile;
+
+
+    /*
+        Determine file type
+    */
+
+    const extension =
+        name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+    if (extension === "mp3") {
+
+
+        playerArea.innerHTML = `
+
+            <audio controls>
+
+                <source
+                    src="${decodedFile}"
+                    type="audio/mpeg">
+
+                Your browser does not
+                support audio playback.
+
+            </audio>
+
+        `;
+
+    }
+
+
+    else if (extension === "mp4") {
+
+
+        playerArea.innerHTML = `
+
+            <video controls>
+
+                <source
+                    src="${decodedFile}"
+                    type="video/mp4">
+
+                Your browser does not
+                support video playback.
+
+            </video>
+
+        `;
+
+    }
+
+
+    else {
+
+
+        playerArea.innerHTML = `
+
+            <div class="error">
+
+                This file cannot be played
+                in the browser.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
