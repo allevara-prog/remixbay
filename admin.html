@@ -2,89 +2,49 @@
 
 <html lang="en">
 
-
-
 <head>
 
-
-
 <meta charset="UTF-8">
-
-
 
 <meta name="viewport"
 
       content="width=device-width, initial-scale=1.0">
 
-
-
 <title>RemixBay // Admin</title>
 
-
-
 <style>
-
-
-
-/* ==============================
-
-   UPLOAD WINDOW
-
-   ============================== */
-
-
 
 .upload-overlay {
 
     display: none;
 
-
-
     position: fixed;
-
-
 
     left: 0;
 
     top: 0;
 
-
-
     width: 100%;
 
     height: 100%;
 
-
-
     background: rgba(0, 0, 0, 0.55);
-
-
 
     align-items: center;
 
     justify-content: center;
 
-
-
     z-index: 1000;
 
 }
-
-
 
 .upload-window {
 
     width: 500px;
 
-
-
     background: #363636;
 
-
-
     border: 1px solid #111111;
-
-
 
     box-shadow:
 
@@ -92,69 +52,41 @@
 
 }
 
-
-
 .upload-titlebar {
 
     height: 28px;
-
-
 
     display: flex;
 
     align-items: center;
 
-
-
     padding-left: 8px;
-
-
 
     background: #494949;
 
-
-
     border-bottom: 1px solid #171717;
-
-
 
     font-weight: bold;
 
 }
 
-
-
 .close-button {
 
     margin-left: auto;
 
-
-
     min-width: 30px;
-
-
 
     height: 27px;
 
-
-
     padding: 0;
-
-
 
     border: 0;
 
-
-
     border-left: 1px solid #222222;
-
-
 
     background: #444444;
 
 }
-
-
 
 .close-button:hover {
 
@@ -162,37 +94,23 @@
 
 }
 
-
-
 .upload-content {
 
     padding: 12px;
 
 }
 
-
-
 .upload-destination {
 
     margin-top: 10px;
 
-
-
     padding: 7px;
-
-
 
     background: #292929;
 
-
-
     border: 1px solid #1a1a1a;
 
-
-
     color: #999999;
-
-
 
     font-family:
 
@@ -202,50 +120,27 @@
 
         monospace;
 
-
-
     font-size: 11px;
-
-
 
     word-break: break-all;
 
 }
 
-
-
 .upload-buttons {
 
     display: flex;
 
-
-
     justify-content: flex-end;
-
-
 
     gap: 5px;
 
-
-
     margin-top: 12px;
 
-
-
     padding-top: 8px;
-
-
 
     border-top: 1px solid #202020;
 
 }
-
-
-
-
-/* ==============================
-   UPLOAD PROGRESS
-   ============================== */
 
 .upload-progress-area {
     display: none;
@@ -296,27 +191,19 @@
 
 @media (max-width: 550px) {
 
-
-
     .upload-window {
 
         width: calc(100% - 20px);
 
     }
 
-
-
 }
-
-
 
 * {
 
     box-sizing: border-box;
 
 }
-
-
 
 html,
 
@@ -326,19 +213,13 @@ body {
 
 }
 
-
-
 body {
 
     margin: 0;
 
-
-
     background: #242424;
 
     color: #dddddd;
-
-
 
     font-family: Tahoma, Arial, sans-serif;
 
@@ -346,71 +227,33 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   MAIN WINDOW
-
-   ============================== */
-
-
-
 .window {
 
     width: 1000px;
 
     margin: 18px auto;
 
-
-
     background: #333333;
-
-
 
     border: 1px solid #111111;
 
 }
 
-
-
-
-
-/* ==============================
-
-   TITLE BAR
-
-   ============================== */
-
-
-
 .titlebar {
 
     height: 30px;
-
-
 
     display: flex;
 
     align-items: center;
 
-
-
     padding: 0 8px;
 
-
-
     background: #454545;
-
-
 
     border-bottom: 1px solid #151515;
 
 }
-
-
 
 .titlebar-title {
 
@@ -420,13 +263,9 @@ body {
 
 }
 
-
-
 .titlebar-right {
 
     margin-left: auto;
-
-
 
     color: #999999;
 
@@ -434,59 +273,31 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   MENU
-
-   ============================== */
-
-
-
 .menu {
 
     height: 27px;
-
-
 
     display: flex;
 
     align-items: center;
 
-
-
     padding-left: 4px;
 
-
-
     background: #333333;
-
-
 
     border-bottom: 1px solid #171717;
 
 }
 
-
-
 .menu a {
 
     padding: 6px 10px;
 
-
-
     color: #d0d0d0;
-
-
 
     text-decoration: none;
 
 }
-
-
 
 .menu a:hover {
 
@@ -496,53 +307,21 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   WORKSPACE
-
-   ============================== */
-
-
-
 .workspace {
 
     display: flex;
-
-
 
     min-height: 570px;
 
 }
 
-
-
-
-
-/* ==============================
-
-   SIDEBAR
-
-   ============================== */
-
-
-
 .sidebar {
 
     width: 300px;
 
-
-
     background: #2e2e2e;
 
-
-
     border-right: 1px solid #111111;
-
-
 
     display: flex;
 
@@ -550,59 +329,31 @@ body {
 
 }
 
-
-
 .panel-title {
 
     height: 26px;
-
-
 
     display: flex;
 
     align-items: center;
 
-
-
     padding: 0 7px;
-
-
 
     background: #454545;
 
-
-
     border-bottom: 1px solid #181818;
-
-
 
     font-weight: bold;
 
 }
 
-
-
-
-
-/* ==============================
-
-   SEARCH
-
-   ============================== */
-
-
-
 .search-area {
 
     padding: 7px;
 
-
-
     border-bottom: 1px solid #181818;
 
 }
-
-
 
 .search-area input {
 
@@ -610,53 +361,27 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   FILE FILTER BUTTONS
-
-   ============================== */
-
-
-
 .filters {
 
     display: flex;
 
-
-
     padding: 5px;
 
-
-
     gap: 3px;
-
-
 
     border-bottom: 1px solid #181818;
 
 }
 
-
-
 .filters button {
 
     min-width: 0;
 
-
-
     flex: 1;
-
-
 
     padding: 4px;
 
 }
-
-
 
 .filters button.active {
 
@@ -664,47 +389,23 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   FILE LIST
-
-   ============================== */
-
-
-
 .file-list {
 
     height: 470px;
 
-
-
     overflow-y: auto;
-
-
 
     background: #292929;
 
 }
 
-
-
 .file-item {
 
     padding: 6px 7px;
 
-
-
     border-bottom: 1px solid #363636;
 
-
-
     cursor: pointer;
-
-
 
     white-space: nowrap;
 
@@ -713,8 +414,6 @@ body {
     text-overflow: ellipsis;
 
 }
-
-
 
 .file-item:hover {
 
@@ -722,15 +421,11 @@ body {
 
 }
 
-
-
 .file-item.selected {
 
     background: #555555;
 
 }
-
-
 
 .file-name {
 
@@ -738,25 +433,15 @@ body {
 
 }
 
-
-
 .file-path {
 
     margin-top: 2px;
 
-
-
     color: #777777;
-
-
 
     font-family: Consolas, "Courier New", monospace;
 
-
-
     font-size: 10px;
-
-
 
     white-space: nowrap;
 
@@ -766,33 +451,21 @@ body {
 
 }
 
-
-
 .metadata-dot {
 
     display: inline-block;
-
-
 
     width: 7px;
 
     height: 7px;
 
-
-
     margin-right: 5px;
 
-
-
     border: 1px solid #111111;
-
-
 
     background: #777777;
 
 }
-
-
 
 .metadata-dot.complete {
 
@@ -800,35 +473,17 @@ body {
 
 }
 
-
-
 .metadata-dot.empty {
 
     background: #b58b62;
 
 }
 
-
-
-
-
-/* ==============================
-
-   EDITOR
-
-   ============================== */
-
-
-
 .editor {
 
     flex: 1;
 
-
-
     background: #363636;
-
-
 
     display: flex;
 
@@ -836,119 +491,61 @@ body {
 
 }
 
-
-
 .editor-content {
 
     padding: 10px;
-
-
 
     flex: 1;
 
 }
 
-
-
-
-
-/* ==============================
-
-   EMPTY EDITOR
-
-   ============================== */
-
-
-
 .no-file {
 
     padding: 30px;
 
-
-
     text-align: center;
-
-
 
     color: #888888;
 
 }
 
-
-
-
-
-/* ==============================
-
-   R2 INFO
-
-   ============================== */
-
-
-
 .info-panel {
 
     margin-bottom: 10px;
 
-
-
     border: 1px solid #1a1a1a;
-
-
 
     background: #2b2b2b;
 
 }
 
-
-
 .info-title {
 
     padding: 5px 7px;
 
-
-
     background: #414141;
 
-
-
     border-bottom: 1px solid #181818;
-
-
 
     font-weight: bold;
 
 }
 
-
-
 .info-content {
 
     padding: 7px;
 
-
-
     font-family: Consolas, "Courier New", monospace;
-
-
 
     color: #aaaaaa;
 
-
-
     font-size: 11px;
 
-
-
     line-height: 18px;
-
-
 
     word-break: break-all;
 
 }
-
-
 
 .info-label {
 
@@ -956,41 +553,21 @@ body {
 
 }
 
-
-
-
-
-/* ==============================
-
-   FORM
-
-   ============================== */
-
-
-
 .field {
 
     margin-bottom: 9px;
 
 }
 
-
-
 label {
 
     display: block;
 
-
-
     margin-bottom: 3px;
-
-
 
     color: #cccccc;
 
 }
-
-
 
 input,
 
@@ -1000,41 +577,23 @@ textarea {
 
     width: 100%;
 
-
-
     padding: 5px;
-
-
 
     background: #242424;
 
-
-
     color: #eeeeee;
-
-
 
     border: 1px solid #666666;
 
-
-
     border-radius: 0;
-
-
 
     font-family: Tahoma, Arial, sans-serif;
 
-
-
     font-size: 12px;
-
-
 
     outline: none;
 
 }
-
-
 
 input:focus,
 
@@ -1044,37 +603,25 @@ textarea:focus {
 
     border-color: #aaaaaa;
 
-
-
     background: #292929;
 
 }
-
-
 
 textarea {
 
     height: 75px;
 
-
-
     resize: vertical;
 
 }
-
-
 
 .row {
 
     display: flex;
 
-
-
     gap: 10px;
 
 }
-
-
 
 .column {
 
@@ -1082,143 +629,75 @@ textarea {
 
 }
 
-
-
 .help {
 
     margin-top: 3px;
 
-
-
     color: #777777;
-
-
 
     font-size: 10px;
 
 }
 
-
-
-
-
-/* ==============================
-
-   EDITOR BUTTONS
-
-   ============================== */
-
-
-
 .editor-buttons {
 
     display: flex;
 
-
-
     align-items: center;
-
-
 
     margin-top: 12px;
 
-
-
     padding-top: 8px;
-
-
 
     border-top: 1px solid #202020;
 
 }
 
-
-
 .navigation-buttons {
 
     display: flex;
 
-
-
     gap: 4px;
 
 }
-
-
 
 .save-buttons {
 
     display: flex;
 
-
-
     gap: 4px;
-
-
 
     margin-left: auto;
 
 }
 
-
-
-
-
-/* ==============================
-
-   BUTTONS
-
-   ============================== */
-
-
-
 button {
 
     min-width: 80px;
 
-
-
     padding: 5px 10px;
-
-
 
     background: #4a4a4a;
 
-
-
     color: #eeeeee;
-
-
 
     border-top: 1px solid #777777;
 
     border-left: 1px solid #777777;
 
-
-
     border-right: 1px solid #181818;
 
     border-bottom: 1px solid #181818;
 
-
-
     border-radius: 0;
-
-
 
     font-family: Tahoma, Arial, sans-serif;
 
-
-
     font-size: 11px;
-
-
 
     cursor: pointer;
 
 }
-
-
 
 button:hover {
 
@@ -1226,15 +705,11 @@ button:hover {
 
 }
 
-
-
 button:active {
 
     border-top: 1px solid #181818;
 
     border-left: 1px solid #181818;
-
-
 
     border-right: 1px solid #777777;
 
@@ -1242,75 +717,41 @@ button:active {
 
 }
 
-
-
 button:disabled {
 
     background: #383838;
 
-
-
     color: #777777;
-
-
 
     cursor: default;
 
 }
 
-
-
-
-
-/* ==============================
-
-   STATUS BAR
-
-   ============================== */
-
-
-
 .statusbar {
 
     height: 27px;
-
-
 
     display: flex;
 
     align-items: center;
 
-
-
     padding: 0 7px;
-
-
 
     background: #303030;
 
-
-
     border-top: 1px solid #151515;
-
-
 
     font-size: 11px;
 
 }
 
-
-
 .status-label {
 
     margin-right: 5px;
 
-
-
     color: #dddddd;
 
 }
-
-
 
 #status {
 
@@ -1318,15 +759,11 @@ button:disabled {
 
 }
 
-
-
 .status-success {
 
     color: #9dcc8e !important;
 
 }
-
-
 
 .status-error {
 
@@ -1334,65 +771,35 @@ button:disabled {
 
 }
 
-
-
 .status-modified {
 
     color: #e1c17a !important;
 
 }
 
-
-
 .status-right {
 
     margin-left: auto;
 
-
-
     color: #777777;
-
-
 
     font-family: Consolas, "Courier New", monospace;
 
 }
 
-
-
-
-
-/* ==============================
-
-   RESPONSIVE
-
-   ============================== */
-
-
-
 @media (max-width: 1030px) {
-
-
 
     .window {
 
         width: auto;
 
-
-
         margin: 8px;
 
     }
 
-
-
 }
 
-
-
 @media (max-width: 700px) {
-
-
 
     .workspace {
 
@@ -1400,13 +807,9 @@ button:disabled {
 
     }
 
-
-
     .sidebar {
 
         width: 100%;
-
-
 
         border-right: none;
 
@@ -1414,15 +817,11 @@ button:disabled {
 
     }
 
-
-
     .file-list {
 
         height: 220px;
 
     }
-
-
 
     .row {
 
@@ -1430,41 +829,19 @@ button:disabled {
 
     }
 
-
-
 }
-
-
 
 </style>
 
-
-
 </head>
-
-
-
-
 
 <body>
 
-
-
-
-
 <div class="window">
-
-
-
-
 
     <!-- TITLE BAR -->
 
-
-
     <div class="titlebar">
-
-
 
         <div class="titlebar-title">
 
@@ -1472,29 +849,17 @@ button:disabled {
 
         </div>
 
-
-
         <div class="titlebar-right">
 
             FILE DATABASE
 
         </div>
 
-
-
     </div>
-
-
-
-
 
     <!-- MENU -->
 
-
-
 <div class="menu">
-
-
 
     <a href="index.html">
 
@@ -1502,15 +867,11 @@ button:disabled {
 
     </a>
 
-
-
     <a href="files.html">
 
         Files
 
     </a>
-
-
 
     <a href="about.html">
 
@@ -1518,51 +879,23 @@ button:disabled {
 
     </a>
 
-
-
     <a href="#"
 
        onclick="openUpload(); return false;">
 
-
-
         Upload
-
-
 
     </a>
 
-
-
 </div>
-
-
-
-
 
     <!-- WORKSPACE -->
 
-
-
     <div class="workspace">
 
-
-
-
-
-        <!-- ==========================
-
-             LEFT SIDEBAR
-
-             ========================== -->
-
-
+        
 
         <div class="sidebar">
-
-
-
-
 
             <div class="panel-title">
 
@@ -1570,13 +903,7 @@ button:disabled {
 
             </div>
 
-
-
-
-
             <div class="search-area">
-
-
 
                 <input
 
@@ -1586,17 +913,9 @@ button:disabled {
 
                     placeholder="Search files...">
 
-
-
             </div>
 
-
-
-
-
             <div class="filters">
-
-
 
                 <button
 
@@ -1606,15 +925,9 @@ button:disabled {
 
                     onclick="setFilter('all')">
 
-
-
                     All
 
-
-
                 </button>
-
-
 
                 <button
 
@@ -1622,15 +935,9 @@ button:disabled {
 
                     onclick="setFilter('tagged')">
 
-
-
                     Catalogued
 
-
-
                 </button>
-
-
 
                 <button
 
@@ -1638,21 +945,11 @@ button:disabled {
 
                     onclick="setFilter('untagged')">
 
-
-
                     Uncatalogued
-
-
 
                 </button>
 
-
-
             </div>
-
-
-
-
 
             <div
 
@@ -1660,43 +957,19 @@ button:disabled {
 
                 class="file-list">
 
-
-
                 <div class="no-file">
 
                     Loading files...
 
                 </div>
 
-
-
             </div>
-
-
-
-
 
         </div>
 
-
-
-
-
-
-
-        <!-- ==========================
-
-             RIGHT EDITOR
-
-             ========================== -->
-
-
+        
 
         <div class="editor">
-
-
-
-
 
             <div class="panel-title">
 
@@ -1704,29 +977,15 @@ button:disabled {
 
             </div>
 
-
-
-
-
             <div
 
                 id="emptyEditor"
 
                 class="no-file">
 
-
-
                 Select a file from the list.
 
-
-
             </div>
-
-
-
-
-
-
 
             <div
 
@@ -1736,17 +995,9 @@ button:disabled {
 
                 style="display: none;">
 
-
-
-
-
                 <!-- R2 INFORMATION -->
 
-
-
                 <div class="info-panel">
-
-
 
                     <div class="info-title">
 
@@ -1754,11 +1005,7 @@ button:disabled {
 
                     </div>
 
-
-
                     <div class="info-content">
-
-
 
                         <div>
 
@@ -1768,15 +1015,9 @@ button:disabled {
 
                             </span>
 
-
-
                             <span id="r2Path"></span>
 
                         </div>
-
-
-
-
 
                         <div>
 
@@ -1786,15 +1027,9 @@ button:disabled {
 
                             </span>
 
-
-
                             <span id="r2Filename"></span>
 
                         </div>
-
-
-
-
 
                         <div>
 
@@ -1804,15 +1039,9 @@ button:disabled {
 
                             </span>
 
-
-
                             <span id="r2Size"></span>
 
                         </div>
-
-
-
-
 
                         <div>
 
@@ -1822,33 +1051,17 @@ button:disabled {
 
                             </span>
 
-
-
                             <span id="r2Type"></span>
 
                         </div>
 
-
-
                     </div>
-
-
 
                 </div>
 
-
-
-
-
-
-
                 <!-- TITLE -->
 
-
-
                 <div class="field">
-
-
 
                     <label for="title">
 
@@ -1856,31 +1069,17 @@ button:disabled {
 
                     </label>
 
-
-
                     <input
 
                         type="text"
 
                         id="title">
 
-
-
                 </div>
-
-
-
-
-
-
 
                 <!-- CREATOR -->
 
-
-
                 <div class="field">
-
-
 
                     <label for="creator">
 
@@ -1888,39 +1087,23 @@ button:disabled {
 
                     </label>
 
-
-
                     <input
 
                         type="text"
 
                         id="creator">
 
-
-
                 </div>
-
-
-
-
-
-
 
                 <!-- TAGS -->
 
-
-
                 <div class="field">
-
-
 
                     <label for="tags">
 
                         Tags:
 
                     </label>
-
-
 
                     <input
 
@@ -1930,31 +1113,17 @@ button:disabled {
 
                         placeholder="sparta, remix, base, fl studio">
 
-
-
                     <div class="help">
 
                         Separate tags with commas.
 
                     </div>
 
-
-
                 </div>
-
-
-
-
-
-
 
                 <!-- DESCRIPTION -->
 
-
-
                 <div class="field">
-
-
 
                     <label for="description">
 
@@ -1962,47 +1131,25 @@ button:disabled {
 
                     </label>
 
-
-
                     <textarea
 
                         id="description"></textarea>
 
-
-
                 </div>
-
-
-
-
-
-
 
                 <!-- YEAR + CATEGORY -->
 
-
-
                 <div class="row">
-
-
-
-
 
                     <div class="column">
 
-
-
                         <div class="field">
-
-
 
                             <label for="year">
 
                                 Year:
 
                             </label>
-
-
 
                             <input
 
@@ -2014,25 +1161,13 @@ button:disabled {
 
                                 max="2100">
 
-
-
                         </div>
-
-
 
                     </div>
 
-
-
-
-
                     <div class="column">
 
-
-
                         <div class="field">
-
-
 
                             <label for="category">
 
@@ -2040,11 +1175,7 @@ button:disabled {
 
                             </label>
 
-
-
                             <select id="category">
-
-
 
                                 <option value="">
 
@@ -2052,15 +1183,11 @@ button:disabled {
 
                                 </option>
 
-
-
                                 <option value="Remix">
 
                                     Remix
 
                                 </option>
-
-
 
                                 <option value="FLP">
 
@@ -2068,15 +1195,11 @@ button:disabled {
 
                                 </option>
 
-
-
                                 <option value="Base">
 
                                     Base
 
                                 </option>
-
-
 
                                 <option value="Scrap">
 
@@ -2084,15 +1207,11 @@ button:disabled {
 
                                 </option>
 
-
-
                                 <option value="Collab Part">
 
                                     Collab Part
 
                                 </option>
-
-
 
                                 <option value="Audio">
 
@@ -2100,15 +1219,11 @@ button:disabled {
 
                                 </option>
 
-
-
                                 <option value="Video">
 
                                     Video
 
                                 </option>
-
-
 
                                 <option value="Other">
 
@@ -2116,43 +1231,19 @@ button:disabled {
 
                                 </option>
 
-
-
                             </select>
-
-
 
                         </div>
 
-
-
                     </div>
-
-
-
-
 
                 </div>
 
-
-
-
-
-
-
                 <!-- BUTTON BAR -->
-
-
 
                 <div class="editor-buttons">
 
-
-
-
-
                     <div class="navigation-buttons">
-
-
 
                         <button
 
@@ -2160,15 +1251,9 @@ button:disabled {
 
                             onclick="previousFile()">
 
-
-
                             &lt; Previous
 
-
-
                         </button>
-
-
 
                         <button
 
@@ -2176,25 +1261,13 @@ button:disabled {
 
                             onclick="nextFile()">
 
-
-
                             Next &gt;
-
-
 
                         </button>
 
-
-
                     </div>
 
-
-
-
-
                     <div class="save-buttons">
-
-
 
                         <button
 
@@ -2202,15 +1275,9 @@ button:disabled {
 
                             onclick="revertChanges()">
 
-
-
                             Revert
 
-
-
                         </button>
-
-
 
                         <button
 
@@ -2218,55 +1285,23 @@ button:disabled {
 
                             onclick="saveMetadata()">
 
-
-
                             Save Metadata
-
-
 
                         </button>
 
-
-
                     </div>
-
-
-
-
 
                 </div>
 
-
-
-
-
             </div>
-
-
-
-
 
         </div>
 
-
-
-
-
     </div>
-
-
-
-
-
-
 
     <!-- STATUS BAR -->
 
-
-
     <div class="statusbar">
-
-
 
         <span class="status-label">
 
@@ -2274,17 +1309,11 @@ button:disabled {
 
         </span>
 
-
-
         <span id="status">
 
             LOADING
 
         </span>
-
-
-
-
 
         <span
 
@@ -2292,27 +1321,13 @@ button:disabled {
 
             class="status-right">
 
-
-
             0 FILES
-
-
 
         </span>
 
-
-
     </div>
 
-
-
-
-
 </div>
-
-<!-- ==========================
-     UPLOAD DIALOG
-     ========================== -->
 
 <div id="uploadOverlay" class="upload-overlay">
 
@@ -2352,7 +1367,6 @@ button:disabled {
                 </div>
             </div>
 
-            
 <div
                 id="uploadDestination"
                 class="upload-destination">
@@ -2396,12 +1410,6 @@ button:disabled {
 </div>
 
 <script>
-
-/*
-    ========================================
-    UPLOAD
-    ========================================
-*/
 
 const uploadOverlay = document.getElementById("uploadOverlay");
 const uploadFileInput = document.getElementById("uploadFile");
@@ -2738,254 +1746,103 @@ document.addEventListener(
     }
 );
 
-
-/*
-
-    ========================================
-
-    DATA
-
-    ========================================
-
-*/
-
-
-
-
-
 let allFiles = [];
-
-
 
 let visibleFiles = [];
 
-
-
 let selectedFile = null;
-
-
 
 let selectedIndex = -1;
 
-
-
 let currentFilter = "all";
-
-
 
 let originalMetadata = null;
 
-
-
 let modified = false;
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    ELEMENTS
-
-    ========================================
-
-*/
-
-
-
-
 
 const fileList =
 
     document.getElementById("fileList");
 
-
-
-
-
 const searchInput =
 
     document.getElementById("search");
-
-
-
-
 
 const emptyEditor =
 
     document.getElementById("emptyEditor");
 
-
-
-
-
 const editorContent =
 
     document.getElementById("editorContent");
-
-
-
-
 
 const titleInput =
 
     document.getElementById("title");
 
-
-
-
-
 const creatorInput =
 
     document.getElementById("creator");
-
-
-
-
 
 const tagsInput =
 
     document.getElementById("tags");
 
-
-
-
-
 const descriptionInput =
 
     document.getElementById("description");
-
-
-
-
 
 const yearInput =
 
     document.getElementById("year");
 
-
-
-
-
 const categoryInput =
 
     document.getElementById("category");
-
-
-
-
 
 const saveButton =
 
     document.getElementById("saveButton");
 
-
-
-
-
 const revertButton =
 
     document.getElementById("revertButton");
-
-
-
-
 
 const previousButton =
 
     document.getElementById("previousButton");
 
-
-
-
-
 const nextButton =
 
     document.getElementById("nextButton");
-
-
-
-
 
 const statusText =
 
     document.getElementById("status");
 
-
-
-
-
 const stats =
 
     document.getElementById("stats");
-
-
-
-
 
 const r2Path =
 
     document.getElementById("r2Path");
 
-
-
-
-
 const r2Filename =
 
     document.getElementById("r2Filename");
-
-
-
-
 
 const r2Size =
 
     document.getElementById("r2Size");
 
-
-
-
-
 const r2Type =
 
     document.getElementById("r2Type");
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    LOAD FILES
-
-    ========================================
-
-*/
-
-
-
-
-
 loadFiles();
 
-
-
-
-
 async function loadFiles() {
-
-
-
-
 
     setStatus(
 
@@ -2993,15 +1850,7 @@ async function loadFiles() {
 
     );
 
-
-
-
-
     try {
-
-
-
-
 
         const response =
 
@@ -3011,13 +1860,7 @@ async function loadFiles() {
 
             );
 
-
-
-
-
         if (!response.ok) {
-
-
 
             throw new Error(
 
@@ -3025,33 +1868,17 @@ async function loadFiles() {
 
             );
 
-
-
         }
-
-
-
-
 
         allFiles =
 
             await response.json();
-
-
-
-
-
-
 
         /*
 
             Sort alphabetically
 
         */
-
-
-
-
 
         allFiles.sort(
 
@@ -3065,21 +1892,9 @@ async function loadFiles() {
 
         );
 
-
-
-
-
         updateStats();
 
-
-
-
-
         applyFilters();
-
-
-
-
 
         setStatus(
 
@@ -3087,19 +1902,9 @@ async function loadFiles() {
 
         );
 
-
-
-
-
     }
 
-
-
     catch (error) {
-
-
-
-
 
         fileList.innerHTML =
 
@@ -3109,10 +1914,6 @@ async function loadFiles() {
 
             '</div>';
 
-
-
-
-
         setStatus(
 
             error.message.toUpperCase(),
@@ -3121,105 +1922,31 @@ async function loadFiles() {
 
         );
 
-
-
-
-
     }
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    FILE HAS METADATA?
-
-    ========================================
-
-*/
-
-
-
-
 
 function hasMetadata(file) {
 
-
-
-
-
     return Boolean(
-
-
 
         file.title ||
 
-
-
         file.creator ||
-
-
 
         file.description ||
 
-
-
         file.tags ||
-
-
 
         file.year ||
 
-
-
         file.category
-
-
 
     );
 
-
-
-
-
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    UPDATE COUNTS
-
-    ========================================
-
-*/
-
-
-
-
-
 function updateStats() {
-
-
-
-
 
     const catalogued =
 
@@ -3229,65 +1956,27 @@ function updateStats() {
 
         ).length;
 
-
-
-
-
     const uncatalogued =
 
         allFiles.length -
 
         catalogued;
 
-
-
-
-
     stats.innerText =
-
-
 
         allFiles.length +
 
         " FILES | " +
 
-
-
         catalogued +
 
         " CATALOGUED | " +
-
-
 
         uncatalogued +
 
         " UNCATALOGUED";
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    SEARCH / FILTER
-
-    ========================================
-
-*/
-
-
-
-
 
 searchInput.addEventListener(
 
@@ -3295,35 +1984,17 @@ searchInput.addEventListener(
 
     function() {
 
-
-
         applyFilters();
-
-
 
     }
 
 );
 
-
-
-
-
-
-
 function setFilter(filter) {
-
-
-
-
 
     currentFilter =
 
         filter;
-
-
-
-
 
     document
 
@@ -3331,19 +2002,11 @@ function setFilter(filter) {
 
         .classList.remove("active");
 
-
-
-
-
     document
 
         .getElementById("filterTagged")
 
         .classList.remove("active");
-
-
-
-
 
     document
 
@@ -3351,13 +2014,7 @@ function setFilter(filter) {
 
         .classList.remove("active");
 
-
-
-
-
     if (filter === "all") {
-
-
 
         document
 
@@ -3365,17 +2022,9 @@ function setFilter(filter) {
 
             .classList.add("active");
 
-
-
     }
 
-
-
-
-
     if (filter === "tagged") {
-
-
 
         document
 
@@ -3383,17 +2032,9 @@ function setFilter(filter) {
 
             .classList.add("active");
 
-
-
     }
 
-
-
-
-
     if (filter === "untagged") {
-
-
 
         document
 
@@ -3401,33 +2042,13 @@ function setFilter(filter) {
 
             .classList.add("active");
 
-
-
     }
-
-
-
-
 
     applyFilters();
 
-
-
-
-
 }
 
-
-
-
-
-
-
 function applyFilters() {
-
-
-
-
 
     const search =
 
@@ -3437,29 +2058,17 @@ function applyFilters() {
 
             .toLowerCase();
 
-
-
-
-
     visibleFiles =
 
         allFiles.filter(
 
             file => {
 
-
-
-
-
                 /*
 
                     Filter by metadata
 
                 */
-
-
-
-
 
                 if (
 
@@ -3471,17 +2080,9 @@ function applyFilters() {
 
                 ) {
 
-
-
                     return false;
 
-
-
                 }
-
-
-
-
 
                 if (
 
@@ -3493,19 +2094,9 @@ function applyFilters() {
 
                 ) {
 
-
-
                     return false;
 
-
-
                 }
-
-
-
-
-
-
 
                 /*
 
@@ -3513,47 +2104,23 @@ function applyFilters() {
 
                 */
 
-
-
-
-
                 if (search !== "") {
-
-
-
-
 
                     const text = [
 
-
-
                         file.name,
-
-
 
                         file.title,
 
-
-
                         file.creator,
-
-
 
                         file.tags,
 
-
-
                         file.description,
-
-
 
                         file.year,
 
-
-
                         file.category
-
-
 
                     ]
 
@@ -3562,10 +2129,6 @@ function applyFilters() {
                     .join(" ")
 
                     .toLowerCase();
-
-
-
-
 
                     if (
 
@@ -3577,87 +2140,33 @@ function applyFilters() {
 
                     ) {
 
-
-
                         return false;
-
-
 
                     }
 
-
-
                 }
 
-
-
-
-
                 return true;
-
-
-
-
 
             }
 
         );
 
-
-
-
-
     renderFileList();
-
-
-
-
 
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    RENDER FILE LIST
-
-    ========================================
-
-*/
-
-
-
-
-
 function renderFileList() {
-
-
-
-
 
     fileList.innerHTML =
 
         "";
-
-
-
-
 
     if (
 
         visibleFiles.length === 0
 
     ) {
-
-
-
-
 
         fileList.innerHTML =
 
@@ -3667,29 +2176,13 @@ function renderFileList() {
 
             '</div>';
 
-
-
-
-
         return;
 
-
-
     }
-
-
-
-
-
-
 
     visibleFiles.forEach(
 
         (file, index) => {
-
-
-
-
 
             const item =
 
@@ -3699,17 +2192,9 @@ function renderFileList() {
 
                 );
 
-
-
-
-
             item.className =
 
                 "file-item";
-
-
-
-
 
             if (
 
@@ -3721,33 +2206,19 @@ function renderFileList() {
 
             ) {
 
-
-
                 item.classList.add(
 
                     "selected"
 
                 );
 
-
-
             }
-
-
-
-
-
-
 
             /*
 
                 Metadata dot
 
             */
-
-
-
-
 
             const dot =
 
@@ -3756,10 +2227,6 @@ function renderFileList() {
                     "span"
 
                 );
-
-
-
-
 
             dot.className =
 
@@ -3775,21 +2242,11 @@ function renderFileList() {
 
                 );
 
-
-
-
-
-
-
             /*
 
                 File name
 
             */
-
-
-
-
 
             const filename =
 
@@ -3799,10 +2256,6 @@ function renderFileList() {
 
                 );
 
-
-
-
-
             const name =
 
                 document.createElement(
@@ -3811,37 +2264,19 @@ function renderFileList() {
 
                 );
 
-
-
-
-
             name.className =
 
                 "file-name";
 
-
-
-
-
             name.innerText =
 
                 filename;
-
-
-
-
-
-
 
             /*
 
                 Path
 
             */
-
-
-
-
 
             const path =
 
@@ -3851,27 +2286,13 @@ function renderFileList() {
 
                 );
 
-
-
-
-
             path.className =
 
                 "file-path";
 
-
-
-
-
             path.innerText =
 
                 file.name;
-
-
-
-
-
-
 
             item.appendChild(
 
@@ -3879,19 +2300,11 @@ function renderFileList() {
 
             );
 
-
-
-
-
             item.appendChild(
 
                 name
 
             );
-
-
-
-
 
             item.appendChild(
 
@@ -3899,17 +2312,9 @@ function renderFileList() {
 
             );
 
-
-
-
-
             item.onclick =
 
                 function() {
-
-
-
-
 
                     selectFile(
 
@@ -3919,15 +2324,7 @@ function renderFileList() {
 
                     );
 
-
-
-
-
                 };
-
-
-
-
 
             fileList.appendChild(
 
@@ -3935,39 +2332,11 @@ function renderFileList() {
 
             );
 
-
-
-
-
         }
 
     );
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    SELECT FILE
-
-    ========================================
-
-*/
-
-
-
-
 
 function selectFile(
 
@@ -3977,10 +2346,6 @@ function selectFile(
 
 ) {
 
-
-
-
-
     /*
 
         Warn if there are
@@ -3988,10 +2353,6 @@ function selectFile(
         unsaved changes
 
     */
-
-
-
-
 
     if (
 
@@ -4005,10 +2366,6 @@ function selectFile(
 
     ) {
 
-
-
-
-
         const leave =
 
             confirm(
@@ -4019,47 +2376,21 @@ function selectFile(
 
             );
 
-
-
-
-
         if (!leave) {
-
-
 
             return;
 
-
-
         }
 
-
-
     }
-
-
-
-
-
-
 
     selectedFile =
 
         file;
 
-
-
-
-
     selectedIndex =
 
         index;
-
-
-
-
-
-
 
     /*
 
@@ -4067,57 +2398,33 @@ function selectFile(
 
     */
 
-
-
-
-
     originalMetadata = {
-
-
 
         title:
 
             file.title || "",
 
-
-
         creator:
 
             file.creator || "",
-
-
 
         tags:
 
             file.tags || "",
 
-
-
         description:
 
             file.description || "",
-
-
 
         year:
 
             file.year || "",
 
-
-
         category:
 
             file.category || ""
 
-
-
     };
-
-
-
-
-
-
 
     /*
 
@@ -4125,49 +2432,25 @@ function selectFile(
 
     */
 
-
-
-
-
     titleInput.value =
 
         originalMetadata.title;
-
-
-
-
 
     creatorInput.value =
 
         originalMetadata.creator;
 
-
-
-
-
     tagsInput.value =
 
         originalMetadata.tags;
-
-
-
-
 
     descriptionInput.value =
 
         originalMetadata.description;
 
-
-
-
-
     yearInput.value =
 
         originalMetadata.year;
-
-
-
-
 
     setCategoryValue(
 
@@ -4175,29 +2458,15 @@ function selectFile(
 
     );
 
-
-
-
-
-
-
     /*
 
         R2 info
 
     */
 
-
-
-
-
     r2Path.innerText =
 
         file.name;
-
-
-
-
 
     r2Filename.innerText =
 
@@ -4207,17 +2476,9 @@ function selectFile(
 
         );
 
-
-
-
-
     r2Size.innerText =
 
         file.size;
-
-
-
-
 
     r2Type.innerText =
 
@@ -4229,47 +2490,21 @@ function selectFile(
 
         "FILE";
 
-
-
-
-
-
-
     emptyEditor.style.display =
 
         "none";
-
-
-
-
 
     editorContent.style.display =
 
         "block";
 
-
-
-
-
     modified =
 
         false;
 
-
-
-
-
     updateNavigationButtons();
 
-
-
-
-
     renderFileList();
-
-
-
-
 
     setStatus(
 
@@ -4277,41 +2512,13 @@ function selectFile(
 
     );
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    CATEGORY
-
-    ========================================
-
-*/
-
-
-
-
 
 function setCategoryValue(
 
     value
 
 ) {
-
-
-
-
 
     /*
 
@@ -4322,10 +2529,6 @@ function setCategoryValue(
         temporarily add it.
 
     */
-
-
-
-
 
     if (
 
@@ -4345,10 +2548,6 @@ function setCategoryValue(
 
     ) {
 
-
-
-
-
         const option =
 
             document.createElement(
@@ -4357,25 +2556,13 @@ function setCategoryValue(
 
             );
 
-
-
-
-
         option.value =
 
             value;
 
-
-
-
-
         option.innerText =
 
             value;
-
-
-
-
 
         categoryInput.appendChild(
 
@@ -4383,49 +2570,15 @@ function setCategoryValue(
 
         );
 
-
-
-
-
     }
-
-
-
-
 
     categoryInput.value =
 
         value;
 
-
-
-
-
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    MODIFIED DETECTION
-
-    ========================================
-
-*/
-
-
-
-
-
 const editableFields = [
-
-
 
     titleInput,
 
@@ -4439,21 +2592,11 @@ const editableFields = [
 
     categoryInput
 
-
-
 ];
-
-
-
-
 
 editableFields.forEach(
 
     field => {
-
-
-
-
 
         field.addEventListener(
 
@@ -4463,10 +2606,6 @@ editableFields.forEach(
 
         );
 
-
-
-
-
         field.addEventListener(
 
             "change",
@@ -4475,25 +2614,11 @@ editableFields.forEach(
 
         );
 
-
-
-
-
     }
 
 );
 
-
-
-
-
-
-
 function checkModified() {
-
-
-
-
 
     if (
 
@@ -4503,21 +2628,11 @@ function checkModified() {
 
     ) {
 
-
-
         return;
-
-
 
     }
 
-
-
-
-
     modified =
-
-
 
         titleInput.value !==
 
@@ -4527,11 +2642,7 @@ function checkModified() {
 
         )
 
-
-
         ||
-
-
 
         creatorInput.value !==
 
@@ -4541,11 +2652,7 @@ function checkModified() {
 
         )
 
-
-
         ||
-
-
 
         tagsInput.value !==
 
@@ -4555,11 +2662,7 @@ function checkModified() {
 
         )
 
-
-
         ||
-
-
 
         descriptionInput.value !==
 
@@ -4569,11 +2672,7 @@ function checkModified() {
 
         )
 
-
-
         ||
-
-
 
         yearInput.value !==
 
@@ -4583,11 +2682,7 @@ function checkModified() {
 
         )
 
-
-
         ||
-
-
 
         categoryInput.value !==
 
@@ -4597,15 +2692,7 @@ function checkModified() {
 
         );
 
-
-
-
-
     if (modified) {
-
-
-
-
 
         setStatus(
 
@@ -4615,19 +2702,9 @@ function checkModified() {
 
         );
 
-
-
-
-
     }
 
-
-
     else {
-
-
-
-
 
         setStatus(
 
@@ -4635,43 +2712,11 @@ function checkModified() {
 
         );
 
-
-
-
-
     }
-
-
-
-
 
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    REVERT
-
-    ========================================
-
-*/
-
-
-
-
-
 function revertChanges() {
-
-
-
-
 
     if (
 
@@ -4681,57 +2726,29 @@ function revertChanges() {
 
     ) {
 
-
-
         return;
 
-
-
     }
-
-
-
-
 
     titleInput.value =
 
         originalMetadata.title;
 
-
-
-
-
     creatorInput.value =
 
         originalMetadata.creator;
-
-
-
-
 
     tagsInput.value =
 
         originalMetadata.tags;
 
-
-
-
-
     descriptionInput.value =
 
         originalMetadata.description;
 
-
-
-
-
     yearInput.value =
 
         originalMetadata.year;
-
-
-
-
 
     setCategoryValue(
 
@@ -4739,17 +2756,9 @@ function revertChanges() {
 
     );
 
-
-
-
-
     modified =
 
         false;
-
-
-
-
 
     setStatus(
 
@@ -4757,37 +2766,9 @@ function revertChanges() {
 
     );
 
-
-
-
-
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    PREVIOUS / NEXT
-
-    ========================================
-
-*/
-
-
-
-
-
 function previousFile() {
-
-
-
-
 
     if (
 
@@ -4795,17 +2776,9 @@ function previousFile() {
 
     ) {
 
-
-
         return;
 
-
-
     }
-
-
-
-
 
     selectFile(
 
@@ -4819,23 +2792,9 @@ function previousFile() {
 
     );
 
-
-
-
-
 }
 
-
-
-
-
-
-
 function nextFile() {
-
-
-
-
 
     if (
 
@@ -4847,17 +2806,9 @@ function nextFile() {
 
     ) {
 
-
-
         return;
 
-
-
     }
-
-
-
-
 
     selectFile(
 
@@ -4871,81 +2822,27 @@ function nextFile() {
 
     );
 
-
-
-
-
 }
 
-
-
-
-
-
-
 function updateNavigationButtons() {
-
-
-
-
 
     previousButton.disabled =
 
         selectedIndex <= 0;
 
-
-
-
-
     nextButton.disabled =
 
-
-
         selectedIndex < 0 ||
-
-
 
         selectedIndex >=
 
         visibleFiles.length - 1;
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    SAVE METADATA
-
-    ========================================
-
-*/
-
-
-
-
 
 async function saveMetadata() {
 
-
-
-
-
     if (!selectedFile) {
-
-
-
-
 
         setStatus(
 
@@ -4955,37 +2852,17 @@ async function saveMetadata() {
 
         );
 
-
-
-
-
         return;
 
-
-
     }
-
-
-
-
-
-
 
     saveButton.disabled =
 
         true;
 
-
-
-
-
     saveButton.innerText =
 
         "Saving...";
-
-
-
-
 
     setStatus(
 
@@ -4993,15 +2870,7 @@ async function saveMetadata() {
 
     );
 
-
-
-
-
     try {
-
-
-
-
 
         const response =
 
@@ -5011,89 +2880,55 @@ async function saveMetadata() {
 
                 {
 
-
-
                     method:
 
                         "POST",
 
-
-
                     headers: {
-
-
 
                         "Content-Type":
 
                             "application/json"
 
-
-
                     },
-
-
 
                     body:
 
                         JSON.stringify({
 
-
-
                             r2_key:
 
                                 selectedFile.name,
-
-
 
                             title:
 
                                 titleInput.value.trim(),
 
-
-
                             creator:
 
                                 creatorInput.value.trim(),
-
-
 
                             tags:
 
                                 tagsInput.value.trim(),
 
-
-
                             description:
 
                                 descriptionInput.value.trim(),
-
-
 
                             year:
 
                                 yearInput.value,
 
-
-
                             category:
 
                                 categoryInput.value
 
-
-
                         })
-
-
 
                 }
 
             );
-
-
-
-
-
-
 
         /*
 
@@ -5101,47 +2936,23 @@ async function saveMetadata() {
 
         */
 
-
-
-
-
         const text =
 
             await response.text();
 
-
-
-
-
         let result = {};
-
-
-
-
 
         if (text) {
 
-
-
-
-
             try {
-
-
 
                 result =
 
                     JSON.parse(text);
 
-
-
             }
 
-
-
             catch {
-
-
 
                 throw new Error(
 
@@ -5149,53 +2960,21 @@ async function saveMetadata() {
 
                 );
 
-
-
             }
 
-
-
-
-
         }
-
-
-
-
-
-
 
         if (!response.ok) {
 
-
-
-
-
             throw new Error(
-
-
 
                 result.message ||
 
-
-
                 "Could not save metadata."
-
-
 
             );
 
-
-
-
-
         }
-
-
-
-
-
-
 
         /*
 
@@ -5203,59 +2982,29 @@ async function saveMetadata() {
 
         */
 
-
-
-
-
         selectedFile.title =
 
             titleInput.value.trim();
-
-
-
-
 
         selectedFile.creator =
 
             creatorInput.value.trim();
 
-
-
-
-
         selectedFile.tags =
 
             tagsInput.value.trim();
-
-
-
-
 
         selectedFile.description =
 
             descriptionInput.value.trim();
 
-
-
-
-
         selectedFile.year =
 
             yearInput.value;
 
-
-
-
-
         selectedFile.category =
 
             categoryInput.value;
-
-
-
-
-
-
 
         /*
 
@@ -5263,75 +3012,41 @@ async function saveMetadata() {
 
         */
 
-
-
-
-
         originalMetadata = {
-
-
 
             title:
 
                 selectedFile.title,
 
-
-
             creator:
 
                 selectedFile.creator,
-
-
 
             tags:
 
                 selectedFile.tags,
 
-
-
             description:
 
                 selectedFile.description,
-
-
 
             year:
 
                 selectedFile.year,
 
-
-
             category:
 
                 selectedFile.category
 
-
-
         };
-
-
-
-
 
         modified =
 
             false;
 
-
-
-
-
         updateStats();
 
-
-
-
-
         applyFilters();
-
-
-
-
 
         setStatus(
 
@@ -5341,19 +3056,9 @@ async function saveMetadata() {
 
         );
 
-
-
-
-
     }
 
-
-
     catch (error) {
-
-
-
-
 
         setStatus(
 
@@ -5363,67 +3068,23 @@ async function saveMetadata() {
 
         );
 
-
-
-
-
     }
-
-
-
-
 
     saveButton.disabled =
 
         false;
 
-
-
-
-
     saveButton.innerText =
 
         "Save Metadata";
 
-
-
-
-
 }
 
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    HELPERS
-
-    ========================================
-
-*/
-
-
-
-
-
 function getFilename(path) {
-
-
-
-
 
     const parts =
 
         path.split("/");
-
-
-
-
 
     return parts[
 
@@ -5431,31 +3092,13 @@ function getFilename(path) {
 
     ];
 
-
-
-
-
 }
 
-
-
-
-
-
-
 function getExtension(path) {
-
-
-
-
 
     const filename =
 
         getFilename(path);
-
-
-
-
 
     if (
 
@@ -5463,17 +3106,9 @@ function getExtension(path) {
 
     ) {
 
-
-
         return "";
 
-
-
     }
-
-
-
-
 
     return filename
 
@@ -5481,31 +3116,7 @@ function getExtension(path) {
 
         .pop();
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    STATUS
-
-    ========================================
-
-*/
-
-
-
-
 
 function setStatus(
 
@@ -5515,25 +3126,13 @@ function setStatus(
 
 ) {
 
-
-
-
-
     statusText.innerText =
 
         message;
 
-
-
-
-
     statusText.className =
 
         "";
-
-
-
-
 
     if (
 
@@ -5541,19 +3140,11 @@ function setStatus(
 
     ) {
 
-
-
         statusText.className =
 
             "status-success";
 
-
-
     }
-
-
-
-
 
     if (
 
@@ -5561,19 +3152,11 @@ function setStatus(
 
     ) {
 
-
-
         statusText.className =
 
             "status-error";
 
-
-
     }
-
-
-
-
 
     if (
 
@@ -5581,41 +3164,13 @@ function setStatus(
 
     ) {
 
-
-
         statusText.className =
 
             "status-modified";
 
-
-
     }
 
-
-
-
-
 }
-
-
-
-
-
-
-
-/*
-
-    ========================================
-
-    WARN BEFORE LEAVING PAGE
-
-    ========================================
-
-*/
-
-
-
-
 
 window.addEventListener(
 
@@ -5623,37 +3178,17 @@ window.addEventListener(
 
     function(event) {
 
-
-
-
-
         if (!modified) {
-
-
 
             return;
 
-
-
         }
 
-
-
-
-
         event.preventDefault();
-
-
-
-
 
         event.returnValue =
 
             "";
-
-
-
-
 
     }
 

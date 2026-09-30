@@ -119,19 +119,15 @@
 
 </head>
 
-
 <body>
 
-
 <div class="page">
-
 
     <div class="header">
 
         <h1>RemixBay</h1>
 
     </div>
-
 
     <div class="navigation">
 
@@ -143,23 +139,19 @@
 
     </div>
 
-
     <div class="content">
 
         <h2>Media Player</h2>
 
-
         <div class="file-name" id="fileName">
             Loading...
         </div>
-
 
         <div id="playerArea" class="player">
 
             Loading player...
 
         </div>
-
 
         <div class="links">
 
@@ -179,42 +171,32 @@
 
     </div>
 
-
     <div class="footer">
 
         RemixBay File Archive
 
     </div>
 
-
 </div>
 
-
 <script>
-
 
 const params =
     new URLSearchParams(
         window.location.search
     );
 
-
 const file =
     params.get("file");
-
 
 const fileName =
     document.getElementById("fileName");
 
-
 const playerArea =
     document.getElementById("playerArea");
 
-
 const download =
     document.getElementById("download");
-
-
 
 if (!file) {
 
@@ -231,10 +213,8 @@ if (!file) {
 
 else {
 
-
     const decodedFile =
         decodeURIComponent(file);
-
 
     /*
         Get the filename from the URL
@@ -243,18 +223,14 @@ else {
     const parts =
         decodedFile.split("/");
 
-
     const name =
         parts[parts.length - 1];
-
 
     fileName.innerText =
         name;
 
-
     download.href =
         decodedFile;
-
 
     /*
         Determine file type
@@ -266,9 +242,7 @@ else {
             .pop()
             .toLowerCase();
 
-
     if (extension === "mp3") {
-
 
         playerArea.innerHTML = `
 
@@ -287,9 +261,7 @@ else {
 
     }
 
-
     else if (extension === "mp4") {
-
 
         playerArea.innerHTML = `
 
@@ -308,9 +280,7 @@ else {
 
     }
 
-
     else {
-
 
         playerArea.innerHTML = `
 
@@ -327,9 +297,7 @@ else {
 
 }
 
-
 </script>
-
 
 </body>
 

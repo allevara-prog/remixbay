@@ -195,7 +195,6 @@
             font-size: 12px;
         }
 
-
         /*
             Make the site usable
             on smaller screens
@@ -218,19 +217,15 @@
 
 </head>
 
-
 <body>
 
-
 <div class="page">
-
 
     <div class="header">
 
         <h1>RemixBay</h1>
 
     </div>
-
 
     <div class="navigation">
 
@@ -242,11 +237,9 @@
 
     </div>
 
-
     <div class="content">
 
         <h2>File Archive</h2>
-
 
         <!-- SEARCH -->
 
@@ -267,7 +260,6 @@
                 Clear
             </button>
 
-
             <div
                 class="search-info"
                 id="searchInfo">
@@ -275,13 +267,11 @@
 
         </div>
 
-
         <!-- CURRENT DIRECTORY -->
 
         <div class="path" id="path">
             /
         </div>
-
 
         <!-- PARENT DIRECTORY -->
 
@@ -290,12 +280,11 @@
             <a href="#"
                onclick="goBack(); return false;">
 
-                &lt; Parent Directory
+                .
 
             </a>
 
         </div>
-
 
         <!-- LOADING -->
 
@@ -307,13 +296,11 @@
 
         </div>
 
-
         <!-- FILES -->
 
         <div id="fileArea"></div>
 
     </div>
-
 
     <div class="footer">
 
@@ -321,21 +308,15 @@
 
     </div>
 
-
 </div>
-
 
 <script>
 
-
 const API_URL = "/api/files";
-
 
 let allFiles = [];
 
 let currentPath = "";
-
-
 
 const loading =
     document.getElementById("loading");
@@ -355,12 +336,9 @@ const searchInput =
 const searchInfo =
     document.getElementById("searchInfo");
 
-
-
 /*
     LOAD FILES
 */
-
 
 fetch(API_URL)
 
@@ -399,30 +377,22 @@ fetch(API_URL)
 
     });
 
-
-
 /*
     DISPLAY DIRECTORY
 */
 
-
 function showFolder(path) {
 
-
     currentPath = path;
-
 
     pathDisplay.innerText =
         "/" + path;
 
-
     searchInfo.innerText =
         "";
 
-
     fileArea.innerHTML =
         "";
-
 
     if (path === "") {
 
@@ -438,14 +408,11 @@ function showFolder(path) {
 
     }
 
-
     const folders = {};
 
     const files = [];
 
-
     allFiles.forEach(file => {
-
 
         if (!file.name.startsWith(path)) {
 
@@ -453,12 +420,10 @@ function showFolder(path) {
 
         }
 
-
         let remaining =
             file.name.substring(
                 path.length
             );
-
 
         if (remaining.startsWith("/")) {
 
@@ -467,17 +432,14 @@ function showFolder(path) {
 
         }
 
-
         if (remaining === "") {
 
             return;
 
         }
 
-
         const slash =
             remaining.indexOf("/");
-
 
         /*
             Folder
@@ -496,7 +458,6 @@ function showFolder(path) {
 
         }
 
-
         /*
             File
         */
@@ -509,7 +470,6 @@ function showFolder(path) {
 
     });
 
-
     displayResults(
         folders,
         files
@@ -517,18 +477,14 @@ function showFolder(path) {
 
 }
 
-
-
 /*
     DISPLAY NORMAL DIRECTORY
 */
-
 
 function displayResults(
     folders,
     files
 ) {
-
 
     if (
         Object.keys(folders).length === 0 &&
@@ -544,15 +500,12 @@ function displayResults(
 
     }
 
-
     const table =
         createTable();
-
 
     /*
         FOLDERS
     */
-
 
     Object.keys(folders)
 
@@ -560,14 +513,11 @@ function displayResults(
 
         .forEach(folderName => {
 
-
             const row =
                 document.createElement("tr");
 
-
             row.className =
                 "folder";
-
 
             /*
                 Name
@@ -576,24 +526,19 @@ function displayResults(
             const nameCell =
                 document.createElement("td");
 
-
             nameCell.appendChild(
                 document.createTextNode(
                     "📁 "
                 )
             );
 
-
             const link =
                 document.createElement("a");
 
-
             link.href = "#";
-
 
             link.innerText =
                 folderName + "/";
-
 
             link.onclick =
                 function(event) {
@@ -606,16 +551,13 @@ function displayResults(
 
                 };
 
-
             nameCell.appendChild(
                 link
             );
 
-
             row.appendChild(
                 nameCell
             );
-
 
             /*
                 Size
@@ -631,7 +573,6 @@ function displayResults(
                 sizeCell
             );
 
-
             /*
                 Type
             */
@@ -645,7 +586,6 @@ function displayResults(
             row.appendChild(
                 typeCell
             );
-
 
             /*
                 Actions
@@ -661,19 +601,15 @@ function displayResults(
                 actionCell
             );
 
-
             table.appendChild(
                 row
             );
 
         });
 
-
-
     /*
         FILES
     */
-
 
     files
 
@@ -691,30 +627,23 @@ function displayResults(
 
         });
 
-
     fileArea.appendChild(
         table
     );
 
 }
 
-
-
 /*
     CREATE TABLE
 */
 
-
 function createTable() {
-
 
     const table =
         document.createElement("table");
 
-
     const header =
         document.createElement("tr");
-
 
     const headings = [
         ["Name", "name"],
@@ -723,21 +652,16 @@ function createTable() {
         ["Actions", "actions"]
     ];
 
-
     headings.forEach(item => {
-
 
         const th =
             document.createElement("th");
 
-
         th.innerText =
             item[0];
 
-
         th.className =
             item[1];
-
 
         header.appendChild(
             th
@@ -745,39 +669,30 @@ function createTable() {
 
     });
 
-
     table.appendChild(
         header
     );
-
 
     return table;
 
 }
 
-
-
 /*
     CREATE FILE ROW
 */
 
-
 function createFileRow(file) {
-
 
     const row =
         document.createElement("tr");
 
-
     const parts =
         file.name.split("/");
-
 
     const filename =
         parts[
             parts.length - 1
         ];
-
 
     const extension =
         filename
@@ -785,17 +700,13 @@ function createFileRow(file) {
             .pop()
             .toLowerCase();
 
-
-
     /*
         File icon / type
     */
 
-
     let icon = "📄";
 
     let type = "File";
-
 
     if (extension === "mp3") {
 
@@ -829,16 +740,12 @@ function createFileRow(file) {
 
     }
 
-
-
     /*
         NAME CELL
     */
 
-
     const nameCell =
         document.createElement("td");
-
 
     nameCell.appendChild(
         document.createTextNode(
@@ -846,44 +753,34 @@ function createFileRow(file) {
         )
     );
 
-
     const fileLink =
         document.createElement("a");
-
 
     fileLink.href =
         file.url;
 
-
     fileLink.target =
         "_blank";
-
 
     /*
         Use D1 title if available.
         Otherwise use filename.
     */
 
-
     fileLink.innerText =
         file.title ||
         filename;
-
 
     nameCell.appendChild(
         fileLink
     );
 
-
-
     /*
         Extra D1 information
     */
 
-
     const information =
         [];
-
 
     if (file.creator) {
 
@@ -894,7 +791,6 @@ function createFileRow(file) {
 
     }
 
-
     if (file.year) {
 
         information.push(
@@ -903,7 +799,6 @@ function createFileRow(file) {
         );
 
     }
-
 
     if (file.tags) {
 
@@ -914,25 +809,20 @@ function createFileRow(file) {
 
     }
 
-
     if (information.length > 0) {
-
 
         const info =
             document.createElement(
                 "div"
             );
 
-
         info.className =
             "file-info";
-
 
         info.innerText =
             information.join(
                 " | "
             );
-
 
         nameCell.appendChild(
             info
@@ -940,28 +830,22 @@ function createFileRow(file) {
 
     }
 
-
     /*
         Description
     */
 
-
     if (file.description) {
-
 
         const description =
             document.createElement(
                 "div"
             );
 
-
         description.className =
             "file-info";
 
-
         description.innerText =
             file.description;
-
 
         nameCell.appendChild(
             description
@@ -969,70 +853,53 @@ function createFileRow(file) {
 
     }
 
-
     row.appendChild(
         nameCell
     );
-
-
 
     /*
         SIZE
     */
 
-
     const sizeCell =
         document.createElement("td");
 
-
     sizeCell.innerText =
         file.size;
-
 
     row.appendChild(
         sizeCell
     );
 
-
-
     /*
         TYPE / CATEGORY
     */
 
-
     const typeCell =
         document.createElement("td");
-
 
     typeCell.innerText =
         file.category ||
         type;
 
-
     row.appendChild(
         typeCell
     );
-
-
 
     /*
         ACTIONS
     */
 
-
     const actionCell =
         document.createElement("td");
-
 
     if (
         extension === "mp3" ||
         extension === "mp4"
     ) {
 
-
         const play =
             document.createElement("a");
-
 
         play.href =
             "player.html?file=" +
@@ -1040,15 +907,12 @@ function createFileRow(file) {
                 file.url
             );
 
-
         play.innerText =
             "Play";
-
 
         actionCell.appendChild(
             play
         );
-
 
         actionCell.appendChild(
             document.createTextNode(
@@ -1058,52 +922,40 @@ function createFileRow(file) {
 
     }
 
-
     const download =
         document.createElement("a");
-
 
     download.href =
         file.url;
 
-
     download.target =
         "_blank";
 
-
     download.innerText =
         "Download";
-
 
     actionCell.appendChild(
         download
     );
 
-
     row.appendChild(
         actionCell
     );
-
 
     return row;
 
 }
 
-
-
 /*
     SEARCH
 */
 
-
 function searchFiles() {
-
 
     const search =
         searchInput.value
             .trim()
             .toLowerCase();
-
 
     if (search === "") {
 
@@ -1115,12 +967,9 @@ function searchFiles() {
 
     }
 
-
-
     /*
         Search through ALL metadata
     */
-
 
     const matchingFiles =
         allFiles.filter(file => {
@@ -1138,7 +987,6 @@ function searchFiles() {
             ) {
                 return false;
             }
-
 
             const searchableText = [
 
@@ -1161,33 +1009,26 @@ function searchFiles() {
             .join(" ")
             .toLowerCase();
 
-
             return searchableText.includes(
                 search
             );
 
         });
 
-
-
     pathDisplay.innerText =
         '/ Search Results for "' +
         searchInput.value.trim() +
         '"';
 
-
     back.style.display =
         "none";
-
 
     fileArea.innerHTML =
         "";
 
-
     searchInfo.innerText =
         matchingFiles.length +
         " matching file(s) found.";
-
 
     displaySearchResults(
         matchingFiles
@@ -1195,17 +1036,13 @@ function searchFiles() {
 
 }
 
-
-
 /*
     DISPLAY SEARCH RESULTS
 */
 
-
 function displaySearchResults(
     files
 ) {
-
 
     if (files.length === 0) {
 
@@ -1218,10 +1055,8 @@ function displaySearchResults(
 
     }
 
-
     const table =
         createTable();
-
 
     files
 
@@ -1239,22 +1074,17 @@ function displaySearchResults(
 
         });
 
-
     fileArea.appendChild(
         table
     );
 
 }
 
-
-
 /*
     OPEN FOLDER
 */
 
-
 function openFolder(folder) {
-
 
     showFolder(
         currentPath +
@@ -1264,15 +1094,11 @@ function openFolder(folder) {
 
 }
 
-
-
 /*
     PARENT DIRECTORY
 */
 
-
 function goBack() {
-
 
     if (currentPath === "") {
 
@@ -1280,19 +1106,15 @@ function goBack() {
 
     }
 
-
     let parts =
         currentPath
             .split("/")
             .filter(Boolean);
 
-
     parts.pop();
-
 
     let newPath =
         parts.join("/");
-
 
     if (newPath !== "") {
 
@@ -1300,30 +1122,23 @@ function goBack() {
 
     }
 
-
     showFolder(
         newPath
     );
 
 }
 
-
-
 /*
     CLEAR SEARCH
 */
 
-
 function clearSearch() {
-
 
     searchInput.value =
         "";
 
-
     searchInfo.innerText =
         "";
-
 
     showFolder(
         currentPath
@@ -1331,12 +1146,9 @@ function clearSearch() {
 
 }
 
-
-
 /*
     ENTER KEY SEARCH
 */
-
 
 searchInput.addEventListener(
     "keydown",
@@ -1351,9 +1163,7 @@ searchInput.addEventListener(
     }
 );
 
-
 </script>
-
 
 </body>
 

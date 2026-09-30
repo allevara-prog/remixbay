@@ -1,266 +1,100 @@
 import { AwsClient } from "aws4fetch";
 
-
 export default {
-
     async fetch(request, env) {
-
         const url = new URL(request.url);
 
-
-        /*
-            ========================================
-            GET ALL FILES
-            ========================================
-        */
-
-        if (
-            url.pathname === "/api/files" &&
-            request.method === "GET"
-        ) {
-
+        // Return all R2 files with their D1 metadata
+        if (url.pathname === "/api/files" && request.method === "GET") {
             let cursor;
-
             const objects = [];
 
-
-            /*
-                Get files from R2
-            */
-
             do {
-
-                const listed =
-                    await env.MY_BUCKET.list({
-                        limit: 1000,
-                        cursor: cursor
-                    });
-
-
-                objects.push(
-                    ...listed.objects
-                );
-
-
-                cursor =
-                    listed.truncated
-                        ? listed.cursor
-                        : undefined;
-
-
-            } while (cursor);
-
-
-
-            /*
-                Get metadata from D1
-            */
-
-            const databaseResults =
-                await env.remixbay_db
-                    .prepare(
-                        "SELECT * FROM files"
-                    )
-                    .all();
-
-
-            const metadata =
-                databaseResults.results;
-
-
-
-            /*
-                Make metadata easier
-                to look up
-            */
-
-            const metadataByKey =
-                new Map();
-
-
-            metadata.forEach(item => {
-
-                metadataByKey.set(
-                    item.r2_key,
-                    item
-                );
-
-            });
-
-
-
-            /*
-                Combine R2 + D1
-            */
-
-            const files =
-                objects.map(object => {
-
-
-                    const info =
-                        metadataByKey.get(
-                            object.key
-                        );
-
-
-                    return {
-
-                        name:
-                            object.key,
-
-                        size:
-                            formatBytes(
-                                object.size
-                            ),
-
-                        url:
-                            "https://pub-5dd4827a6086430ba3e6db4da1b69ce8.r2.dev/" +
-                            object.key
-                                .split("/")
-                                .map(encodeURIComponent)
-                                .join("/"),
-
-                        title:
-                            info?.title || "",
-
-                        creator:
-                            info?.creator || "",
-
-                        description:
-                            info?.description || "",
-
-                        tags:
-                            info?.tags || "",
-
-                        year:
-                            info?.year || "",
-
-                        category:
-                            info?.category || ""
-
-                    };
-
+                const listed = await env.MY_BUCKET.list({
+                    limit: 1000,
+                    cursor
                 });
 
+                objects.push(...listed.objects);
+                cursor = listed.truncated ? listed.cursor : undefined;
+            } while (cursor);
 
+            const databaseResults = await env.remixbay_db
+                .prepare("SELECT * FROM files")
+                .all();
 
-            return jsonResponse(
-                files
-            );
+            const metadataByKey = new Map();
 
+            databaseResults.results.forEach(item => {
+                metadataByKey.set(item.r2_key, item);
+            });
+
+            const files = objects.map(object => {
+                const info = metadataByKey.get(object.key);
+
+                return {
+                    name: object.key,
+                    size: formatBytes(object.size),
+
+                    url:
+                        "https://pub-5dd4827a6086430ba3e6db4da1b69ce8.r2.dev/" +
+                        object.key
+                            .split("/")
+                            .map(encodeURIComponent)
+                            .join("/"),
+
+                    title: info?.title || "",
+                    creator: info?.creator || "",
+                    description: info?.description || "",
+                    tags: info?.tags || "",
+                    year: info?.year || "",
+                    category: info?.category || ""
+                };
+            });
+
+            return jsonResponse(files);
         }
 
-
-
-        /*
-            ========================================
-            SAVE METADATA
-            ========================================
-        */
-
+        // Save metadata from the admin page
         if (
             url.pathname === "/api/admin/save" &&
             request.method === "POST"
         ) {
-
             try {
-
-
-                /*
-                    Read information sent
-                    from admin.html
-                */
-
-                const data =
-                    await request.json();
-
-
-
-                /*
-                    A file must be selected
-                */
+                const data = await request.json();
 
                 if (!data.r2_key) {
-
-                    return jsonResponse(
-                        {
-                            success: false,
-                            message:
-                                "No file selected."
-                        },
-                        400
-                    );
-
+                    return jsonResponse({
+                        success: false,
+                        message: "No file selected."
+                    }, 400);
                 }
 
-
-
-                /*
-                    Make sure this file
-                    really exists in R2
-                */
-
-                const object =
-                    await env.MY_BUCKET.head(
-                        data.r2_key
-                    );
-
+                const object = await env.MY_BUCKET.head(data.r2_key);
 
                 if (!object) {
-
-                    return jsonResponse(
-                        {
-                            success: false,
-                            message:
-                                "File does not exist in R2."
-                        },
-                        404
-                    );
-
+                    return jsonResponse({
+                        success: false,
+                        message: "File does not exist in R2."
+                    }, 404);
                 }
 
-
-
-                /*
-                    Handle year
-                */
-
                 let year = null;
-
 
                 if (
                     data.year !== "" &&
                     data.year !== null &&
                     data.year !== undefined
                 ) {
-
-                    year =
-                        parseInt(
-                            data.year,
-                            10
-                        );
-
+                    year = parseInt(data.year, 10);
 
                     if (isNaN(year)) {
-
                         year = null;
-
                     }
-
                 }
-
-
-
-                /*
-                    Save metadata to D1
-
-                    If metadata already exists
-                    for this R2 file, update it.
-                */
 
                 await env.remixbay_db
                     .prepare(`
-
                         INSERT INTO files
                         (
                             r2_key,
@@ -271,298 +105,103 @@ export default {
                             year,
                             category
                         )
-
-                        VALUES
-                        (
-                            ?,
-                            ?,
-                            ?,
-                            ?,
-                            ?,
-                            ?,
-                            ?
-                        )
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
 
                         ON CONFLICT(r2_key)
-
                         DO UPDATE SET
-
-                            title =
-                                excluded.title,
-
-                            creator =
-                                excluded.creator,
-
-                            description =
-                                excluded.description,
-
-                            tags =
-                                excluded.tags,
-
-                            year =
-                                excluded.year,
-
-                            category =
-                                excluded.category
-
+                            title = excluded.title,
+                            creator = excluded.creator,
+                            description = excluded.description,
+                            tags = excluded.tags,
+                            year = excluded.year,
+                            category = excluded.category
                     `)
-
                     .bind(
-
                         data.r2_key,
-
                         data.title || "",
-
                         data.creator || "",
-
                         data.description || "",
-
                         data.tags || "",
-
                         year,
-
                         data.category || ""
-
                     )
-
                     .run();
 
+                return jsonResponse({
+                    success: true,
+                    message: "Metadata saved."
+                });
+            } catch (error) {
+                console.log(error);
 
-
-                return jsonResponse(
-                    {
-                        success: true,
-                        message:
-                            "Metadata saved."
-                    }
-                );
-
-
+                return jsonResponse({
+                    success: false,
+                    message: "Error saving metadata: " + error.message
+                }, 500);
             }
-
-            catch (error) {
-
-
-                console.log(
-                    error
-                );
-
-
-                return jsonResponse(
-                    {
-                        success: false,
-                        message:
-                            "Error saving metadata: " +
-                            error.message
-                    },
-                    500
-                );
-
-            }
-
         }
 
-
-
-        /*
-            ========================================
-            CREATE DIRECT R2 UPLOAD URL
-            ========================================
-
-            The actual file will NOT pass
-            through this Worker.
-
-            The Worker only creates a temporary
-            signed URL that allows admin.html
-            to upload directly to R2.
-        */
-
+        // Create a temporary URL so admin.html can upload directly to R2
         if (
             url.pathname === "/api/admin/upload-url" &&
             request.method === "POST"
         ) {
-
             try {
-
-
-                /*
-                    Read upload information
-                    from admin.html
-                */
-
-                const data =
-                    await request.json();
-
-
-
-                /*
-                    A filename is required
-                */
+                const data = await request.json();
 
                 if (!data.filename) {
-
-                    return jsonResponse(
-                        {
-                            success: false,
-                            message:
-                                "No filename supplied."
-                        },
-                        400
-                    );
-
+                    return jsonResponse({
+                        success: false,
+                        message: "No filename supplied."
+                    }, 400);
                 }
 
+                let folder = data.folder || "";
 
-
-                /*
-                    Clean folder path
-
-                    Example:
-
-                    /remixes/
-
-                    becomes:
-
-                    remixes
-                */
-
-                let folder =
-                    data.folder || "";
-
-
-                folder =
-                    folder
-                        .trim()
-                        .replace(/^\/+/, "")
-                        .replace(/\/+$/, "");
-
-
-
-                /*
-                    Prevent suspicious
-                    folder paths
-                */
+                folder = folder
+                    .trim()
+                    .replace(/^\/+/, "")
+                    .replace(/\/+$/, "");
 
                 if (
                     folder.includes("..") ||
                     folder.includes("\\")
                 ) {
-
-                    return jsonResponse(
-                        {
-                            success: false,
-                            message:
-                                "Invalid folder path."
-                        },
-                        400
-                    );
-
+                    return jsonResponse({
+                        success: false,
+                        message: "Invalid folder path."
+                    }, 400);
                 }
 
+                const filename = String(data.filename)
+                    .replace(/\//g, "_")
+                    .replace(/\\/g, "_");
 
-
-                /*
-                    Prevent the filename itself
-                    from creating another path
-                */
-
-                const filename =
-                    String(data.filename)
-                        .replace(/\//g, "_")
-                        .replace(/\\/g, "_");
-
-
-
-                /*
-                    Build R2 object key
-                */
-
-                let r2Key =
-                    filename;
-
+                let r2Key = filename;
 
                 if (folder !== "") {
-
-                    r2Key =
-                        folder +
-                        "/" +
-                        filename;
-
+                    r2Key = folder + "/" + filename;
                 }
 
-
-
-                /*
-                    Don't accidentally overwrite
-                    an existing file
-                */
-
-                const existing =
-                    await env.MY_BUCKET.head(
-                        r2Key
-                    );
-
+                // Don't overwrite an existing R2 object
+                const existing = await env.MY_BUCKET.head(r2Key);
 
                 if (existing) {
-
-                    return jsonResponse(
-                        {
-                            success: false,
-                            message:
-                                "A file already exists at this path."
-                        },
-                        409
-                    );
-
+                    return jsonResponse({
+                        success: false,
+                        message: "A file already exists at this path."
+                    }, 409);
                 }
 
-
-
-                /*
-                    Determine Content-Type.
-
-                    admin.html must use this
-                    exact Content-Type when it
-                    uploads the file.
-                */
-
                 const contentType =
-                    data.contentType ||
-                    "application/octet-stream";
+                    data.contentType || "application/octet-stream";
 
-
-
-                /*
-                    Create AWS-compatible
-                    signing client for R2
-                */
-
-                const client =
-                    new AwsClient({
-
-                        service:
-                            "s3",
-
-                        region:
-                            "auto",
-
-                        accessKeyId:
-                            env.R2_ACCESS_KEY_ID,
-
-                        secretAccessKey:
-                            env.R2_SECRET_ACCESS_KEY
-
-                    });
-
-
-
-                /*
-                    Build the private R2
-                    S3 API URL.
-
-                    The bucket name is:
-                    remixbay
-                */
+                const client = new AwsClient({
+                    service: "s3",
+                    region: "auto",
+                    accessKeyId: env.R2_ACCESS_KEY_ID,
+                    secretAccessKey: env.R2_SECRET_ACCESS_KEY
+                });
 
                 const r2Url =
                     "https://" +
@@ -575,186 +214,61 @@ export default {
                         .join("/") +
                     "?X-Amz-Expires=3600";
 
-
-
-                /*
-                    Sign the PUT request.
-
-                    signQuery puts the temporary
-                    authorization information
-                    into the URL.
-
-                    It expires after one hour.
-                */
-
-                const signedRequest =
-                    await client.sign(
-
-                        new Request(
-                            r2Url,
-                            {
-                                method:
-                                    "PUT",
-
-                                headers: {
-
-                                    "Content-Type":
-                                        contentType
-
-                                }
-                            }
-                        ),
-
-                        {
-                            aws: {
-
-                                signQuery:
-                                    true
-
-                            }
+                const signedRequest = await client.sign(
+                    new Request(r2Url, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": contentType
                         }
-
-                    );
-
-
-
-                /*
-                    Give admin.html the temporary
-                    upload URL.
-
-                    No secret keys are returned.
-                */
-
-                return jsonResponse(
+                    }),
                     {
-                        success:
-                            true,
-
-                        uploadUrl:
-                            signedRequest.url.toString(),
-
-                        key:
-                            r2Key,
-
-                        contentType:
-                            contentType
+                        aws: {
+                            signQuery: true
+                        }
                     }
                 );
 
+                return jsonResponse({
+                    success: true,
+                    uploadUrl: signedRequest.url.toString(),
+                    key: r2Key,
+                    contentType
+                });
+            } catch (error) {
+                console.log(error);
 
+                return jsonResponse({
+                    success: false,
+                    message:
+                        "Could not create upload URL: " +
+                        error.message
+                }, 500);
             }
-
-            catch (error) {
-
-
-                console.log(
-                    error
-                );
-
-
-                return jsonResponse(
-                    {
-                        success:
-                            false,
-
-                        message:
-                            "Could not create upload URL: " +
-                            error.message
-                    },
-                    500
-                );
-
-            }
-
         }
 
-
-
-        /*
-            ========================================
-            NORMAL WEBSITE
-            ========================================
-        */
-
-        return env.ASSETS.fetch(
-            request
-        );
-
+        // Everything else is served from the site's static assets
+        return env.ASSETS.fetch(request);
     }
-
 };
 
-
-
-/*
-    ========================================
-    JSON RESPONSE
-    ========================================
-*/
-
-function jsonResponse(
-    data,
-    status = 200
-) {
-
-    return new Response(
-        JSON.stringify(data),
-        {
-            status: status,
-
-            headers: {
-
-                "Content-Type":
-                    "application/json"
-
-            }
+function jsonResponse(data, status = 200) {
+    return new Response(JSON.stringify(data), {
+        status,
+        headers: {
+            "Content-Type": "application/json"
         }
-    );
-
+    });
 }
 
-
-
-/*
-    ========================================
-    FORMAT FILE SIZE
-    ========================================
-*/
-
 function formatBytes(bytes) {
-
-
     if (bytes === 0) {
-
         return "0 Bytes";
-
     }
 
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    const amount =
+        Math.round((bytes / Math.pow(1024, i)) * 100) / 100;
 
-    const sizes = [
-        "Bytes",
-        "KB",
-        "MB",
-        "GB",
-        "TB"
-    ];
-
-
-    const i =
-        Math.floor(
-            Math.log(bytes) /
-            Math.log(1024)
-        );
-
-
-    return (
-        Math.round(
-            bytes /
-            Math.pow(1024, i) *
-            100
-        ) / 100
-    ) +
-    " " +
-    sizes[i];
-
+    return amount + " " + sizes[i];
 }
